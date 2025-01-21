@@ -50,6 +50,7 @@ class LibGpio
 	/// - \ref PAMI_GPIO_OUTPUT  pour un GPIO utilisé en sortie
 	/// - \ref PAMI_GPIO_PWM     pour un GPIO utilisé en mode PWM
  	/// \return true ou false si le mode est inconnu ou si le GPIO n'existe pas
+	/// \attention Le GPIO utilisant la pin 3 ne peut pas être utilisé en mode PWM
    bool configure(
 		unsigned char  gpioIdx,         ///< Numéro d'index du GPIO à configurer (à partir de 0)
 		t_gpioMode gpioMode,            ///< Type de configuration du pin

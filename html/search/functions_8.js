@@ -9,7 +9,8 @@ var searchData=
   ['setdisplay_6',['setDisplay',['../class_lib_chrono.html#a1db07abcbdf274746d2625e68dcb65ae',1,'LibChrono::setDisplay()'],['../class_lib_gyroscope.html#a76be09553344bc92214e06308ad6e88a',1,'LibGyroscope::setDisplay()']]],
   ['setmaxdistance_7',['setMaxDistance',['../class_lib_ultrason.html#a3a7a8480ba7d3005a13972f8d56a5da7',1,'LibUltrason']]],
   ['setmode_8',['setMode',['../class_lib_chrono.html#af96171526f26c9dee8b3328c7d7a40b2',1,'LibChrono']]],
-  ['setstatus_9',['setStatus',['../class_lib_aff1637.html#a90ab91aa34cd3bd4ab35b1e634e633c3',1,'LibAff1637']]],
-  ['start_10',['start',['../class_lib_chrono.html#a604212477e8c1fb57753b92d5101a692',1,'LibChrono']]],
-  ['stop_11',['stop',['../class_lib_chrono.html#ae3de2835b956b3aa1a86f2a4784bb2ab',1,'LibChrono']]]
+  ['setpwmmode_9',['setPwmMode',['../class_lib_moteur.html#a861c6c963dfe41988d37ffea67f3df30',1,'LibMoteur']]],
+  ['setstatus_10',['setStatus',['../class_lib_aff1637.html#a90ab91aa34cd3bd4ab35b1e634e633c3',1,'LibAff1637']]],
+  ['start_11',['start',['../class_lib_chrono.html#a604212477e8c1fb57753b92d5101a692',1,'LibChrono']]],
+  ['stop_12',['stop',['../class_lib_chrono.html#ae3de2835b956b3aa1a86f2a4784bb2ab',1,'LibChrono']]]
 ];

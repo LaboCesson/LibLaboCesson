@@ -53,6 +53,7 @@ LibPami::LibPami() :
 
 
 void LibPami::gestion(void) {
+  moteur.gestion();
   afficheur.gestion();
   gyro.gestion();
   chrono.gestion();

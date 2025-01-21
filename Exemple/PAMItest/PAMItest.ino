@@ -23,6 +23,7 @@ void setup() {
   pami.gyro.begin();
   pami.gyro.selectAxis(GYROSCOPE_AXIS_X);
   pami.radio.begin(16);
+  pami.moteur.setPwmMode(false);
 
   pami.afficheur.displayString("done");
   delay(2000);
@@ -69,7 +70,7 @@ void loop(void) {
 
   // Test Moteur
   static unsigned long timeNextMoteur = millis();
-  static unsigned int statusMoteur;
+  static unsigned char statusMoteur;
   if( time >= timeNextMoteur ) {
          if( statusMoteur == 0 ) {  pami.moteur.moteurs(50); statusMoteur = 1; }
     else if( statusMoteur == 1 ) {  pami.moteur.moteurs(0);  statusMoteur = 2; }
@@ -77,25 +78,6 @@ void loop(void) {
     else if( statusMoteur == 3 ) {  pami.moteur.moteurGauche(0);   pami.moteur.moteurDroit(100); statusMoteur = 0; }
     timeNextMoteur += PERIOD_TEST_MOTEUR;
   }
-
-  // if( time >= timeNextMoteur ) {
-  //   // pami.moteur.moteurDroit(50);
-  //   Serial.print("# Moteur    #"); Serial.println(statusMoteur);
-  //        if( statusMoteur == 0 ) {  pami.moteur.moteurDroit(0);   statusMoteur = 1; }
-  //   else if( statusMoteur == 1 ) {  pami.moteur.moteurDroit(25);  statusMoteur = 2; }
-  //   else if( statusMoteur == 2 ) {  pami.moteur.moteurDroit(50);  statusMoteur = 3; }
-  //   else if( statusMoteur == 3 ) {  pami.moteur.moteurDroit(100); statusMoteur = 0; }
-  //   timeNextMoteur += PERIOD_TEST_MOTEUR;
-  // }
-
-
-  // static int vitesse = 0;
-  // vitesse += 10;
-  // if( vitesse > 100 ) vitesse = 0;
-  // pami.moteur.moteurGauche(vitesse);
-  // Serial.print("# Moteur    #"); Serial.println(vitesse);
-
-
 
   // Test Chrono
   if( pami.chrono.isAlarm() == true ) {

@@ -8,7 +8,10 @@
 
 #include "LibMoteur.h"
 
-LibMoteur::LibMoteur(unsigned char pinEna, unsigned char pinIn1, unsigned char pinIn2, unsigned char pinIn3, unsigned char pinIn4, unsigned char pinEnb) {
+LibMoteur::LibMoteur(unsigned char pinEna, unsigned char pinIn1, unsigned char pinIn2, unsigned char pinIn3, unsigned char pinIn4, unsigned char pinEnb, bool pwmMode = true) {
+  m_pwmMode = pwmMode;
+  m_nbPasEnA = 0;
+  m_nbPasEnB = 0;
   pinMode(m_enableGauche  = pinEna, OUTPUT); analogWrite(m_enableGauche, 0);
   pinMode(m_enableDroite  = pinEnb, OUTPUT); analogWrite(m_enableDroite, 0);
   
@@ -19,9 +22,29 @@ LibMoteur::LibMoteur(unsigned char pinEna, unsigned char pinIn1, unsigned char p
 }
 
 
+void LibMoteur::setPwmMode(bool pwmMode) { m_pwmMode = pwmMode; }
+
+
+#define PERIODE_GESTION_MOTEUR  5 ///< Durée en ms d'un pas
+#define NB_PAS_GESTION_MOTEUR   5 ///< Nombre de pas de reglage de vitesse
+
+void LibMoteur::gestion(void) {
+  if( m_pwmMode == true ) return;
+  static unsigned long timeNext = millis();
+         unsigned long time = millis();
+  static unsigned char nbPas = 0;
+  if( time >= timeNext ) {
+	digitalWrite(m_enableGauche, (m_nbPasEnA>nbPas ? 1 : 0) ) ;
+	digitalWrite(m_enableDroite, (m_nbPasEnB>nbPas ? 1 : 0) ) ;
+	nbPas++;
+	if(nbPas == NB_PAS_GESTION_MOTEUR) nbPas=0;	
+    while( time >= timeNext ) timeNext += PERIODE_GESTION_MOTEUR;
+  }
+}
+
+
 void LibMoteur::moteurGauche(char vitesse) {
   unsigned char d = getDirection(vitesse);
-
   if( d != m_directionGauche ) {
     m_directionGauche = d;
     digitalWrite(m_avantGauche,  LOW);
@@ -29,7 +52,11 @@ void LibMoteur::moteurGauche(char vitesse) {
     if( m_directionGauche == DIRECTION_AVANT  ) digitalWrite(m_avantGauche,  HIGH);
     if( m_directionGauche == DIRECTION_ARRIERE) digitalWrite(m_arriereGauche,HIGH);
   }
-  analogWrite(m_enableGauche, getVitesse(vitesse));
+  if( m_pwmMode == true ) {
+	analogWrite(m_enableGauche, getVitesse(vitesse));
+  } else {
+	m_nbPasEnA = getNbPas(vitesse);
+  }
 }
 
 
@@ -43,7 +70,11 @@ void LibMoteur::moteurDroit(char vitesse) {
     if( m_directionDroite == DIRECTION_AVANT  ) digitalWrite(m_avantDroite,  HIGH);
     if( m_directionDroite == DIRECTION_ARRIERE) digitalWrite(m_arriereDroite,HIGH);
   }
-  analogWrite(m_enableDroite, getVitesse(vitesse));
+  if( m_pwmMode == true ) {
+    analogWrite(m_enableDroite, getVitesse(vitesse));
+  } else {
+	m_nbPasEnB = getNbPas(vitesse);
+  }
 }
 
 
@@ -62,6 +93,11 @@ unsigned char LibMoteur::getDirection(char vitesse) {
 unsigned char LibMoteur::getVitesse(char vitesse) {
   unsigned char v = ( vitesse > 0 ? vitesse : -vitesse);
   return map(v, 0, 100, 0, 255);
+}
+
+unsigned char LibMoteur::getNbPas(char vitesse) {
+  unsigned char v = ( vitesse > 0 ? vitesse : -vitesse);
+  return map(v, 0, 100, 0, NB_PAS_GESTION_MOTEUR);
 }
 
 

@@ -26,7 +26,7 @@ typedef enum {
 /// \details * <a href="https://content.instructables.com/FUT/M44H/KYR9VTKC/FUTM44HKYR9VTKC.pdf"> HowTo 2 </a>
 /// \details La librairie a utilisée est 
 /// <a href="https://www.airspayce.com/mikem/arduino/RadioHead/RadioHead-1.142.zip"> La librairie RadioHead </a>
-/// \attention Il est nécessaire de modifier le fichier RH_ASK.hcpp et decommenter la ligne
+/// \attention Il est nécessaire de modifier le fichier RH_ASK.cpp et decommenter la ligne
 /// #define RH_ASK_ARDUINO_USE_TIMER2
 /// pour éviter les incompatibilité avec la librairie 'servo'
 class Lib433Mhz

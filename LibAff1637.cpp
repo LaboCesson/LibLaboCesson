@@ -88,8 +88,8 @@ void LibAff1637::displayClear() {
 void LibAff1637::displayBuffer( char * buffer, unsigned char length, unsigned char pos = 0) {
   unsigned char digits[4];
 
-  for( unsigned char i; i<length; i++ ) {
-    digits[i] = asciiDef[(*buffer++)-OFFSET_ASCII];
+  for( unsigned char i=0; i<length; i++ ) {
+    digits[i] = asciiDef[buffer[i] - OFFSET_ASCII];
   }
   
   writeDigits(digits, length, pos);

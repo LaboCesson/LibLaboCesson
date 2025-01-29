@@ -37,5 +37,6 @@ var searchData=
   ['period_5fclignotement_34',['PERIOD_CLIGNOTEMENT',['../_lib_aff1637_8cpp.html#ac09cd2f825afcdc040834dece60d402f',1,'LibAff1637.cpp']]],
   ['periode_5fgestion_35',['PERIODE_GESTION',['../_lib_gyroscope_8cpp.html#abb4198501fc94137d7aaaa672b483abc',1,'LibGyroscope.cpp']]],
   ['periode_5fgestion_5fmoteur_36',['PERIODE_GESTION_MOTEUR',['../_lib_moteur_8cpp.html#a9e12f8b48547b5ac4fba1b260e458063',1,'LibMoteur.cpp']]],
-  ['periode_5fupdate_5fdisplay_37',['PERIODE_UPDATE_DISPLAY',['../_lib_gyroscope_8cpp.html#a1d1b4cd5cdbe8877bce3937b4ad1d1eb',1,'LibGyroscope.cpp']]]
+  ['periode_5fupdate_5fdisplay_37',['PERIODE_UPDATE_DISPLAY',['../_lib_gyroscope_8cpp.html#a1d1b4cd5cdbe8877bce3937b4ad1d1eb',1,'LibGyroscope.cpp']]],
+  ['pinmode_38',['pinMode',['../class_lib_mcp23008.html#ae3104a05116c4d3dbd7920d1ae4289fa',1,'LibMcp23008']]]
 ];

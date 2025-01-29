@@ -1,6 +1,10 @@
-//
-// Librairie de gestion du MCP23008
-//
+/*!
+ * \file 	LibMcp23008.cpp
+ * \brief 	Le fichier source de la classe LibMcp23008
+ * \author  LaboCesson
+ * \version 1.0
+ * \date    Janvier 2025
+ */
 
 #include "LibMcp23008.h"
 

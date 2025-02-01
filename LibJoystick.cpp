@@ -37,8 +37,8 @@ void LibJoystick::calculateVitesse(void) {
   bool rotationDroite = (digitalRead(m_boutonRotationDroite) == LOW ? true : false);
 
   if (m_debug) {
-    Serial.print("JOYSTICK_X="); Serial.print(joystickX); Serial.print(",");
-    Serial.print("JOYSTICK_Y="); Serial.print(joystickY); Serial.print(",");
+    Serial.print("JOYSTICK_X = "); Serial.print((int)joystickX); Serial.print("  ");
+    Serial.print("JOYSTICK_Y = "); Serial.print((int)joystickY); Serial.print("  ");
     if (boost) Serial.print(" BOOST ");
     if (rotationGauche) Serial.print(" ROTATION GAUCHE ");
     if (rotationDroite) Serial.print(" ROTATION DROITE ");

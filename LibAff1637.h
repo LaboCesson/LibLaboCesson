@@ -30,6 +30,7 @@
 #define SEG_BB 0x08
 #define SEG_PP 0x80
 
+#define AFF1637_BIT_DELAY 5     // Delai en microsecond
 
 /// \class LibAff1637
 /// \brief Gestion d'un afficheur 7 Segments avec un TM1637. 
@@ -39,8 +40,9 @@ class LibAff1637
 {
   public:
     LibAff1637( 
-      unsigned char pinClk, ///< Le numéro de la pin connectée à l'entrée Clk
-      unsigned char pinData ///< Le numéro de la pin connectée à l'entrée DIO
+      unsigned char pinClk,  ///< Le numéro de la pin connectée à l'entrée Clk
+      unsigned char pinData, ///< Le numéro de la pin connectée à l'entrée DIO
+      unsigned char bitDelay = AFF1637_BIT_DELAY ///< Durée d'un bit sur la liaison série en microsecond
     );
 
     /// \details Permet de valider l'utilisation de l'afficheur

@@ -13,16 +13,14 @@
 #define TM1637_I2C_COMM2  0xC0  // Address command set
 #define TM1637_I2C_COMM3  0x80  // Display Control Command Set
 
-#define AFF1637_BIT_DELAY 5     // Delai en microsecond
-
 #define PERIOD_CLIGNOTEMENT 500 // en millisecondes
 
 
-LibAff1637::LibAff1637(uint8_t pinClk, uint8_t pinDIO)
+LibAff1637::LibAff1637(uint8_t pinClk, uint8_t pinDIO, unsigned char bitDelay = AFF1637_BIT_DELAY)
 {
   m_pinClk = pinClk;
   m_pinDIO = pinDIO;
-  m_bitDelay = AFF1637_BIT_DELAY;
+  m_bitDelay = bitDelay;
   m_brightness =0x0F;
   m_begin = false;
   m_status = true;
@@ -47,15 +45,15 @@ void LibAff1637::gestion(void) {
   
   if(m_begin == true ) {
     if( m_blinking == false ) {
-		writeBrightness((m_brightness & 0x7) | (m_status ? 0x08 : 0x00));
+		  writeBrightness((m_brightness & 0x7) | (m_status ? 0x08 : 0x00));
     } else {
-	  status = ( status ? false : true );
-	  if( status == false ) {
-		writeBrightness(0x00);
-	  } else {
-		writeBrightness((m_brightness & 0x7) | (m_status ? 0x08 : 0x00));
+	    status = ( status ? false : true );
+	    if( status == false ) {
+		    writeBrightness(0x00);
+	    } else {
+		    writeBrightness((m_brightness & 0x7) | (m_status ? 0x08 : 0x00));
+	    }
 	  }
-	}
   }
   nextTimeGestion += PERIOD_CLIGNOTEMENT;
   

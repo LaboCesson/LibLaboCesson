@@ -16,6 +16,7 @@ Lib433Mhz::Lib433Mhz(t_modeRadio modeRadio, unsigned short speed, unsigned char 
   mp_pattern  = p_pattern;
   m_patternSize = strlen(p_pattern);
   m_begin = false;
+  m_debug = false;
 }
 
 
@@ -55,7 +56,10 @@ void Lib433Mhz::sendMessage( char * p_msg ) {
   if( !m_begin )return 0;
   strcpy(mp_buf,mp_pattern);
   strcat(mp_buf,p_msg);
-  Serial.println(mp_buf);
+  if(m_debug == true) Serial.println(mp_buf);
   mp_radio->send(mp_buf, strlen(mp_buf));
   mp_radio->waitPacketSent();
 }
+
+
+void Lib433Mhz::setDebug(bool debug) { m_debug = debug;  }

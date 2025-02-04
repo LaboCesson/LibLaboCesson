@@ -26,9 +26,9 @@ typedef enum {
 /// \details * <a href="https://content.instructables.com/FUT/M44H/KYR9VTKC/FUTM44HKYR9VTKC.pdf"> HowTo 2 </a>
 /// \details La librairie a utilisée est 
 /// <a href="https://www.airspayce.com/mikem/arduino/RadioHead/RadioHead-1.142.zip"> La librairie RadioHead </a>
-/// \attention Il est nécessaire de modifier le fichier RH_ASK.cpp et decommenter la ligne
-/// #define RH_ASK_ARDUINO_USE_TIMER2
-/// pour éviter les incompatibilité avec la librairie 'servo'
+/// \attention Il est nécessaire de modifier le fichier RH_ASK.cpp et décommenter la ligne
+/// \attention #define RH_ASK_ARDUINO_USE_TIMER2
+/// \attention pour éviter les incompatibilité avec la librairie 'servo'
 class Lib433Mhz
 {
   public:
@@ -51,13 +51,19 @@ class Lib433Mhz
       unsigned char length   ///< longueur maximum du message à retourner
     );
 
-    /// \details Permet de'envoyer un message par radio
+    /// \details Permet d'envoyer un message par radio
     void sendMessage(
       char * p_msg ///< Pointeur vers ou écrire le message lu (doit se terminer par un 0)
     );
  
+    /// \details Permet de valider l'affichage de message de debug
+    void setDebug(
+      bool debug ///< si true les messages de debug sont affichés
+    );
+
   private:
     bool m_begin;
+    bool m_debug;
     unsigned short m_speed;
     unsigned char  m_pin;
     unsigned char  m_msgSize;

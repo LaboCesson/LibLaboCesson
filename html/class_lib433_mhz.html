@@ -106,11 +106,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2b99d16634eac5725b7f736bc85588aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae579de73b0c0788276cadae9801c2cf0" id="r_ae579de73b0c0788276cadae9801c2cf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae579de73b0c0788276cadae9801c2cf0">sendMessage</a> (char *p_msg)</td></tr>
 <tr class="separator:ae579de73b0c0788276cadae9801c2cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0890845567dd196476342bcefd7937f5" id="r_a0890845567dd196476342bcefd7937f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0890845567dd196476342bcefd7937f5">setDebug</a> (bool debug)</td></tr>
+<tr class="separator:a0890845567dd196476342bcefd7937f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Gestion des d'un récepteur 433Mhz. </p>
 <ul>
-<li><a href="http://www.eeant.com/datasheet/et-rxb-12.pdf">Documentation du Récepteur RXB-12 0 </a></li>
+<li><a href="http://www.eeant.com/datasheet/et-rxb-12.pdf">Documentation du Recepteur RXB-12 0 </a></li>
 </ul>
 <ul>
 <li><a href="https://dl.keyhanelc.com/B6/A307.pdf">HowTo 1 </a></li>
@@ -118,7 +120,11 @@ Public Member Functions</h2></td></tr>
 <ul>
 <li><a href="https://content.instructables.com/FUT/M44H/KYR9VTKC/FUTM44HKYR9VTKC.pdf">HowTo 2 </a></li>
 </ul>
-<p>La librairie a utilisée est <a href="https://www.airspayce.com/mikem/arduino/RadioHead/RadioHead-1.142.zip">La librairie RadioHead </a> </p><dl class="section attention"><dt>Attention</dt><dd>Il est nécessaire de modifier le fichier RH_ASK.cpp et decommenter la ligne #define RH_ASK_ARDUINO_USE_TIMER2 pour éviter les incompatibilité avec la librairie 'servo' </dd></dl>
+<p>La librairie a utilisée est <a href="https://www.airspayce.com/mikem/arduino/RadioHead/RadioHead-1.142.zip">La librairie RadioHead </a> </p><dl class="section attention"><dt>Attention</dt><dd>Il est nécessaire de modifier le fichier RH_ASK.cpp et décommenter la ligne </dd>
+<dd>
+#define RH_ASK_ARDUINO_USE_TIMER2 </dd>
+<dd>
+pour éviter les incompatibilité avec la librairie 'servo' </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_lib433_mhz_8h_source.html#l00032">32</a> of file <a class="el" href="_lib433_mhz_8h_source.html">Lib433Mhz.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -187,7 +193,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_lib433_mhz_8cpp_source.html#l00022">22</a> of file <a class="el" href="_lib433_mhz_8cpp_source.html">Lib433Mhz.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_lib433_mhz_8cpp_source.html#l00023">23</a> of file <a class="el" href="_lib433_mhz_8cpp_source.html">Lib433Mhz.cpp</a>.</p>
 
 </div>
 </div>
@@ -212,13 +218,13 @@ Public Member Functions</h2></td></tr>
 <p>Permet de lire un message reçu par radio </p><dl class="section return"><dt>Returns</dt><dd>Retourne la longueur du message lu </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p_msg</td><td>Pointeur vers ou écrire le message lu  </td></tr>
+    <tr><td class="paramname">p_msg</td><td>Pointeur vers ou ecrire le message lu  </td></tr>
     <tr><td class="paramname">length</td><td>longueur maximum du message à retourner </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_lib433_mhz_8cpp_source.html#l00039">39</a> of file <a class="el" href="_lib433_mhz_8cpp_source.html">Lib433Mhz.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_lib433_mhz_8cpp_source.html#l00040">40</a> of file <a class="el" href="_lib433_mhz_8cpp_source.html">Lib433Mhz.cpp</a>.</p>
 
 </div>
 </div>
@@ -236,7 +242,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Permet de'envoyer un message par radio </p>
+<p>Permet d'envoyer un message par radio </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p_msg</td><td>Pointeur vers ou écrire le message lu (doit se terminer par un 0) </td></tr>
@@ -244,7 +250,33 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_lib433_mhz_8cpp_source.html#l00054">54</a> of file <a class="el" href="_lib433_mhz_8cpp_source.html">Lib433Mhz.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_lib433_mhz_8cpp_source.html#l00055">55</a> of file <a class="el" href="_lib433_mhz_8cpp_source.html">Lib433Mhz.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a0890845567dd196476342bcefd7937f5" name="a0890845567dd196476342bcefd7937f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0890845567dd196476342bcefd7937f5">&#9670;&#160;</a></span>setDebug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Lib433Mhz::setDebug </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>debug</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permet de valider l'affichage de message de debug </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">debug</td><td>si true les messages de debug sont affichés </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_lib433_mhz_8cpp_source.html#l00065">65</a> of file <a class="el" href="_lib433_mhz_8cpp_source.html">Lib433Mhz.cpp</a>.</p>
 
 </div>
 </div>

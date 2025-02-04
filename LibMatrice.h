@@ -41,7 +41,13 @@ class LibMatrice
     /// \details Retourne le nombre de contacts gérés par la matrice
     unsigned char getNbContacts(void);
 
+    /// \details Permet de valider l'affichage de message de debug
+    void setDebug(
+      bool debug ///< si true les messages de debug sont affichés
+    );
+
   private:
+    bool            m_debug;
     unsigned char   m_nbPinOut;
     unsigned char   m_nbPinIn;
     unsigned char * mp_pinOut;

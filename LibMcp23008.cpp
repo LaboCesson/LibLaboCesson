@@ -62,9 +62,9 @@ unsigned char LibMcp23008::getDeviceRegister(unsigned char * p_reg, unsigned cha
 
 
 void LibMcp23008::pinMode( unsigned char pin, unsigned char mode) {
-  if( pin > 7 ) return;
-
-  unsigned char mask = 1<<pin;
+  if ((pin < 1) || (pin > 8)) return;
+ 
+  unsigned char mask = 1<<(pin-1);
   unsigned char dir = readRegister(MCP23008_IODIR);
   unsigned char olddir = dir;
   unsigned char pup = readRegister(MCP23008_GPPU);
@@ -82,9 +82,9 @@ void LibMcp23008::pinMode( unsigned char pin, unsigned char mode) {
 
 
 void LibMcp23008::digitalWrite( unsigned char pin, unsigned char value) {
-  if( pin > 7 ) return;
+  if ((pin < 1) || (pin > 8)) return;
 
-  unsigned char mask = 1<<pin;
+  unsigned char mask = 1<< (pin - 1);
   unsigned char val = readRegister(MCP23008_GPIO);
   unsigned char oldval = val;
 
@@ -98,9 +98,9 @@ void LibMcp23008::digitalWrite( unsigned char pin, unsigned char value) {
 
 
 unsigned char LibMcp23008::digitalRead( unsigned char pin) {
-  if( pin > 7 ) return;
-
-  unsigned char mask = 1<<pin;
+  if ((pin < 1) || (pin > 8)) return;
+ 
+  unsigned char mask = 1<< (pin - 1);
   unsigned char val = readRegister(MCP23008_GPIO);
 
   return ((val&mask) == 0 ? LOW : HIGH );

@@ -99,64 +99,69 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  mp_pattern  = p_pattern;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  m_patternSize = strlen(p_pattern);</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  m_begin = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>}</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  m_debug = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}</div>
 </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_lib433_mhz.html#af68978e32712fd6bc3004bcdf59e271a">   22</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#af68978e32712fd6bc3004bcdf59e271a">Lib433Mhz::begin</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> msgSize) {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  m_msgSize = msgSize;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keywordflow">switch</span>(m_modeRadio) {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719dba792558dcfe048ea8b01d45d45e10bc92">RADIO433MHZ_RECV</a> :</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      mp_radio = <span class="keyword">new</span> RH_ASK(m_speed,m_pin,0,0);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719dba52dc15e3f262718ee878806e93dc02dd">RADIO433MHZ_SEND</a> :</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>      mp_radio = <span class="keyword">new</span> RH_ASK(m_speed,0,m_pin,0);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    default : <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  }</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  mp_radio-&gt;init();</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  mp_buf = malloc(m_patternSize+m_msgSize);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  m_begin = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_lib433_mhz.html#af68978e32712fd6bc3004bcdf59e271a">   23</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#af68978e32712fd6bc3004bcdf59e271a">Lib433Mhz::begin</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> msgSize) {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  m_msgSize = msgSize;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordflow">switch</span>(m_modeRadio) {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719dba792558dcfe048ea8b01d45d45e10bc92">RADIO433MHZ_RECV</a> :</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      mp_radio = <span class="keyword">new</span> RH_ASK(m_speed,m_pin,0,0);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719dba52dc15e3f262718ee878806e93dc02dd">RADIO433MHZ_SEND</a> :</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>      mp_radio = <span class="keyword">new</span> RH_ASK(m_speed,0,m_pin,0);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    default : <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  mp_radio-&gt;init();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  mp_buf = malloc(m_patternSize+m_msgSize);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  m_begin = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
 </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_lib433_mhz.html#a2b99d16634eac5725b7f736bc85588aa">   39</a></span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code hl_function" href="class_lib433_mhz.html#a2b99d16634eac5725b7f736bc85588aa">Lib433Mhz::getMessage</a>(<span class="keywordtype">char</span> * p_msg, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> length) {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordflow">if</span>( !m_begin ) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> buflen = m_patternSize+m_msgSize;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordflow">if</span>( !mp_radio-&gt;recv(mp_buf,&amp;buflen) ) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  mp_buf[buflen]=<span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordflow">if</span>( buflen &lt; m_patternSize ) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="keywordflow">if</span>( memcmp(mp_buf,mp_pattern,m_patternSize) != 0 ) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  strcpy(p_msg,mp_buf+m_patternSize);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordflow">return</span> strlen(p_msg);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_lib433_mhz.html#a2b99d16634eac5725b7f736bc85588aa">   40</a></span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code hl_function" href="class_lib433_mhz.html#a2b99d16634eac5725b7f736bc85588aa">Lib433Mhz::getMessage</a>(<span class="keywordtype">char</span> * p_msg, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> length) {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordflow">if</span>( !m_begin ) <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> buflen = m_patternSize+m_msgSize;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keywordflow">if</span>( !mp_radio-&gt;recv(mp_buf,&amp;buflen) ) <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  mp_buf[buflen]=<span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="keywordflow">if</span>( buflen &lt; m_patternSize ) <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordflow">if</span>( memcmp(mp_buf,mp_pattern,m_patternSize) != 0 ) <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  strcpy(p_msg,mp_buf+m_patternSize);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keywordflow">return</span> strlen(p_msg);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
 </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="class_lib433_mhz.html#ae579de73b0c0788276cadae9801c2cf0">   54</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#ae579de73b0c0788276cadae9801c2cf0">Lib433Mhz::sendMessage</a>( <span class="keywordtype">char</span> * p_msg ) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keywordflow">if</span>( !m_begin )<span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  strcpy(mp_buf,mp_pattern);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  strcat(mp_buf,p_msg);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  Serial.println(mp_buf);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  mp_radio-&gt;send(mp_buf, strlen(mp_buf));</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  mp_radio-&gt;waitPacketSent();</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="class_lib433_mhz.html#ae579de73b0c0788276cadae9801c2cf0">   55</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#ae579de73b0c0788276cadae9801c2cf0">Lib433Mhz::sendMessage</a>( <span class="keywordtype">char</span> * p_msg ) {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keywordflow">if</span>( !m_begin )<span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  strcpy(mp_buf,mp_pattern);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  strcat(mp_buf,p_msg);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordflow">if</span>(m_debug == <span class="keyword">true</span>) Serial.println(mp_buf);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  mp_radio-&gt;send(mp_buf, strlen(mp_buf));</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  mp_radio-&gt;waitPacketSent();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
 </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="class_lib433_mhz.html#a0890845567dd196476342bcefd7937f5">   65</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#a0890845567dd196476342bcefd7937f5">Lib433Mhz::setDebug</a>(<span class="keywordtype">bool</span> debug) { m_debug = debug;  }</div>
 <div class="ttc" id="a_lib433_mhz_8h_html"><div class="ttname"><a href="_lib433_mhz_8h.html">Lib433Mhz.h</a></div><div class="ttdoc">Le fichier de définition de la classe Lib433Mhz.</div></div>
 <div class="ttc" id="a_lib433_mhz_8h_html_a6d50f903e1f34b75859fc8cf65c719db"><div class="ttname"><a href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719db">t_modeRadio</a></div><div class="ttdeci">t_modeRadio</div><div class="ttdef"><b>Definition</b> <a href="_lib433_mhz_8h_source.html#l00016">Lib433Mhz.h:16</a></div></div>
 <div class="ttc" id="a_lib433_mhz_8h_html_a6d50f903e1f34b75859fc8cf65c719dba52dc15e3f262718ee878806e93dc02dd"><div class="ttname"><a href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719dba52dc15e3f262718ee878806e93dc02dd">RADIO433MHZ_SEND</a></div><div class="ttdeci">@ RADIO433MHZ_SEND</div><div class="ttdoc">Radio 433Mh en mode émetteur.</div><div class="ttdef"><b>Definition</b> <a href="_lib433_mhz_8h_source.html#l00019">Lib433Mhz.h:18</a></div></div>
 <div class="ttc" id="a_lib433_mhz_8h_html_a6d50f903e1f34b75859fc8cf65c719dba792558dcfe048ea8b01d45d45e10bc92"><div class="ttname"><a href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719dba792558dcfe048ea8b01d45d45e10bc92">RADIO433MHZ_RECV</a></div><div class="ttdeci">@ RADIO433MHZ_RECV</div><div class="ttdoc">Radio 433Mh en mode réception.</div><div class="ttdef"><b>Definition</b> <a href="_lib433_mhz_8h_source.html#l00017">Lib433Mhz.h:17</a></div></div>
-<div class="ttc" id="aclass_lib433_mhz_html_a2b99d16634eac5725b7f736bc85588aa"><div class="ttname"><a href="class_lib433_mhz.html#a2b99d16634eac5725b7f736bc85588aa">Lib433Mhz::getMessage</a></div><div class="ttdeci">unsigned char getMessage(char *p_msg, unsigned char length)</div><div class="ttdef"><b>Definition</b> <a href="#l00039">Lib433Mhz.cpp:39</a></div></div>
+<div class="ttc" id="aclass_lib433_mhz_html_a0890845567dd196476342bcefd7937f5"><div class="ttname"><a href="class_lib433_mhz.html#a0890845567dd196476342bcefd7937f5">Lib433Mhz::setDebug</a></div><div class="ttdeci">void setDebug(bool debug)</div><div class="ttdef"><b>Definition</b> <a href="#l00065">Lib433Mhz.cpp:65</a></div></div>
+<div class="ttc" id="aclass_lib433_mhz_html_a2b99d16634eac5725b7f736bc85588aa"><div class="ttname"><a href="class_lib433_mhz.html#a2b99d16634eac5725b7f736bc85588aa">Lib433Mhz::getMessage</a></div><div class="ttdeci">unsigned char getMessage(char *p_msg, unsigned char length)</div><div class="ttdef"><b>Definition</b> <a href="#l00040">Lib433Mhz.cpp:40</a></div></div>
 <div class="ttc" id="aclass_lib433_mhz_html_a5954f74a686a0dd14f7558f0005c8ac4"><div class="ttname"><a href="class_lib433_mhz.html#a5954f74a686a0dd14f7558f0005c8ac4">Lib433Mhz::Lib433Mhz</a></div><div class="ttdeci">Lib433Mhz(t_modeRadio modeRadio, unsigned short speed, unsigned char pin, char *p_pattern)</div><div class="ttdef"><b>Definition</b> <a href="#l00012">Lib433Mhz.cpp:12</a></div></div>
-<div class="ttc" id="aclass_lib433_mhz_html_ae579de73b0c0788276cadae9801c2cf0"><div class="ttname"><a href="class_lib433_mhz.html#ae579de73b0c0788276cadae9801c2cf0">Lib433Mhz::sendMessage</a></div><div class="ttdeci">void sendMessage(char *p_msg)</div><div class="ttdef"><b>Definition</b> <a href="#l00054">Lib433Mhz.cpp:54</a></div></div>
-<div class="ttc" id="aclass_lib433_mhz_html_af68978e32712fd6bc3004bcdf59e271a"><div class="ttname"><a href="class_lib433_mhz.html#af68978e32712fd6bc3004bcdf59e271a">Lib433Mhz::begin</a></div><div class="ttdeci">void begin(unsigned char msgSize)</div><div class="ttdef"><b>Definition</b> <a href="#l00022">Lib433Mhz.cpp:22</a></div></div>
+<div class="ttc" id="aclass_lib433_mhz_html_ae579de73b0c0788276cadae9801c2cf0"><div class="ttname"><a href="class_lib433_mhz.html#ae579de73b0c0788276cadae9801c2cf0">Lib433Mhz::sendMessage</a></div><div class="ttdeci">void sendMessage(char *p_msg)</div><div class="ttdef"><b>Definition</b> <a href="#l00055">Lib433Mhz.cpp:55</a></div></div>
+<div class="ttc" id="aclass_lib433_mhz_html_af68978e32712fd6bc3004bcdf59e271a"><div class="ttname"><a href="class_lib433_mhz.html#af68978e32712fd6bc3004bcdf59e271a">Lib433Mhz::begin</a></div><div class="ttdeci">void begin(unsigned char msgSize)</div><div class="ttdef"><b>Definition</b> <a href="#l00023">Lib433Mhz.cpp:23</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

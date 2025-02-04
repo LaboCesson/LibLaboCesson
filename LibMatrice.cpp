@@ -16,6 +16,7 @@ LibMatrice::LibMatrice(unsigned char nbPinOut, unsigned char * p_pinOut,
   m_nbPinIn  = nbPinIn;
   mp_pinIn   = p_pinIn;
   mp_pinExt  = p_pinExt;
+  m_debug    = false;
 }
 
 
@@ -49,6 +50,10 @@ unsigned short LibMatrice::getContacts(void) {
     }
     setPinOut(mp_pinOut[i],HIGH);
   }
+  if (m_debug == true) {
+    Serial.print("Contacts: ");
+    Serial.println(contact, BIN);
+  }
   return contact;
 }
 
@@ -60,6 +65,7 @@ unsigned char LibMatrice::getIndex(void) {
   while( contact!=0) {
     index++;
     contact >>= 1;
+
   }
   return index;
 }
@@ -70,7 +76,7 @@ unsigned char LibMatrice::getNbContacts(void)  { return (m_nbPinOut*m_nbPinIn); 
 
 void LibMatrice::setPinMode(unsigned char pin, unsigned char mode) {
   if( mp_pinExt != 0 ) {
-    mp_pinExt->pinMode(pin-1,mode);
+    mp_pinExt->pinMode(pin,mode);
   } else {
     pinMode(pin,mode);
   }
@@ -79,7 +85,7 @@ void LibMatrice::setPinMode(unsigned char pin, unsigned char mode) {
 
 void LibMatrice::setPinOut(unsigned char pin, unsigned char val) {
   if( mp_pinExt != 0 ) {
-    mp_pinExt->digitalWrite(pin-1,val);
+    mp_pinExt->digitalWrite(pin,val);
   } else {
     digitalWrite(pin,val);
   }
@@ -88,9 +94,10 @@ void LibMatrice::setPinOut(unsigned char pin, unsigned char val) {
 
 unsigned char LibMatrice::readPin(unsigned char pin) {
   if( mp_pinExt != 0 ) {
-    return(mp_pinExt->digitalRead(pin-1));
+    return(mp_pinExt->digitalRead(pin));
   } else {
     return(digitalRead(pin));
   }
 }
 
+void LibMatrice::setDebug(bool debug) { m_debug = debug; }

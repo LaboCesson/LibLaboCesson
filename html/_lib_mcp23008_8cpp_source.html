@@ -151,9 +151,9 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
 <div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="class_lib_mcp23008.html#ae3104a05116c4d3dbd7920d1ae4289fa">   64</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_mcp23008.html#ae3104a05116c4d3dbd7920d1ae4289fa">LibMcp23008::pinMode</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> pin, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> mode) {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keywordflow">if</span>( pin &gt; 7 ) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keywordflow">if</span> ((pin &lt; 1) || (pin &gt; 8)) <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> mask = 1&lt;&lt;pin;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> mask = 1&lt;&lt;(pin-1);</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> dir = readRegister(<a class="code hl_define" href="_lib_mcp23008_8cpp.html#a208c0bfbfcad48dd5942ab0d565afd96">MCP23008_IODIR</a>);</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> olddir = dir;</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> pup = readRegister(<a class="code hl_define" href="_lib_mcp23008_8cpp.html#a2d694b6bd00d6dfdd4841a04991dcce9">MCP23008_GPPU</a>);</div>
@@ -173,9 +173,9 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
 <div class="foldopen" id="foldopen00084" data-start="{" data-end="}">
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="class_lib_mcp23008.html#a0a8bf3149079d37e15d41792b15a8f84">   84</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_mcp23008.html#a0a8bf3149079d37e15d41792b15a8f84">LibMcp23008::digitalWrite</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> pin, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> value) {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keywordflow">if</span>( pin &gt; 7 ) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keywordflow">if</span> ((pin &lt; 1) || (pin &gt; 8)) <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> mask = 1&lt;&lt;pin;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> mask = 1&lt;&lt; (pin - 1);</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> val = readRegister(<a class="code hl_define" href="_lib_mcp23008_8cpp.html#a3336a704605df6a7646363f196ce5b3f">MCP23008_GPIO</a>);</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> oldval = val;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
@@ -191,9 +191,9 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
 <div class="foldopen" id="foldopen00100" data-start="{" data-end="}">
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="class_lib_mcp23008.html#afc884827c49b26b2a47d4e46ad5e7b54">  100</a></span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code hl_function" href="class_lib_mcp23008.html#afc884827c49b26b2a47d4e46ad5e7b54">LibMcp23008::digitalRead</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> pin) {</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="keywordflow">if</span>( pin &gt; 7 ) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="keywordflow">if</span> ((pin &lt; 1) || (pin &gt; 8)) <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> mask = 1&lt;&lt;pin;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> mask = 1&lt;&lt; (pin - 1);</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> val = readRegister(<a class="code hl_define" href="_lib_mcp23008_8cpp.html#a3336a704605df6a7646363f196ce5b3f">MCP23008_GPIO</a>);</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordflow">return</span> ((val&amp;mask) == 0 ? LOW : HIGH );</div>

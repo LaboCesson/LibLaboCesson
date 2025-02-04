@@ -113,7 +113,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Gestion du composant MCP23008 pour augmenter le nombre de pins. </p>
-<p>Les numeros de pin vont de 0 a 7 </p>
+<p>Les numéros de pin vont de 1 à 8 </p>
 
 <p class="definition">Definition at line <a class="el" href="_lib_mcp23008_8h_source.html#l00018">18</a> of file <a class="el" href="_lib_mcp23008_8h_source.html">LibMcp23008.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -183,10 +183,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Permet de lire la valeur d'une pin</p>
-<p>Format identique a la fonction digitalRead d'arduino </p><dl class="section return"><dt>Returns</dt><dd>La valeur lue (LOW,HIGH) </dd></dl>
+<p>Format identique à la fonction digitalRead d'arduino </p><dl class="section return"><dt>Returns</dt><dd>La valeur lue (LOW,HIGH) </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pin</td><td>Numero de la pin a lire (0 a 7) </td></tr>
+    <tr><td class="paramname">pin</td><td>Numéro de la pin à lire (1 à 8) </td></tr>
   </table>
   </dd>
 </dl>
@@ -213,12 +213,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Permet de definir la valeur en sortie d'une pin</p>
-<p>Format identique a la fonction digitalWrite d'arduino </p>
+<p>Permet de définir la valeur en sortie d'une pin</p>
+<p>Format identique à la fonction digitalWrite d'arduino </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pin</td><td>Numero de la pin a ecrire (0 a 7)  </td></tr>
-    <tr><td class="paramname">value</td><td>Valeur a appliquer (LOW,HIGH) </td></tr>
+    <tr><td class="paramname">pin</td><td>Numéro de la pin à ecrire (1 à 8)  </td></tr>
+    <tr><td class="paramname">value</td><td>Valeur à appliquer (LOW,HIGH) </td></tr>
   </table>
   </dd>
 </dl>
@@ -275,12 +275,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Permet de definir le mode d'utilisation d'une pin</p>
-<p>Format identique a la fonction pinMode d'arduino </p>
+<p>Permet de définir le mode d'utilisation d'une pin</p>
+<p>Format identique à la fonction pinMode d'arduino </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pin</td><td>Numero de la pin a configurer (0 a 7)  </td></tr>
-    <tr><td class="paramname">mode</td><td>Mode a appliquer </td></tr>
+    <tr><td class="paramname">pin</td><td>Numéro de la pin a configurer (1 à 8)  </td></tr>
+    <tr><td class="paramname">mode</td><td>Mode à appliquer </td></tr>
   </table>
   </dd>
 </dl>

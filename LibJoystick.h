@@ -44,6 +44,8 @@ class LibJoystick
       bool debug ///< si true les messages de debug sont affichés
     );
 
+    void calcul(unsigned short valX, unsigned short valY, bool boost, bool rotationGauche, bool rotationDroite);
+
   private:
     bool m_debug;
     unsigned char m_potardX;
@@ -53,6 +55,17 @@ class LibJoystick
     unsigned char m_boutonRotationDroite;
     char m_vitesseGauche;
     char m_vitesseDroite;
+
+    int m_deltaX = 150;
+    int m_deltaY = 80;
+
+    int m_minX = 512 - (m_deltaX / 2);
+    int m_maxX = 512 + (m_deltaX / 2);
+    int m_minY = 512 - (m_deltaY / 2);
+    int m_maxY = 512 + (m_deltaY / 2);
+
+    int m_minMotorD = 35;
+    int m_minMotorG = 60;
 
   protected:
 };

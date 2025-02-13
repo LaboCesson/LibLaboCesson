@@ -45,9 +45,87 @@ void LibJoystick::calculateVitesse(void) {
     Serial.println("");
   }
 
-
+  calcul(joystickX, joystickY, boost, rotationGauche, rotationDroite);
 /// \todo
 
+}
+
+void LibJoystick::calcul(unsigned short valX, unsigned short valY, bool boost, bool rotationGauche, bool rotationDroite) {
+  int Vmin = 0;
+  int Vmax = (boost == true ? 100 : 50);
+
+  if (rotationGauche == true) {
+    m_vitesseGauche = -Vmax;
+    m_vitesseDroite = Vmax;
+    return;
+  }
+ 
+  if (rotationDroite == true) {
+     m_vitesseGauche = Vmax;
+     m_vitesseDroite = -Vmax;
+     return;
+   }
+
+ 
+  if (valY < m_minY) {
+    m_vitesseDroite = map(valY, m_minY, 0, Vmin, Vmax);
+    m_vitesseGauche = map(valY, m_minY, 0, Vmin, Vmax);
+  }
+  else if (valY > m_maxY) {
+    m_vitesseDroite = map(valY, m_maxY, 1023, Vmin, Vmax);
+    m_vitesseGauche = map(valY, m_maxY, 1023, Vmin, Vmax);
+  }
+  else {
+    m_vitesseDroite = 0;
+    m_vitesseGauche = 0;
+  }
+
+  if (valX < m_minX) {
+
+    int xMapped = map(valX, m_minX, 0, Vmin, Vmax);
+
+    m_vitesseDroite = m_vitesseDroite - xMapped;
+    m_vitesseGauche = m_vitesseGauche + xMapped;
+
+    if (m_vitesseDroite < Vmin) {
+      m_vitesseDroite = Vmin;
+    }
+
+    if (m_vitesseGauche > Vmax) {
+      m_vitesseGauche = Vmax;
+    }
+  }
+
+  if (valX > m_maxX) {
+
+    int xMapped = map(valX, m_maxX, 1023, Vmin, Vmax);
+
+    m_vitesseDroite = m_vitesseDroite + xMapped;
+    m_vitesseGauche = m_vitesseGauche - xMapped;
+
+    if (m_vitesseDroite > Vmax) {
+      m_vitesseDroite = Vmax;
+    }
+
+    if (m_vitesseGauche < Vmin) {
+      m_vitesseGauche = Vmin;
+    }
+
+  }
+
+  if (m_vitesseDroite < m_minMotorD) {
+    m_vitesseDroite = 0;
+  }
+
+  if (m_vitesseGauche < m_minMotorG) {
+    m_vitesseGauche = 0;
+  }
+
+
+  if (valY < 512) {
+    m_vitesseGauche = -m_vitesseGauche;
+    m_vitesseDroite = -m_vitesseDroite;
+  }
 }
 
 

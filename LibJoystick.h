@@ -19,53 +19,49 @@ class LibJoystick
 {
   public:
     LibJoystick(
-      unsigned char  potardX,              ///< Entrée analogique associée au potentiometre d'axe X
-      unsigned char  potardY,              ///< Entrée analogique associée au potentiometre d'axe Y
-      unsigned char  boutonBoost,          ///< Numéro du pin associé au bouton Boost
-      unsigned char  boutonRotationGauche, ///< Numéro du pin associé au bouton Rotation Gauche
-      unsigned char  boutonRotationDroite  ///< Numéro du pin associé au bouton Rotation Droite
+      unsigned short x0,        ///< Valeur correspondant au point 0 de X
+      unsigned short y0,        ///< Valeur correspondant au point 0 de Y
+      unsigned short deltaX,    ///< Zone centrale en X ou l'action du Joystick est inopérante
+      unsigned short deltaY,    ///< Zone centrale en Y ou l'action du Joystick est inopérante
+      unsigned short vNormale,  ///< Valeur de la vitesse normale
+      unsigned short vBoost,    ///< Valeur de la vitesse maximum
+      unsigned short minMotorG, ///< Vitesse minimum du moteur Gauche
+      unsigned short minMotorD  ///< Vitesse minimum du moteur Droite
     );
 
-    /// \return Permet de calculer les vitesses à appliquer
-    /// \details Cette fonction est à appeler avant d'appeller les fonctions getVitesseDroite et getVitesseGauche
-    void calculateVitesse(void);
+    // /// \return Permet de calculer les vitesses à appliquer
+    // /// \details Cette fonction est à appeler avant d'appeller la fonction getVitesses
+    void calculVitesses(unsigned short valX, unsigned short valY, bool boost, bool rotationGauche, bool rotationDroite);
 
-    /// \return Retourne la vitesse à appliquer au moteur gauche
-    char getVitesseGauche(void);
-
-    /// \return Retourne la vitesse à appliquer au moteur droit
-    char getVitesseDroite(void);
-	
     /// \return Retourne la vitesse à appliquer au moteur gauche
     void getVitesses( char * vitesseGauche, char * vitesseDroite );
 
     /// \details Permet de valider l'affichage de message de debug
     void setDebug(
-      bool debug ///< si true les messages de debug sont affichés
+      bool debug,                 ///< Si true les messages de debug sont affichés
+      unsigned short periodeTrace ///< Période d'affichage des traces en ms
     );
 
-    void calcul(unsigned short valX, unsigned short valY, bool boost, bool rotationGauche, bool rotationDroite);
-
   private:
+    void trace(unsigned short valX, unsigned short valY, bool boost, bool rotationGauche, bool rotationDroite);
+
     bool m_debug;
-    unsigned char m_potardX;
-    unsigned char m_potardY;
-    unsigned char m_boutonBoost;
-    unsigned char m_boutonRotationGauche;
-    unsigned char m_boutonRotationDroite;
+
     char m_vitesseGauche;
     char m_vitesseDroite;
 
-    int m_deltaX = 150;
-    int m_deltaY = 80;
+    unsigned short m_vNormale = 0;
+    unsigned short m_vBoost   = 0;
 
-    int m_minX = 512 - (m_deltaX / 2);
-    int m_maxX = 512 + (m_deltaX / 2);
-    int m_minY = 512 - (m_deltaY / 2);
-    int m_maxY = 512 + (m_deltaY / 2);
+    unsigned short m_minX = 512;
+    unsigned short m_maxX = 512;
+    unsigned short m_minY = 512;
+    unsigned short m_maxY = 512;
 
-    int m_minMotorD = 35;
-    int m_minMotorG = 60;
+    unsigned short m_minMotorG = 0; // 60 pour 255, 25 pour 100
+    unsigned short m_minMotorD = 0; // 35 pour 255, 15 pour 100
+
+    unsigned short m_periodeTrace = 500; // Période d'affichage des messages de debug en ms
 
   protected:
 };

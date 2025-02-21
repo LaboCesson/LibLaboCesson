@@ -41,7 +41,7 @@ typedef enum {
 /// \details   Wire
 /// \attention En cas d'utilisation de la librairie Lib433Mhz, le timer 2 est utilisé à la fois pour gestion du 433Mhz
 ///            et la génération d'un signal PWM sur la broche D11 qui est utilisé pour le pilotage du moteur gauche.
-/// \attention Dans le cas d'un PAMI avec un seul moteur, il faut utiliser le moteur droit
+/// \attention Dans le cas d'un PAMI avec un seul moteur, il faut utiliser le moteur droit (ENb)
 /// \attention Dans le cas d'un moteur avec deux moteurs, il faut utiliser valider le mode setPwmMode(false)
 /// \attention Dans ce dernier cas, il n'y a plus que les vitesses suivantes qui sont disponibles 0,20%,40%,60%,80%,100%
 class LibPami

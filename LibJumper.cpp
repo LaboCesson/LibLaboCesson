@@ -23,8 +23,8 @@ t_pamiTeam LibJumper::getTeam(void) {
 
 t_pamiNumber LibJumper::getPami(void) {
   if( analogRead(m_pinJumperNbH) > 100 ) {
-    return( ( analogRead(m_pinJumperNbL) > 100 ? PAMI_NB_1 : PAMI_NB_2 ) ) ;
+    return( ( analogRead(m_pinJumperNbL) > 100 ? PAMI_SING : PAMI_NB_1 ) ) ;
   } else {
-    return( ( analogRead(m_pinJumperNbL) > 100 ? PAMI_NB_3 : PAMI_SING ) ) ;
+    return( ( analogRead(m_pinJumperNbL) > 100 ? PAMI_NB_2 : PAMI_NB_3) ) ;
   }
 }

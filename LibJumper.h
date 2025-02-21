@@ -12,16 +12,16 @@
 #include "arduino.h"
 
 typedef enum {
-      PAMI_TEAM_A = 0, ///< Jumper non positionné  :::
-      PAMI_TEAM_B = 1  ///< Jumper positionne      |::
+      PAMI_TEAM_A = 0, ///< Jumper non positionné  :..
+      PAMI_TEAM_B = 1  ///< Jumper positionne      |..
 } t_pamiTeam;
 
 
 typedef enum {
-      PAMI_SING = 0, ///< Jumper :|| = Chanteur
-      PAMI_NB_1 = 1, ///< Jumper ::: = Groupie 1
-      PAMI_NB_2 = 2, ///< Jumper ::| = Groupie 2
-      PAMI_NB_3 = 3  ///< Jumper :|: = Groupie 3
+      PAMI_SING = 0, ///< Jumper .:: = Chanteur
+      PAMI_NB_1 = 1, ///< Jumper .|: = Groupie 1
+      PAMI_NB_2 = 2, ///< Jumper .:| = Groupie 2
+      PAMI_NB_3 = 3  ///< Jumper .|| = Groupie 3
 } t_pamiNumber;
 
 
@@ -44,8 +44,8 @@ class LibJumper
 	/// \details Retourne le numéro du PAMI
 	/// - \ref PAMI_SING pour un chanteur
 	/// - \ref PAMI_NB_1 pour la groupie 1
-	/// - \ref PAMI_NB_1 pour la groupie 2
-	/// - \ref PAMI_NB_1 pour la groupie 3
+	/// - \ref PAMI_NB_2 pour la groupie 2
+	/// - \ref PAMI_NB_3 pour la groupie 3
     t_pamiNumber getPami(void);
 
   private:

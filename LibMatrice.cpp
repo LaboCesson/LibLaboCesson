@@ -24,8 +24,8 @@ void LibMatrice::begin(void) {
   int i;
 
   for(i=0;i<m_nbPinOut;i++) {
-    setPinMode(mp_pinOut[i],OUTPUT);
-    setPinOut(mp_pinOut[i],HIGH);
+    setPinMode(mp_pinOut[i], INPUT);
+    setPinOut(mp_pinOut[i], LOW);
   }
 
   for(i=0;i<m_nbPinIn;i++) {
@@ -41,14 +41,15 @@ unsigned short LibMatrice::getContacts(void) {
   unsigned short flag = 0x01;
 
   for(i=0;i<m_nbPinOut;i++) {
-    setPinOut(mp_pinOut[i],LOW);
+    setPinMode(mp_pinOut[i], OUTPUT);
+    setPinOut(mp_pinOut[i], LOW);
     for(j=0;j<m_nbPinIn;j++) {
       if(readPin(mp_pinIn[j]) == LOW) {
         contact |= flag;
       }
       flag <<= 1;
     }
-    setPinOut(mp_pinOut[i],HIGH);
+    setPinMode(mp_pinOut[i], INPUT);
   }
   if (m_debug == true) {
     Serial.print("Contacts: ");

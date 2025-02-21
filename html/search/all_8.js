@@ -20,7 +20,7 @@ var searchData=
   ['libgyroscope_17',['LibGyroscope',['../class_lib_gyroscope.html',1,'LibGyroscope'],['../class_lib_gyroscope.html#a3095ec99a02110dd3bf30aa660ebb040',1,'LibGyroscope::LibGyroscope()']]],
   ['libgyroscope_2ecpp_18',['LibGyroscope.cpp',['../_lib_gyroscope_8cpp.html',1,'']]],
   ['libgyroscope_2eh_19',['LibGyroscope.h',['../_lib_gyroscope_8h.html',1,'']]],
-  ['libjoystick_20',['LibJoystick',['../class_lib_joystick.html',1,'LibJoystick'],['../class_lib_joystick.html#a931e218f5693628c26bd2aaf93a63e72',1,'LibJoystick::LibJoystick()']]],
+  ['libjoystick_20',['LibJoystick',['../class_lib_joystick.html',1,'LibJoystick'],['../class_lib_joystick.html#ad10bb0e2361434b423ed4c52faf64b41',1,'LibJoystick::LibJoystick()']]],
   ['libjoystick_2ecpp_21',['LibJoystick.cpp',['../_lib_joystick_8cpp.html',1,'']]],
   ['libjoystick_2eh_22',['LibJoystick.h',['../_lib_joystick_8h.html',1,'']]],
   ['libjumper_23',['LibJumper',['../class_lib_jumper.html',1,'LibJumper'],['../class_lib_jumper.html#aaedccc2a16560faa23965310764bef1c',1,'LibJumper::LibJumper()']]],
@@ -41,6 +41,5 @@ var searchData=
   ['libpami_2eh_38',['LibPami.h',['../_lib_pami_8h.html',1,'']]],
   ['libultrason_39',['LibUltrason',['../class_lib_ultrason.html',1,'LibUltrason'],['../class_lib_ultrason.html#a85c88deb3fc082abdf4e5628c31d0db3',1,'LibUltrason::LibUltrason()']]],
   ['libultrason_2ecpp_40',['LibUltrason.cpp',['../_lib_ultrason_8cpp.html',1,'']]],
-  ['libultrason_2eh_41',['LibUltrason.h',['../_lib_ultrason_8h.html',1,'']]],
-  ['list_42',['Todo List',['../todo.html',1,'']]]
+  ['libultrason_2eh_41',['LibUltrason.h',['../_lib_ultrason_8h.html',1,'']]]
 ];

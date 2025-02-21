@@ -92,73 +92,137 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="foldopen" id="foldopen00012" data-start="{" data-end="}">
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_lib_joystick.html#a931e218f5693628c26bd2aaf93a63e72">   12</a></span><a class="code hl_function" href="class_lib_joystick.html#a931e218f5693628c26bd2aaf93a63e72">LibJoystick::LibJoystick</a>(</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> potardX,</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> potardY, </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  boutonBoost,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  boutonRotationGauche,</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  boutonRotationDroite ) </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  m_potardX = potardX;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  m_potardY = potardY;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  m_boutonBoost = boutonBoost;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  m_boutonRotationGauche = boutonRotationGauche;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  m_boutonRotationDroite = boutonRotationDroite;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  pinMode(m_potardX, INPUT);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  pinMode(m_potardY, INPUT);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  pinMode(m_boutonBoost, INPUT_PULLUP);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  pinMode(m_boutonRotationGauche, INPUT_PULLUP);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  pinMode(m_boutonRotationDroite, INPUT_PULLUP);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  m_debug = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_lib_joystick.html#ad10bb0e2361434b423ed4c52faf64b41">   12</a></span><a class="code hl_function" href="class_lib_joystick.html#ad10bb0e2361434b423ed4c52faf64b41">LibJoystick::LibJoystick</a>(</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> x0,        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> y0,</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> deltaX,    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> deltaY,</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> vNormale,  <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> vBoost,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> minMotorG, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> minMotorD ) {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  m_minX = x0 - (deltaX / 2);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  m_maxX = x0 + (deltaX / 2);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  m_minY = y0 - (deltaY / 2);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  m_maxY = y0 + (deltaY / 2);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  m_vNormale = vNormale;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  m_vBoost   = vBoost;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  m_minMotorG = minMotorG;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  m_minMotorD = minMotorD;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
 </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_lib_joystick.html#ae2e587c4caecc58aeadb9e7399acf885">   32</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_joystick.html#ae2e587c4caecc58aeadb9e7399acf885">LibJoystick::calculateVitesse</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keywordtype">char</span> joystickX = analogRead(m_potardX);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">char</span> joystickY = analogRead(m_potardY);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keywordtype">bool</span> boost = (digitalRead(m_boutonBoost) == LOW ? true : <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keywordtype">bool</span> rotationGauche = (digitalRead(m_boutonRotationGauche) == LOW ? true : <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordtype">bool</span> rotationDroite = (digitalRead(m_boutonRotationDroite) == LOW ? true : <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordflow">if</span> (m_debug) {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    Serial.print(<span class="stringliteral">&quot;JOYSTICK_X = &quot;</span>); Serial.print((<span class="keywordtype">int</span>)joystickX); Serial.print(<span class="stringliteral">&quot;  &quot;</span>);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    Serial.print(<span class="stringliteral">&quot;JOYSTICK_Y = &quot;</span>); Serial.print((<span class="keywordtype">int</span>)joystickY); Serial.print(<span class="stringliteral">&quot;  &quot;</span>);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">if</span> (boost) Serial.print(<span class="stringliteral">&quot; BOOST &quot;</span>);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">if</span> (rotationGauche) Serial.print(<span class="stringliteral">&quot; ROTATION GAUCHE &quot;</span>);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">if</span> (rotationDroite) Serial.print(<span class="stringliteral">&quot; ROTATION DROITE &quot;</span>);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    Serial.println(<span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  }</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_lib_joystick.html#a85b135ad3f8cdfb59213a3e815647af2">   31</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_joystick.html#a85b135ad3f8cdfb59213a3e815647af2">LibJoystick::calculVitesses</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> valX, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> valY, <span class="keywordtype">bool</span> boost, <span class="keywordtype">bool</span> rotationGauche, <span class="keywordtype">bool</span> rotationDroite) {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keywordtype">char</span> Vmin = 0;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keywordtype">char</span> Vmax = (boost == <span class="keyword">true</span> ? m_vBoost : m_vNormale);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keywordflow">if</span> (rotationGauche == <span class="keyword">true</span>) {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    m_vitesseGauche = -Vmax;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    m_vitesseDroite = Vmax;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">if</span>( m_debug ) trace(valX, valY, boost, rotationGauche, rotationDroite);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordflow">if</span> (rotationDroite == <span class="keyword">true</span>) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>     m_vitesseGauche = Vmax;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>     m_vitesseDroite = -Vmax;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">if</span>( m_debug ) trace(valX, valY, boost, rotationGauche, rotationDroite);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>     <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>   }</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordflow">if</span> (valY &lt; m_minY) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    m_vitesseDroite = map(valY, m_minY, 0, Vmin, Vmax);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    m_vitesseGauche = map(valY, m_minY, 0, Vmin, Vmax);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (valY &gt; m_maxY) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    m_vitesseDroite = map(valY, m_maxY, 1023, Vmin, Vmax);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    m_vitesseGauche = map(valY, m_maxY, 1023, Vmin, Vmax);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    m_vitesseDroite = 0;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    m_vitesseGauche = 0;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keywordflow">if</span> (valX &lt; m_minX) {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">int</span> xMapped = map(valX, m_minX, 0, Vmin, Vmax);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    m_vitesseDroite = m_vitesseDroite - xMapped;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    m_vitesseGauche = m_vitesseGauche + xMapped;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">if</span> (m_vitesseDroite &lt; Vmin) {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      m_vitesseDroite = Vmin;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">if</span> (m_vitesseGauche &gt; Vmax) {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      m_vitesseGauche = Vmax;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keywordflow">if</span> (valX &gt; m_maxX) {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">int</span> xMapped = map(valX, m_maxX, 1023, Vmin, Vmax);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    m_vitesseDroite = m_vitesseDroite + xMapped;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    m_vitesseGauche = m_vitesseGauche - xMapped;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">if</span> (m_vitesseDroite &gt; Vmax) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      m_vitesseDroite = Vmax;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">if</span> (m_vitesseGauche &lt; Vmin) {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      m_vitesseGauche = Vmin;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keywordflow">if</span> (m_vitesseDroite &lt; m_minMotorD) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    m_vitesseDroite = 0;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keywordflow">if</span> (m_vitesseGauche &lt; m_minMotorG) {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    m_vitesseGauche = 0;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keywordflow">if</span> (valY &lt; 512) {</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    m_vitesseGauche = -m_vitesseGauche;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    m_vitesseDroite = -m_vitesseDroite;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="keywordflow">if</span>( m_debug ) trace(valX, valY, boost, rotationGauche, rotationDroite);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>}</div>
 </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="class_lib_joystick.html#a18596219fa0424451a273a9329c967a9">   54</a></span><span class="keywordtype">char</span> <a class="code hl_function" href="class_lib_joystick.html#a18596219fa0424451a273a9329c967a9">LibJoystick::getVitesseGauche</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> m_vitesseGauche; }</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="class_lib_joystick.html#a3c1397b1896bf0238d936f4509cf2455">   57</a></span><span class="keywordtype">char</span> <a class="code hl_function" href="class_lib_joystick.html#a3c1397b1896bf0238d936f4509cf2455">LibJoystick::getVitesseDroite</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> m_vitesseDroite; }</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="foldopen" id="foldopen00060" data-start="{" data-end="}">
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="class_lib_joystick.html#ad479847271d3fd8aeb214579795dda69">   60</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_joystick.html#ad479847271d3fd8aeb214579795dda69">LibJoystick::getVitesses</a>( <span class="keywordtype">char</span> * vitesseGauche, <span class="keywordtype">char</span> * vitesseDroite ) {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <a class="code hl_function" href="class_lib_joystick.html#ae2e587c4caecc58aeadb9e7399acf885">calculateVitesse</a>();</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  *vitesseGauche = m_vitesseGauche;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  *vitesseDroite = m_vitesseDroite;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>}</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="foldopen" id="foldopen00109" data-start="{" data-end="}">
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="class_lib_joystick.html#ad479847271d3fd8aeb214579795dda69">  109</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_joystick.html#ad479847271d3fd8aeb214579795dda69">LibJoystick::getVitesses</a>( <span class="keywordtype">char</span> * vitesseGauche, <span class="keywordtype">char</span> * vitesseDroite ) {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  *vitesseGauche = m_vitesseGauche;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  *vitesseDroite = m_vitesseDroite;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
 </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_lib_joystick.html#a7e0d7e71a0e96399ae560036cec519f0">   67</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_joystick.html#a7e0d7e71a0e96399ae560036cec519f0">LibJoystick::setDebug</a>(<span class="keywordtype">bool</span> debug) { m_debug = debug; }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="class_lib_joystick.html#a3e076eed555c9b8845fde1ffe582f8f7">  115</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_joystick.html#a3e076eed555c9b8845fde1ffe582f8f7">LibJoystick::setDebug</a>(<span class="keywordtype">bool</span> debug, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> periodeTrace ) { m_debug = debug; m_periodeTrace = periodeTrace; }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keywordtype">void</span> LibJoystick::trace(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> valX, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> valY, <span class="keywordtype">bool</span> boost, <span class="keywordtype">bool</span> rotationGauche, <span class="keywordtype">bool</span> rotationDroite) {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> nextTrace = millis();</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <span class="keywordflow">if</span>( nextTrace &gt; millis() ) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  nextTrace += m_periodeTrace;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  Serial.print(<span class="stringliteral">&quot;X=&quot;</span>); Serial.print(valX); Serial.print(<span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  Serial.print(<span class="stringliteral">&quot;Y=&quot;</span>); Serial.print(valY); Serial.print(<span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  Serial.print(boost ? <span class="stringliteral">&quot;B&quot;</span> :<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  Serial.print(rotationGauche ? <span class="stringliteral">&quot;G&quot;</span> :<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  Serial.print(rotationDroite ? <span class="stringliteral">&quot;D&quot;</span> :<span class="stringliteral">&quot;&quot;</span>); Serial.print(<span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  Serial.print(<span class="stringliteral">&quot;=&gt;&quot;</span>);  </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  Serial.print(<span class="stringliteral">&quot;Gauche=&quot;</span>); Serial.print((<span class="keywordtype">int</span>)m_vitesseGauche); Serial.print(<span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  Serial.print(<span class="stringliteral">&quot;Droite=&quot;</span>); Serial.print((<span class="keywordtype">int</span>)m_vitesseDroite); Serial.println(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>}</div>
 <div class="ttc" id="a_lib_joystick_8h_html"><div class="ttname"><a href="_lib_joystick_8h.html">LibJoystick.h</a></div><div class="ttdoc">Le fichier de définition de la classe LibJoystick.</div></div>
-<div class="ttc" id="aclass_lib_joystick_html_a18596219fa0424451a273a9329c967a9"><div class="ttname"><a href="class_lib_joystick.html#a18596219fa0424451a273a9329c967a9">LibJoystick::getVitesseGauche</a></div><div class="ttdeci">char getVitesseGauche(void)</div><div class="ttdef"><b>Definition</b> <a href="#l00054">LibJoystick.cpp:54</a></div></div>
-<div class="ttc" id="aclass_lib_joystick_html_a3c1397b1896bf0238d936f4509cf2455"><div class="ttname"><a href="class_lib_joystick.html#a3c1397b1896bf0238d936f4509cf2455">LibJoystick::getVitesseDroite</a></div><div class="ttdeci">char getVitesseDroite(void)</div><div class="ttdef"><b>Definition</b> <a href="#l00057">LibJoystick.cpp:57</a></div></div>
-<div class="ttc" id="aclass_lib_joystick_html_a7e0d7e71a0e96399ae560036cec519f0"><div class="ttname"><a href="class_lib_joystick.html#a7e0d7e71a0e96399ae560036cec519f0">LibJoystick::setDebug</a></div><div class="ttdeci">void setDebug(bool debug)</div><div class="ttdef"><b>Definition</b> <a href="#l00067">LibJoystick.cpp:67</a></div></div>
-<div class="ttc" id="aclass_lib_joystick_html_a931e218f5693628c26bd2aaf93a63e72"><div class="ttname"><a href="class_lib_joystick.html#a931e218f5693628c26bd2aaf93a63e72">LibJoystick::LibJoystick</a></div><div class="ttdeci">LibJoystick(unsigned char potardX, unsigned char potardY, unsigned char boutonBoost, unsigned char boutonRotationGauche, unsigned char boutonRotationDroite)</div><div class="ttdef"><b>Definition</b> <a href="#l00012">LibJoystick.cpp:12</a></div></div>
-<div class="ttc" id="aclass_lib_joystick_html_ad479847271d3fd8aeb214579795dda69"><div class="ttname"><a href="class_lib_joystick.html#ad479847271d3fd8aeb214579795dda69">LibJoystick::getVitesses</a></div><div class="ttdeci">void getVitesses(char *vitesseGauche, char *vitesseDroite)</div><div class="ttdef"><b>Definition</b> <a href="#l00060">LibJoystick.cpp:60</a></div></div>
-<div class="ttc" id="aclass_lib_joystick_html_ae2e587c4caecc58aeadb9e7399acf885"><div class="ttname"><a href="class_lib_joystick.html#ae2e587c4caecc58aeadb9e7399acf885">LibJoystick::calculateVitesse</a></div><div class="ttdeci">void calculateVitesse(void)</div><div class="ttdef"><b>Definition</b> <a href="#l00032">LibJoystick.cpp:32</a></div></div>
+<div class="ttc" id="aclass_lib_joystick_html_a3e076eed555c9b8845fde1ffe582f8f7"><div class="ttname"><a href="class_lib_joystick.html#a3e076eed555c9b8845fde1ffe582f8f7">LibJoystick::setDebug</a></div><div class="ttdeci">void setDebug(bool debug, unsigned short periodeTrace)</div><div class="ttdef"><b>Definition</b> <a href="#l00115">LibJoystick.cpp:115</a></div></div>
+<div class="ttc" id="aclass_lib_joystick_html_a85b135ad3f8cdfb59213a3e815647af2"><div class="ttname"><a href="class_lib_joystick.html#a85b135ad3f8cdfb59213a3e815647af2">LibJoystick::calculVitesses</a></div><div class="ttdeci">void calculVitesses(unsigned short valX, unsigned short valY, bool boost, bool rotationGauche, bool rotationDroite)</div><div class="ttdef"><b>Definition</b> <a href="#l00031">LibJoystick.cpp:31</a></div></div>
+<div class="ttc" id="aclass_lib_joystick_html_ad10bb0e2361434b423ed4c52faf64b41"><div class="ttname"><a href="class_lib_joystick.html#ad10bb0e2361434b423ed4c52faf64b41">LibJoystick::LibJoystick</a></div><div class="ttdeci">LibJoystick(unsigned short x0, unsigned short y0, unsigned short deltaX, unsigned short deltaY, unsigned short vNormale, unsigned short vBoost, unsigned short minMotorG, unsigned short minMotorD)</div><div class="ttdef"><b>Definition</b> <a href="#l00012">LibJoystick.cpp:12</a></div></div>
+<div class="ttc" id="aclass_lib_joystick_html_ad479847271d3fd8aeb214579795dda69"><div class="ttname"><a href="class_lib_joystick.html#ad479847271d3fd8aeb214579795dda69">LibJoystick::getVitesses</a></div><div class="ttdeci">void getVitesses(char *vitesseGauche, char *vitesseDroite)</div><div class="ttdef"><b>Definition</b> <a href="#l00109">LibJoystick.cpp:109</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

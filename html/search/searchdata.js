@@ -8,7 +8,7 @@ var indexSectionsWithContent =
   5: "t",
   6: "cgpr",
   7: "_adlmnopst",
-  8: "lt"
+  8: "l"
 };
 
 var indexSectionNames =

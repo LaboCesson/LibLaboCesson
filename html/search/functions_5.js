@@ -6,7 +6,7 @@ var searchData=
   ['libclavier_3',['LibClavier',['../class_lib_clavier.html#aa83596fddfb8396cac2d3ec9d93fd70c',1,'LibClavier']]],
   ['libgpio_4',['LibGpio',['../class_lib_gpio.html#a5d829ddbd39b55c67c3cb730c0230509',1,'LibGpio']]],
   ['libgyroscope_5',['LibGyroscope',['../class_lib_gyroscope.html#a3095ec99a02110dd3bf30aa660ebb040',1,'LibGyroscope']]],
-  ['libjoystick_6',['LibJoystick',['../class_lib_joystick.html#a931e218f5693628c26bd2aaf93a63e72',1,'LibJoystick']]],
+  ['libjoystick_6',['LibJoystick',['../class_lib_joystick.html#ad10bb0e2361434b423ed4c52faf64b41',1,'LibJoystick']]],
   ['libjumper_7',['LibJumper',['../class_lib_jumper.html#aaedccc2a16560faa23965310764bef1c',1,'LibJumper']]],
   ['libmatrice_8',['LibMatrice',['../class_lib_matrice.html#a0f2a852b994f09fda940d74668f2ca01',1,'LibMatrice']]],
   ['libmcp23008_9',['LibMcp23008',['../class_lib_mcp23008.html#a8881f890e5078bced0ea40d6c72122fd',1,'LibMcp23008']]],

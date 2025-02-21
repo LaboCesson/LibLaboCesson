@@ -15,7 +15,7 @@ var searchData=
   ['setalarme_12',['setAlarme',['../class_lib_chrono.html#a456dae391974d462f9dec0b3e25f8d7c',1,'LibChrono']]],
   ['setblinking_13',['setBlinking',['../class_lib_aff1637.html#a81bceabfb1c4d87cfa060b0b40d69546',1,'LibAff1637']]],
   ['setbrightness_14',['setBrightness',['../class_lib_aff1637.html#ac829d1937a31a352772d40d3f47e6673',1,'LibAff1637']]],
-  ['setdebug_15',['setDebug',['../class_lib433_mhz.html#a0890845567dd196476342bcefd7937f5',1,'Lib433Mhz::setDebug()'],['../class_lib_joystick.html#a7e0d7e71a0e96399ae560036cec519f0',1,'LibJoystick::setDebug()'],['../class_lib_matrice.html#a959d062eb3e96adb6d26a11a84586b93',1,'LibMatrice::setDebug()']]],
+  ['setdebug_15',['setDebug',['../class_lib433_mhz.html#a0890845567dd196476342bcefd7937f5',1,'Lib433Mhz::setDebug()'],['../class_lib_joystick.html#a3e076eed555c9b8845fde1ffe582f8f7',1,'LibJoystick::setDebug()'],['../class_lib_matrice.html#a959d062eb3e96adb6d26a11a84586b93',1,'LibMatrice::setDebug()']]],
   ['setdisplay_16',['setDisplay',['../class_lib_chrono.html#a1db07abcbdf274746d2625e68dcb65ae',1,'LibChrono::setDisplay()'],['../class_lib_gyroscope.html#a76be09553344bc92214e06308ad6e88a',1,'LibGyroscope::setDisplay()']]],
   ['setmaxdistance_17',['setMaxDistance',['../class_lib_ultrason.html#a3a7a8480ba7d3005a13972f8d56a5da7',1,'LibUltrason']]],
   ['setmode_18',['setMode',['../class_lib_chrono.html#af96171526f26c9dee8b3328c7d7a40b2',1,'LibChrono']]],

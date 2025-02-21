@@ -14,7 +14,5 @@ var searchData=
   ['getteam_11',['getTeam',['../class_lib_jumper.html#a0e6d1e06c9f4ea56c72b53eece83d4bf',1,'LibJumper']]],
   ['gettouche_12',['getTouche',['../class_lib_clavier.html#af8d058f6e9b9a07113b468cf16f3513f',1,'LibClavier']]],
   ['getvalue_13',['getValue',['../class_lib_chrono.html#a8e841a480a775bab2b5358d6db576076',1,'LibChrono']]],
-  ['getvitessedroite_14',['getVitesseDroite',['../class_lib_joystick.html#a3c1397b1896bf0238d936f4509cf2455',1,'LibJoystick']]],
-  ['getvitessegauche_15',['getVitesseGauche',['../class_lib_joystick.html#a18596219fa0424451a273a9329c967a9',1,'LibJoystick']]],
-  ['getvitesses_16',['getVitesses',['../class_lib_joystick.html#ad479847271d3fd8aeb214579795dda69',1,'LibJoystick']]]
+  ['getvitesses_14',['getVitesses',['../class_lib_joystick.html#ad479847271d3fd8aeb214579795dda69',1,'LibJoystick']]]
 ];

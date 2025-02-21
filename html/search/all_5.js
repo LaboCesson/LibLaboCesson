@@ -14,13 +14,11 @@ var searchData=
   ['getteam_11',['getTeam',['../class_lib_jumper.html#a0e6d1e06c9f4ea56c72b53eece83d4bf',1,'LibJumper']]],
   ['gettouche_12',['getTouche',['../class_lib_clavier.html#af8d058f6e9b9a07113b468cf16f3513f',1,'LibClavier']]],
   ['getvalue_13',['getValue',['../class_lib_chrono.html#a8e841a480a775bab2b5358d6db576076',1,'LibChrono']]],
-  ['getvitessedroite_14',['getVitesseDroite',['../class_lib_joystick.html#a3c1397b1896bf0238d936f4509cf2455',1,'LibJoystick']]],
-  ['getvitessegauche_15',['getVitesseGauche',['../class_lib_joystick.html#a18596219fa0424451a273a9329c967a9',1,'LibJoystick']]],
-  ['getvitesses_16',['getVitesses',['../class_lib_joystick.html#ad479847271d3fd8aeb214579795dda69',1,'LibJoystick']]],
-  ['gpio_17',['gpio',['../class_lib_pami.html#a1f672fcdabf08e5eca59cae791c40c08',1,'LibPami']]],
-  ['gpiopinlist_18',['gpioPinList',['../_lib_pami_8cpp.html#a7ac0c97cb766eaae12f442e42395398c',1,'LibPami.cpp']]],
-  ['gyro_19',['gyro',['../class_lib_pami.html#aa91ecf6c5d5489c619effb13b026ff47',1,'LibPami']]],
-  ['gyroscope_5faxis_5fx_20',['GYROSCOPE_AXIS_X',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaacd782e0609f90f8937268ed0217a7f80',1,'LibGyroscope.h']]],
-  ['gyroscope_5faxis_5fy_21',['GYROSCOPE_AXIS_Y',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaabae670fa35fede4399e110017a3d2f61',1,'LibGyroscope.h']]],
-  ['gyroscope_5faxis_5fz_22',['GYROSCOPE_AXIS_Z',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaae48f41199304c17ab68569d7a8cc6215',1,'LibGyroscope.h']]]
+  ['getvitesses_14',['getVitesses',['../class_lib_joystick.html#ad479847271d3fd8aeb214579795dda69',1,'LibJoystick']]],
+  ['gpio_15',['gpio',['../class_lib_pami.html#a1f672fcdabf08e5eca59cae791c40c08',1,'LibPami']]],
+  ['gpiopinlist_16',['gpioPinList',['../_lib_pami_8cpp.html#a7ac0c97cb766eaae12f442e42395398c',1,'LibPami.cpp']]],
+  ['gyro_17',['gyro',['../class_lib_pami.html#aa91ecf6c5d5489c619effb13b026ff47',1,'LibPami']]],
+  ['gyroscope_5faxis_5fx_18',['GYROSCOPE_AXIS_X',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaacd782e0609f90f8937268ed0217a7f80',1,'LibGyroscope.h']]],
+  ['gyroscope_5faxis_5fy_19',['GYROSCOPE_AXIS_Y',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaabae670fa35fede4399e110017a3d2f61',1,'LibGyroscope.h']]],
+  ['gyroscope_5faxis_5fz_20',['GYROSCOPE_AXIS_Z',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaae48f41199304c17ab68569d7a8cc6215',1,'LibGyroscope.h']]]
 ];

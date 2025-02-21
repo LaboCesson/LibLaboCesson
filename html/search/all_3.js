@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['calculatevitesse_0',['calculateVitesse',['../class_lib_joystick.html#ae2e587c4caecc58aeadb9e7399acf885',1,'LibJoystick']]],
+  ['calculvitesses_0',['calculVitesses',['../class_lib_joystick.html#a85b135ad3f8cdfb59213a3e815647af2',1,'LibJoystick']]],
   ['calibrate_1',['calibrate',['../class_lib_gyroscope.html#a92d3f22f5985698533f19ae009733e77',1,'LibGyroscope']]],
   ['chrono_2',['chrono',['../class_lib_pami.html#abd1dedbecf536d2384fc69aca5edc160',1,'LibPami']]],
   ['chrono_5fmode_5fcompteur_3',['CHRONO_MODE_COMPTEUR',['../_lib_chrono_8h.html#a21371297017367f15eedbe1b8eb162f1a67a50891b7eaa9acc512eb422f2a180c',1,'LibChrono.h']]],

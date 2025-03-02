@@ -121,12 +121,12 @@ void LibJoystick::trace(unsigned short valX, unsigned short valY, bool boost, bo
   if( nextTrace > millis() ) return;
   nextTrace += m_periodeTrace;
 
-  Serial.print("X="); Serial.print(valX); Serial.print(" ");
-  Serial.print("Y="); Serial.print(valY); Serial.print(" ");
+  Serial.print(F("X=")); Serial.print(valX); Serial.print(" ");
+  Serial.print(F("Y=")); Serial.print(valY); Serial.print(" ");
   Serial.print(boost ? "B" :"");
   Serial.print(rotationGauche ? "G" :"");
   Serial.print(rotationDroite ? "D" :""); Serial.print(" ");
-  Serial.print("=>");  
-  Serial.print("Gauche="); Serial.print((int)m_vitesseGauche); Serial.print(" ");
-  Serial.print("Droite="); Serial.print((int)m_vitesseDroite); Serial.println("");
+  Serial.print(F("=>"));
+  Serial.print(F("Gauche=")); Serial.print((int)m_vitesseGauche); Serial.print(" ");
+  Serial.print(F("Droite=")); Serial.print((int)m_vitesseDroite); Serial.println("");
 }

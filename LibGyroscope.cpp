@@ -27,11 +27,11 @@ void LibGyroscope::begin(void) {
 
   /*Verify connection*/
   if(mpu.testConnection() == false) {
-    Serial.println("MPU6050 connection failed");
+    Serial.println(F("MPU6050 connection failed"));
     m_begin = false;
     return;
   }
-  Serial.println("MPU6050 connection successful");
+  Serial.println(F("MPU6050 connection successful"));
   m_begin = true;
 
   /* Initializate and configure the DMP*/

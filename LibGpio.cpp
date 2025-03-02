@@ -70,9 +70,9 @@ bool LibGpio::set(unsigned char gpioIdx, unsigned short value) {
   if( gpioIdx >= m_nbGpio) return LIB_GPIO_ERROR;
 
   if (m_debug) {
-    Serial.print("GPIO: id="); Serial.print(gpioIdx+1);
-    Serial.print(",pin="); Serial.print(m_gpio[gpioIdx].pin);
-    Serial.print(",val="); Serial.println(value);
+    Serial.print(F("GPIO: id=")); Serial.print(gpioIdx+1);
+    Serial.print(F(",pin=")); Serial.print(m_gpio[gpioIdx].pin);
+    Serial.print(F(",val=")); Serial.println(value);
   }
 
   switch(m_gpio[gpioIdx].type) {
@@ -102,9 +102,9 @@ unsigned short LibGpio::get(unsigned char gpioIdx) {
 
 
 void LibGpio::trace(unsigned char gpioIdx, char * msg ) {
-  Serial.print("LibGpio : ");
+  Serial.print(F("LibGpio : "));
   Serial.print(gpioIdx+1);
-  Serial.print(" : ");
+  Serial.print(F(" : "));
   Serial.println(msg);
 }
 

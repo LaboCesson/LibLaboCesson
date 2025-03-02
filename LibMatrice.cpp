@@ -52,7 +52,7 @@ unsigned short LibMatrice::getContacts(void) {
     setPinMode(mp_pinOut[i], INPUT);
   }
   if (m_debug == true) {
-    Serial.print("Contacts: ");
+    Serial.print(F("Contacts: "));
     Serial.println(contact, BIN);
   }
   return contact;

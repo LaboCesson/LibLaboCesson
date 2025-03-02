@@ -70,7 +70,13 @@ class LibGpio
 		unsigned char gpioIdx  ///< Numéro d'index du GPIO à lire (à partir de 0)
 	);
 
+  /// \details Permet de valider l'affichage de message de debug
+  void setDebug(
+    bool debug ///< si true les messages de debug sont affichés
+  );
+
   private:
+    bool          m_debug;
     unsigned char m_nbGpio;
   
     typedef struct {

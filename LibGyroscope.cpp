@@ -103,6 +103,7 @@ unsigned char LibGyroscope::calibrate(void) {
   mpu.CalibrateAccel(6);  // Calibration Time: generate offsets and calibrate our MPU6050
   mpu.CalibrateGyro(6);
   mpu.setDMPEnabled(true); //Turning ON DMP
+  Serial.println("");
   return 0;
  }
 

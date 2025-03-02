@@ -20,6 +20,7 @@ LibGpio::LibGpio(unsigned char * pinList, unsigned char nbGpioInTab) {
     m_gpio[i].type  = PAMI_GPIO_UNUSED;
     m_gpio[i].value = 0;
   }
+  m_debug = false;
 }
 
 
@@ -68,6 +69,12 @@ bool LibGpio::set(unsigned char gpioIdx, unsigned short value) {
 
   if( gpioIdx >= m_nbGpio) return LIB_GPIO_ERROR;
 
+  if (m_debug) {
+    Serial.print("GPIO: id="); Serial.print(gpioIdx+1);
+    Serial.print(",pin="); Serial.print(m_gpio[gpioIdx].pin);
+    Serial.print(",val="); Serial.println(value);
+  }
+
   switch(m_gpio[gpioIdx].type) {
     case PAMI_GPIO_UNUSED : trace( gpioIdx, "try to set an unused pin" ); return false;
     case PAMI_GPIO_INPUT  : trace( gpioIdx, "try to set an input pin" );  return false;
@@ -100,3 +107,5 @@ void LibGpio::trace(unsigned char gpioIdx, char * msg ) {
   Serial.print(" : ");
   Serial.println(msg);
 }
+
+void LibGpio::setDebug(bool debug) { m_debug = debug; }

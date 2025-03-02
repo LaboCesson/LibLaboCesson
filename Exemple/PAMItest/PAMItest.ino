@@ -9,7 +9,7 @@ LibPami pami;
 void setup() {
   Serial.begin(9600);
 
-  Serial.print("freeMemory=");
+  Serial.print(F("freeMemory="));
   Serial.println(freeMemory());
 
   pami.afficheur.begin();
@@ -17,7 +17,8 @@ void setup() {
   pami.ultrason.begin();
   pami.ultrason.setMaxDistance(500);
   pami.gpio.configure(PAMI_GPIO_1, PAMI_GPIO_OUTPUT, 1);
-  pami.gpio.configure(PAMI_GPIO_2, PAMI_GPIO_INPUT);
+  pami.gpio.configure(PAMI_GPIO_2, PAMI_GPIO_OUTPUT, 1);
+//  pami.gpio.configure(PAMI_GPIO_2, PAMI_GPIO_INPUT);
   pami.gpio.configure(PAMI_GPIO_3, PAMI_GPIO_PWM, 0);
   pami.chrono.begin();
   pami.gyro.begin();
@@ -41,21 +42,25 @@ void loop(void) {
   static unsigned long timeNextDisplay = millis();
          unsigned long time = millis();
 
+
   pami.gestion();
+
 
   if( time < timeNextDisplay ) return;
   timeNextDisplay += PERIOD_AFFICHAGE;
 
   // Test des Jumpers
-  Serial.print("# Jumpers   #");
-  Serial.print(" Team="); Serial.print(pami.jumper.getTeam());
-  Serial.print(" Pami="); Serial.println(pami.jumper.getPami());
+  Serial.print(F("# Jumpers   #"));
+  Serial.print(F(" Team=")); Serial.print(pami.jumper.getTeam());
+  Serial.print(F(" Pami=")); Serial.println(pami.jumper.getPami());
 
   // Test GPIO
   static unsigned char statusLed   = LOW;
   statusLed = (statusLed == LOW ? HIGH : LOW);
   pami.gpio.set(PAMI_GPIO_1,statusLed);
-  Serial.print("# GPIO      #"); Serial.print(" GPIO2="); Serial.println(pami.gpio.get(PAMI_GPIO_2));
+  pami.gpio.set(PAMI_GPIO_2,(statusLed == LOW ? HIGH : LOW));
+  Serial.print(F("# GPIO      #")); Serial.print(F(" GPIO2=")); Serial.println(pami.gpio.get(PAMI_GPIO_2));
+
 
   static unsigned long  timeNextServo = millis();
   static unsigned short statusServo = 45;
@@ -66,11 +71,11 @@ void loop(void) {
   }
 
   // Test de l'Ultrason
-  Serial.print("# Ultrason  #"); Serial.print(" Distance="); Serial.println(pami.ultrason.getDistance());
+  Serial.print(F("# Ultrason  #")); Serial.print(F(" Distance=")); Serial.println(pami.ultrason.getDistance());
 
   // Test Moteur
   static unsigned long timeNextMoteur = millis();
-  static unsigned char statusMoteur;
+  static unsigned int statusMoteur;
   if( time >= timeNextMoteur ) {
          if( statusMoteur == 0 ) {  pami.moteur.moteurs(50); statusMoteur = 1; }
     else if( statusMoteur == 1 ) {  pami.moteur.moteurs(0);  statusMoteur = 2; }
@@ -88,24 +93,24 @@ void loop(void) {
   }
 
   // Test Gyroscope
-  Serial.print("# Gyroscope #");
-  Serial.print("  Axe X="); Serial.print(pami.gyro.getAngle(GYROSCOPE_AXIS_X));
-  Serial.print(", Axe Y="); Serial.print(pami.gyro.getAngle(GYROSCOPE_AXIS_Y));
-  Serial.print(", Axe Z="); Serial.println(pami.gyro.getAngle(GYROSCOPE_AXIS_Z));
+  Serial.print(F("# Gyroscope #"));
+  Serial.print(F("  Axe X=")); Serial.print(pami.gyro.getAngle(GYROSCOPE_AXIS_X));
+  Serial.print(F(", Axe Y=")); Serial.print(pami.gyro.getAngle(GYROSCOPE_AXIS_Y));
+  Serial.print(F(", Axe Z=")); Serial.println(pami.gyro.getAngle(GYROSCOPE_AXIS_Z));
 
   //Test 433Mhz
   #define RADIO_MSG_SIZE 40
   char msg[RADIO_MSG_SIZE];
   unsigned char len = pami.radio.getMessage(msg, RADIO_MSG_SIZE);
-  Serial.print("# RADIO 433 #");
+  Serial.print(F("# RADIO 433 #"));
   if( len!= 0 ) {
-    Serial.print(" réception d'un message : '"); Serial.print(msg); Serial.println("'");
+    Serial.print(F(" réception d'un message : '")); Serial.print(msg); Serial.println(F("'============"));
     setChrono(true);
   } else {
-    Serial.println(" aucun message");
+    Serial.println(F(" aucun message"));
   }
 
-  Serial.print("freeMemory=");
+  Serial.print(F("freeMemory="));
   Serial.println(freeMemory());
 }
 

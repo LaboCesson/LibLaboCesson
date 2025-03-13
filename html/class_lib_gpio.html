@@ -106,6 +106,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac62042316785f250fcdc112d4a62e0a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af64c388c862f1d2b26c7f27359838f5c" id="r_af64c388c862f1d2b26c7f27359838f5c"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af64c388c862f1d2b26c7f27359838f5c">get</a> (unsigned char gpioIdx)</td></tr>
 <tr class="separator:af64c388c862f1d2b26c7f27359838f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada0ecb97408d3bfc9f9eef58169a3e36" id="r_ada0ecb97408d3bfc9f9eef58169a3e36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada0ecb97408d3bfc9f9eef58169a3e36">setDebug</a> (bool debug)</td></tr>
+<tr class="separator:ada0ecb97408d3bfc9f9eef58169a3e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Gestion des Entrées/Sorties d'un PAMI. </p>
@@ -229,6 +231,30 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">gpioIdx</td><td>Numéro d'index du GPIO à piloter(à partir de 0)  </td></tr>
     <tr><td class="paramname">value</td><td>Valeur à appliquer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ada0ecb97408d3bfc9f9eef58169a3e36" name="ada0ecb97408d3bfc9f9eef58169a3e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada0ecb97408d3bfc9f9eef58169a3e36">&#9670;&#160;</a></span>setDebug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LibGpio::setDebug </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>debug</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permet de valider l'affichage de message de debug </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">debug</td><td>si true les messages de debug sont affichés </td></tr>
   </table>
   </dd>
 </dl>

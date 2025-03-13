@@ -116,52 +116,57 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_gyroscope.html#a5826eb81caba1b34ef7ba730b7de7dd4">gestion</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code hl_function" href="class_lib_gyroscope.html#a92d3f22f5985698533f19ae009733e77">calibrate</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_gyroscope.html#a16abbc3bec312ce659bee0239a482456">update</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_gyroscope.html#a1d3dc1147a6a07f1db30c135fb895116">selectAxis</a>(</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      <a class="code hl_enumeration" href="_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbea">t_gyroscopeAxis</a> axis </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    );</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_lib_gyroscope.html#a49ee8df3936164e7ea6f5ef27698a763">getAngle</a>(</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <a class="code hl_enumeration" href="_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbea">t_gyroscopeAxis</a> axis </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    );</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_lib_gyroscope.html#a49ee8df3936164e7ea6f5ef27698a763">getAngle</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code hl_function" href="class_lib_gyroscope.html#a92d3f22f5985698533f19ae009733e77">calibrate</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_gyroscope.html#a1d3dc1147a6a07f1db30c135fb895116">selectAxis</a>(</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <a class="code hl_enumeration" href="_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbea">t_gyroscopeAxis</a> axis </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    );</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_lib_gyroscope.html#a49ee8df3936164e7ea6f5ef27698a763">getAngle</a>(</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      <a class="code hl_enumeration" href="_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbea">t_gyroscopeAxis</a> axis </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    );</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_gyroscope.html#a900d56609f5202ac845bbd1af679d7d4">getAngles</a>(</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <span class="keywordtype">int</span> * p_axisX, </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keywordtype">int</span> * p_axisY, </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <span class="keywordtype">int</span> * p_axisZ  </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    );</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_gyroscope.html#a5f2c08c57e35248e1c473e0d8c1aca82">display</a>(<span class="keywordtype">bool</span> status); </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_gyroscope.html#a76be09553344bc92214e06308ad6e88a">setDisplay</a>(<a class="code hl_class" href="class_lib_aff1637.html">LibAff1637</a> * p_display);  </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">bool</span>  m_begin;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">short</span> m_angleX;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">short</span> m_angleY;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">short</span> m_angleZ;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_enumeration" href="_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbea">t_gyroscopeAxis</a> m_axis;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">bool</span> m_displayStatus;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <a class="code hl_class" href="class_lib_aff1637.html">LibAff1637</a> * mp_display;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    MPU6050     mpu;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    Quaternion  q;       <span class="comment">// [w, x, y, z] Quaternion container</span></div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    VectorFloat gravity; <span class="comment">// [x, y, z]    Gravity vector</span></div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> m_FIFOBuffer[64]; <span class="comment">// FIFO storage buffer</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">void</span> displayAngle(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>};</div>
-</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_lib_gyroscope.html#a49ee8df3936164e7ea6f5ef27698a763">getAngle</a>();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_gyroscope.html#a900d56609f5202ac845bbd1af679d7d4">getAngles</a>(</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      <span class="keywordtype">int</span> * p_axisX, </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      <span class="keywordtype">int</span> * p_axisY, </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      <span class="keywordtype">int</span> * p_axisZ  </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    );</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_gyroscope.html#a5f2c08c57e35248e1c473e0d8c1aca82">display</a>(<span class="keywordtype">bool</span> status); </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_gyroscope.html#a76be09553344bc92214e06308ad6e88a">setDisplay</a>(<a class="code hl_class" href="class_lib_aff1637.html">LibAff1637</a> * p_display);  </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib_gyroscope.html#ad8f41779fad6625df48b7d6aaac35e79">setUpdatePeriod</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> period);  </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> m_period;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">bool</span>  m_displayStatus;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">bool</span>  m_begin;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">short</span> m_angleX;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">short</span> m_angleY;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">short</span> m_angleZ;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <a class="code hl_enumeration" href="_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbea">t_gyroscopeAxis</a> m_axis;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_class" href="class_lib_aff1637.html">LibAff1637</a> * mp_display;</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    MPU6050     mpu;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    Quaternion  q;       <span class="comment">// [w, x, y, z] Quaternion container</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    VectorFloat gravity; <span class="comment">// [x, y, z]    Gravity vector</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> m_FIFOBuffer[64]; <span class="comment">// FIFO storage buffer</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> displayAngle(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>};</div>
+</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="a_lib_aff1637_8h_html"><div class="ttname"><a href="_lib_aff1637_8h.html">LibAff1637.h</a></div><div class="ttdoc">Le fichier de définition de la classe LibAff1637.</div></div>
 <div class="ttc" id="a_lib_gyroscope_8h_html_ac9abd7155235df06e96cda700880bbea"><div class="ttname"><a href="_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbea">t_gyroscopeAxis</a></div><div class="ttdeci">t_gyroscopeAxis</div><div class="ttdef"><b>Definition</b> LibGyroscope.h:18</div></div>
 <div class="ttc" id="a_lib_gyroscope_8h_html_ac9abd7155235df06e96cda700880bbeaabae670fa35fede4399e110017a3d2f61"><div class="ttname"><a href="_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaabae670fa35fede4399e110017a3d2f61">GYROSCOPE_AXIS_Y</a></div><div class="ttdeci">@ GYROSCOPE_AXIS_Y</div><div class="ttdoc">Angle Y.</div><div class="ttdef"><b>Definition</b> LibGyroscope.h:20</div></div>
@@ -169,15 +174,17 @@ $(function(){ initResizable(false); });
 <div class="ttc" id="a_lib_gyroscope_8h_html_ac9abd7155235df06e96cda700880bbeaae48f41199304c17ab68569d7a8cc6215"><div class="ttname"><a href="_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaae48f41199304c17ab68569d7a8cc6215">GYROSCOPE_AXIS_Z</a></div><div class="ttdeci">@ GYROSCOPE_AXIS_Z</div><div class="ttdoc">Angle Z.</div><div class="ttdef"><b>Definition</b> LibGyroscope.h:21</div></div>
 <div class="ttc" id="aclass_lib_aff1637_html"><div class="ttname"><a href="class_lib_aff1637.html">LibAff1637</a></div><div class="ttdoc">Gestion d'un afficheur 7 Segments avec un TM1637.</div><div class="ttdef"><b>Definition</b> LibAff1637.h:40</div></div>
 <div class="ttc" id="aclass_lib_gyroscope_html"><div class="ttname"><a href="class_lib_gyroscope.html">LibGyroscope</a></div><div class="ttdoc">Gestion d'un gyroscope basée sur un MPU6050.</div><div class="ttdef"><b>Definition</b> LibGyroscope.h:32</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a1d3dc1147a6a07f1db30c135fb895116"><div class="ttname"><a href="class_lib_gyroscope.html#a1d3dc1147a6a07f1db30c135fb895116">LibGyroscope::selectAxis</a></div><div class="ttdeci">void selectAxis(t_gyroscopeAxis axis)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:120</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a16abbc3bec312ce659bee0239a482456"><div class="ttname"><a href="class_lib_gyroscope.html#a16abbc3bec312ce659bee0239a482456">LibGyroscope::update</a></div><div class="ttdeci">void update(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:79</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a1d3dc1147a6a07f1db30c135fb895116"><div class="ttname"><a href="class_lib_gyroscope.html#a1d3dc1147a6a07f1db30c135fb895116">LibGyroscope::selectAxis</a></div><div class="ttdeci">void selectAxis(t_gyroscopeAxis axis)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:129</div></div>
 <div class="ttc" id="aclass_lib_gyroscope_html_a3095ec99a02110dd3bf30aa660ebb040"><div class="ttname"><a href="class_lib_gyroscope.html#a3095ec99a02110dd3bf30aa660ebb040">LibGyroscope::LibGyroscope</a></div><div class="ttdeci">LibGyroscope(uint8_t address=MPU6050_DEFAULT_ADDRESS, void *wireObj=0)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:16</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a49ee8df3936164e7ea6f5ef27698a763"><div class="ttname"><a href="class_lib_gyroscope.html#a49ee8df3936164e7ea6f5ef27698a763">LibGyroscope::getAngle</a></div><div class="ttdeci">int getAngle()</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:121</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a5826eb81caba1b34ef7ba730b7de7dd4"><div class="ttname"><a href="class_lib_gyroscope.html#a5826eb81caba1b34ef7ba730b7de7dd4">LibGyroscope::gestion</a></div><div class="ttdeci">void gestion(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:52</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a5f2c08c57e35248e1c473e0d8c1aca82"><div class="ttname"><a href="class_lib_gyroscope.html#a5f2c08c57e35248e1c473e0d8c1aca82">LibGyroscope::display</a></div><div class="ttdeci">void display(bool status)</div><div class="ttdoc">true or false</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:131</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a76be09553344bc92214e06308ad6e88a"><div class="ttname"><a href="class_lib_gyroscope.html#a76be09553344bc92214e06308ad6e88a">LibGyroscope::setDisplay</a></div><div class="ttdeci">void setDisplay(LibAff1637 *p_display)</div><div class="ttdoc">Pointeur vers le gestionnaire d'affichage.</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:132</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a900d56609f5202ac845bbd1af679d7d4"><div class="ttname"><a href="class_lib_gyroscope.html#a900d56609f5202ac845bbd1af679d7d4">LibGyroscope::getAngles</a></div><div class="ttdeci">void getAngles(int *p_axisX, int *p_axisY, int *p_axisZ)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:124</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a92d3f22f5985698533f19ae009733e77"><div class="ttname"><a href="class_lib_gyroscope.html#a92d3f22f5985698533f19ae009733e77">LibGyroscope::calibrate</a></div><div class="ttdeci">unsigned char calibrate(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:87</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a9e2a15f13998a505dcb611fdf7c2ef92"><div class="ttname"><a href="class_lib_gyroscope.html#a9e2a15f13998a505dcb611fdf7c2ef92">LibGyroscope::begin</a></div><div class="ttdeci">void begin(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:23</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a49ee8df3936164e7ea6f5ef27698a763"><div class="ttname"><a href="class_lib_gyroscope.html#a49ee8df3936164e7ea6f5ef27698a763">LibGyroscope::getAngle</a></div><div class="ttdeci">int getAngle()</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:130</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a5826eb81caba1b34ef7ba730b7de7dd4"><div class="ttname"><a href="class_lib_gyroscope.html#a5826eb81caba1b34ef7ba730b7de7dd4">LibGyroscope::gestion</a></div><div class="ttdeci">void gestion(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:53</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a5f2c08c57e35248e1c473e0d8c1aca82"><div class="ttname"><a href="class_lib_gyroscope.html#a5f2c08c57e35248e1c473e0d8c1aca82">LibGyroscope::display</a></div><div class="ttdeci">void display(bool status)</div><div class="ttdoc">true or false</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:140</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a76be09553344bc92214e06308ad6e88a"><div class="ttname"><a href="class_lib_gyroscope.html#a76be09553344bc92214e06308ad6e88a">LibGyroscope::setDisplay</a></div><div class="ttdeci">void setDisplay(LibAff1637 *p_display)</div><div class="ttdoc">Pointeur vers le gestionnaire d'affichage.</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:141</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a900d56609f5202ac845bbd1af679d7d4"><div class="ttname"><a href="class_lib_gyroscope.html#a900d56609f5202ac845bbd1af679d7d4">LibGyroscope::getAngles</a></div><div class="ttdeci">void getAngles(int *p_axisX, int *p_axisY, int *p_axisZ)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:133</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a92d3f22f5985698533f19ae009733e77"><div class="ttname"><a href="class_lib_gyroscope.html#a92d3f22f5985698533f19ae009733e77">LibGyroscope::calibrate</a></div><div class="ttdeci">unsigned char calibrate(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:95</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a9e2a15f13998a505dcb611fdf7c2ef92"><div class="ttname"><a href="class_lib_gyroscope.html#a9e2a15f13998a505dcb611fdf7c2ef92">LibGyroscope::begin</a></div><div class="ttdeci">void begin(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:24</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_ad8f41779fad6625df48b7d6aaac35e79"><div class="ttname"><a href="class_lib_gyroscope.html#ad8f41779fad6625df48b7d6aaac35e79">LibGyroscope::setUpdatePeriod</a></div><div class="ttdeci">void setUpdatePeriod(unsigned char period)</div><div class="ttdoc">Période en ms de raffraichissement des angles.</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:142</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

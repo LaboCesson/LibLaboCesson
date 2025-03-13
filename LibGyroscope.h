@@ -39,6 +39,10 @@ class LibGyroscope
     /// \details Cette fonction doit être appelée régulièrement pour la gestion du gyroscope
     void gestion(void);
 
+    /// \details Cette fonction permet de mettre à jour les valeurs d'angle
+    /// \attention La fonction de recalcul des angles dure environ 30ms sur un arduino nano
+    void update(void);
+
     /// \details Permet de recalibrer le gyroscope
     /// \return 0 si OK et 1 ou 2 sinon
     unsigned char calibrate(void);
@@ -71,9 +75,14 @@ class LibGyroscope
     /// \details Permet de donner les références de l'afficheur
     void setDisplay(LibAff1637 * p_display);  ///< Pointeur vers le gestionnaire d'affichage
 
+    /// \details Permet de donner les références de l'afficheur
+    void setUpdatePeriod(unsigned char period);  ///< Période en ms de raffraichissement des angles
+
   protected:
 
   private:
+    unsigned char m_period;
+    bool  m_displayStatus;
     bool  m_begin;
     short m_angleX;
     short m_angleY;
@@ -81,7 +90,6 @@ class LibGyroscope
 
     t_gyroscopeAxis m_axis;
 
-    bool m_displayStatus;
     LibAff1637 * mp_display;
 
     MPU6050     mpu;

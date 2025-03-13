@@ -9,13 +9,14 @@
 //#include "I2Cdev.h"
 #include "LibGyroscope.h"
 
-#define PERIODE_GESTION         50 // Période de gestion du gyroscope
+#define PERIODE_GESTION         50 // Période de gestion du gyroscope par défaut
 #define PERIODE_UPDATE_DISPLAY 200 // Période de mise à jour de l'affichage d'un angle
 
 
 LibGyroscope::LibGyroscope(uint8_t address = MPU6050_DEFAULT_ADDRESS, void *wireObj = 0) :
   mpu() {
-    m_begin = false;
+  m_begin  = false;
+  m_period = PERIODE_GESTION;
   if( wireObj == 0) Wire.begin(); // Si Wire n'a pas été initialisé plus haut, on le fait ici
 }
 
@@ -55,23 +56,14 @@ void LibGyroscope::gestion(void) {
   static unsigned long nextTimeGestion = millis(); // Variable persistante
   static unsigned long nextTimeDisplay = millis(); // Variable persistante
 
-  float ypr[3];           // [yaw, pitch, roll]   Yaw/Pitch/Roll container and gravity vector
+  float ypr[3]; // [yaw, pitch, roll]   Yaw/Pitch/Roll container and gravity vector
 
   unsigned long newTime = millis();
 
   if( newTime > nextTimeGestion ) {
-    if (mpu.dmpGetCurrentFIFOPacket(m_FIFOBuffer)) { // Get the Latest packet
-      mpu.dmpGetQuaternion(&q, m_FIFOBuffer);
-      mpu.dmpGetGravity(&gravity, &q);
-      mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-
-      m_angleX = (ypr[0] * 180/M_PI);
-      m_angleY = (ypr[1] * 180/M_PI);
-      m_angleZ = (ypr[2] * 180/M_PI);
-
-      nextTimeGestion += PERIODE_GESTION;
-    }
-  }
+    update();
+    nextTimeGestion += m_period;
+   }
 
   if( newTime > nextTimeDisplay ) {
     displayAngle();
@@ -79,9 +71,25 @@ void LibGyroscope::gestion(void) {
   }
 
   // On évite l'accumulation de traitements le cas écheant
-  while(newTime > nextTimeGestion) nextTimeGestion += PERIODE_GESTION;
+  while(newTime > nextTimeGestion) nextTimeGestion += m_period;
   while(newTime > nextTimeDisplay) nextTimeDisplay += PERIODE_UPDATE_DISPLAY;
 }
+
+
+void LibGyroscope::update(void) {
+  float ypr[3];           // [yaw, pitch, roll]   Yaw/Pitch/Roll container and gravity vector
+
+  if (mpu.dmpGetCurrentFIFOPacket(m_FIFOBuffer)) { // Get the Latest packet
+    mpu.dmpGetQuaternion(&q, m_FIFOBuffer);
+    mpu.dmpGetGravity(&gravity, &q);
+    mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
+
+    m_angleX = (ypr[0] * 180 / M_PI);
+    m_angleY = (ypr[1] * 180 / M_PI);
+    m_angleZ = (ypr[2] * 180 / M_PI);
+  }
+}
+
 
 
 unsigned char LibGyroscope::calibrate(void) {
@@ -131,6 +139,8 @@ void LibGyroscope::getAngles(int * p_axisX, int * p_axisY, int * p_axisZ ) {
 
 void LibGyroscope::display(bool status) { m_displayStatus = status;}
 void LibGyroscope::setDisplay(LibAff1637 * p_display) { mp_display = p_display; }
+void LibGyroscope::setUpdatePeriod(unsigned char period) { m_period = period; }
+
 
 void LibGyroscope::displayAngle(void) {
   if( m_displayStatus == false ) return;

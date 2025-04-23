@@ -28,7 +28,99 @@ LibJoystick::LibJoystick(
 }
 
 
-void LibJoystick::calculVitesses(unsigned short valX, unsigned short valY, bool boost, bool rotationGauche, bool rotationDroite) {
+void LibJoystick::calculVitesses(unsigned short xAxis, unsigned short yAxis, bool boost, bool rotationGauche, bool rotationDroite) {
+  char VMax = (boost == true ? m_vBoost : m_vNormale);
+
+  int motorSpeedD = 0;
+  int motorSpeedG = 0;
+
+  int YD = map(yAxis, 0, 1023, -VMax, VMax);
+  int XD = map(xAxis, 0, 1023, -VMax, VMax);
+
+  int YG = map(yAxis, 0, 1023, -VMax, VMax);
+  int XG = map(xAxis, 0, 1023, VMax, -VMax);
+
+
+  if (YD > 0 && XD > 0) {
+    if (YD > XD) {
+      motorSpeedD = YD;
+    }
+    if (XD > YD) {
+      motorSpeedD = XD;
+    }
+    if (XD == YD) {
+      motorSpeedD = XD;
+    }
+  }
+
+  if (YD < 0 && XD < 0) {
+    if (YD < XD) {
+      motorSpeedD = YD;
+    }
+    if (XD < YD) {
+      motorSpeedD = XD;
+    }
+    if (XD == YD) {
+      motorSpeedD = XD;
+    }
+  }
+
+  if (YD > 0 && XD < 0) {
+    motorSpeedD = YD + XD;
+  }
+
+  if (YD < 0 && XD > 0) {
+    motorSpeedD = XD + YD;
+  }
+
+
+  if (YG > 0 && XG > 0) {
+    if (YG > XG) {
+      motorSpeedG = YG;
+    }
+    if (XG > YG) {
+      motorSpeedG = XG;
+    }
+    if (XG == YG) {
+      motorSpeedG = XG;
+    }
+  }
+  if (YG < 0 && XG < 0) {
+    if (YG < XG) {
+      motorSpeedG = YG;
+    }
+    if (XG < YG) {
+      motorSpeedG = XG;
+    }
+    if (XG == YG) {
+      motorSpeedG = XG;
+    }
+  }
+
+  if (YG > 0 & XG < 0) {
+    motorSpeedG = YG + XG;
+  }
+
+  if (YG < 0 && XG > 0) {
+    motorSpeedG = XG + YG;
+  }
+
+
+  if (motorSpeedD < m_minMotorD) {
+    motorSpeedD = 0;
+  }
+  if (motorSpeedG < m_minMotorG) {
+    motorSpeedG = 0;
+  }
+
+  m_vitesseGauche = motorSpeedG;
+  m_vitesseDroite = motorSpeedD;
+
+  if (m_debug) trace(xAxis, yAxis, boost, rotationGauche, rotationDroite);
+
+  return;
+
+/*
   char Vmin = 0;
   char Vmax = (boost == true ? m_vBoost : m_vNormale);
 
@@ -98,11 +190,12 @@ void LibJoystick::calculVitesses(unsigned short valX, unsigned short valY, bool 
   }
 
   if (valY < 512) {
-    m_vitesseGauche = -m_vitesseGauche;
+     m_vitesseGauche = -m_vitesseGauche;
     m_vitesseDroite = -m_vitesseDroite;
   }
 
   if( m_debug ) trace(valX, valY, boost, rotationGauche, rotationDroite);
+*/
 }
 
 

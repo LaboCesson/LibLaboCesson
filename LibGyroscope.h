@@ -40,7 +40,7 @@ class LibGyroscope
     void gestion(void);
 
     /// \details Cette fonction permet de mettre à jour les valeurs d'angle
-    /// \attention La fonction de recalcul des angles dure environ 30ms sur un arduino nano
+    /// \attention La fonction de recalcul des angles dure environ 10ms sur un arduino nano
     void update(void);
 
     /// \details Permet de recalibrer le gyroscope

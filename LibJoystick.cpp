@@ -35,81 +35,61 @@ void LibJoystick::calculVitesses(unsigned short xAxis, unsigned short yAxis, boo
   int motorSpeedG = 0;
 
   int YD = map(yAxis, 0, 1023, -VMax, VMax);
-  int XD = map(xAxis, 0, 1023, -VMax, VMax);
+  int XD = map(xAxis, 0, 1023, VMax, -VMax);
 
   int YG = map(yAxis, 0, 1023, -VMax, VMax);
-  int XG = map(xAxis, 0, 1023, VMax, -VMax);
+  int XG = map(xAxis, 0, 1023, -VMax, VMax);
 
 
-  if (YD > 0 && XD > 0) {
+  if (YD >= 0 && XD >= 0) {
+    motorSpeedD = XD;
     if (YD > XD) {
       motorSpeedD = YD;
-    }
-    if (XD > YD) {
-      motorSpeedD = XD;
-    }
-    if (XD == YD) {
-      motorSpeedD = XD;
     }
   }
 
   if (YD < 0 && XD < 0) {
+    motorSpeedD = XD;
     if (YD < XD) {
       motorSpeedD = YD;
     }
-    if (XD < YD) {
-      motorSpeedD = XD;
-    }
-    if (XD == YD) {
-      motorSpeedD = XD;
-    }
   }
 
-  if (YD > 0 && XD < 0) {
+  if (YD >= 0 && XD < 0) {
     motorSpeedD = YD + XD;
   }
 
-  if (YD < 0 && XD > 0) {
+  if (YD < 0 && XD >= 0) {
     motorSpeedD = XD + YD;
   }
 
-
-  if (YG > 0 && XG > 0) {
+  if (YG >= 0 && XG >= 0) {
+    motorSpeedG = XG;
     if (YG > XG) {
       motorSpeedG = YG;
     }
-    if (XG > YG) {
-      motorSpeedG = XG;
-    }
-    if (XG == YG) {
-      motorSpeedG = XG;
-    }
   }
+
   if (YG < 0 && XG < 0) {
+    motorSpeedG = XG;
     if (YG < XG) {
       motorSpeedG = YG;
     }
-    if (XG < YG) {
-      motorSpeedG = XG;
-    }
-    if (XG == YG) {
-      motorSpeedG = XG;
-    }
   }
 
-  if (YG > 0 & XG < 0) {
+  if (YG >= 0 && XG < 0) {
     motorSpeedG = YG + XG;
   }
 
-  if (YG < 0 && XG > 0) {
+  if (YG < 0 && XG >= 0) {
     motorSpeedG = XG + YG;
   }
 
 
-  if (motorSpeedD < m_minMotorD) {
+  if (abs(motorSpeedD) < m_minMotorD) {
     motorSpeedD = 0;
   }
-  if (motorSpeedG < m_minMotorG) {
+  if (abs(motorSpeedG) < m_minMotorG) {
     motorSpeedG = 0;
   }
 
@@ -119,84 +99,8 @@ void LibJoystick::calculVitesses(unsigned short xAxis, unsigned short yAxis, boo
   if (m_debug) trace(xAxis, yAxis, boost, rotationGauche, rotationDroite);
 
   return;
-
-/*
-  char Vmin = 0;
-  char Vmax = (boost == true ? m_vBoost : m_vNormale);
-
-  if (rotationGauche == true) {
-    m_vitesseGauche = -Vmax;
-    m_vitesseDroite = Vmax;
-    if( m_debug ) trace(valX, valY, boost, rotationGauche, rotationDroite);
-    return;
-  }
- 
-  if (rotationDroite == true) {
-     m_vitesseGauche = Vmax;
-     m_vitesseDroite = -Vmax;
-    if( m_debug ) trace(valX, valY, boost, rotationGauche, rotationDroite);
-     return;
-   }
-
-  if (valY < m_minY) {
-    m_vitesseDroite = map(valY, m_minY, 0, Vmin, Vmax);
-    m_vitesseGauche = map(valY, m_minY, 0, Vmin, Vmax);
-  }
-  else if (valY > m_maxY) {
-    m_vitesseDroite = map(valY, m_maxY, 1023, Vmin, Vmax);
-    m_vitesseGauche = map(valY, m_maxY, 1023, Vmin, Vmax);
-  }
-  else {
-    m_vitesseDroite = 0;
-    m_vitesseGauche = 0;
-  }
-
-  if (valX < m_minX) {
-    int xMapped = map(valX, m_minX, 0, Vmin, Vmax);
-
-    m_vitesseDroite = m_vitesseDroite - xMapped;
-    m_vitesseGauche = m_vitesseGauche + xMapped;
-
-    if (m_vitesseDroite < Vmin) {
-      m_vitesseDroite = Vmin;
-    }
-
-    if (m_vitesseGauche > Vmax) {
-      m_vitesseGauche = Vmax;
-    }
-  }
-
-  if (valX > m_maxX) {
-    int xMapped = map(valX, m_maxX, 1023, Vmin, Vmax);
-
-    m_vitesseDroite = m_vitesseDroite + xMapped;
-    m_vitesseGauche = m_vitesseGauche - xMapped;
-
-    if (m_vitesseDroite > Vmax) {
-      m_vitesseDroite = Vmax;
-    }
-
-    if (m_vitesseGauche < Vmin) {
-      m_vitesseGauche = Vmin;
-    }
-  }
-
-  if (m_vitesseDroite < m_minMotorD) {
-    m_vitesseDroite = 0;
-  }
-
-  if (m_vitesseGauche < m_minMotorG) {
-    m_vitesseGauche = 0;
-  }
-
-  if (valY < 512) {
-     m_vitesseGauche = -m_vitesseGauche;
-    m_vitesseDroite = -m_vitesseDroite;
-  }
-
-  if( m_debug ) trace(valX, valY, boost, rotationGauche, rotationDroite);
-*/
 }
+
 
 
 void LibJoystick::getVitesses( char * vitesseGauche, char * vitesseDroite ) {

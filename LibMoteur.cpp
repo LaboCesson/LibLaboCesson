@@ -55,7 +55,7 @@ void LibMoteur::moteurGauche(char vitesse) {
   if( m_pwmMode == true ) {
 	analogWrite(m_enableGauche, getVitesse(vitesse));
   } else {
-	m_nbPasEnA = getNbPas(vitesse);
+   	m_nbPasEnA = getNbPas(vitesse);
   }
 }
 

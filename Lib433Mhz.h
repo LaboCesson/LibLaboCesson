@@ -56,6 +56,9 @@ class Lib433Mhz
       char * p_msg ///< Pointeur vers ou écrire le message lu (doit se terminer par un 0)
     );
  
+    /// \details Permet d'invalider la gestion de la radio
+    void stop();
+
     /// \details Permet de valider l'affichage de message de debug
     void setDebug(
       bool debug ///< si true les messages de debug sont affichés

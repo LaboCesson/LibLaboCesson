@@ -2,8 +2,8 @@
  * \file 	LibMoteur.h
  * \brief 	Le fichier de définition de la classe LibMoteur
  * \author  LaboCesson
- * \version 1.0
- * \date    Janvier 2025
+ * \version 2.0
+ * \date    Octobre 2025
  */
 //
 // Librairie de gestion d'un L298N
@@ -14,6 +14,20 @@
 
 #include "arduino.h"
 
+#ifdef AVR#ifdef SERVO_USED
+#include "Servo.h"
+#endif
+#ifdef ARDUINO_ARCH_ESP32
+#include "ESP32Servo.h"
+#endif
+
+
+typedef enum {
+  MOTEUR_L298N = 0, ///< The motor is controlled with a L298N
+  MOTEUR_SERVO = 1, ///< The motor is controlled with a Servo360
+} t_driverMoteur;
+
+
 /// \class LibMoteur
 /// \brief Gestion d'un L298N
 /// \details
@@ -21,56 +35,78 @@
 class LibMoteur
 {
   public:
+    /// \details Permet de piloter un moteur controllé par un L298N
     LibMoteur(
-		unsigned char pinEna, ///< Le numéro de la pin connectée à ENA
 		unsigned char pinIn1, ///< Le numéro de la pin connectée à IN1
 		unsigned char pinIn2, ///< Le numéro de la pin connectée à IN2
 		unsigned char pinIn3, ///< Le numéro de la pin connectée à IN3
-		unsigned char pinIn4, ///< Le numéro de la pin connectée à IN4
-		unsigned char pinEnb, ///< Le numéro de la pin connectée à ENB
-		bool pwmMode = true   ///< Indique si la vitesse est géré en mode PWM (true) ou via une gestion basée sur millis() (false)
-	);
+		unsigned char pinIn4  ///< Le numéro de la pin connectée à IN4
+	  );
 
-    /// \details Cette fonction doit être appelée régulièrement pour la gestion des moteurs
-    void gestion(void);
-	
-    /// \details Permet de changer le mode de variation de la vitesse
-    /// \details pwmMode=false doit être utilisé lorsque le timer2 est utilisé par une autre librairie
-    void setPwmMode(
-        bool pwmMode ///< Indique si la vitesse est géré en mode PWM (true) ou via une gestion basée sur millis() (false)
-	);
+    /// \details Permet de piloter un moteur controllé par un servomoteur 360
+    LibMoteur(
+      unsigned char pinGauche, ///< Le numéro de la pin connectée au servomteur gauche
+      unsigned char pinDroit   ///< Le numéro de la pin connectée au servomteur droit
+    );
 
-	/// \details Permet de piloter le moteur gauche
-    void moteurGauche(
-		char vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
-	);
-
-	/// \details Permet de piloter le moteur droit
-    void moteurDroit(
-		char vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
-	);
-
-	/// \details Permet de piloter les deux moteurs
+    /// \details Permet de piloter les deux moteurs
     void moteurs(
-		char vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
-	);
+      int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+    );
 
-  private:
-    unsigned char m_enableDroite, m_avantDroite, m_arriereDroite;
-    unsigned char m_enableGauche, m_avantGauche, m_arriereGauche;
-      #define DIRECTION_AUCUNE  0
-      #define DIRECTION_AVANT   1
-      #define DIRECTION_ARRIERE 2
-    unsigned char m_directionDroite = DIRECTION_AUCUNE;
-    unsigned char m_directionGauche = DIRECTION_AUCUNE;
-    bool          m_pwmMode;
-    unsigned char m_nbPasEnA,m_nbPasEnB;
+    /// \details Permet de piloter le moteur gauche
+    void moteurGauche(
+		int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+	  );
 
-    unsigned char getDirection(char vitesse);
-    unsigned char getVitesse(char vitesse);
-    unsigned char getNbPas(char vitesse);
+	  /// \details Permet de piloter le moteur droit
+    void moteurDroit(
+		int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+	  );
 
-  protected:
+    /// \details Permet de modifier le sens par défaut des moteurs
+    void setDirection(
+      int dirGauche, ///< direction du moteur gauche (1=normal, -1= inverse)
+      int dirDroite  ///< direction du moteur droit (1=normal, -1= inverse)
+    );
+
+    /// \details Permet de valider l'affichage de message de debug
+    void setDebug(
+      bool debug ///< si true les messages de debug sont affichés
+    );
+
+private:
+    void setVitesseMoteurL298n(
+               int  vitesse,    ///< vitesse à appliquer au moteur
+      unsigned char pinAvant,   ///< Le numéro de la pin permettant de mettre le moteur dans le sens avant
+      unsigned char pinArriere  ///< Le numéro de la pin permettant de mettre le moteur dans le sens arriere
+    );
+
+    void setVitesseMoteurServo(
+      int    vitesse, ///< vitesse à appliquer au moteur
+      Servo* p_servo  ///< Pointeur vers l'objet Servo
+    );
+
+    void commonInit(void);
+    void trace(char* side, int vitesse);
+
+    t_driverMoteur m_typeDriver;
+
+    bool          m_debug;
+
+    unsigned char m_avantDroite, m_arriereDroite;
+    unsigned char m_avantGauche, m_arriereGauche;
+             int  m_lastVitesseGauche, m_lastVitesseDroite;
+             int  m_directionDroite = 1;
+             int  m_directionGauche = 1;
+    unsigned int  m_frequency;    
+    unsigned char m_resolution;    
+    unsigned char m_base_channel;
+
+    Servo* mp_servoGauche;
+    Servo* mp_servoDroit;
+
+protected:
 };
 
 

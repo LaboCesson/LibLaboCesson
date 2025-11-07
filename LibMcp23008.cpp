@@ -27,7 +27,7 @@
 #define MCP23008_IOCON_ODR    0x04
 #define MCP23008_IOCON_INTPOL 0x02
 
-LibMcp23008::LibMcp23008(unsigned char addrDevice = 0x20, bool dowWireBegin = false) {
+LibMcp23008::LibMcp23008(unsigned char addrDevice, bool dowWireBegin) {
   if(dowWireBegin == true) Wire.begin();
   m_addrDevice = addrDevice;
 }
@@ -98,7 +98,7 @@ void LibMcp23008::digitalWrite( unsigned char pin, unsigned char value) {
 
 
 unsigned char LibMcp23008::digitalRead( unsigned char pin) {
-  if ((pin < 1) || (pin > 8)) return;
+  if ((pin < 1) || (pin > 8)) return LOW;
  
   unsigned char mask = 1<< (pin - 1);
   unsigned char val = readRegister(MCP23008_GPIO);

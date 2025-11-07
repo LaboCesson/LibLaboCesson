@@ -13,7 +13,7 @@
 #define PERIODE_UPDATE_DISPLAY 200 // Période de mise à jour de l'affichage d'un angle
 
 
-LibGyroscope::LibGyroscope(uint8_t address = MPU6050_DEFAULT_ADDRESS, void *wireObj = 0) :
+LibGyroscope::LibGyroscope(uint8_t address, void *wireObj) :
   mpu() {
   m_begin  = false;
   m_period = PERIODE_GESTION;
@@ -130,10 +130,10 @@ void LibGyroscope::selectAxis(t_gyroscopeAxis axis) { m_axis = axis;}
 int  LibGyroscope::getAngle() { return getAngle(m_axis); }
 
 
-void LibGyroscope::getAngles(int * p_axisX, int * p_axisY, int * p_axisZ ) {
-  p_axisX = m_angleX;
-  p_axisY = m_angleY;
-  p_axisZ = m_angleZ;
+void LibGyroscope::getAngles(short * p_axisX, short * p_axisY, short * p_axisZ ) {
+  *p_axisX = m_angleX;
+  *p_axisY = m_angleY;
+  *p_axisZ = m_angleZ;
 }
 
 

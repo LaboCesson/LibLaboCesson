@@ -36,9 +36,9 @@ class LibClavier
     char getTouche(void);
 	
   private:
-  unsigned char * m_nbTouche;
+  unsigned char   m_nbTouche;
            char * mp_touche;
-  unsigned char * m_nbDigit;
+  unsigned char   m_nbDigit;
     LibMatrice  * mp_matrice;
 
   protected:

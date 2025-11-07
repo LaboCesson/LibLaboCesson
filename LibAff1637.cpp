@@ -16,7 +16,7 @@
 #define PERIOD_CLIGNOTEMENT 500 // en millisecondes
 
 
-LibAff1637::LibAff1637(uint8_t pinClk, uint8_t pinDIO, unsigned char bitDelay = AFF1637_BIT_DELAY)
+LibAff1637::LibAff1637(uint8_t pinClk, uint8_t pinDIO, unsigned char bitDelay)
 {
   m_pinClk = pinClk;
   m_pinDIO = pinDIO;
@@ -83,7 +83,7 @@ void LibAff1637::displayClear() {
 }
 
 
-void LibAff1637::displayBuffer( char * buffer, unsigned char length, unsigned char pos = 0) {
+void LibAff1637::displayBuffer( char * buffer, unsigned char length, unsigned char pos) {
   unsigned char digits[4];
 
   for( unsigned char i=0; i<length; i++ ) {
@@ -94,8 +94,8 @@ void LibAff1637::displayBuffer( char * buffer, unsigned char length, unsigned ch
 }
 
 
-void LibAff1637::displayString( char * str, unsigned char pos = 0) {
-  displayBuffer( str, min(strlen(str),4), pos );
+void LibAff1637::displayString( char * str, unsigned char pos) {
+  displayBuffer( str, min((int)strlen(str),4), pos );
 }
 
 
@@ -146,7 +146,7 @@ unsigned char LibAff1637::numToDigit(unsigned int value, unsigned char digits[],
 }
 
 
-void LibAff1637::displaySegments( unsigned char * segments, unsigned char length, unsigned char pos = 0) {
+void LibAff1637::displaySegments( unsigned char * segments, unsigned char length, unsigned char pos) {
   writeDigits(segments, length, pos);
 }
 

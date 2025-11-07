@@ -13,7 +13,7 @@ LibGpio::LibGpio(unsigned char * pinList, unsigned char nbGpioInTab) {
   m_nbGpio = nbGpioInTab;
   if( m_nbGpio > 16 ) m_nbGpio = 16; // Par sécurité
 
-  m_gpio = malloc( sizeof(t_gpio) * m_nbGpio );
+  m_gpio = (t_gpio*)malloc(sizeof(t_gpio) * m_nbGpio);
 
   for(unsigned char i=0; i<m_nbGpio; i++ ) {
     m_gpio[i].pin   = pinList[i];
@@ -24,7 +24,7 @@ LibGpio::LibGpio(unsigned char * pinList, unsigned char nbGpioInTab) {
 }
 
 
-bool LibGpio::configure(unsigned char gpioIdx, t_gpioMode gpioType, unsigned short defaultValue = 0) {
+bool LibGpio::configure(unsigned char gpioIdx, t_gpioMode gpioType, unsigned short defaultValue) {
   if( gpioIdx >= m_nbGpio) return LIB_GPIO_ERROR;
 
   if( m_gpio[gpioIdx].type != PAMI_GPIO_UNUSED ) { trace( gpioIdx, "est déja défini" ); return LIB_GPIO_ERROR; }
@@ -48,11 +48,7 @@ bool LibGpio::configure(unsigned char gpioIdx, t_gpioMode gpioType, unsigned sho
         trace( gpioIdx, " set as an output" );
         break;
     case PAMI_GPIO_PWM :
-		if( m_gpio[gpioIdx].pin == 3 ) {
-			trace( gpioIdx, " do not use pin 3 as PWM" );
-			return LIB_GPIO_ERROR;
-		}
-		m_gpio[gpioIdx].servo = new Servo();
+		    m_gpio[gpioIdx].servo = new Servo();
         m_gpio[gpioIdx].servo->attach(m_gpio[gpioIdx].pin);
         m_gpio[gpioIdx].servo->write( m_gpio[gpioIdx].value = defaultValue);
         m_gpio[gpioIdx].type  = PAMI_GPIO_PWM;

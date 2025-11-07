@@ -64,9 +64,9 @@ class LibGyroscope
 
     /// \details Permet de lire la valeur des 3 angles
     void getAngles(
-      int * p_axisX, ///< Pointeur ou écrire la valeur de l'axe X
-      int * p_axisY, ///< Pointeur ou écrire la valeur de l'axe Y
-      int * p_axisZ  ///< Pointeur ou écrire la valeur de l'axe Z
+      short * p_axisX, ///< Pointeur ou écrire la valeur de l'axe X
+      short * p_axisY, ///< Pointeur ou écrire la valeur de l'axe Y
+      short * p_axisZ  ///< Pointeur ou écrire la valeur de l'axe Z
     );
 
     /// \details Permet de valider l'affichage sur le display l'angle de l'axe sélectionné

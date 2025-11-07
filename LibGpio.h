@@ -14,6 +14,7 @@
 //#define SERVOTIMER2_USED
 
 #include "arduino.h"
+#ifdef AVR
 #ifdef SERVO_USED
   #include "Servo.h"
 #endif
@@ -22,6 +23,10 @@
 #endif
 #ifdef SERVOTIMER2_USED
   #include "ServoTimer2.h"
+#endif
+#endif
+#ifdef ARDUINO_ARCH_ESP32
+#include "ESP32Servo.h"
 #endif
 
 typedef enum {
@@ -53,7 +58,7 @@ class LibGpio
 	/// \attention Le GPIO utilisant la pin 3 ne peut pas être utilisé en mode PWM
    bool configure(
 		unsigned char  gpioIdx,         ///< Numéro d'index du GPIO à configurer (à partir de 0)
-		t_gpioMode gpioMode,            ///< Type de configuration du pin
+		t_gpioMode     gpioMode,        ///< Type de configuration du pin
 		unsigned short defaultValue = 0 ///< Valeur par défaut à appliquer
 	);
 
@@ -83,15 +88,20 @@ class LibGpio
       unsigned char  pin;
       unsigned char  type;
       unsigned short value;
-      #ifdef SERVO_USED
-		Servo* servo;
-	  #endif
-      #ifdef PWMSERVO_USED
-        PWMServo* servo;
-	  #endif
-      #ifdef SERVOTIMER2_USED
-		ServoTimer2 * servo;
-	  #endif
+      #ifdef AVR
+        #ifdef SERVO_USED
+		      Servo* servo;
+	      #endif
+        #ifdef PWMSERVO_USED
+          PWMServo* servo;
+	      #endif
+        #ifdef SERVOTIMER2_USED
+		      ServoTimer2 * servo;
+	      #endif
+      #endif
+      #ifdef ARDUINO_ARCH_ESP32
+        Servo* servo;
+      #endif
     } t_gpio;
     t_gpio * m_gpio;
  

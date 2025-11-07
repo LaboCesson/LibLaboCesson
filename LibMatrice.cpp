@@ -10,7 +10,7 @@
 
 LibMatrice::LibMatrice(unsigned char nbPinOut, unsigned char * p_pinOut,
                        unsigned char nbPinIn, unsigned char * p_pinIn, 
-                       LibMcp23008 * p_pinExt=0) {
+                       LibMcp23008 * p_pinExt) {
   m_nbPinOut = nbPinOut;
   mp_pinOut  = p_pinOut;
   m_nbPinIn  = nbPinIn;

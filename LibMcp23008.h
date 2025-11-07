@@ -10,7 +10,7 @@
 #define _LIB_MCP23008_H_
 
 #include "arduino.h"
-#include "wire.h"
+#include "Wire.h"
 
 /// \class LibMcp23008
 /// \brief Gestion du composant MCP23008 pour augmenter le nombre de pins

@@ -32,7 +32,7 @@ void Lib433Mhz::begin(unsigned char msgSize) {
     default : return;
   }
   mp_radio->init();
-  mp_buf = malloc(m_patternSize+m_msgSize);
+  mp_buf = (char *)malloc(m_patternSize+m_msgSize);
   m_begin = true;
 }
 
@@ -42,22 +42,22 @@ unsigned char Lib433Mhz::getMessage(char * p_msg, unsigned char length) {
 
   unsigned char buflen = m_patternSize+m_msgSize;
 
-  if( !mp_radio->recv(mp_buf,&buflen) ) return 0;
+  if (!mp_radio->recv((unsigned char*)mp_buf, &buflen) ) return 0;
 
   mp_buf[buflen]='\0';
   if( buflen < m_patternSize ) return 0;
   if( memcmp(mp_buf,mp_pattern,m_patternSize) != 0 ) return 0;
-  strcpy(p_msg,mp_buf+m_patternSize);
+  strcpy(p_msg, (mp_buf + m_patternSize));
   return strlen(p_msg);
 }
 
 
 void Lib433Mhz::sendMessage( char * p_msg ) {
-  if( !m_begin )return 0;
+  if( !m_begin )return;
   strcpy(mp_buf,mp_pattern);
   strcat(mp_buf,p_msg);
   if(m_debug == true) Serial.println(mp_buf);
-  mp_radio->send(mp_buf, strlen(mp_buf));
+  mp_radio->send((unsigned char*)mp_buf, strlen(mp_buf));
   mp_radio->waitPacketSent();
 }
 

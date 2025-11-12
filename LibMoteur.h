@@ -37,10 +37,11 @@ class LibMoteur
   public:
     /// \details Permet de piloter un moteur controllé par un L298N
     LibMoteur(
-		unsigned char pinIn1, ///< Le numéro de la pin connectée à IN1
-		unsigned char pinIn2, ///< Le numéro de la pin connectée à IN2
-		unsigned char pinIn3, ///< Le numéro de la pin connectée à IN3
-		unsigned char pinIn4  ///< Le numéro de la pin connectée à IN4
+		  unsigned char pinIn1, ///< Le numéro de la pin connectée à IN1
+		  unsigned char pinIn2, ///< Le numéro de la pin connectée à IN2
+		  unsigned char pinIn3, ///< Le numéro de la pin connectée à IN3
+		  unsigned char pinIn4, ///< Le numéro de la pin connectée à IN4
+      unsigned char baseChannel ///< Channel de base pour la gestion PWM (les 4 valeurs au dela de baseChannel sont utilisées)
 	  );
 
     /// \details Permet de piloter un moteur controllé par un servomoteur 360
@@ -66,8 +67,8 @@ class LibMoteur
 
     /// \details Permet de modifier le sens par défaut des moteurs
     void setDirection(
-      int dirGauche, ///< direction du moteur gauche (1=normal, -1= inverse)
-      int dirDroite  ///< direction du moteur droit (1=normal, -1= inverse)
+      bool dirGauche, ///< direction du moteur gauche (true=normal, false= inverse)
+      bool dirDroite  ///< direction du moteur droit (true=normal, false= inverse)
     );
 
     /// \details Permet de valider l'affichage de message de debug
@@ -97,8 +98,8 @@ private:
     unsigned char m_avantDroite, m_arriereDroite;
     unsigned char m_avantGauche, m_arriereGauche;
              int  m_lastVitesseGauche, m_lastVitesseDroite;
-             int  m_directionDroite = 1;
-             int  m_directionGauche = 1;
+             bool m_directionDroite = true;
+             bool m_directionGauche = true;
     unsigned int  m_frequency;    
     unsigned char m_resolution;    
     unsigned char m_base_channel;

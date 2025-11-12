@@ -18,14 +18,14 @@
 #define DEFAULT_SERVO_MAX 2000
 
 
-LibMoteur::LibMoteur(unsigned char pinIn1, unsigned char pinIn2, unsigned char pinIn3, unsigned char pinIn4 ) {
+LibMoteur::LibMoteur(unsigned char pinIn1, unsigned char pinIn2, unsigned char pinIn3, unsigned char pinIn4, unsigned char baseChannel ) {
   commonInit();
 
   m_typeDriver   = MOTEUR_L298N;
 
   m_frequency    = DEFAULT_FREQUENCY;
   m_resolution   = DEFAULT_RESOLUTION;
-  m_base_channel = DEFAULT_BASE_CHANNEL;
+  m_base_channel = baseChannel;
 
   #ifdef AVR
     pinMode(m_avantGauche   = pinIn1, OUTPUT); analogWrite(m_avantGauche,  0);
@@ -72,7 +72,7 @@ void LibMoteur::moteurs(int vitesse) {
 
 
 void LibMoteur::moteurGauche(int vitesse) {
-  vitesse *= m_directionGauche;
+  if (m_directionGauche == true) vitesse = -vitesse;
   if (vitesse == m_lastVitesseGauche) return;
   m_lastVitesseGauche = vitesse;
   trace("gauche", vitesse);
@@ -86,7 +86,7 @@ void LibMoteur::moteurGauche(int vitesse) {
 
 
 void LibMoteur::moteurDroit(int vitesse) {
-  vitesse *= m_directionDroite;
+  if (m_directionDroite == true) vitesse = -vitesse;
   if (vitesse == m_lastVitesseDroite) return;
   m_lastVitesseDroite = vitesse;
   trace("droit", vitesse);
@@ -129,12 +129,13 @@ void LibMoteur::setVitesseMoteurServo(int vitesse, Servo* p_servo) {
 }
 
 
-void LibMoteur::setDirection(int dirGauche, int dirDroite) {
+void LibMoteur::setDirection(bool dirGauche, bool dirDroite) {
+  m_directionGauche = dirGauche;
+  m_directionDroite = dirDroite;
+
   if ((dirGauche != 1) && (dirGauche != -1)) dirGauche = 1;
   if ((dirDroite != 1) && (dirDroite != -1)) dirDroite = 1;
 
-  m_directionGauche = dirGauche;
-  m_directionDroite = dirDroite;
 }
 
 

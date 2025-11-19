@@ -59,8 +59,8 @@ LibMoteur::LibMoteur(unsigned char pinGauche, unsigned char pinDroit) {
 
 
 void LibMoteur::commonInit(void) {
-  m_lastVitesseGauche = 0;
-  m_lastVitesseDroite = 0;
+  m_lastVitesseGauche = m_lastVitesseDroite = 0;
+  m_directionGauche = m_directionDroite = false;
   m_debug = false;
 }
 

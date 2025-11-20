@@ -18,6 +18,11 @@
 #define DEFAULT_SERVO_MAX 2000
 
 
+ //=====================================
+ // Class LibMoteur
+ //=====================================
+
+
 LibMoteur::LibMoteur(unsigned char pinIn1, unsigned char pinIn2, unsigned char pinIn3, unsigned char pinIn4, unsigned char baseChannel ) {
   commonInit();
 
@@ -149,3 +154,155 @@ void LibMoteur::trace(char* side, int vitesse) {
 
 
 void LibMoteur::setDebug(bool debug) { m_debug = debug; }
+
+
+//=====================================
+// Class LibMoteurS
+//=====================================
+
+
+LibMoteurS::LibMoteurS(unsigned char pinGauche, unsigned char pinDroit, 
+                       unsigned short stepTime, unsigned char  stepUp, unsigned char  stepDown) :
+  moteur(pinGauche, pinDroit)
+{
+  m_stepTime = stepTime;
+  m_stepUp   = stepUp;
+  m_stepDown = stepDown;
+}
+
+
+void LibMoteurS::begin(void) {
+  m_begin = true;
+  m_nextTimeGestion = millis() + m_stepTime;
+}
+
+
+void LibMoteurS::moteurs(int vitesse) {
+  this->moteurGauche(vitesse);
+  this->moteurDroit(vitesse);
+}
+
+
+void LibMoteurS::moteurGauche(int vitesse) {
+  m_vitesseGaucheCible = vitesse;
+}
+
+
+
+void LibMoteurS::moteurDroit(int vitesse) {
+  m_vitesseDroiteCible = vitesse;
+}
+
+
+void LibMoteurS::setDirection(bool dirGauche, bool dirDroite) {
+  moteur.setDirection(dirGauche, dirDroite);
+}
+
+
+void LibMoteurS::setDebug(bool debug) {
+  moteur.setDebug(debug);
+}
+
+
+void LibMoteurS::gestion(void) {
+  if(m_begin == false) return;
+
+  unsigned long newTime = millis();
+
+  if (newTime > m_nextTimeGestion) {
+    m_nextTimeGestion += m_stepTime;
+    if (m_vitesseGaucheCourante != m_vitesseGaucheCible) {
+      m_vitesseGaucheCourante = getNewVitesse(m_vitesseGaucheCourante, m_vitesseGaucheCible);
+      moteur.moteurGauche(m_vitesseGaucheCourante);
+    }
+    if (m_vitesseDroiteCourante != m_vitesseDroiteCible) {
+      m_vitesseDroiteCourante = getNewVitesse(m_vitesseDroiteCourante, m_vitesseDroiteCible);
+      moteur.moteurDroit(m_vitesseDroiteCourante);
+    }
+
+  }
+
+  // On évite l'accumulation de traitements le cas écheant
+  while (newTime > m_nextTimeGestion) m_nextTimeGestion += m_stepTime;
+}
+
+
+int LibMoteurS::getNewVitesse(int vitesseCourante, int vitesseCible) {
+
+  if (vitesseCible == 0) {
+    // Dans tous les cas, on est en décéllération
+    return getNewVitesseDown(vitesseCourante, 0);
+  }
+
+  if (vitesseCible > 0) {
+    if (vitesseCourante < 0) {
+      Serial.println("Trace1");
+      return getNewVitesseDown(vitesseCourante, 0);
+    }
+    else {
+      if (vitesseCourante <= vitesseCible) {
+        Serial.println("Trace2");
+        return getNewVitesseUp(vitesseCourante, vitesseCible);
+      }
+      else {
+        Serial.println("Trace3");
+        return getNewVitesseDown(vitesseCourante, vitesseCible);
+      }
+    }
+  }
+
+  if (vitesseCible < 0) {
+    if (vitesseCourante > 0) {
+      return getNewVitesseDown(vitesseCourante, 0);
+    }
+    else {
+      if (vitesseCourante >= vitesseCible) {
+        return getNewVitesseUp(vitesseCourante, vitesseCible);
+      }
+      else {
+        return getNewVitesseDown(vitesseCourante, vitesseCible);
+      }
+    }
+  }
+
+  return 0;
+}
+
+
+
+int LibMoteurS::getNewVitesseUp(int vitesseCourante, int vitesseCible) {
+  if (m_stepUp == 0) return vitesseCible;
+
+  // En testant le signe de l'addition des deux vitesses, on connait le sens de marche
+  if ((vitesseCourante + vitesseCible) > 0) {
+    // On va en avant
+    vitesseCourante += m_stepUp;
+    return(vitesseCourante > vitesseCible ? vitesseCible : vitesseCourante);
+  }
+  if ((vitesseCourante + vitesseCible) < 0) {
+    // On va en arrière
+    vitesseCourante -= m_stepUp;
+    return(vitesseCourante < vitesseCible ? vitesseCible : vitesseCourante);
+  }
+
+  return 0; // Sinon la vitesse cible c'est 0
+}
+
+
+
+int LibMoteurS::getNewVitesseDown(int vitesseCourante, int vitesseCible) {
+  if (m_stepDown == 0) return vitesseCible;
+
+  if ((vitesseCourante + vitesseCible) > 0) {
+    // On allait en avant
+    vitesseCourante -= m_stepDown;
+    return(vitesseCourante < vitesseCible ? vitesseCible : vitesseCourante);
+  }
+  if ((vitesseCourante + vitesseCible) < 0) {
+    // On allait en arrière
+    vitesseCourante += m_stepDown;
+    return(vitesseCourante > vitesseCible ? vitesseCible : vitesseCourante);
+  }
+  return 0; // Si non on est déjà au plus bas
+}
+

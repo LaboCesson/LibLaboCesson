@@ -29,7 +29,7 @@ typedef enum {
 
 
 /// \class LibMoteur
-/// \brief Gestion d'un L298N
+/// \brief Gestion de moteurs
 /// \details
 /// <a href="https://www.handsontec.com/dataspecs/L298N%2520Motor%2520Driver.pdf"> L298N Module documentation </a>
 class LibMoteur
@@ -109,6 +109,79 @@ private:
 
 protected:
 };
+
+
+/// \class LibMoteurS
+/// \brief Gestion de moteurs avec changement lent de vitesse
+/// \details
+
+
+class LibMoteurS
+{
+public:
+  /// \details Permet de piloter un moteur controllé par un servomoteur 360
+  LibMoteurS(
+    unsigned char  pinGauche,     ///< Le numéro de la pin connectée au servomteur gauche
+    unsigned char  pinDroit,      ///< Le numéro de la pin connectée au servomteur droit
+    unsigned short stepTime = 50, ///< Durée en ms d'un pas de changements de vitesse
+    unsigned char  stepUp   = 0,  ///< Valeur de la vitesse à augmenter à chaque pas (0=changement immédiat)
+    unsigned char  stepDown = 0   ///< Valeur de la vitesse à augmenter à chaque pas (0=changement immédiat)
+    );
+
+  /// \details Permet de valider la gestion des moteurs
+  void begin(void);
+
+  /// \details Permet de piloter les deux moteurs
+  void moteurs(
+    int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+  );
+
+  /// \details Permet de piloter le moteur gauche
+  void moteurGauche(
+    int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+  );
+
+  /// \details Permet de piloter le moteur droit
+  void moteurDroit(
+    int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+  );
+
+  /// \details Permet de modifier le sens par défaut des moteurs
+  void setDirection(
+    bool dirGauche, ///< direction du moteur gauche (true=normal, false= inverse)
+    bool dirDroite  ///< direction du moteur droit (true=normal, false= inverse)
+  );
+
+  /// \details Permet de valider l'affichage de message de debug
+  void setDebug(
+    bool debug ///< si true les messages de debug sont affichés
+  );
+
+  /// \details Permet de modifier le sens par défaut des moteurs
+  void gestion(void);
+
+private:
+  bool m_begin = false;
+
+  LibMoteur    moteur;    ///< Librairie de gestion d'un couple de moteur
+
+  unsigned short m_stepTime;
+  unsigned char  m_stepUp, m_stepDown;
+
+  unsigned long  m_nextTimeGestion;
+
+  int m_vitesseGaucheCourante = 0;
+  int m_vitesseGaucheCible    = 0;
+  int m_vitesseDroiteCourante = 0;
+  int m_vitesseDroiteCible    = 0;
+
+  int getNewVitesse(int vitesseCourante, int vitesseCible);
+  int getNewVitesseUp(int vitesseCourante, int vitesseCible);
+  int getNewVitesseDown(int vitesseCourante, int vitesseCible);
+
+
+protected:
+}; 
 
 
 #endif

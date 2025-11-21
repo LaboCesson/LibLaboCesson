@@ -1,6 +1,6 @@
 /*!
- * \file 	LibPami.h
- * \brief 	Le fichier de définition de la classe LibPami
+ * \file 	LibPami2025.h
+ * \brief 	Le fichier de définition de la classe LibPami2025
  * \author  LaboCesson
  * \version 1.0
  * \date    Janvier 2025
@@ -8,8 +8,8 @@
 
 
 
-#ifndef _LIB_PAMI_H_
-#define _LIB_PAMI_H_
+#ifndef _LIB_PAMI2025_H_
+#define _LIB_PAMI2025_H_
 
 #include "arduino.h"
 
@@ -32,8 +32,8 @@ typedef enum {
 } t_pami_gpio;
 
 
-/// \class LibPami
-/// \brief Librairie de gestion d'un PAMI
+/// \class LibPami2025
+/// \brief Librairie de gestion du PAMI de l'année 2025
 /// \details Librairies requises :
 /// \details    MPU6050   : https://github.com/electroniccats/mpu6050
 /// \details    Servo     : https://docs.arduino.cc/libraries/servo/
@@ -44,10 +44,10 @@ typedef enum {
 /// \attention Dans le cas d'un PAMI avec un seul moteur, il faut utiliser le moteur droit (ENb)
 /// \attention Dans le cas d'un moteur avec deux moteurs, il faut utiliser valider le mode setPwmMode(false)
 /// \attention Dans ce dernier cas, il n'y a plus que les vitesses suivantes qui sont disponibles 0,20%,40%,60%,80%,100%
-class LibPami
+class LibPami2025
 {
   public:
-    LibPami();
+    LibPami2025();
 
     /// \details Cette fonction doit être appelée régulièrement pour la gestion des différents éléments d'un PAMI
     void gestion(void);

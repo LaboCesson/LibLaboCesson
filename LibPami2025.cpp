@@ -1,12 +1,12 @@
 /*!
- * \file 	LibPami.cpp
- * \brief 	Le fichier source de la classe LibPami
+ * \file 	LibPami2025.cpp
+ * \brief 	Le fichier source de la classe LibPami2025 
  * \author  LaboCesson
  * \version 1.0
  * \date    Janvier 2025
  */
 
-#include "LibPami.h"
+#include "LibPami2025.h"
 
 #define PAMI_JUMPER_TEAM 16
 #define PAMI_JUMPER_NB_L A6
@@ -36,7 +36,7 @@
 
 unsigned char gpioPinList[] = {PAMI_PIN_GPIO_1,PAMI_PIN_GPIO_2,PAMI_PIN_GPIO_3,PAMI_PIN_GPIO_4};
 
-LibPami::LibPami() :
+LibPami2025::LibPami2025() :
   afficheur(PAMI_AFF1637_CLK,PAMI_AFF1637_DATA),
   jumper(PAMI_JUMPER_TEAM, PAMI_JUMPER_NB_H, PAMI_JUMPER_NB_L),
   moteur(PAMI_MOTEUR_ENA, PAMI_MOTEUR_IN1, PAMI_MOTEUR_IN2, PAMI_MOTEUR_IN3, PAMI_MOTEUR_IN4, PAMI_MOTEUR_ENB),
@@ -52,7 +52,7 @@ LibPami::LibPami() :
 }
 
 
-void LibPami::gestion(void) {
+void LibPami2025::gestion(void) {
   moteur.gestion();
   afficheur.gestion();
   gyro.gestion();

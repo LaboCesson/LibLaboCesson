@@ -165,9 +165,9 @@ LibMoteurS::LibMoteurS(unsigned char pinGauche, unsigned char pinDroit,
                        unsigned short stepTime, unsigned char  stepUp, unsigned char  stepDown) :
   moteur(pinGauche, pinDroit)
 {
-  m_stepTime = stepTime;
-  m_stepUp   = stepUp;
-  m_stepDown = stepDown;
+  m_stepTime = ( stepTime <  50 ?  50 : stepTime);
+  m_stepUp   = ( stepUp   > 100 ? 100 : stepUp  );
+  m_stepDown = ( stepDown > 100 ? 100 : stepDown);
 }
 
 
@@ -236,16 +236,13 @@ int LibMoteurS::getNewVitesse(int vitesseCourante, int vitesseCible) {
 
   if (vitesseCible > 0) {
     if (vitesseCourante < 0) {
-      Serial.println("Trace1");
       return getNewVitesseDown(vitesseCourante, 0);
     }
     else {
       if (vitesseCourante <= vitesseCible) {
-        Serial.println("Trace2");
         return getNewVitesseUp(vitesseCourante, vitesseCible);
       }
       else {
-        Serial.println("Trace3");
         return getNewVitesseDown(vitesseCourante, vitesseCible);
       }
     }

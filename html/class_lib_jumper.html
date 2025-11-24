@@ -98,18 +98,18 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aaedccc2a16560faa23965310764bef1c" id="r_aaedccc2a16560faa23965310764bef1c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaedccc2a16560faa23965310764bef1c">LibJumper</a> (unsigned char pinJumperTeam, unsigned char pinJumperNbH, unsigned char pinJumperNbL)</td></tr>
-<tr class="separator:aaedccc2a16560faa23965310764bef1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aa08cac696f69a5572afc30a838c661" id="r_a7aa08cac696f69a5572afc30a838c661"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7aa08cac696f69a5572afc30a838c661">LibJumper</a> (unsigned char pinJumperTeam, unsigned char *<a class="el" href="_lib_pami2026_8cpp.html#a6f58aa5bf70391beffb74c2b4358ee47">jumpersPinList</a>, unsigned char nbPinInTab)</td></tr>
+<tr class="separator:a7aa08cac696f69a5572afc30a838c661"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e6d1e06c9f4ea56c72b53eece83d4bf" id="r_a0e6d1e06c9f4ea56c72b53eece83d4bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_lib_jumper_8h.html#a20d25734720d24f6bb60772e96dd9222">t_pamiTeam</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e6d1e06c9f4ea56c72b53eece83d4bf">getTeam</a> (void)</td></tr>
 <tr class="separator:a0e6d1e06c9f4ea56c72b53eece83d4bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaff97b2f59ed22d150d1127474d95b6f" id="r_aaff97b2f59ed22d150d1127474d95b6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_lib_jumper_8h.html#ae066223f1fd6bca718921e29d8977032">t_pamiNumber</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaff97b2f59ed22d150d1127474d95b6f">getPami</a> (void)</td></tr>
-<tr class="separator:aaff97b2f59ed22d150d1127474d95b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fabecd2aa24f24a0e1c4cb0d5712d3e" id="r_a1fabecd2aa24f24a0e1c4cb0d5712d3e"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1fabecd2aa24f24a0e1c4cb0d5712d3e">getPami</a> (void)</td></tr>
+<tr class="separator:a1fabecd2aa24f24a0e1c4cb0d5712d3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Gestion des Jumpers d'un PAMI. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aaedccc2a16560faa23965310764bef1c" name="aaedccc2a16560faa23965310764bef1c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaedccc2a16560faa23965310764bef1c">&#9670;&#160;</a></span>LibJumper()</h2>
+<a id="a7aa08cac696f69a5572afc30a838c661" name="a7aa08cac696f69a5572afc30a838c661"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aa08cac696f69a5572afc30a838c661">&#9670;&#160;</a></span>LibJumper()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,20 +122,20 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned char</td>          <td class="paramname"><span class="paramname"><em>pinJumperNbH</em></span>, </td>
+          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>jumpersPinList</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned char</td>          <td class="paramname"><span class="paramname"><em>pinJumperNbL</em></span>&#160;)</td>
+          <td class="paramtype">unsigned char</td>          <td class="paramname"><span class="paramname"><em>nbPinInTab</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pinJumperTeam</td><td>Le numéro de la pin connectée au Jumper Team  </td></tr>
-    <tr><td class="paramname">pinJumperNbH</td><td>Le numéro de la pin connectée au Jumper Numéro de poids 2  </td></tr>
-    <tr><td class="paramname">pinJumperNbL</td><td>Le numéro de la pin connectée au Jumper Numéro de poids 1 </td></tr>
+    <tr><td class="paramname">jumpersPinList</td><td>Pointeur vers la liste de pin de type Jumper  </td></tr>
+    <tr><td class="paramname">nbPinInTab</td><td>Nombre de pins dans la liste </td></tr>
   </table>
   </dd>
 </dl>
@@ -143,26 +143,21 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aaff97b2f59ed22d150d1127474d95b6f" name="aaff97b2f59ed22d150d1127474d95b6f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaff97b2f59ed22d150d1127474d95b6f">&#9670;&#160;</a></span>getPami()</h2>
+<a id="a1fabecd2aa24f24a0e1c4cb0d5712d3e" name="a1fabecd2aa24f24a0e1c4cb0d5712d3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fabecd2aa24f24a0e1c4cb0d5712d3e">&#9670;&#160;</a></span>getPami()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_lib_jumper_8h.html#ae066223f1fd6bca718921e29d8977032">t_pamiNumber</a> LibJumper::getPami </td>
+          <td class="memname">unsigned char LibJumper::getPami </td>
           <td>(</td>
           <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Retourne le numéro du PAMI</p><ul>
-<li><a class="el" href="_lib_jumper_8h.html#ae066223f1fd6bca718921e29d8977032a7ad60f70634e44f3318a426717f83ebe">PAMI_SING</a> pour un chanteur</li>
-<li><a class="el" href="_lib_jumper_8h.html#ae066223f1fd6bca718921e29d8977032a18ecb549f1b98b609f87ee33feffdba9">PAMI_NB_1</a> pour la groupie 1</li>
-<li><a class="el" href="_lib_jumper_8h.html#ae066223f1fd6bca718921e29d8977032a3780245dfd5ce4981329fecc6b8a3b3c">PAMI_NB_2</a> pour la groupie 2</li>
-<li><a class="el" href="_lib_jumper_8h.html#ae066223f1fd6bca718921e29d8977032ad3c9104a7a5357a3b19162c272a540cb">PAMI_NB_3</a> pour la groupie 3 </li>
-</ul>
+<p>Retourne le numéro du PAMI </p>
 
 </div>
 </div>

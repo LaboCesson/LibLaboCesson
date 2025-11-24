@@ -90,54 +90,112 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
-<p>Le fichier source de la classe <a class="el" href="class_lib_moteur.html" title="Gestion d&#39;un L298N.">LibMoteur</a>.  
+<p>Le fichier source de la classe <a class="el" href="class_lib_moteur.html" title="Gestion de moteurs.">LibMoteur</a>.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_lib_moteur_8h_source.html">LibMoteur.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a9e12f8b48547b5ac4fba1b260e458063" id="r_a9e12f8b48547b5ac4fba1b260e458063"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e12f8b48547b5ac4fba1b260e458063">PERIODE_GESTION_MOTEUR</a>&#160;&#160;&#160;5</td></tr>
-<tr class="memdesc:a9e12f8b48547b5ac4fba1b260e458063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Durée en ms d'un pas.  <br /></td></tr>
-<tr class="separator:a9e12f8b48547b5ac4fba1b260e458063"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd2368f39254c0f2d257f20f979c780d" id="r_acd2368f39254c0f2d257f20f979c780d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd2368f39254c0f2d257f20f979c780d">NB_PAS_GESTION_MOTEUR</a>&#160;&#160;&#160;5</td></tr>
-<tr class="memdesc:acd2368f39254c0f2d257f20f979c780d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de pas de reglage de vitesse.  <br /></td></tr>
-<tr class="separator:acd2368f39254c0f2d257f20f979c780d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a052b63090cda80236391c5fc0c1fe30c" id="r_a052b63090cda80236391c5fc0c1fe30c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a052b63090cda80236391c5fc0c1fe30c">DEFAULT_FREQUENCY</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="separator:a052b63090cda80236391c5fc0c1fe30c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2674041fcb6b33ea03b7441c5bf07da1" id="r_a2674041fcb6b33ea03b7441c5bf07da1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2674041fcb6b33ea03b7441c5bf07da1">DEFAULT_RESOLUTION</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:a2674041fcb6b33ea03b7441c5bf07da1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34c37c06d95747d44aa412443152b7e6" id="r_a34c37c06d95747d44aa412443152b7e6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34c37c06d95747d44aa412443152b7e6">DEFAULT_BASE_CHANNEL</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a34c37c06d95747d44aa412443152b7e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc1c4b6c7a39c064a4363340977f8548" id="r_afc1c4b6c7a39c064a4363340977f8548"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc1c4b6c7a39c064a4363340977f8548">DEFAULT_SERVO_MIN</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="separator:afc1c4b6c7a39c064a4363340977f8548"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f741875515cc50679a6c11953a56f37" id="r_a1f741875515cc50679a6c11953a56f37"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f741875515cc50679a6c11953a56f37">DEFAULT_SERVO_OFF</a>&#160;&#160;&#160;1500</td></tr>
+<tr class="separator:a1f741875515cc50679a6c11953a56f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb14369f081463dec8c1fa02f9593e13" id="r_acb14369f081463dec8c1fa02f9593e13"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb14369f081463dec8c1fa02f9593e13">DEFAULT_SERVO_MAX</a>&#160;&#160;&#160;2000</td></tr>
+<tr class="separator:acb14369f081463dec8c1fa02f9593e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Le fichier source de la classe <a class="el" href="class_lib_moteur.html" title="Gestion d&#39;un L298N.">LibMoteur</a>. </p>
+<div class="textblock"><p>Le fichier source de la classe <a class="el" href="class_lib_moteur.html" title="Gestion de moteurs.">LibMoteur</a>. </p>
 <dl class="section author"><dt>Author</dt><dd>LaboCesson </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>Janvier 2025 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>2.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Octobre 2025 </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="acd2368f39254c0f2d257f20f979c780d" name="acd2368f39254c0f2d257f20f979c780d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd2368f39254c0f2d257f20f979c780d">&#9670;&#160;</a></span>NB_PAS_GESTION_MOTEUR</h2>
+<a id="a34c37c06d95747d44aa412443152b7e6" name="a34c37c06d95747d44aa412443152b7e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34c37c06d95747d44aa412443152b7e6">&#9670;&#160;</a></span>DEFAULT_BASE_CHANNEL</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define NB_PAS_GESTION_MOTEUR&#160;&#160;&#160;5</td>
+          <td class="memname">#define DEFAULT_BASE_CHANNEL&#160;&#160;&#160;4</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Nombre de pas de reglage de vitesse. </p>
-
 </div>
 </div>
-<a id="a9e12f8b48547b5ac4fba1b260e458063" name="a9e12f8b48547b5ac4fba1b260e458063"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e12f8b48547b5ac4fba1b260e458063">&#9670;&#160;</a></span>PERIODE_GESTION_MOTEUR</h2>
+<a id="a052b63090cda80236391c5fc0c1fe30c" name="a052b63090cda80236391c5fc0c1fe30c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a052b63090cda80236391c5fc0c1fe30c">&#9670;&#160;</a></span>DEFAULT_FREQUENCY</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PERIODE_GESTION_MOTEUR&#160;&#160;&#160;5</td>
+          <td class="memname">#define DEFAULT_FREQUENCY&#160;&#160;&#160;1000</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Durée en ms d'un pas. </p>
+</div>
+</div>
+<a id="a2674041fcb6b33ea03b7441c5bf07da1" name="a2674041fcb6b33ea03b7441c5bf07da1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2674041fcb6b33ea03b7441c5bf07da1">&#9670;&#160;</a></span>DEFAULT_RESOLUTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_RESOLUTION&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb14369f081463dec8c1fa02f9593e13" name="acb14369f081463dec8c1fa02f9593e13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb14369f081463dec8c1fa02f9593e13">&#9670;&#160;</a></span>DEFAULT_SERVO_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_SERVO_MAX&#160;&#160;&#160;2000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc1c4b6c7a39c064a4363340977f8548" name="afc1c4b6c7a39c064a4363340977f8548"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc1c4b6c7a39c064a4363340977f8548">&#9670;&#160;</a></span>DEFAULT_SERVO_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_SERVO_MIN&#160;&#160;&#160;1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f741875515cc50679a6c11953a56f37" name="a1f741875515cc50679a6c11953a56f37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f741875515cc50679a6c11953a56f37">&#9670;&#160;</a></span>DEFAULT_SERVO_OFF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_SERVO_OFF&#160;&#160;&#160;1500</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

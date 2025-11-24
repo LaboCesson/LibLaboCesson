@@ -11,6 +11,9 @@ var searchData=
   ['libmatrice_8',['LibMatrice',['../class_lib_matrice.html',1,'']]],
   ['libmcp23008_9',['LibMcp23008',['../class_lib_mcp23008.html',1,'']]],
   ['libmoteur_10',['LibMoteur',['../class_lib_moteur.html',1,'']]],
-  ['libpami_11',['LibPami',['../class_lib_pami.html',1,'']]],
-  ['libultrason_12',['LibUltrason',['../class_lib_ultrason.html',1,'']]]
+  ['libmoteurs_11',['LibMoteurS',['../class_lib_moteur_s.html',1,'']]],
+  ['libpami2025_12',['LibPami2025',['../class_lib_pami2025.html',1,'']]],
+  ['libpami2026basic_13',['LibPami2026Basic',['../class_lib_pami2026_basic.html',1,'']]],
+  ['libpami2026ninja_14',['LibPami2026Ninja',['../class_lib_pami2026_ninja.html',1,'']]],
+  ['libultrason_15',['LibUltrason',['../class_lib_ultrason.html',1,'']]]
 ];

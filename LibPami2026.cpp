@@ -47,6 +47,10 @@ unsigned char nbGpioPinNinja = 6;
 unsigned char jumpersPinList[] = {PAMI_JUMPER_NB_H,PAMI_JUMPER_NB_M,PAMI_JUMPER_NB_L};
 
 
+//
+// Gestion d'un PAMI BASIC
+//
+
 LibPami2026Basic::LibPami2026Basic() :
   afficheur(PAMI_AFF1637_CLK,PAMI_AFF1637_DATA),
   jumper(PAMI_JUMPER_TEAM, jumpersPinList, 3),
@@ -69,6 +73,11 @@ void LibPami2026Basic::gestion(void) {
   moteur.gestion();
 }
 
+
+
+//
+// Gestion d'un PAMI NINJA
+//
 
 LibPami2026Ninja::LibPami2026Ninja() :
   afficheur(PAMI_AFF1637_CLK,PAMI_AFF1637_DATA),

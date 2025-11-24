@@ -33,7 +33,7 @@ class LibGyroscope
   public:
     LibGyroscope(uint8_t address = MPU6050_DEFAULT_ADDRESS, void *wireObj = 0);
 
-    /// \details Permet d(initialiser et de valider le gyroscope
+    /// \details Permet d'initialiser et de valider le gyroscope
     void begin(void);
 
     /// \details Cette fonction doit être appelée régulièrement pour la gestion du gyroscope

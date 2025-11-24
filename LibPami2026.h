@@ -52,7 +52,7 @@ class LibPami2026Basic
     LibJumper    jumper;    ///< Librairie de gestion des jumpers d'un PAMI
     LibGpio      gpio;      ///< Librairie de gestion des GPIO
     LibGyroscope gyro;      ///< Librairie de gestion d'un gyroscope
-    LibMoteur    moteur;    ///< Librairie de gestion d'un couple de moteur
+    LibMoteurS   moteur;    ///< Librairie de gestion d'un couple de moteur
     Lib433Mhz    radio;     ///< Librairie de gestion d'un récepteur 433Mhz
     LibChrono    chrono;    ///< Librairie de gestion d'un chronometre
 

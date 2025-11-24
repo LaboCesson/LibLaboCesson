@@ -23,14 +23,15 @@
  //=====================================
 
 
-LibMoteur::LibMoteur(unsigned char pinIn1, unsigned char pinIn2, unsigned char pinIn3, unsigned char pinIn4, unsigned char baseChannel ) {
+LibMoteur::LibMoteur(unsigned char pinIn1, unsigned char pinIn2, unsigned char pinIn3, unsigned char pinIn4 ) {
   commonInit();
 
   m_typeDriver   = MOTEUR_L298N;
 
   m_frequency    = DEFAULT_FREQUENCY;
   m_resolution   = DEFAULT_RESOLUTION;
-  m_base_channel = baseChannel;
+
+  bool status;
 
   #ifdef AVR
     pinMode(m_avantGauche   = pinIn1, OUTPUT); analogWrite(m_avantGauche,  0);
@@ -40,11 +41,11 @@ LibMoteur::LibMoteur(unsigned char pinIn1, unsigned char pinIn2, unsigned char p
   #endif
 
   #ifdef ARDUINO_ARCH_ESP32
-    ledcAttachChannel(m_avantGauche   = pinIn1, m_frequency, m_resolution, m_base_channel+0); ledcWrite(m_avantGauche, 0);
-    ledcAttachChannel(m_arriereGauche = pinIn2, m_frequency, m_resolution, m_base_channel+1); ledcWrite(m_arriereGauche, 0);
-    ledcAttachChannel(m_arriereDroite = pinIn3, m_frequency, m_resolution, m_base_channel+2); ledcWrite(m_arriereDroite, 0);
-    ledcAttachChannel(m_avantDroite   = pinIn4, m_frequency, m_resolution, m_base_channel+3); ledcWrite(m_avantDroite, 0);
-  #endif
+    ledcAttach(m_avantGauche   = pinIn1, m_frequency, m_resolution); ledcWrite(m_avantGauche,   0);
+    ledcAttach(m_arriereGauche = pinIn2, m_frequency, m_resolution); ledcWrite(m_arriereGauche, 0);
+    ledcAttach(m_arriereDroite = pinIn3, m_frequency, m_resolution); ledcWrite(m_arriereDroite, 0);
+    ledcAttach(m_avantDroite   = pinIn4, m_frequency, m_resolution); ledcWrite(m_avantDroite,   0);
+#endif
 }
 
 

@@ -40,8 +40,7 @@ class LibMoteur
 		  unsigned char pinIn1, ///< Le numéro de la pin connectée à IN1
 		  unsigned char pinIn2, ///< Le numéro de la pin connectée à IN2
 		  unsigned char pinIn3, ///< Le numéro de la pin connectée à IN3
-		  unsigned char pinIn4, ///< Le numéro de la pin connectée à IN4
-      unsigned char baseChannel ///< Channel de base pour la gestion PWM (les 4 valeurs au dela de baseChannel sont utilisées)
+		  unsigned char pinIn4  ///< Le numéro de la pin connectée à IN4
 	  );
 
     /// \details Permet de piloter un moteur controllé par un servomoteur 360
@@ -67,8 +66,8 @@ class LibMoteur
 
     /// \details Permet de modifier le sens par défaut des moteurs
     void setDirection(
-      bool dirGauche, ///< direction du moteur gauche (true=normal, false= inverse)
-      bool dirDroite  ///< direction du moteur droit (true=normal, false= inverse)
+      bool dirGauche, ///< direction du moteur gauche (true=inverse, false= normal (defaut))
+      bool dirDroite  ///< direction du moteur droit  (true=inverse, false= normal (defaut))
     );
 
     /// \details Permet de valider l'affichage de message de debug
@@ -102,7 +101,6 @@ private:
              bool m_directionGauche = true;
     unsigned int  m_frequency;    
     unsigned char m_resolution;    
-    unsigned char m_base_channel;
 
     Servo* mp_servoGauche;
     Servo* mp_servoDroit;

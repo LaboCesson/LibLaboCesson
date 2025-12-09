@@ -41,8 +41,8 @@ unsigned char LibJumper::getPami(void) {
 
     for (unsigned char i = 0; i < m_nbJumpers; i++) {
       value <<= 1;
-      if (digitalRead(m_jumpers[i]) == HIGH) value |= 1;
+      if (digitalRead(m_jumpers[i]) == LOW) value |= 1;
     }
-    return value+1;
+    return value;
   #endif
 }

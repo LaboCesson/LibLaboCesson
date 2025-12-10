@@ -38,7 +38,7 @@
 #define PAMI_433MHZ_PATTERN "LaboCesson"
 
 
-unsigned char gpioPinListBasic[] = {PAMI_PIN_GPIO_1,PAMI_PIN_GPIO_2,PAMI_PIN_GPIO_3,PAMI_PIN_GPIO_4};
+unsigned char gpioPinListBasic[] = {PAMI_PIN_GPIO_3,PAMI_PIN_GPIO_4,PAMI_PIN_GPIO_5,PAMI_PIN_GPIO_6};
 unsigned char nbGpioPinBasic = 4;
 
 unsigned char gpioPinListNinja[] = {PAMI_PIN_GPIO_1,PAMI_PIN_GPIO_2,PAMI_PIN_GPIO_3,PAMI_PIN_GPIO_4,PAMI_PIN_GPIO_5,PAMI_PIN_GPIO_6};
@@ -54,7 +54,7 @@ unsigned char jumpersPinList[] = {PAMI_JUMPER_NB_H,PAMI_JUMPER_NB_M,PAMI_JUMPER_
 LibPami2026Basic::LibPami2026Basic() :
   afficheur(PAMI_AFF1637_CLK,PAMI_AFF1637_DATA),
   jumper(PAMI_JUMPER_TEAM, jumpersPinList, 3),
-  moteur(PAMI_PIN_GPIO_5, PAMI_PIN_GPIO_6,50,10,0),
+  moteur(PAMI_PIN_GPIO_1, PAMI_PIN_GPIO_2,50,10,0),
   gpio(gpioPinListBasic,nbGpioPinBasic),
   gyro(),
   radio(RADIO433MHZ_RECV, PAMI_433MHZ_SPEED, PAMI_433MHZ_PIN, PAMI_433MHZ_PATTERN),

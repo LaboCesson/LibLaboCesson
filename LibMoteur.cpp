@@ -18,9 +18,9 @@
 #define DEFAULT_SERVO_MAX 2000
 
 
- //=====================================
- // Class LibMoteur
- //=====================================
+//=====================================
+// Class LibMoteur
+//=====================================
 
 
 LibMoteur::LibMoteur(unsigned char pinIn1, unsigned char pinIn2, unsigned char pinIn3, unsigned char pinIn4 ) {

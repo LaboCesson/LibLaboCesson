@@ -1,0 +1,9 @@
+
+
+= I2C Address
+0x29 : TCS3472 (Color detection)
+0x29 : VL53loX (Telemetre laser)
+0x39 : AS734x  (Color detection)
+0x   : VL6180X (Telemetre laser)
+0x68 : MPU6050 (Gyroscope)
+

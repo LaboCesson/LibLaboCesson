@@ -67,7 +67,7 @@ void setup(void){
   pami.moteur.begin();
   // pami.moteur.setDebug(true);
   pami.moteur.moteurs(0);
-  pami.moteur.setDirection(true,false);
+  pami.moteur.setDirection(false,true);
 
   // On configure la radio
   pami.radio.begin(16);

@@ -97,6 +97,7 @@ class LibGyroscope
     VectorFloat gravity; // [x, y, z]    Gravity vector
     unsigned char m_FIFOBuffer[64]; // FIFO storage buffer
 
+    bool testConnection(void);
     void displayAngle(void);
 };
 

@@ -22,13 +22,16 @@ LibGyroscope::LibGyroscope(uint8_t address, void *wireObj) :
 
 
 void LibGyroscope::begin(void) {
-//  Wire.setClock(400000); // 400kHz I2C clock
+  Wire.setClock(400000); // 400kHz I2C clock
 
   mpu.initialize(); /*Initialize device*/
 
+
+
   /*Verify connection*/
-  if(mpu.testConnection() == false) {
-    Serial.println(F("MPU6050 connection failed"));
+  if(testConnection() == false) {
+    Serial.print(F("MPU6050 connection failed : DeviceId = 0x"));
+    Serial.println(mpu.getDeviceID(), HEX);
     m_begin = false;
     return;
   }
@@ -140,6 +143,12 @@ void LibGyroscope::getAngles(short * p_axisX, short * p_axisY, short * p_axisZ )
 void LibGyroscope::display(bool status) { m_displayStatus = status;}
 void LibGyroscope::setDisplay(LibAff1637 * p_display) { mp_display = p_display; }
 void LibGyroscope::setUpdatePeriod(unsigned char period) { m_period = period; }
+
+
+bool LibGyroscope::testConnection() {
+  uint8_t deviceId = mpu.getDeviceID();
+  return (deviceId == 0x34) || (deviceId == 0xC) || (deviceId == 0x3A) || (deviceId == 0x38);
+}
 
 
 void LibGyroscope::displayAngle(void) {

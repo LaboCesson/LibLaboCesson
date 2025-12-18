@@ -197,51 +197,7 @@ void setChrono(bool status ) { // true : compteur, false : decompteur
   }
 }
 
-#include "LibColor.h"
-
-#define NB_COLOR 2
-
-LibMultiTcs3472 colors;
-unsigned char   muxIndex[NB_COLOR] = { 0, 1 };
-t_pami_color    colorValue[NB_COLOR];
-
-LibTcs3472 color0;
-
-
-
-void altSetup(void) {
-
-// color0.begin();
-// return;
-
-  colors.begin(NB_COLOR,muxIndex);
-
-}
-
 
 
 void altLoop(void) {
-// color0.gestion();
-// switch(color0.getColor()) {
-//   case PAMI_COULEUR_BLEU :     Serial.print("BLEU");   break;
-//   case PAMI_COULEUR_JAUNE :    Serial.print("JAUNE");  break;
-//   case PAMI_COULEUR_INCONNUE : Serial.print("AUCUNE"); break;
-// }
-// Serial.println("");
-// delay(200);
-
-// return;
-  colors.gestion();
-  colors.getColors(NB_COLOR,colorValue);
-
-  for(int i=0; i<NB_COLOR; i++ ) {
-    switch(colorValue[i]) {
-      case PAMI_COULEUR_BLEU :     Serial.print("BLEU");   break;
-      case PAMI_COULEUR_JAUNE :    Serial.print("JAUNE");  break;
-      case PAMI_COULEUR_INCONNUE : Serial.print("AUCUNE"); break;
-    }
-    Serial.print(" ");
-  }
-  Serial.println("");
-  delay(200);
 }

@@ -26,8 +26,6 @@ void LibGyroscope::begin(void) {
 
   mpu.initialize(); /*Initialize device*/
 
-
-
   /*Verify connection*/
   if(testConnection() == false) {
     Serial.print(F("MPU6050 connection failed : DeviceId = 0x"));

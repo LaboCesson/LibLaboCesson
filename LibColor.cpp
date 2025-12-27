@@ -41,7 +41,6 @@ LibTcs3472::LibTcs3472(void) :
 
 
 bool LibTcs3472::begin(void) {
-  delay(2000);
   if (!tcs.begin()) {
     Serial.println("!!! No TCS3472 found");
     return false;
@@ -114,11 +113,10 @@ void LibTcs3472::trace(char * msg) {
 void LibTcs3472::setDebug(bool debug) { m_debug = debug; trace("Trace LibTcs3472 activée"); }
 
 
+
 //=====================================
 // Class LibMultiTcs3472
 //=====================================
-
-
 
 
 LibMultiTcs3472::LibMultiTcs3472(void)
@@ -137,22 +135,24 @@ bool LibMultiTcs3472::begin(int nbColor, unsigned char * muxIndex) {
   m_nbColor = ( nbColor > NB_MAX_MULTI_TCS3472 ? NB_MAX_MULTI_TCS3472 : nbColor) ;
 
   m_tabColor = new LibTcs3472[m_nbColor];
-  for(int i; i < m_nbColor; i++ ) { m_muxIndex[i] = muxIndex[i]; }
 
-  for(int i; i < m_nbColor; i++ ) {
+  for(int i=0; i < m_nbColor; i++ ) {
+    m_muxIndex[i] = muxIndex[i];
     m_mux.selectLine(m_muxIndex[i]);
-    if( m_tabColor[i].begin() == false ) flagError = true;
+    if (m_tabColor[i].begin() == false) {
+      flagError = true;
+      Serial.print("pour la ligne indice ");
+      Serial.println(m_muxIndex[i]);
+    }
   }
 
-  if(  flagError == false ) m_begin = true;
+  m_begin = true;
 
   return flagError;
 }
 
 
 void LibMultiTcs3472::gestion(void) {
-  if( m_begin == false ) return;
-
   for(int i=0; i<m_nbColor; i++ ) {
     m_mux.selectLine(m_muxIndex[i]);
     m_tabColor[i].gestion();
@@ -162,10 +162,6 @@ void LibMultiTcs3472::gestion(void) {
 
 void LibMultiTcs3472::getColors( int nbColor, t_pami_color * p_tabColor ) {
   if( nbColor > m_nbColor ) nbColor = m_nbColor;
-
-  for(int i=0; i<nbColor; i++ ) { p_tabColor[i] = PAMI_COULEUR_INCONNUE; }
-
-  if( m_begin == false ) return;
 
   for(int i=0; i<nbColor; i++ ) { p_tabColor[i] = m_tabColor[i].getColor(); }
 }

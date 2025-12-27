@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['begin_0',['begin',['../class_lib433_mhz.html#af68978e32712fd6bc3004bcdf59e271a',1,'Lib433Mhz::begin()'],['../class_lib_aff1637.html#ac74e02500556498edc536148c5cb1418',1,'LibAff1637::begin()'],['../class_lib_chrono.html#af429a8e532863ddb04a01060a1633f00',1,'LibChrono::begin()'],['../class_lib_clavier.html#a88f58cc8cbff716780302b45c739e776',1,'LibClavier::begin()'],['../class_lib_gyroscope.html#a9e2a15f13998a505dcb611fdf7c2ef92',1,'LibGyroscope::begin()'],['../class_lib_matrice.html#a3527c52695b415fce0809cd4c8fbde40',1,'LibMatrice::begin()'],['../class_lib_mcp23008.html#a914513f7008bfd7aab0ee5b80c2c5e37',1,'LibMcp23008::begin()'],['../class_lib_moteur_s.html#a7f6b89445d1c1dabed7a0c17aa9f5078',1,'LibMoteurS::begin()'],['../class_lib_ultrason.html#a1d1e28257791229594d1432b9af7a240',1,'LibUltrason::begin()']]]
+  ['arrieredroit_0',['arriereDroit',['../class_lib_moteur_omni.html#a88b83e32b5ab4dae8857b1ef0ab06e3a',1,'LibMoteurOmni']]],
+  ['arrieregauche_1',['arriereGauche',['../class_lib_moteur_omni.html#a255f490a745b351c46c3759fff635c94',1,'LibMoteurOmni']]],
+  ['avance_2',['avance',['../class_lib_moteur_omni.html#a095aa3bebcc7d28dd43129d98940a8a3',1,'LibMoteurOmni']]],
+  ['avantdroit_3',['avantDroit',['../class_lib_moteur_omni.html#aa670989f5056d605d5a3b5a17ad6c478',1,'LibMoteurOmni']]],
+  ['avantgauche_4',['avantGauche',['../class_lib_moteur_omni.html#a27d36ccb0cf4ae0ae9b42ee46cdc40c1',1,'LibMoteurOmni']]]
 ];

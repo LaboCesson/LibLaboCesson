@@ -11,9 +11,15 @@ var searchData=
   ['libmatrice_8',['LibMatrice',['../class_lib_matrice.html',1,'']]],
   ['libmcp23008_9',['LibMcp23008',['../class_lib_mcp23008.html',1,'']]],
   ['libmoteur_10',['LibMoteur',['../class_lib_moteur.html',1,'']]],
-  ['libmoteurs_11',['LibMoteurS',['../class_lib_moteur_s.html',1,'']]],
-  ['libpami2025_12',['LibPami2025',['../class_lib_pami2025.html',1,'']]],
-  ['libpami2026basic_13',['LibPami2026Basic',['../class_lib_pami2026_basic.html',1,'']]],
-  ['libpami2026ninja_14',['LibPami2026Ninja',['../class_lib_pami2026_ninja.html',1,'']]],
-  ['libultrason_15',['LibUltrason',['../class_lib_ultrason.html',1,'']]]
+  ['libmoteuromni_11',['LibMoteurOmni',['../class_lib_moteur_omni.html',1,'']]],
+  ['libmoteurs_12',['LibMoteurS',['../class_lib_moteur_s.html',1,'']]],
+  ['libmultitcs3472_13',['LibMultiTcs3472',['../class_lib_multi_tcs3472.html',1,'']]],
+  ['libmuxi2c_14',['LibMuxI2c',['../class_lib_mux_i2c.html',1,'']]],
+  ['libpami2025_15',['LibPami2025',['../class_lib_pami2025.html',1,'']]],
+  ['libpami2026basic_16',['LibPami2026Basic',['../class_lib_pami2026_basic.html',1,'']]],
+  ['libpami2026ninja_17',['LibPami2026Ninja',['../class_lib_pami2026_ninja.html',1,'']]],
+  ['libpami2026ninjaomni_18',['LibPami2026NinjaOmni',['../class_lib_pami2026_ninja_omni.html',1,'']]],
+  ['libtcs3472_19',['LibTcs3472',['../class_lib_tcs3472.html',1,'']]],
+  ['libultrason_20',['LibUltrason',['../class_lib_ultrason.html',1,'']]],
+  ['libvl53lox_21',['LibVl53lox',['../class_lib_vl53lox.html',1,'']]]
 ];

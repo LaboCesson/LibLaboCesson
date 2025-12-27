@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_5flib_5fultrason_5fh_5f_0',['_LIB_ULTRASON_H_',['../_lib_ultrason_8h.html#aef532744b7b70030ac8fc9526e5d5118',1,'LibUltrason.h']]]
+  ['aff1637_5fbit_5fdelay_0',['AFF1637_BIT_DELAY',['../_lib_aff1637_8h.html#a03b2e321e6def713772ffdf3d5fda9bc',1,'LibAff1637.h']]]
 ];

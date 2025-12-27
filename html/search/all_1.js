@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['aff1637_5fbit_5fdelay_0',['AFF1637_BIT_DELAY',['../_lib_aff1637_8h.html#a03b2e321e6def713772ffdf3d5fda9bc',1,'LibAff1637.h']]],
-  ['afficheur_1',['afficheur',['../class_lib_pami2025.html#a92370eb550ca57ac41a655236c9f9363',1,'LibPami2025::afficheur'],['../class_lib_pami2026_basic.html#ae4df15352ac3a4a70f80c607723c8a26',1,'LibPami2026Basic::afficheur'],['../class_lib_pami2026_ninja.html#a9078a20d3000327f01ee7545eb63d1c7',1,'LibPami2026Ninja::afficheur']]],
-  ['asciichar_2eh_2',['AsciiChar.h',['../_ascii_char_8h.html',1,'']]],
-  ['asciidef_3',['asciiDef',['../_ascii_char_8h.html#acda7677c3b9eab032feedf326f6f2353',1,'AsciiChar.h']]]
+  ['begin_0',['begin',['../class_lib433_mhz.html#af68978e32712fd6bc3004bcdf59e271a',1,'Lib433Mhz::begin()'],['../class_lib_aff1637.html#ac74e02500556498edc536148c5cb1418',1,'LibAff1637::begin()'],['../class_lib_chrono.html#af429a8e532863ddb04a01060a1633f00',1,'LibChrono::begin()'],['../class_lib_clavier.html#a88f58cc8cbff716780302b45c739e776',1,'LibClavier::begin()'],['../class_lib_tcs3472.html#adebf354821aa911930d9e0918ec65b48',1,'LibTcs3472::begin()'],['../class_lib_multi_tcs3472.html#a31a748caea045a1884f8eb097c697a06',1,'LibMultiTcs3472::begin()'],['../class_lib_gyroscope.html#a9e2a15f13998a505dcb611fdf7c2ef92',1,'LibGyroscope::begin()'],['../class_lib_matrice.html#a3527c52695b415fce0809cd4c8fbde40',1,'LibMatrice::begin()'],['../class_lib_mcp23008.html#a914513f7008bfd7aab0ee5b80c2c5e37',1,'LibMcp23008::begin()'],['../class_lib_moteur_s.html#a7f6b89445d1c1dabed7a0c17aa9f5078',1,'LibMoteurS::begin()'],['../class_lib_ultrason.html#a1d1e28257791229594d1432b9af7a240',1,'LibUltrason::begin()'],['../class_lib_vl53lox.html#a46359a8985f73094da80d3bfd744ae4c',1,'LibVl53lox::begin()']]]
 ];

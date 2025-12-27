@@ -92,6 +92,9 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
+<p>Librairies de gestion d'un PAMI NINJA 2026 avec un simplecouple de moteurs.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_lib_pami2026_8h_source.html">LibPami2026.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -115,12 +118,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a05c7ff01ee9e27329696056167b6386e" id="r_a05c7ff01ee9e27329696056167b6386e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_lib_gyroscope.html">LibGyroscope</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05c7ff01ee9e27329696056167b6386e">gyro</a></td></tr>
 <tr class="memdesc:a05c7ff01ee9e27329696056167b6386e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Librairie de gestion d'un gyroscope.  <br /></td></tr>
 <tr class="separator:a05c7ff01ee9e27329696056167b6386e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24622c4780620c4037914b1c98929561" id="r_a24622c4780620c4037914b1c98929561"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_lib_moteur.html">LibMoteur</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24622c4780620c4037914b1c98929561">moteur1</a></td></tr>
-<tr class="memdesc:a24622c4780620c4037914b1c98929561"><td class="mdescLeft">&#160;</td><td class="mdescRight">Librairie de gestion d'un couple de moteur.  <br /></td></tr>
-<tr class="separator:a24622c4780620c4037914b1c98929561"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac94e58f4ec3b3b17415ac6369a8a7058" id="r_ac94e58f4ec3b3b17415ac6369a8a7058"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_lib_moteur.html">LibMoteur</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac94e58f4ec3b3b17415ac6369a8a7058">moteur2</a></td></tr>
-<tr class="memdesc:ac94e58f4ec3b3b17415ac6369a8a7058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Librairie de gestion d'un couple de moteur (cas omnidirectionnel)  <br /></td></tr>
-<tr class="separator:ac94e58f4ec3b3b17415ac6369a8a7058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41eb543b84914e290429a03a7fd3b07e" id="r_a41eb543b84914e290429a03a7fd3b07e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_lib_moteur.html">LibMoteur</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41eb543b84914e290429a03a7fd3b07e">moteur</a></td></tr>
+<tr class="memdesc:a41eb543b84914e290429a03a7fd3b07e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Librairie de gestion d'un couple de moteur.  <br /></td></tr>
+<tr class="separator:a41eb543b84914e290429a03a7fd3b07e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa82822cf976b34e1a285ba9dd7b2c5ff" id="r_aa82822cf976b34e1a285ba9dd7b2c5ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_lib433_mhz.html">Lib433Mhz</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa82822cf976b34e1a285ba9dd7b2c5ff">radio</a></td></tr>
 <tr class="memdesc:aa82822cf976b34e1a285ba9dd7b2c5ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Librairie de gestion d'un récepteur 433Mhz.  <br /></td></tr>
 <tr class="separator:aa82822cf976b34e1a285ba9dd7b2c5ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,7 +128,14 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:ae7d4cb0a562fdf15aa95b486e3671db4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Librairie de gestion d'un chronometre.  <br /></td></tr>
 <tr class="separator:ae7d4cb0a562fdf15aa95b486e3671db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Librairies de gestion d'un PAMI NINJA 2026 avec un simplecouple de moteurs. </p>
+<p>Librairies requises :</p>
+<p>MPU6050 : <a href="https://github.com/electroniccats/mpu6050">https://github.com/electroniccats/mpu6050</a></p>
+<p>Servo : Librairie Esp32servo par Kevin Harrington</p>
+<p>RadioHead : <a href="https://www.airspayce.com/mikem/arduino/RadioHead">https://www.airspayce.com/mikem/arduino/RadioHead</a></p>
+<p>Wire </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a02e3a1216f04f03601fb9fd116466b2a" name="a02e3a1216f04f03601fb9fd116466b2a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a02e3a1216f04f03601fb9fd116466b2a">&#9670;&#160;</a></span>LibPami2026Ninja()</h2>
 
@@ -246,35 +253,19 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a24622c4780620c4037914b1c98929561" name="a24622c4780620c4037914b1c98929561"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24622c4780620c4037914b1c98929561">&#9670;&#160;</a></span>moteur1</h2>
+<a id="a41eb543b84914e290429a03a7fd3b07e" name="a41eb543b84914e290429a03a7fd3b07e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41eb543b84914e290429a03a7fd3b07e">&#9670;&#160;</a></span>moteur</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_lib_moteur.html">LibMoteur</a> LibPami2026Ninja::moteur1</td>
+          <td class="memname"><a class="el" href="class_lib_moteur.html">LibMoteur</a> LibPami2026Ninja::moteur</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Librairie de gestion d'un couple de moteur. </p>
-
-</div>
-</div>
-<a id="ac94e58f4ec3b3b17415ac6369a8a7058" name="ac94e58f4ec3b3b17415ac6369a8a7058"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac94e58f4ec3b3b17415ac6369a8a7058">&#9670;&#160;</a></span>moteur2</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_lib_moteur.html">LibMoteur</a> LibPami2026Ninja::moteur2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Librairie de gestion d'un couple de moteur (cas omnidirectionnel) </p>
 
 </div>
 </div>
@@ -295,8 +286,8 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/pgrav/Documents/Arduino/Libraries/LibLaboCesson/<a class="el" href="_lib_pami2026_8h_source.html">LibPami2026.h</a></li>
-<li>C:/Users/pgrav/Documents/Arduino/Libraries/LibLaboCesson/<a class="el" href="_lib_pami2026_8cpp.html">LibPami2026.cpp</a></li>
+<li><a class="el" href="_lib_pami2026_8h_source.html">LibPami2026.h</a></li>
+<li><a class="el" href="_lib_pami2026_8cpp.html">LibPami2026.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

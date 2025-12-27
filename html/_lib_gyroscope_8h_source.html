@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LibLaboCesson: C:/Users/pgrav/Documents/Arduino/Libraries/LibLaboCesson/LibGyroscope.h Source File</title>
+<title>LibLaboCesson: LibGyroscope.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -55,6 +55,8 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="doc-content">
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function(){ initResizable(false); });
@@ -81,12 +83,6 @@ $(function(){ initResizable(false); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a class="el" href="dir_1850180cb0b881bef2ab59aef4066eb8.html">pgrav</a></li><li class="navelem"><a class="el" href="dir_cdf67d489b6beae9ab6fb330c8259ad8.html">Documents</a></li><li class="navelem"><a class="el" href="dir_009c81cdf78505ef2296dcff8f212356.html">Arduino</a></li><li class="navelem"><a class="el" href="dir_c904645f08d236ce2dc4ae0a540157e8.html">Libraries</a></li><li class="navelem"><a class="el" href="dir_084a9061bb50ffd75a2a56a0975e4d4b.html">LibLaboCesson</a></li>  </ul>
-</div>
-</div><!-- top -->
-<div id="doc-content">
 <div class="header">
   <div class="headertitle"><div class="title">LibGyroscope.h</div></div>
 </div><!--header-->
@@ -165,12 +161,13 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    VectorFloat gravity; <span class="comment">// [x, y, z]    Gravity vector</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> m_FIFOBuffer[64]; <span class="comment">// FIFO storage buffer</span></div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> displayAngle(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>};</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">bool</span> testConnection(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">void</span> displayAngle(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>};</div>
 </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="a_lib_aff1637_8h_html"><div class="ttname"><a href="_lib_aff1637_8h.html">LibAff1637.h</a></div><div class="ttdoc">Le fichier de définition de la classe LibAff1637.</div></div>
 <div class="ttc" id="a_lib_gyroscope_8h_html_ac9abd7155235df06e96cda700880bbea"><div class="ttname"><a href="_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbea">t_gyroscopeAxis</a></div><div class="ttdeci">t_gyroscopeAxis</div><div class="ttdef"><b>Definition</b> LibGyroscope.h:18</div></div>
 <div class="ttc" id="a_lib_gyroscope_8h_html_ac9abd7155235df06e96cda700880bbeaabae670fa35fede4399e110017a3d2f61"><div class="ttname"><a href="_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaabae670fa35fede4399e110017a3d2f61">GYROSCOPE_AXIS_Y</a></div><div class="ttdeci">@ GYROSCOPE_AXIS_Y</div><div class="ttdoc">Angle Y.</div><div class="ttdef"><b>Definition</b> LibGyroscope.h:20</div></div>
@@ -178,17 +175,17 @@ $(function(){ initResizable(false); });
 <div class="ttc" id="a_lib_gyroscope_8h_html_ac9abd7155235df06e96cda700880bbeaae48f41199304c17ab68569d7a8cc6215"><div class="ttname"><a href="_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaae48f41199304c17ab68569d7a8cc6215">GYROSCOPE_AXIS_Z</a></div><div class="ttdeci">@ GYROSCOPE_AXIS_Z</div><div class="ttdoc">Angle Z.</div><div class="ttdef"><b>Definition</b> LibGyroscope.h:21</div></div>
 <div class="ttc" id="aclass_lib_aff1637_html"><div class="ttname"><a href="class_lib_aff1637.html">LibAff1637</a></div><div class="ttdoc">Gestion d'un afficheur 7 Segments avec un TM1637.</div><div class="ttdef"><b>Definition</b> LibAff1637.h:40</div></div>
 <div class="ttc" id="aclass_lib_gyroscope_html"><div class="ttname"><a href="class_lib_gyroscope.html">LibGyroscope</a></div><div class="ttdoc">Gestion d'un gyroscope basée sur un MPU6050.</div><div class="ttdef"><b>Definition</b> LibGyroscope.h:32</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a16abbc3bec312ce659bee0239a482456"><div class="ttname"><a href="class_lib_gyroscope.html#a16abbc3bec312ce659bee0239a482456">LibGyroscope::update</a></div><div class="ttdeci">void update(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:79</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a1d3dc1147a6a07f1db30c135fb895116"><div class="ttname"><a href="class_lib_gyroscope.html#a1d3dc1147a6a07f1db30c135fb895116">LibGyroscope::selectAxis</a></div><div class="ttdeci">void selectAxis(t_gyroscopeAxis axis)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:129</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a16abbc3bec312ce659bee0239a482456"><div class="ttname"><a href="class_lib_gyroscope.html#a16abbc3bec312ce659bee0239a482456">LibGyroscope::update</a></div><div class="ttdeci">void update(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:80</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a1d3dc1147a6a07f1db30c135fb895116"><div class="ttname"><a href="class_lib_gyroscope.html#a1d3dc1147a6a07f1db30c135fb895116">LibGyroscope::selectAxis</a></div><div class="ttdeci">void selectAxis(t_gyroscopeAxis axis)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:130</div></div>
 <div class="ttc" id="aclass_lib_gyroscope_html_a3095ec99a02110dd3bf30aa660ebb040"><div class="ttname"><a href="class_lib_gyroscope.html#a3095ec99a02110dd3bf30aa660ebb040">LibGyroscope::LibGyroscope</a></div><div class="ttdeci">LibGyroscope(uint8_t address=MPU6050_DEFAULT_ADDRESS, void *wireObj=0)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:16</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a49ee8df3936164e7ea6f5ef27698a763"><div class="ttname"><a href="class_lib_gyroscope.html#a49ee8df3936164e7ea6f5ef27698a763">LibGyroscope::getAngle</a></div><div class="ttdeci">int getAngle()</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:130</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a5826eb81caba1b34ef7ba730b7de7dd4"><div class="ttname"><a href="class_lib_gyroscope.html#a5826eb81caba1b34ef7ba730b7de7dd4">LibGyroscope::gestion</a></div><div class="ttdeci">void gestion(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:53</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a5ec7da0390f760325235dbf9363a855b"><div class="ttname"><a href="class_lib_gyroscope.html#a5ec7da0390f760325235dbf9363a855b">LibGyroscope::getAngles</a></div><div class="ttdeci">void getAngles(short *p_axisX, short *p_axisY, short *p_axisZ)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:133</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a5f2c08c57e35248e1c473e0d8c1aca82"><div class="ttname"><a href="class_lib_gyroscope.html#a5f2c08c57e35248e1c473e0d8c1aca82">LibGyroscope::display</a></div><div class="ttdeci">void display(bool status)</div><div class="ttdoc">true or false</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:140</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a76be09553344bc92214e06308ad6e88a"><div class="ttname"><a href="class_lib_gyroscope.html#a76be09553344bc92214e06308ad6e88a">LibGyroscope::setDisplay</a></div><div class="ttdeci">void setDisplay(LibAff1637 *p_display)</div><div class="ttdoc">Pointeur vers le gestionnaire d'affichage.</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:141</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_a92d3f22f5985698533f19ae009733e77"><div class="ttname"><a href="class_lib_gyroscope.html#a92d3f22f5985698533f19ae009733e77">LibGyroscope::calibrate</a></div><div class="ttdeci">unsigned char calibrate(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:95</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a49ee8df3936164e7ea6f5ef27698a763"><div class="ttname"><a href="class_lib_gyroscope.html#a49ee8df3936164e7ea6f5ef27698a763">LibGyroscope::getAngle</a></div><div class="ttdeci">int getAngle()</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:131</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a5826eb81caba1b34ef7ba730b7de7dd4"><div class="ttname"><a href="class_lib_gyroscope.html#a5826eb81caba1b34ef7ba730b7de7dd4">LibGyroscope::gestion</a></div><div class="ttdeci">void gestion(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:54</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a5ec7da0390f760325235dbf9363a855b"><div class="ttname"><a href="class_lib_gyroscope.html#a5ec7da0390f760325235dbf9363a855b">LibGyroscope::getAngles</a></div><div class="ttdeci">void getAngles(short *p_axisX, short *p_axisY, short *p_axisZ)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:134</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a5f2c08c57e35248e1c473e0d8c1aca82"><div class="ttname"><a href="class_lib_gyroscope.html#a5f2c08c57e35248e1c473e0d8c1aca82">LibGyroscope::display</a></div><div class="ttdeci">void display(bool status)</div><div class="ttdoc">true or false</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:141</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a76be09553344bc92214e06308ad6e88a"><div class="ttname"><a href="class_lib_gyroscope.html#a76be09553344bc92214e06308ad6e88a">LibGyroscope::setDisplay</a></div><div class="ttdeci">void setDisplay(LibAff1637 *p_display)</div><div class="ttdoc">Pointeur vers le gestionnaire d'affichage.</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:142</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_a92d3f22f5985698533f19ae009733e77"><div class="ttname"><a href="class_lib_gyroscope.html#a92d3f22f5985698533f19ae009733e77">LibGyroscope::calibrate</a></div><div class="ttdeci">unsigned char calibrate(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:96</div></div>
 <div class="ttc" id="aclass_lib_gyroscope_html_a9e2a15f13998a505dcb611fdf7c2ef92"><div class="ttname"><a href="class_lib_gyroscope.html#a9e2a15f13998a505dcb611fdf7c2ef92">LibGyroscope::begin</a></div><div class="ttdeci">void begin(void)</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:24</div></div>
-<div class="ttc" id="aclass_lib_gyroscope_html_ad8f41779fad6625df48b7d6aaac35e79"><div class="ttname"><a href="class_lib_gyroscope.html#ad8f41779fad6625df48b7d6aaac35e79">LibGyroscope::setUpdatePeriod</a></div><div class="ttdeci">void setUpdatePeriod(unsigned char period)</div><div class="ttdoc">Période en ms de raffraichissement des angles.</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:142</div></div>
+<div class="ttc" id="aclass_lib_gyroscope_html_ad8f41779fad6625df48b7d6aaac35e79"><div class="ttname"><a href="class_lib_gyroscope.html#ad8f41779fad6625df48b7d6aaac35e79">LibGyroscope::setUpdatePeriod</a></div><div class="ttdeci">void setUpdatePeriod(unsigned char period)</div><div class="ttdoc">Période en ms de raffraichissement des angles.</div><div class="ttdef"><b>Definition</b> LibGyroscope.cpp:143</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

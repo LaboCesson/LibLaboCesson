@@ -16,8 +16,8 @@
 #include "LibAff1637.h"
 #include "LibJumper.h"
 #include "LibMoteur.h"
+#include "LibMoteurOmni.h"
 #include "LibGpio.h"
-// #include "LibUltrason.h"
 #include "LibGyroscope.h"
 #include "Lib433Mhz.h"
 #include "LibChrono.h"
@@ -33,12 +33,12 @@ typedef enum {
 
 
 /// \class LibPami2025
-/// \brief Librairies de gestion des PAMI de l'année 2026
+/// \brief Librairies de gestion des PAMI basiques de l'année 2026
 /// \details Librairies requises :
 /// \details    MPU6050   : https://github.com/electroniccats/mpu6050
-/// \details    Servo     : https://docs.arduino.cc/libraries/servo/
+/// \details    Servo     : Librairie Esp32servo par Kevin Harrington
 /// \details    RadioHead : https://www.airspayce.com/mikem/arduino/RadioHead
-/// \details   Wire
+/// \details    Wire
 
 class LibPami2026Basic
 {
@@ -61,6 +61,15 @@ class LibPami2026Basic
   protected:
 };
 
+
+/// \class LibPami2026Ninja
+/// \brief Librairies de gestion d'un PAMI NINJA 2026 avec un simplecouple de moteurs 
+/// \details Librairies requises :
+/// \details    MPU6050   : https://github.com/electroniccats/mpu6050
+/// \details    Servo     : Librairie Esp32servo par Kevin Harrington
+/// \details    RadioHead : https://www.airspayce.com/mikem/arduino/RadioHead
+/// \details    Wire
+
 class LibPami2026Ninja
 {
   public:
@@ -82,5 +91,34 @@ class LibPami2026Ninja
   protected:
 };
 
+
+/// \class LibPami2026NinjaOmni
+/// \brief Librairies de gestion d'un PAMI NINJA 2026 avec des roues omnidirectionnelles
+/// \details Librairies requises :
+/// \details    MPU6050   : https://github.com/electroniccats/mpu6050
+/// \details    Servo     : Librairie Esp32servo par Kevin Harrington
+/// \details    RadioHead : https://www.airspayce.com/mikem/arduino/RadioHead
+/// \details    Wire
+
+class LibPami2026NinjaOmni
+{
+public:
+  LibPami2026NinjaOmni();
+
+  /// \details Cette fonction doit être appelée régulièrement pour la gestion des différents éléments d'un PAMI
+  void gestion(void);
+
+  LibAff1637    afficheur; ///< Librairie de gestion d'un afficheur
+  LibJumper     jumper;    ///< Librairie de gestion des jumpers d'un PAMI
+  LibGpio       gpio;      ///< Librairie de gestion des GPIO
+  LibGyroscope  gyro;      ///< Librairie de gestion d'un gyroscope
+  LibMoteurOmni moteur;    ///< Librairie de gestion de roues omnidirectionnelles
+  Lib433Mhz     radio;     ///< Librairie de gestion d'un récepteur 433Mhz
+  LibChrono     chrono;    ///< Librairie de gestion d'un chronometre
+
+private:
+
+protected:
+};
 
 #endif

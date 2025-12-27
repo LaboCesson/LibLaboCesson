@@ -33,14 +33,35 @@ typedef enum {
 
 /// \class LibMoteurOmni
 /// \brief Description du role de la librairie LibMoteurOmni
+/// \details Cette librairie permet de piloter 4 roues Omnidirectionnelle
+/// 
+/// La fonction \ref avance permet de controler le mouvement selon une des directions définies par \ref t_omni_direction
+/// 
+/// Il est possible de controler indépendamment chacune des roues avec les fonctions suivantes
+/// - \ref avantGauche
+/// - \ref avantDroit
+/// - \ref arriereGauche
+/// - \ref arriereDroit
+///
+/// Plus d'information sur le site  <a href="https://werobot.fr/blog/configuration_et_comportement_d-une_roue_mecanum">Controle de roues omnidirectionnelles</a><br />
+
 class LibMoteurOmni
 {
   public:
 
-    LibMoteur    moteur1;   ///< Librairie de gestion d'un couple de moteur
-    LibMoteur    moteur2;   ///< Librairie de gestion d'un couple de moteur (cas omnidirectionnel)
+    LibMoteur    moteurAvant;   ///< Gestion du couple de moteur Avant
+    LibMoteur    moteurArriere; ///< Gestion du couple de moteur Arriere
 
-		LibMoteurOmni(void);
+		LibMoteurOmni(
+			unsigned char pinAvantGaucheAvance,   ///< Pin permettant de faire avancer le moteur avant gauche
+			unsigned char pinAvantGaucheRecule,   ///< Pin permettant de faire reculer le moteur avant gauche
+			unsigned char pinAvantDroitAvance,    ///< Pin permettant de faire avancer le moteur avant droit
+			unsigned char pinAvantDroitRecule,    ///< Pin permettant de faire reculer le moteur avant droit
+			unsigned char pinArriereGaucheAvance, ///< Pin permettant de faire avancer le moteur arriere gauche
+			unsigned char pinArriereGaucheRecule, ///< Pin permettant de faire reculer le moteur arriere gauche
+			unsigned char pinArriereDroitAvance,  ///< Pin permettant de faire avancer le moteur arriere droit
+			unsigned char pinArriereDroitRecule   ///< Pin permettant de faire reculer le moteur arriere droit
+			);
 
 		/// \details Permet de controler le moteur avant gauche
 		void avantGauche(

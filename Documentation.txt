@@ -2,7 +2,29 @@
 
 \page IDE_FOR_ESP32 Installer l'IDE Arduino pour l'ESP32
 
+L'aide pour l'installation du support ESP32 par l'IDE Arduino est disponible sur le site suivant
+<a href="https://www.upesy.fr/blogs/tutorials/install-esp32-on-arduino-ide-complete-guide" target="_blank" rel="noopener">Installer l'IDE Arduino pour l'ESP32</a> 
 
+
+Modifier le time-out de chargement des paquets de logiciel dans l'IDE Arduino
+
+- Fermer l'IDE Arduino
+- Ouvrir le fichier : **C:\Users\<username>\.arduinoIDE\arduino-cli.yaml**
+- Ajouter les lignes suivantes
+
+```yaml
+network:
+  connection_timeout: 300s
+```
+
+TODO
+
+\page Utilisation de doxygen
+
+Le logiciel doxygen est utilisé pour générer automatiquement la document du logiciel à partir du code
+
+La documentation de doxygen est disponible sur le site suivant : 
+<a href="https://www.doxygen.nl/manual/index.html">Guide d'utilisation de Doxygen</a> 
 
 TODO
 

@@ -87,6 +87,8 @@ class LibCan2515
 /// \brief La librairie LibCanProt permet de gérer le protocole utilisé entre le poste de commande du robot et le robot
 /// \brief Elle s'appuie sur la librairie \ref LibCan2515
 
+#include "LibMoteur.h"
+
 #define BUS_CAN_MESSAGE_MAX_SIZE 64
 
 class LibCanProt
@@ -102,16 +104,27 @@ class LibCanProt
 			LibCan2515 * p_canBus ///< Pointeur vers le gestionnaire du bus CAN
 		) { mp_canBus = p_canBus; }
 
+		/// \details Permet de donner les références des moteurs
+		/// \details Il est possible de gérer 2 moteurs
+		void setMoteurDriver(
+			unsigned char moteur, ///< Moteur à configurer (0-1)
+			LibMoteur* p_moteur   ///< Pointeur vers le gestionnaire de moteur
+		);
+
 		/// \details Permet de valider l'interface CAN et le gestion du protocole
 		/// \return Retourne true si le bus CAN est prêt et false sinon 
 		bool begin(	void );
-
 
 		/// \details Permet de traiter l'arrivée d'un éventuel message
 		/// \return Retourne true si un message a été traité et flase sinon
 		bool gestionMessage(
 			// unsigned char csPin ///< Pin associée au signal CS
 		);
+
+		void sendSetPinDigital(unsigned char pin, unsigned char status);
+		void sendSetPinAnalog(unsigned char pin, unsigned short val);
+		void sendSetMoteur(unsigned char moteur, char vitesseGauche, char vitesseDroite);
+		void sendDisplayString(char* message, unsigned char len);
 
 		/// \details Permet de valider l'affichage de message de debug
 		void setDebug(
@@ -124,19 +137,14 @@ class LibCanProt
     bool m_begin;
 		unsigned char m_bufferCan[BUS_CAN_MESSAGE_MAX_SIZE];
 
-		LibCan2515 * mp_canBus;
+		LibCan2515 * mp_canBus  = NULL;
+		LibMoteur  * mp_moteur1 = NULL;
+		LibMoteur  * mp_moteur2 = NULL;
 
     void setPinDigital(void);
  		void setPinAnalog (void); 
-    void setMoteur    (void);
+    void setMoteur    (unsigned char moteur);
     void displayString(void);
-
-
-    void sendSetPinDigital( unsigned char pin, unsigned char status );
- 		void sendSetPinAnalog ( unsigned char pin, unsigned char val );
-    void sendSetMoteur    ( unsigned char moteur, char vitesseGauche, char vitesseDroite );
-    void sendDisplayString( char * message, unsigned char len);
-
 
 		/// \details Affichage du type de message reçu
 		void displayMessageRecu(
@@ -145,7 +153,7 @@ class LibCanProt
 
 		/// \details Affichage du type de message reçu
 		void displayMessageEnvoye(
-			unsigned char cmd  ///< Code de la commande envoyé
+			unsigned char cmd  ///< Code de la commande envoyée
 		);
 
 		/// \details Affichage du libellé de la commade

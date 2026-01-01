@@ -27,7 +27,8 @@
     commande BUS_CAN_GET_PIN_ANALOGIQUE :
       1 byte : Numéro de pin
 
-    commande BUS_CAN_SET_MOTEUR :
+    commande BUS_CAN_SET_MOTEUR_1 :
+    commande BUS_CAN_SET_MOTEUR_2 :
       1 byte : vitesse du moteur Gauche (-100 <-> 100, 0=stop)
       1 byte : vitesse du moteur Droit (-100 <-> 100, 0=stop)
 
@@ -58,8 +59,9 @@
 #define BUS_CAN_GET_PIN_DIGITAL    2
 #define BUS_CAN_SET_PIN_ANALOGIQUE 3
 #define BUS_CAN_GET_PIN_ANALOGIQUE 4
-#define BUS_CAN_SET_MOTEUR         5
-#define BUS_CAN_DISPLAY_STRING     6
+#define BUS_CAN_SET_MOTEUR_1       5
+#define BUS_CAN_SET_MOTEUR_2       6
+#define BUS_CAN_DISPLAY_STRING     7
 #define BUS_CAN_CUSTOM_COMMAND     10
 
 #endif

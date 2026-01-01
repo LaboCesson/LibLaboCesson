@@ -1,9 +1,9 @@
 /*!
  * \file 	LibPami2026.cpp
- * \brief 	Le fichier source de la classe LibPami2026 
+ * \brief 	Le fichier source des classes de gestion des PAMIs 2026 
  * \author  LaboCesson
  * \version 1.0
- * \date    Octobre 2026
+ * \date    Décembre 2025
  */
 
 #include "LibPami2026.h"

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['nb_5fmax_5fmulti_5ftcs3472_0',['NB_MAX_MULTI_TCS3472',['../_lib_color_8h.html#a76af5d777b1323570401e7ceb0b4bede',1,'LibColor.h']]]
+  ['lib433mhz_5fused_0',['LIB433MHZ_USED',['../_lib_pami2025_8h.html#a68d4d626fea0efe2a8123db99cddde3d',1,'LibPami2025.h']]],
+  ['lib_5fgpio_5ferror_1',['LIB_GPIO_ERROR',['../_lib_gpio_8h.html#a9c9b8195124c6c614d57bd5c8a3a5246',1,'LibGpio.h']]]
 ];

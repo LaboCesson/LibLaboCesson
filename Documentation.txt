@@ -1,15 +1,18 @@
 /**
 
+<!--==========================================================================================-->
+
 \page IDE_FOR_ESP32 Installer l'IDE Arduino pour l'ESP32
 
 L'aide pour l'installation du support ESP32 par l'IDE Arduino est disponible sur le site suivant
-<a href="https://www.upesy.fr/blogs/tutorials/install-esp32-on-arduino-ide-complete-guide" target="_blank" rel="noopener">Installer l'IDE Arduino pour l'ESP32</a> 
+<a href="https://www.upesy.fr/blogs/tutorials/install-esp32-on-arduino-ide-complete-guide" 
+   target="_blank" rel="noopener">Installer l'IDE Arduino pour l'ESP32</a> 
 
 
 Modifier le time-out de chargement des paquets de logiciel dans l'IDE Arduino
 
 - Fermer l'IDE Arduino
-- Ouvrir le fichier : **C:\Users\<username>\.arduinoIDE\arduino-cli.yaml**
+- Ouvrir le fichier : **C:\\Users\\<username>\\.arduinoIDE\\arduino-cli.yaml**
 - Ajouter les lignes suivantes
 
 ```yaml
@@ -19,13 +22,89 @@ network:
 
 TODO
 
-\page Utilisation de doxygen
+<!--==========================================================================================-->
 
-Le logiciel doxygen est utilisé pour générer automatiquement la document du logiciel à partir du code
+\page DOXYGEN Utilisation de doxygen
+
+Le logiciel **doxygen** est utilisé pour générer automatiquement la document du logiciel à partir du code
 
 La documentation de doxygen est disponible sur le site suivant : 
-<a href="https://www.doxygen.nl/manual/index.html">Guide d'utilisation de Doxygen</a> 
+<a href="https://www.doxygen.nl/manual/index.html" target="_blank" rel="noopener">Guide d'utilisation de Doxygen</a> 
+
+La liste des mots clés est disponible sur le site suivant : 
+<a href="https://www.doxygen.nl/manual/commands.html" target="_blank" rel="noopener">Liste des mots clés</a> 
+
 
 TODO
+
+<!--==========================================================================================-->
+
+\page RADIOHEAD Librairie RadioHead pour la gestion du 433MHz
+
+La librairie en charge de la gestion 433Mhz est la librairie **RadioHead par Mike McCauley**
+
+Elle est disponible <a href="https://www.airspayce.com/mikem/arduino/RadioHead/RadioHead-1.142.zip">ICI</a> 
+
+Il faut dézipper le contenu et le copier dans le répertoire **Libraries** ou est installlé Arduino
+
+Typiquement dans le répertoire : **C:\\Users\\<username>\\Documents\\arduino\\Libraries**
+
+\attention
+Il est possible que l'erreur suivante apparaise : **multiple definition of `__vector_17'** <BR>
+Il est alors nécessaire de modifier le fichier **RH_ASK.cpp** pour éviter les incompatibilités avec la librairie 'servo' <BR>
+Remplacer la ligne <BR>
+```
+//#define RH_ASK_ARDUINO_USE_TIMER2
+```
+par
+```
+#ifdef AVR
+#define RH_ASK_ARDUINO_USE_TIMER2
+#endif
+```
+Il est nécessaire de refaire ce changement à chaque mise à jour de la librairie RadioHead
+
+
+<!--==========================================================================================-->
+
+\page ESP32_SPECIFIC Spécificités de l'ESP32
+
+L'utilisation de l'ESP32 dans un contexte IDE Arduino peut nécessiter quelques adaptations
+
+# Code spécifique à l'ESP32
+
+Des portions de codes peuvent être différents entre un Arduino et un ESP32.
+
+
+
+Il est alors nécessaire de spécifier les différentes portion de code de la manière suivante:
+
+```
+  #ifdef AVR
+	
+    CODE SPECIFIQUE ARDUINO
+	
+  #endif
+  #ifdef ARDUINO_ARCH_ESP32
+  
+    CODE SPECIFIQUE ESP32
+	
+  #endif
+```
+
+# Mise en oeuvre d'une sortie PWM
+
+Pour un Arduino, la génération d'un signal PWM se fait
+- en déclarant la sortie en mode OUTPUT : pinMode(pin, OUTPUT)
+- en écrivant une valeur entre 0 et 1023 : analogWrite(pin,valeur)
+
+Pour un ESP32, il faut utiliser la librairie ledc pour déclarer la sortie en mode PM
+- en déclarant la sortie en mode analogique : ledcAttach(pin,1000,10)
+- en écrivant une valeur entre 0 et 1023 : analogWrite(pin,valeur)
+
+Plus d'information sur le site suivant : 
+<a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/api/ledc.html" target="_blank" rel="noopener">Librairie LEDC</a>
+
+
 
 */

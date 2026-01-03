@@ -28,6 +28,19 @@ typedef enum {
 } t_driverMoteur;
 
 
+typedef enum {
+  MOTEUR_GAUCHE = 0, ///< l'index utilisé pour le moteur gauche
+  MOTEUR_DROIT  = 1  ///< l'index utilisé pour le moteur droit
+} t_indexMoteur;
+
+typedef enum {
+  NO_ATTACH = 0, ///< Aucun canal PWM n'est utilisé
+  AV_ATTACH = 1, ///< Le canal PMW est associé à la marche avant
+  AR_ATTACH = 2  ///< Le canal PMW est associé à la marche arrière
+} t_attachStatus;
+
+
+
 /// \class LibMoteur
 /// \brief Gestion de moteurs
 /// \details
@@ -79,7 +92,8 @@ private:
     void setVitesseMoteurL298n(
                int  vitesse,    ///< vitesse à appliquer au moteur
       unsigned char pinAvant,   ///< Le numéro de la pin permettant de mettre le moteur dans le sens avant
-      unsigned char pinArriere  ///< Le numéro de la pin permettant de mettre le moteur dans le sens arriere
+      unsigned char pinArriere, ///< Le numéro de la pin permettant de mettre le moteur dans le sens arriere
+      t_indexMoteur indexMoteur ///< l'index du moteur à gérer
     );
 
     void setVitesseMoteurServo(
@@ -100,7 +114,9 @@ private:
              bool m_directionDroite = true;
              bool m_directionGauche = true;
     unsigned int  m_frequency;    
-    unsigned char m_resolution;    
+    unsigned char m_resolution;
+
+    t_attachStatus m_attachStatus[2];
 
     Servo* mp_servoGauche;
     Servo* mp_servoDroit;

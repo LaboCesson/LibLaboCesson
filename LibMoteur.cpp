@@ -22,7 +22,6 @@
 // Class LibMoteur
 //=====================================
 
-
 LibMoteur::LibMoteur(unsigned char pinIn1, unsigned char pinIn2, unsigned char pinIn3, unsigned char pinIn4 ) {
   commonInit();
 
@@ -41,10 +40,19 @@ LibMoteur::LibMoteur(unsigned char pinIn1, unsigned char pinIn2, unsigned char p
   #endif
 
   #ifdef ARDUINO_ARCH_ESP32
-    ledcAttach(m_avantGauche   = pinIn1, m_frequency, m_resolution); ledcWrite(m_avantGauche,   0);
-    ledcAttach(m_arriereGauche = pinIn2, m_frequency, m_resolution); ledcWrite(m_arriereGauche, 0);
-    ledcAttach(m_arriereDroite = pinIn3, m_frequency, m_resolution); ledcWrite(m_arriereDroite, 0);
-    ledcAttach(m_avantDroite   = pinIn4, m_frequency, m_resolution); ledcWrite(m_avantDroite,   0);
+    m_avantGauche   = pinIn1;
+    m_arriereGauche = pinIn2;
+    m_arriereDroite = pinIn3;
+    m_avantDroite   = pinIn4;
+
+    m_attachStatus[MOTEUR_GAUCHE] = NO_ATTACH;
+    m_attachStatus[MOTEUR_DROIT]  = NO_ATTACH;
+
+
+    //pinMode(pinIn1, OUTPUT); digitalWrite(pinIn1, 0);
+    //pinMode(pinIn2, OUTPUT); digitalWrite(pinIn2, 0);
+    //pinMode(pinIn3, OUTPUT); digitalWrite(pinIn3, 0);
+    //pinMode(pinIn4, OUTPUT); digitalWrite(pinIn4, 0);
 #endif
 }
 
@@ -84,7 +92,7 @@ void LibMoteur::moteurGauche(int vitesse) {
   trace("gauche", vitesse);
 
   switch (m_typeDriver) {
-    case MOTEUR_L298N : setVitesseMoteurL298n(vitesse, m_avantGauche, m_arriereGauche); break;
+    case MOTEUR_L298N : setVitesseMoteurL298n(vitesse, m_avantGauche, m_arriereGauche, MOTEUR_GAUCHE); break;
     case MOTEUR_SERVO : setVitesseMoteurServo(vitesse, mp_servoGauche ); break;
     default: break;
   }
@@ -98,14 +106,14 @@ void LibMoteur::moteurDroit(int vitesse) {
   trace("droit", vitesse);
 
   switch (m_typeDriver) {
-    case MOTEUR_L298N: setVitesseMoteurL298n(vitesse, m_avantDroite, m_arriereDroite); break;
+    case MOTEUR_L298N: setVitesseMoteurL298n(vitesse, m_avantDroite, m_arriereDroite, MOTEUR_DROIT); break;
     case MOTEUR_SERVO: setVitesseMoteurServo(vitesse, mp_servoDroit); break;
     default: break;
   }
 }
 
 
-void LibMoteur::setVitesseMoteurL298n( int vitesse, unsigned char pinAvant, unsigned char pinArriere ) {
+void LibMoteur::setVitesseMoteurL298n( int vitesse, unsigned char pinAvant, unsigned char pinArriere, t_indexMoteur indexMoteur) {
   unsigned char vAv = 0; 
   unsigned char vAr = 0;
 
@@ -118,8 +126,36 @@ void LibMoteur::setVitesseMoteurL298n( int vitesse, unsigned char pinAvant, unsi
   #endif
 
   #ifdef ARDUINO_ARCH_ESP32
-    ledcWrite(pinAvant,   vAv);
-    ledcWrite(pinArriere, vAr);
+    bool status;
+
+    // On désalloue un éventuel canal plus utilisé
+    if ((vAv == 0) && (m_attachStatus[indexMoteur] == AV_ATTACH)) {
+      ledcDetach(pinAvant);
+      m_attachStatus[indexMoteur] = NO_ATTACH;
+    }
+    if ((vAr == 0) && (m_attachStatus[indexMoteur] == AR_ATTACH)) {
+      ledcDetach(pinArriere);
+      m_attachStatus[indexMoteur] = NO_ATTACH;
+    }
+
+    // On alloue maintenant un canal si besoin
+    if (vAv != 0) {
+      if (m_attachStatus[indexMoteur] != AV_ATTACH) {
+        status = ledcAttach(pinAvant, m_frequency, m_resolution);
+        if (status == false) Serial.println("LibMoteur => !! Pas assez de canal PWM !!");
+        else m_attachStatus[indexMoteur] = AV_ATTACH;
+      }
+      ledcWrite(pinAvant, vAv);
+    }
+
+    if (vAr != 0) {
+      if (m_attachStatus[indexMoteur] != AR_ATTACH) {
+        status = ledcAttach(pinArriere, m_frequency, m_resolution);
+        if (status == false) Serial.println("LibMoteur => !! Pas assez de canal PWM !!");
+        else m_attachStatus[indexMoteur] = AR_ATTACH;
+      }
+      ledcWrite(pinArriere, vAr);
+    }
   #endif
 }
 

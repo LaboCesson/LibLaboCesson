@@ -1,6 +1,6 @@
 /**	\mainpage Documentation de la librairie LibLaboCesson
 	
-La librairie contient un ensemble de classes permettant de gérer les différents éléments utilisés
+La librairie contient un ensemble de classes C++ permettant de gérer les différents éléments utilisés
 sur les robots développés au sein du LaboCesson
 
 Les classes ont été compilées pour les famillles suivantes de microcontroleurs :
@@ -9,22 +9,7 @@ Les classes ont été compilées pour les famillles suivantes de microcontroleur
 
 Les librairies ont été testées avec l'IDE Arduino .
 La page \ref IDE_FOR_ESP32 décrit comment configurer l'IDE Arduino pour compiler pour un ESP32
- 
-Les classes sont de deux types :
- - Des classes _**basiques**_ permettant de gérer un composant (par exemple la classe \ref LibAff1637 pour gérer un afficheur 7 Segments)
- - Des classes _**robot**_ permettant de gérer l'ensemble des composants d'un robot (par exemple \ref LibPami2026Basic gérant un PAMI basique du concours 2026)
 
-Les classes _**basiques**_ sont génériques et peuvent être utilisées dans un contexte quelconque.
-Par exemple la classe \ref LibAff1637 permet de connecter l'afficheur sur n'importe quel port.
-Les classes _**robots**_  utilisent les classes _**basiques**_ en définissant à quel port l'afficheur est connecté
-
-L'afficheur sera alors utilisable en utilisant par exemple un appel du type _pami2026basique.afficheur.displayValue(10)
-
-Les classes _**robots*_ gérent l'ensemble des éléments d'un robot,
-mais ils ne sont pas les logiciels finaux des robots.
-Les différents éléments accessibles par une classe de type _**robot**_ seront utilisées pour par exemple :
- - Attendre un ordre de départ (par exemple avec la librairie \ref LibAff1637)
- - Faire avancer le robot (par exemple avec la librairie \ref LibMoteur)
- - S'assurer que le robot va droit (par exemple avec la librairie \ref LibGyroscope)
+La page \ref USE_LIBRARY donne plus d'informations sur la librairie et sa mise en oeuvre
 
 */

@@ -87,23 +87,13 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">Documentation de la librairie LibLaboCesson </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>La librairie contient un ensemble de classes permettant de gérer les différents éléments utilisés sur les robots développés au sein du LaboCesson</p>
+<div class="textblock"><p>La librairie contient un ensemble de classes C++ permettant de gérer les différents éléments utilisés sur les robots développés au sein du LaboCesson</p>
 <p>Les classes ont été compilées pour les famillles suivantes de microcontroleurs :</p><ul>
 <li>Arduino</li>
 <li>ESP32</li>
 </ul>
 <p>Les librairies ont été testées avec l'IDE Arduino . La page <a class="el" href="_i_d_e__f_o_r__e_s_p32.html">Installer l'IDE Arduino pour l'ESP32</a> décrit comment configurer l'IDE Arduino pour compiler pour un ESP32</p>
-<p>Les classes sont de deux types :</p><ul>
-<li>Des classes <em><b>basiques</b></em> permettant de gérer un composant (par exemple la classe <a class="el" href="class_lib_aff1637.html">LibAff1637</a> pour gérer un afficheur 7 Segments)</li>
-<li>Des classes <em><b>robot</b></em> permettant de gérer l'ensemble des composants d'un robot (par exemple <a class="el" href="class_lib_pami2026_basic.html">LibPami2026Basic</a> gérant un PAMI basique du concours 2026)</li>
-</ul>
-<p>Les classes <em><b>basiques</b></em> sont génériques et peuvent être utilisées dans un contexte quelconque. Par exemple la classe <a class="el" href="class_lib_aff1637.html">LibAff1637</a> permet de connecter l'afficheur sur n'importe quel port. Les classes <em><b>robots</b></em> utilisent les classes <em><b>basiques</b></em> en définissant à quel port l'afficheur est connecté</p>
-<p>L'afficheur sera alors utilisable en utilisant par exemple un appel du type _pami2026basique.afficheur.displayValue(10)</p>
-<p>Les classes <em>**robots*</em> gérent l'ensemble des éléments d'un robot, mais ils ne sont pas les logiciels finaux des robots. Les différents éléments accessibles par une classe de type <em><b>robot</b></em> seront utilisées pour par exemple :</p><ul>
-<li>Attendre un ordre de départ (par exemple avec la librairie <a class="el" href="class_lib_aff1637.html">LibAff1637</a>)</li>
-<li>Faire avancer le robot (par exemple avec la librairie <a class="el" href="class_lib_moteur.html">LibMoteur</a>)</li>
-<li>S'assurer que le robot va droit (par exemple avec la librairie <a class="el" href="class_lib_gyroscope.html">LibGyroscope</a>) </li>
-</ul>
+<p>La page <a class="el" href="_u_s_e__l_i_b_r_a_r_y.html">Utilisation de la librairie LibLaboCesson</a> donne plus d'informations sur la librairie et sa mise en oeuvre </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

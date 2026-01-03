@@ -17,8 +17,9 @@ var searchData=
   ['setdisplay_14',['setDisplay',['../class_lib_chrono.html#a1db07abcbdf274746d2625e68dcb65ae',1,'LibChrono::setDisplay()'],['../class_lib_gyroscope.html#a76be09553344bc92214e06308ad6e88a',1,'LibGyroscope::setDisplay()']]],
   ['setmaxdistance_15',['setMaxDistance',['../class_lib_ultrason.html#a3a7a8480ba7d3005a13972f8d56a5da7',1,'LibUltrason::setMaxDistance()'],['../class_lib_vl53lox.html#a06ccd4f072190faf20b4854e25df0bc1',1,'LibVl53lox::setMaxDistance()']]],
   ['setmode_16',['setMode',['../class_lib_chrono.html#af96171526f26c9dee8b3328c7d7a40b2',1,'LibChrono']]],
-  ['setstatus_17',['setStatus',['../class_lib_aff1637.html#a90ab91aa34cd3bd4ab35b1e634e633c3',1,'LibAff1637']]],
-  ['setupdateperiod_18',['setUpdatePeriod',['../class_lib_gyroscope.html#ad8f41779fad6625df48b7d6aaac35e79',1,'LibGyroscope']]],
-  ['start_19',['start',['../class_lib_chrono.html#a604212477e8c1fb57753b92d5101a692',1,'LibChrono']]],
-  ['stop_20',['stop',['../class_lib433_mhz.html#a6128a0bb8fad5b9c2fff128e5e89bfe7',1,'Lib433Mhz::stop()'],['../class_lib_chrono.html#ae3de2835b956b3aa1a86f2a4784bb2ab',1,'LibChrono::stop()'],['../class_lib_moteur_omni.html#adf2f36a707a8e0d71ac13c8933774808',1,'LibMoteurOmni::stop()']]]
+  ['setmoteurdriver_17',['setMoteurDriver',['../class_lib_can_prot.html#a0adc9417c47933177686c66c45580316',1,'LibCanProt']]],
+  ['setstatus_18',['setStatus',['../class_lib_aff1637.html#a90ab91aa34cd3bd4ab35b1e634e633c3',1,'LibAff1637']]],
+  ['setupdateperiod_19',['setUpdatePeriod',['../class_lib_gyroscope.html#ad8f41779fad6625df48b7d6aaac35e79',1,'LibGyroscope']]],
+  ['start_20',['start',['../class_lib_chrono.html#a604212477e8c1fb57753b92d5101a692',1,'LibChrono']]],
+  ['stop_21',['stop',['../class_lib433_mhz.html#a6128a0bb8fad5b9c2fff128e5e89bfe7',1,'Lib433Mhz::stop()'],['../class_lib_chrono.html#ae3de2835b956b3aa1a86f2a4784bb2ab',1,'LibChrono::stop()'],['../class_lib_moteur_omni.html#adf2f36a707a8e0d71ac13c8933774808',1,'LibMoteurOmni::stop()']]]
 ];

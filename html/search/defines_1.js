@@ -5,7 +5,8 @@ var searchData=
   ['bus_5fcan_5fget_5fpin_5fanalogique_2',['BUS_CAN_GET_PIN_ANALOGIQUE',['../_lib_can_prot_def_8h.html#a2300f7bfaa0ec2d99f71a3c5936cbf37',1,'LibCanProtDef.h']]],
   ['bus_5fcan_5fget_5fpin_5fdigital_3',['BUS_CAN_GET_PIN_DIGITAL',['../_lib_can_prot_def_8h.html#aaeb4dfa7aa05bad5903bdc3180169a12',1,'LibCanProtDef.h']]],
   ['bus_5fcan_5fmessage_5fmax_5fsize_4',['BUS_CAN_MESSAGE_MAX_SIZE',['../_lib_can_8h.html#aba38143fa913a3fac654a6b1ed590432',1,'LibCan.h']]],
-  ['bus_5fcan_5fset_5fmoteur_5',['BUS_CAN_SET_MOTEUR',['../_lib_can_prot_def_8h.html#a5513a23a2883ecd1520636e3e3df2d30',1,'LibCanProtDef.h']]],
-  ['bus_5fcan_5fset_5fpin_5fanalogique_6',['BUS_CAN_SET_PIN_ANALOGIQUE',['../_lib_can_prot_def_8h.html#a03b620f8d83b147deb212df1c3426031',1,'LibCanProtDef.h']]],
-  ['bus_5fcan_5fset_5fpin_5fdigital_7',['BUS_CAN_SET_PIN_DIGITAL',['../_lib_can_prot_def_8h.html#a727fbc5b436ec3a0d22e0de4c1b2518a',1,'LibCanProtDef.h']]]
+  ['bus_5fcan_5fset_5fmoteur_5f1_5',['BUS_CAN_SET_MOTEUR_1',['../_lib_can_prot_def_8h.html#ace5e2bb6d0674c2a5b93119a0b57b9dd',1,'LibCanProtDef.h']]],
+  ['bus_5fcan_5fset_5fmoteur_5f2_6',['BUS_CAN_SET_MOTEUR_2',['../_lib_can_prot_def_8h.html#a9aab88fb2e4337a164d8417c639b6849',1,'LibCanProtDef.h']]],
+  ['bus_5fcan_5fset_5fpin_5fanalogique_7',['BUS_CAN_SET_PIN_ANALOGIQUE',['../_lib_can_prot_def_8h.html#a03b620f8d83b147deb212df1c3426031',1,'LibCanProtDef.h']]],
+  ['bus_5fcan_5fset_5fpin_5fdigital_8',['BUS_CAN_SET_PIN_DIGITAL',['../_lib_can_prot_def_8h.html#a727fbc5b436ec3a0d22e0de4c1b2518a',1,'LibCanProtDef.h']]]
 ];

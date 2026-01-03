@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LibLaboCesson: Utilisation de doxygen</title>
+<title>LibLaboCesson: Utilisation de la librairie LibLaboCesson</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -84,13 +84,33 @@ $(function(){ initResizable(false); });
 </div><!-- top -->
 <div id="doc-content">
 <div><div class="header">
-  <div class="headertitle"><div class="title">Utilisation de doxygen</div></div>
+  <div class="headertitle"><div class="title">Utilisation de la librairie LibLaboCesson</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Le logiciel <b>doxygen</b> est utilisé pour générer automatiquement la document du logiciel à partir du code</p>
-<p>La documentation de doxygen est disponible sur le site suivant : <a href="https://www.doxygen.nl/manual/index.html" target="_blank" rel="noopener">Guide d'utilisation de Doxygen</a></p>
-<p>La liste des mots clés est disponible sur le site suivant : <a href="https://www.doxygen.nl/manual/commands.html" target="_blank" rel="noopener">Liste des mots clés</a></p>
-<p>TODO Expliquer coment installer et utiliser DOXYGEN </p>
+<div class="textblock"><p>La librairie <b>LibLaboCesson</b> permet de faciliter le développement des robots et PAMI en proposant une interface de contrôle des différents éléments le constituant</p>
+<p>La Librairie est composée de deux types de classes :</p><ul>
+<li>Des classes <em><b>basiques</b></em> permettant de gérer un composant (par exemple la classe <a class="el" href="class_lib_aff1637.html">LibAff1637</a> pour gérer un afficheur 7 Segments)</li>
+<li>Des classes <em><b>robot</b></em> permettant de gérer l'ensemble des composants d'un robot (par exemple <a class="el" href="class_lib_pami2026_basic.html">LibPami2026Basic</a> gère un PAMI basique du concours 2026)</li>
+</ul>
+<p>Les classes <em><b>basiques</b></em> sont génériques et peuvent être utilisées dans un contexte quelconque. <br  />
+ Les classes <em><b>robots</b></em> utilisent les classes <em><b>basiques</b></em> correspondant aux éléments du robot et définit le cas échéant les pins et interfaces associés à chaque éléments</p>
+<p>Par exemple la classe <a class="el" href="class_lib_aff1637.html">LibAff1637</a> permet de connecter l'afficheur sur n'importe quel port. <br  />
+ Mais une classe <em><b>robots</b></em> appelera la classe <a class="el" href="class_lib_aff1637.html">LibAff1637</a> en définissant à quel port l'afficheur est connecté <br  />
+ L'afficheur sera alors utilisable en utilisant par exemple un appel du type <em><b>pami2026basique.afficheur.displayValue(10)</b></em></p>
+<p>Par exemple, la classe <a class="el" href="class_lib_pami2026_basic.html">LibPami2026Basic</a> est composée des librairies suivantes :</p><ul>
+<li><a class="el" href="class_lib_jumper.html">LibJumper</a> pour indiquer au PAMI qui il est et à quelle équipe il appartient</li>
+<li><a class="el" href="class_lib433_mhz.html">Lib433Mhz</a> pour permettre de recevoir l'ordre de début de la manche</li>
+<li><a class="el" href="class_lib_chrono.html">LibChrono</a> pour gérer le temps d'attente avant de partir vers un nid</li>
+<li><a class="el" href="class_lib_moteur_s.html">LibMoteurS</a> pour faire avancer le PAMI</li>
+<li><a class="el" href="class_lib_gyroscope.html">LibGyroscope</a> pour lui permettre de suivre une direction</li>
+<li><a class="el" href="class_lib_gpio.html">LibGpio</a> pour gérer le servomoteur du dessus</li>
+</ul>
+<p>Les classes <em><b>robots</b></em> gérent l'ensemble des éléments d'un robot, mais ils ne sont pas les logiciels finaux des robots. Les différents éléments accessibles par une classe de type <em><b>robot</b></em> seront utilisées pour par exemple :</p><ul>
+<li>Attendre un ordre de départ (par exemple avec la librairie <a class="el" href="class_lib_aff1637.html">LibAff1637</a>)</li>
+<li>Faire avancer le robot (par exemple avec la librairie <a class="el" href="class_lib_moteur.html">LibMoteur</a>)</li>
+<li>S'assurer que le robot va droit (par exemple avec la librairie <a class="el" href="class_lib_gyroscope.html">LibGyroscope</a>)</li>
+</ul>
+<p>TODO </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->

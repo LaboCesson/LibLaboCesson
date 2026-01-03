@@ -35,7 +35,7 @@ La liste des mots clés est disponible sur le site suivant :
 <a href="https://www.doxygen.nl/manual/commands.html" target="_blank" rel="noopener">Liste des mots clés</a> 
 
 
-TODO
+TODO Expliquer coment installer et utiliser DOXYGEN
 
 <!--==========================================================================================-->
 
@@ -105,6 +105,55 @@ Pour un ESP32, il faut utiliser la librairie ledc pour déclarer la sortie en mo
 Plus d'information sur le site suivant : 
 <a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/api/ledc.html" target="_blank" rel="noopener">Librairie LEDC</a>
 
+\warning Le nombre de canaux PWM est limité à 8 pour un ESP32-S2,
+Il est donc nécessaire de connaitre le nombre de canaux PWM utilisé au total <BR>
+Par exemple la librairie \ref LibMoteur utilise jusqu'à 2 canaux PWM
+
+<!--==========================================================================================-->
+
+\page USE_LIBRARY Utilisation de la librairie LibLaboCesson
+
+La librairie **LibLaboCesson** permet de faciliter le développement des robots et PAMI
+en proposant une interface de contrôle des différents éléments le constituant
+
+La Librairie est composée de deux types de classes :
+ - Des classes _**basiques**_ permettant de gérer un composant (par exemple la classe \ref LibAff1637 pour gérer un afficheur 7 Segments)
+ - Des classes _**robot**_ permettant de gérer l'ensemble des composants d'un robot (par exemple \ref LibPami2026Basic gère un PAMI basique du concours 2026)
+
+Les classes _**basiques**_ sont génériques et peuvent être utilisées dans un contexte quelconque. <BR>
+Les classes _**robots**_  utilisent les classes _**basiques**_ correspondant aux éléments du robot
+et définit le cas échéant les pins et interfaces associés à chaque éléments
+
+Par exemple la classe \ref LibAff1637 permet de connecter l'afficheur sur n'importe quel port. <BR>
+Mais une classe _**robots**_  appelera la classe \ref LibAff1637 en définissant à quel port l'afficheur est connecté <BR>
+L'afficheur sera alors utilisable en utilisant par exemple un appel du type _**pami2026basique.afficheur.displayValue(10)**_
+
+Par exemple, la classe LibPami2026Basic est composée des librairies suivantes :
+- \ref LibJumper pour indiquer au PAMI qui il est et à quelle équipe il appartient
+- \ref Lib433Mhz pour permettre de recevoir l'ordre de début de la manche
+- \ref LibChrono pour gérer le temps d'attente avant de partir vers un nid
+- \ref LibMoteurS pour faire avancer le PAMI
+- \ref LibGyroscope pour lui permettre de suivre une direction
+- \ref LibGpio pour gérer le servomoteur du dessus
+
+
+Les classes _**robots**_ gérent l'ensemble des éléments d'un robot,
+mais ils ne sont pas les logiciels finaux des robots.
+Les différents éléments accessibles par une classe de type _**robot**_ seront utilisées pour par exemple :
+ - Attendre un ordre de départ (par exemple avec la librairie \ref LibAff1637)
+ - Faire avancer le robot (par exemple avec la librairie \ref LibMoteur)
+ - S'assurer que le robot va droit (par exemple avec la librairie \ref LibGyroscope)
+
+
+TODO
+
+
+<!--==========================================================================================-->
+
+\page GIT Utilisation de GIT
+
+
+TODO
 
 
 */

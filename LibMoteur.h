@@ -45,6 +45,7 @@ typedef enum {
 /// \brief Gestion de moteurs
 /// \details
 /// <a href="https://www.handsontec.com/dataspecs/L298N%2520Motor%2520Driver.pdf"> L298N Module documentation </a>
+/// \warning Cette librairie utilise deux canaux PWM
 class LibMoteur
 {
   public:

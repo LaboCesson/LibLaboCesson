@@ -22,12 +22,13 @@ var searchData=
   ['gettouche_19',['getTouche',['../class_lib_clavier.html#af8d058f6e9b9a07113b468cf16f3513f',1,'LibClavier']]],
   ['getvalue_20',['getValue',['../class_lib_chrono.html#a8e841a480a775bab2b5358d6db576076',1,'LibChrono']]],
   ['getvitesses_21',['getVitesses',['../class_lib_joystick.html#ad479847271d3fd8aeb214579795dda69',1,'LibJoystick']]],
-  ['gpio_22',['gpio',['../class_lib_pami2025.html#a0b873d547db5ab515356de97e912343e',1,'LibPami2025::gpio'],['../class_lib_pami2026_basic.html#a9bbdf57775e6c7afd0a1983f01c19187',1,'LibPami2026Basic::gpio'],['../class_lib_pami2026_ninja.html#a6cb5d251dee658538d876344e9a30cab',1,'LibPami2026Ninja::gpio'],['../class_lib_pami2026_ninja_omni.html#ac59bdef1fc11bc496d5f2609be48d364',1,'LibPami2026NinjaOmni::gpio']]],
-  ['gpiopinlist_23',['gpioPinList',['../_lib_pami2025_8cpp.html#a7ac0c97cb766eaae12f442e42395398c',1,'LibPami2025.cpp']]],
-  ['gpiopinlistbasic_24',['gpioPinListBasic',['../_lib_pami2026_8cpp.html#a518ce30b71c1db12b2a6e130d509d0b5',1,'LibPami2026.cpp']]],
-  ['gpiopinlistninja_25',['gpioPinListNinja',['../_lib_pami2026_8cpp.html#a693a97746ba6a1c2b6a572ef4d51994f',1,'LibPami2026.cpp']]],
-  ['gyro_26',['gyro',['../class_lib_pami2025.html#a506e1cb20661aefa2f1a3aa1d95cbb43',1,'LibPami2025::gyro'],['../class_lib_pami2026_basic.html#a3f823230c705a3cdf98437d5410daf91',1,'LibPami2026Basic::gyro'],['../class_lib_pami2026_ninja.html#a05c7ff01ee9e27329696056167b6386e',1,'LibPami2026Ninja::gyro'],['../class_lib_pami2026_ninja_omni.html#abc7fa88df8a155df8f2215720949a11b',1,'LibPami2026NinjaOmni::gyro']]],
-  ['gyroscope_5faxis_5fx_27',['GYROSCOPE_AXIS_X',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaacd782e0609f90f8937268ed0217a7f80',1,'LibGyroscope.h']]],
-  ['gyroscope_5faxis_5fy_28',['GYROSCOPE_AXIS_Y',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaabae670fa35fede4399e110017a3d2f61',1,'LibGyroscope.h']]],
-  ['gyroscope_5faxis_5fz_29',['GYROSCOPE_AXIS_Z',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaae48f41199304c17ab68569d7a8cc6215',1,'LibGyroscope.h']]]
+  ['git_22',['Utilisation de GIT',['../_g_i_t.html',1,'']]],
+  ['gpio_23',['gpio',['../class_lib_pami2025.html#a0b873d547db5ab515356de97e912343e',1,'LibPami2025::gpio'],['../class_lib_pami2026_basic.html#a9bbdf57775e6c7afd0a1983f01c19187',1,'LibPami2026Basic::gpio'],['../class_lib_pami2026_ninja.html#a6cb5d251dee658538d876344e9a30cab',1,'LibPami2026Ninja::gpio'],['../class_lib_pami2026_ninja_omni.html#ac59bdef1fc11bc496d5f2609be48d364',1,'LibPami2026NinjaOmni::gpio']]],
+  ['gpiopinlist_24',['gpioPinList',['../_lib_pami2025_8cpp.html#a7ac0c97cb766eaae12f442e42395398c',1,'LibPami2025.cpp']]],
+  ['gpiopinlistbasic_25',['gpioPinListBasic',['../_lib_pami2026_8cpp.html#a518ce30b71c1db12b2a6e130d509d0b5',1,'LibPami2026.cpp']]],
+  ['gpiopinlistninja_26',['gpioPinListNinja',['../_lib_pami2026_8cpp.html#a693a97746ba6a1c2b6a572ef4d51994f',1,'LibPami2026.cpp']]],
+  ['gyro_27',['gyro',['../class_lib_pami2025.html#a506e1cb20661aefa2f1a3aa1d95cbb43',1,'LibPami2025::gyro'],['../class_lib_pami2026_basic.html#a3f823230c705a3cdf98437d5410daf91',1,'LibPami2026Basic::gyro'],['../class_lib_pami2026_ninja.html#a05c7ff01ee9e27329696056167b6386e',1,'LibPami2026Ninja::gyro'],['../class_lib_pami2026_ninja_omni.html#abc7fa88df8a155df8f2215720949a11b',1,'LibPami2026NinjaOmni::gyro']]],
+  ['gyroscope_5faxis_5fx_28',['GYROSCOPE_AXIS_X',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaacd782e0609f90f8937268ed0217a7f80',1,'LibGyroscope.h']]],
+  ['gyroscope_5faxis_5fy_29',['GYROSCOPE_AXIS_Y',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaabae670fa35fede4399e110017a3d2f61',1,'LibGyroscope.h']]],
+  ['gyroscope_5faxis_5fz_30',['GYROSCOPE_AXIS_Z',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaae48f41199304c17ab68569d7a8cc6215',1,'LibGyroscope.h']]]
 ];

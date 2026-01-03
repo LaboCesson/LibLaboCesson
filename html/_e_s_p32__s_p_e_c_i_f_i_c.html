@@ -112,7 +112,9 @@ Mise en oeuvre d'une sortie PWM</h1>
 <li>en déclarant la sortie en mode analogique : ledcAttach(pin,1000,10)</li>
 <li>en écrivant une valeur entre 0 et 1023 : analogWrite(pin,valeur)</li>
 </ul>
-<p>Plus d'information sur le site suivant : <a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/api/ledc.html" target="_blank" rel="noopener">Librairie LEDC</a> </p>
+<p>Plus d'information sur le site suivant : <a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/api/ledc.html" target="_blank" rel="noopener">Librairie LEDC</a></p>
+<dl class="section warning"><dt>Warning</dt><dd>Le nombre de canaux PWM est limité à 8 pour un ESP32-S2, Il est donc nécessaire de connaitre le nombre de canaux PWM utilisé au total <br  />
+ Par exemple la librairie <a class="el" href="class_lib_moteur.html">LibMoteur</a> utilise jusqu'à 2 canaux PWM </dd></dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->

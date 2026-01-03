@@ -102,6 +102,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a97f5115c112090a8a0ab8f5b40362700"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac590a983836b1ad38f2849bbeafb024b" id="r_ac590a983836b1ad38f2849bbeafb024b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac590a983836b1ad38f2849bbeafb024b">setCanBusDriver</a> (<a class="el" href="class_lib_can2515.html">LibCan2515</a> *p_canBus)</td></tr>
 <tr class="separator:ac590a983836b1ad38f2849bbeafb024b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0adc9417c47933177686c66c45580316" id="r_a0adc9417c47933177686c66c45580316"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0adc9417c47933177686c66c45580316">setMoteurDriver</a> (unsigned char moteur, <a class="el" href="class_lib_moteur.html">LibMoteur</a> *p_moteur)</td></tr>
+<tr class="separator:a0adc9417c47933177686c66c45580316"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7570219241be2dc353542874ddb556a1" id="r_a7570219241be2dc353542874ddb556a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7570219241be2dc353542874ddb556a1">begin</a> (void)</td></tr>
 <tr class="separator:a7570219241be2dc353542874ddb556a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7de5a38a928385d056d96826ea3d07c1" id="r_a7de5a38a928385d056d96826ea3d07c1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7de5a38a928385d056d96826ea3d07c1">gestionMessage</a> ()</td></tr>
@@ -315,6 +317,36 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">debug</td><td>si true les messages de debug sont affichés </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0adc9417c47933177686c66c45580316" name="a0adc9417c47933177686c66c45580316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0adc9417c47933177686c66c45580316">&#9670;&#160;</a></span>setMoteurDriver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LibCanProt::setMoteurDriver </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char</td>          <td class="paramname"><span class="paramname"><em>moteur</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_lib_moteur.html">LibMoteur</a> *</td>          <td class="paramname"><span class="paramname"><em>p_moteur</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permet de donner les références des moteurs</p>
+<p>Il est possible de gérer 2 moteurs </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">moteur</td><td>Moteur à configurer (0-1)  </td></tr>
+    <tr><td class="paramname">p_moteur</td><td>Pointeur vers le gestionnaire de moteur </td></tr>
   </table>
   </dd>
 </dl>

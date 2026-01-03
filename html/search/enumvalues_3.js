@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['moteur_5fl298n_0',['MOTEUR_L298N',['../_lib_moteur_8h.html#a6e9b88313b3b9c67990b815811d8693bad498ed687da9986c75d4b24ecf714c49',1,'LibMoteur.h']]],
-  ['moteur_5fservo_1',['MOTEUR_SERVO',['../_lib_moteur_8h.html#a6e9b88313b3b9c67990b815811d8693baf2eabb700de7cdb17d7546e5ee445ac7',1,'LibMoteur.h']]]
+  ['gyroscope_5faxis_5fx_0',['GYROSCOPE_AXIS_X',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaacd782e0609f90f8937268ed0217a7f80',1,'LibGyroscope.h']]],
+  ['gyroscope_5faxis_5fy_1',['GYROSCOPE_AXIS_Y',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaabae670fa35fede4399e110017a3d2f61',1,'LibGyroscope.h']]],
+  ['gyroscope_5faxis_5fz_2',['GYROSCOPE_AXIS_Z',['../_lib_gyroscope_8h.html#ac9abd7155235df06e96cda700880bbeaae48f41199304c17ab68569d7a8cc6215',1,'LibGyroscope.h']]]
 ];

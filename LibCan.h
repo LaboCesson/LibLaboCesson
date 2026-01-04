@@ -13,6 +13,7 @@
 #include "mcp2515_can.h"
 
 #define DEFAULT_CAN_ID  0x70
+#define CAN_MAGIC_TAG 0xC7
 
 /// \class LibCan2515
 /// \brief La librairie LibCan2515 permet de gérer un bus CAN en émission et en réception
@@ -20,12 +21,12 @@ class LibCan2515
 {
   public:
 
-		/// \details Permet dinitialiser la librairie en utilisant la configuration SPI par défaut
+		/// \details Permet d'initialiser la librairie en utilisant la configuration SPI par défaut
 		LibCan2515(
 			unsigned char csPin ///< Pin associée au signal CS
 		);
 
-		/// \details Permet dinitialiser la librairie en associant des pins non standard pour le SPI
+		/// \details Permet d'initialiser la librairie en associant des pins non standard pour le SPI
 		LibCan2515(
 			unsigned char sckPin,  ///< Pin associée au signal SCK
 			unsigned char misoPin, ///< Pin associée au signal MISO
@@ -121,10 +122,35 @@ class LibCanProt
 			// unsigned char csPin ///< Pin associée au signal CS
 		);
 
+
+		/// \details Permet de configurer l'état d'un pin de l'équipement distant
 		void sendSetPinDigital(unsigned char pin, unsigned char status);
+
+		/// \details Permet de configurer la valeur d'un pin analogique (0-1023) de l'équipement distant
 		void sendSetPinAnalog(unsigned char pin, unsigned short val);
-		void sendSetMoteur(unsigned char moteur, char vitesseGauche, char vitesseDroite);
+
+		/// \details Permet de configurer la vitesse des moteurs associés au moteur 1
+		void sendSetMoteur1(char vitesseGauche, char vitesseDroite);
+
+		/// \details Permet de configurer la vitesse des moteurs associés au moteur 2
+		void sendSetMoteur2(char vitesseGauche, char vitesseDroite);
+
+		/// \details Permet de d'afficher un message sur l'afficheur de l'équipement distant
 		void sendDisplayString(char* message, unsigned char len);
+
+		/// \details Permet de lire l'état d'un pin de l'équipement distant
+		/// \return  Retourne l'état 0/1 ou -1 si aucune réponse n'a été reçu
+		int sendGetPinDigital(unsigned char pin);
+
+		/// \details Permet de lire la valeur analogique d'un pin de l'équipement distant
+		/// \return  Retourne la valeur lue ou -1 si aucune réponse n'a été reçu
+		int sendGetPinAnalog(unsigned char pin);
+
+		/// \details Permet de vider les messages reçus
+		/// \details A utiliser avant l'envoi d'une commande avec une réponse
+		/// pour s'assurer qu'une ancienne réponse après time_out serait prise en compte
+		/// \details A utiliser également à la fin du setup
+		void purgeMessageRecu(void);
 
 		/// \details Permet de valider l'affichage de message de debug
 		void setDebug(
@@ -141,25 +167,53 @@ class LibCanProt
 		LibMoteur  * mp_moteur1 = NULL;
 		LibMoteur  * mp_moteur2 = NULL;
 
-    void setPinDigital(void);
- 		void setPinAnalog (void); 
-    void setMoteur    (unsigned char moteur);
+		void setPinDigital(void);
+		void getPinDigital(void);
+		void setPinAnalog (void);
+		void getPinAnalog (void);
+		void setMoteur    (unsigned char moteur);
     void displayString(void);
 
-		/// \details Affichage du type de message reçu
-		void displayMessageRecu(
-			unsigned char cmd  ///< Code de la commande reçue
+		void returnGetPinDigital(unsigned char pin, unsigned char status);
+		void returnGetPinAnalog (unsigned char pin, unsigned char value);
+
+		//========== Routines de gestion des messages ========
+
+		/// \details Envoi le message présent dans le buffer
+		void envoiMessage(void);
+
+		/// \details Attends une réponse avec un time-out
+		/// \return  Retourne true si un message est présent dans le buffer m_bufferCan et false sinon
+		bool attendReponse(
+			int timeOut  ///< Time-out exprimé en nombre 10ms à attendre
 		);
 
-		/// \details Affichage du type de message reçu
-		void displayMessageEnvoye(
-			unsigned char cmd  ///< Code de la commande envoyée
+
+		//========== Routines d'affichage de messages de debug ========
+
+		void displayPinInfo(
+			unsigned char pin,  ///< Numéro du pin
+			unsigned int  val   ///< Valeur associé au pin
 		);
 
-		/// \details Affichage du libellé de la commade
+		void displayVitessesInfo(
+			char vitesseGauche,  ///< Vitesse moteur Gauche
+			char vitesseDroite   ///< Vitesse moteur Droit
+		);
+
+		/// \details Affichage du libellé de la commande
 		void displayMessageString(
 			unsigned char cmd  ///< Code de la commande
 		);
+
+		/// \details Affichage du type de message reçu
+		void displayMessageReponse(
+			unsigned char cmd  ///< Code de la commande envoyée
+		);
+
+
+
+		int m_valTest = 0;
 
   protected:
 };

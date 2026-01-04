@@ -7,8 +7,10 @@
 
 /**
   Format général d'une commande
-    4 bits : Commande
-    4 bits : Longueur de la commande excluant le byte commande/longueur (n)
+    1 byte : CAN_MAGIC_TAG = 0xC7
+    1 bit  : 0
+    3 bits : Commande
+    4 bits : Longueur de la commande excluant le byte commande/longueur (n) et le Magic tag
     n bytes: Paramètres de la commande
 
     commande BUS_CAN_SET_PIN_DIGITAL :
@@ -20,8 +22,7 @@
 
     commande BUS_CAN_SET_PIN_ANALOGIQUE :
       1 byte : Numéro de pin
-      6 bits : 0
-      2 bits : Poids fort de la valeur analogique
+      1 byte : Poids fort de la valeur analogique
       1 byte : Poids faible de la valeur analogique
 
     commande BUS_CAN_GET_PIN_ANALOGIQUE :
@@ -37,8 +38,10 @@
       n bytes : Code ASCII des caractères à afficher
 
   Format général d'une réponse
-    4 bits : Commande reçue
-    4 bits : Longueur de la réponse excluant le byte commande/longueur (n)
+    1 byte : CAN_MAGIC_TAG = 0xC7
+    1 bit  : 1
+    3 bits : Commande reçue
+    4 bits : Longueur de la réponse excluant le byte commande/longueur (n) et le Magic tag
     n bytes: Paramètres de la réponse
 
     commande BUS_CAN_GET_PIN_DIGITAL :
@@ -47,8 +50,7 @@
 
     commande BUS_CAN_GET_PIN_ANALOGIQUE :
       1 byte : Numéro de pin
-      6 bits : 0
-      2 bits : Poids fort de la valeur analogique
+      1 byte : Poids fort de la valeur analogique
       1 byte : Poids faible de la valeur analogique
 
 */

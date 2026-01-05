@@ -89,16 +89,16 @@ class LibCan2515
 /// \brief Elle s'appuie sur la librairie \ref LibCan2515
 
 #include "LibMoteur.h"
+#include "LibColor.h"
 
 #define BUS_CAN_MESSAGE_MAX_SIZE 64
+#define BUS_CAN_TIME_OUT         100 // Durée d'attente max dune réponse (par unité de 10ms)
 
 class LibCanProt
 {
   public:
 		/// \details 
-		LibCanProt(
-			// unsigned char csPin ///< Pin associée au signal CS
-		);
+		LibCanProt(void);
 
     /// \details Permet de donner les références du driver du bus CAN
     void setCanBusDriver(
@@ -112,12 +112,17 @@ class LibCanProt
 			LibMoteur* p_moteur   ///< Pointeur vers le gestionnaire de moteur
 		);
 
+		/// \details Permet de donner les références du driver du détecteur de couleur
+		void setColorDriver(
+			LibTcs3472* p_color   ///< Pointeur vers le gestionnaire du détecteur de couleur
+		) { mp_color = p_color; }
+
 		/// \details Permet de valider l'interface CAN et le gestion du protocole
 		/// \return Retourne true si le bus CAN est prêt et false sinon 
 		bool begin(	void );
 
 		/// \details Permet de traiter l'arrivée d'un éventuel message
-		/// \return Retourne true si un message a été traité et flase sinon
+		/// \return Retourne true si un message a été traité et false sinon
 		bool gestionMessage(
 			// unsigned char csPin ///< Pin associée au signal CS
 		);
@@ -146,6 +151,11 @@ class LibCanProt
 		/// \return  Retourne la valeur lue ou -1 si aucune réponse n'a été reçu
 		int sendGetPinAnalog(unsigned char pin);
 
+		/// \details Permet de lire les couleurs lues par l'équipement distant
+		/// \return  Retourne les couleurs ou -1 si aucune réponse n'a été reçu <BR>
+		/// Les couleurs sont codées par groupe de 2 bits avec les valeurs définies par \ref t_robot_color
+		int sendGetColor(unsigned char nbColor); ///< Nombre de couleurs à lire
+
 		/// \details Permet de vider les messages reçus
 		/// \details A utiliser avant l'envoi d'une commande avec une réponse
 		/// pour s'assurer qu'une ancienne réponse après time_out serait prise en compte
@@ -166,21 +176,27 @@ class LibCanProt
 		LibCan2515 * mp_canBus  = NULL;
 		LibMoteur  * mp_moteur1 = NULL;
 		LibMoteur  * mp_moteur2 = NULL;
+		LibTcs3472 * mp_color   = NULL;
 
 		void setPinDigital(void);
 		void getPinDigital(void);
 		void setPinAnalog (void);
 		void getPinAnalog (void);
 		void setMoteur    (unsigned char moteur);
-    void displayString(void);
+		void displayString(void);
+		void getColor     (void);
 
 		void returnGetPinDigital(unsigned char pin, unsigned char status);
-		void returnGetPinAnalog (unsigned char pin, unsigned char value);
+		void returnGetPinAnalog(unsigned char pin, unsigned char value);
+		void returnGetColor(unsigned char color);
 
 		//========== Routines de gestion des messages ========
 
 		/// \details Envoi le message présent dans le buffer
 		void envoiMessage(void);
+
+		///// \details Envoi la réponse présente dans le buffer
+		//void envoiReponse(void);
 
 		/// \details Attends une réponse avec un time-out
 		/// \return  Retourne true si un message est présent dans le buffer m_bufferCan et false sinon
@@ -201,19 +217,14 @@ class LibCanProt
 			char vitesseDroite   ///< Vitesse moteur Droit
 		);
 
+		void displayColorInfo(
+			unsigned int color   ///< Description des couleurs
+		);
+
 		/// \details Affichage du libellé de la commande
 		void displayMessageString(
 			unsigned char cmd  ///< Code de la commande
 		);
-
-		/// \details Affichage du type de message reçu
-		void displayMessageReponse(
-			unsigned char cmd  ///< Code de la commande envoyée
-		);
-
-
-
-		int m_valTest = 0;
 
   protected:
 };

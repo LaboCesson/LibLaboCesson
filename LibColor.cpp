@@ -98,10 +98,9 @@ void LibTcs3472::getRGB(unsigned char * p_red, unsigned char * p_green, unsigned
 }
 
 
-t_pami_color LibTcs3472::getColor(void){
-  if( m_begin == false ) return PAMI_COULEUR_INCONNUE;
-
-  return( m_temperature > MILIEU_TEMPERATURE ? PAMI_COULEUR_BLEU : PAMI_COULEUR_JAUNE );
+t_robot_color LibTcs3472::getColor(void){
+  if( m_begin == false ) return ROBOT_COULEUR_INCONNUE;
+  return( m_temperature > MILIEU_TEMPERATURE ? ROBOT_COULEUR_BLEU : ROBOT_COULEUR_JAUNE );
 }
 
 
@@ -160,7 +159,7 @@ void LibMultiTcs3472::gestion(void) {
 }
 
 
-void LibMultiTcs3472::getColors( int nbColor, t_pami_color * p_tabColor ) {
+void LibMultiTcs3472::getColors( int nbColor, t_robot_color* p_tabColor ) {
   if( nbColor > m_nbColor ) nbColor = m_nbColor;
 
   for(int i=0; i<nbColor; i++ ) { p_tabColor[i] = m_tabColor[i].getColor(); }

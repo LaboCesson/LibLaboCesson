@@ -38,8 +38,9 @@ LibRobot2026Robot1Recv::LibRobot2026Robot1Recv() :
   canBus(ROBOT_RECV_CAN_BUS_SCK_PIN, ROBOT_RECV_CAN_BUS_MISO_PIN, ROBOT_RECV_CAN_BUS_MOSI_PIN, ROBOT_RECV_CAN_BUS_CS_PIN),
   canProt(),
   moteur1(ROBOT_MOTEUR1_IN1, ROBOT_MOTEUR1_IN2, ROBOT_MOTEUR1_IN3, ROBOT_MOTEUR1_IN4),
-  moteur2(ROBOT_MOTEUR2_IN1, ROBOT_MOTEUR2_IN2, ROBOT_MOTEUR2_IN3, ROBOT_MOTEUR2_IN4),
-  chrono()
+  moteur2(ROBOT_MOTEUR2_IN1, ROBOT_MOTEUR2_IN2, ROBOT_MOTEUR2_IN3, ROBOT_MOTEUR2_IN4)
+  //color()
+  //chrono()
   // afficheur(PAMI_AFF1637_CLK,PAMI_AFF1637_DATA),
   // jumper(PAMI_JUMPER_TEAM, jumpersPinList, 3),
   // gpio(gpioPinListBasic,nbGpioPinBasic),
@@ -48,15 +49,20 @@ LibRobot2026Robot1Recv::LibRobot2026Robot1Recv() :
   canProt.setCanBusDriver(&canBus);
   canProt.setMoteurDriver(0,&moteur1);
   canProt.setMoteurDriver(1,&moteur2);
+  //canProt.setColorDriver(&color);
+
+  canProt.begin();
+  //color.begin();
 
   // chrono.setDisplay(&afficheur);
 }
 
 
 void LibRobot2026Robot1Recv::gestion(void) {
-  // afficheur.gestion();
   canProt.gestionMessage();
-  chrono.gestion();
+  //color.gestion();
+  //chrono.gestion();
+  // afficheur.gestion();
 }
 
 

@@ -14,6 +14,7 @@
 #include "LibCan.h"
 #include "LibMoteur.h"
 #include "LibChrono.h"
+#include "LibColor.h"
 
 
 class LibRobot2026Robot1Recv
@@ -28,7 +29,8 @@ class LibRobot2026Robot1Recv
     LibCanProt canProt;
     LibMoteur  moteur1;
     LibMoteur  moteur2;
-    LibChrono  chrono;
+    //LibTcs3472 color;
+    //LibChrono  chrono;
 
     // LibAff1637   afficheur; ///< Librairie de gestion d'un afficheur
     // LibJumper    jumper;    ///< Librairie de gestion des jumpers d'un PAMI

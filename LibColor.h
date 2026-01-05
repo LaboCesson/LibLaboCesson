@@ -17,10 +17,10 @@
 #include "LibMuxI2c.h"
 
 typedef enum {
-  PAMI_COULEUR_INCONNUE = 0, ///< Couleur Inconnue détectée
-  PAMI_COULEUR_JAUNE    = 1, ///< Couleur Jaune détectée
-  PAMI_COULEUR_BLEU     = 2, ///< Couleur Bleu détectée
-} t_pami_color;
+  ROBOT_COULEUR_INCONNUE = 0, ///< Couleur Inconnue détectée
+  ROBOT_COULEUR_JAUNE    = 1, ///< Couleur Jaune détectée
+  ROBOT_COULEUR_BLEU     = 2, ///< Couleur Bleu détectée
+} t_robot_color;
 
 
 /// \class LibTcs3472
@@ -59,7 +59,7 @@ class LibTcs3472
 		/// - \ref PAMI_COULEUR_INCONNUE : la couleur n'est ni bleu ni jaune
 		/// - \ref PAMI_COULEUR_JAUNE : la couleur est jaune
 		/// - \ref PAMI_COULEUR_BLEU : la couleur est bleu
-		t_pami_color getColor(void);
+		t_robot_color getColor(void);
 
 		/// \details Permet de valider l'affichage de message de debug
 		void setDebug(
@@ -80,6 +80,8 @@ class LibTcs3472
   
 		void trace(char * msg);
 		// void trace(char * msg, int val);
+
+		//int m_status;
 
   protected:
 };
@@ -114,7 +116,7 @@ class LibMultiTcs3472
 		/// - \ref PAMI_COULEUR_BLEU : la couleur est bleu
 		void getColors(
 			int            nbColor,   ///< Nombre de couleur à retourner (Maximum NB_MAX_MULTI_TCS3472)
-			t_pami_color * p_tabColor ///< pointeur vers le tableau de couleur à retourner
+			t_robot_color* p_tabColor ///< pointeur vers le tableau de couleur à retourner
 		);
 
 		/// \details Permet de valider l'affichage de message de debug

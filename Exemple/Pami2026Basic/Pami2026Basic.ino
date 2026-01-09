@@ -2,7 +2,7 @@
 #include "arduino.h"
 #include "LibPami2026.h"
 
-#define DUREE_WAIT_TO_RUN_PAMI  8000 // Durée d'attente avant de partir pour le PAMI (en ms)
+#define DUREE_WAIT_TO_RUN_PAMI  5000 // Durée d'attente avant de partir pour le PAMI (en ms)
 #define DUREE_RUN_PAMI          3000 // Durée de mouvement pour le PAMI (en ms)
 
 LibPami2026Basic pami;

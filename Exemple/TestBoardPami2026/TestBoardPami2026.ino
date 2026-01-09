@@ -9,15 +9,15 @@
 // #define ALT_TEST
 
 // #define TEST_AFFICHEUR
-#define TEST_RADIO
+// #define TEST_RADIO
 // #define TEST_CHRONO
-#define TEST_GYRO
+// #define TEST_GYRO
 // #define TEST_MOTEUR
 // #define TEST_GPIO
-// #define TEST_SERVO
-#define TEST_JUMPERS
+#define TEST_SERVO
+// #define TEST_JUMPERS
 
-#define GPIO_SERVO PAMI_GPIO_3
+#define GPIO_SERVO PAMI_GPIO_1
 
 #ifdef PAMI_2026_BASIC
   LibPami2026Basic pami;
@@ -46,6 +46,9 @@ void setup() {
   #ifdef TEST_GPIO
     pami.gpio.configure(PAMI_GPIO_1, PAMI_GPIO_OUTPUT, 1);
     pami.gpio.configure(PAMI_GPIO_2, PAMI_GPIO_INPUT);
+  #endif
+
+  #ifdef TEST_SERVO
     pami.gpio.configure(GPIO_SERVO,  PAMI_GPIO_PWM, 0);
   #endif
 

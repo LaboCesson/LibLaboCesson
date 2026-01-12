@@ -62,7 +62,7 @@ void Lib433Mhz::sendMessage( char * p_msg ) {
 }
 
 
-void Lib433Mhz::stop() {
+void Lib433Mhz::stop(void) {
   mp_radio->setModeIdle();
 }
 

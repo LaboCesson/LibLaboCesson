@@ -11,6 +11,8 @@
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -49,19 +51,29 @@ $(function() { codefold.init(0); });
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Search',false);
+  initMenu('',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
-<div id="doc-content">
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){ initResizable(false); });
+$(function(){initNavTree('_lib433_mhz_8h_source.html',''); initResizable(true); });
 /* @license-end */
 </script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -103,68 +115,71 @@ $(function(){ initResizable(false); });
 </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_lib433_mhz.html">   32</a></span><span class="keyword">class </span><a class="code hl_class" href="class_lib433_mhz.html">Lib433Mhz</a></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="class_lib433_mhz.html#a5954f74a686a0dd14f7558f0005c8ac4">Lib433Mhz</a>(</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      <a class="code hl_enumeration" href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719db">t_modeRadio</a>     modeRadio, </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>  speed,     </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>   pin,       </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>               <span class="keywordtype">char</span> * p_pattern  </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    );</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#af68978e32712fd6bc3004bcdf59e271a">begin</a>(</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> msgSize </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    );</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code hl_function" href="class_lib433_mhz.html#a2b99d16634eac5725b7f736bc85588aa">getMessage</a>(</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>               <span class="keywordtype">char</span> * p_msg, </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> length   </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    );</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#ae579de73b0c0788276cadae9801c2cf0">sendMessage</a>(</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      <span class="keywordtype">char</span> * p_msg </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    );</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#a6128a0bb8fad5b9c2fff128e5e89bfe7">stop</a>();</div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_lib433_mhz.html">   40</a></span><span class="keyword">class </span><a class="code hl_class" href="class_lib433_mhz.html">Lib433Mhz</a></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>{</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_function" href="class_lib433_mhz.html#a5954f74a686a0dd14f7558f0005c8ac4">Lib433Mhz</a>(</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <a class="code hl_enumeration" href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719db">t_modeRadio</a>     modeRadio, </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>  speed,     </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>   pin,       </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>               <span class="keywordtype">char</span> * p_pattern  </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    );</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#af68978e32712fd6bc3004bcdf59e271a">begin</a>(</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> msgSize </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    );</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code hl_function" href="class_lib433_mhz.html#a2b99d16634eac5725b7f736bc85588aa">getMessage</a>(</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>               <span class="keywordtype">char</span> * p_msg, </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> length   </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    );</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#a0890845567dd196476342bcefd7937f5">setDebug</a>(</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keywordtype">bool</span> debug </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#ae579de73b0c0788276cadae9801c2cf0">sendMessage</a>(</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keywordtype">char</span> * p_msg </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    );</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">bool</span> m_begin;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">bool</span> m_debug;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> m_speed;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  m_pin;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  m_msgSize;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  m_patternSize;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_enumeration" href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719db">t_modeRadio</a>    m_modeRadio;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    RH_ASK *       mp_radio;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">char</span> * mp_buf;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">char</span> * mp_pattern;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#a57ee985437319d367852901036b596d0">stop</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_lib433_mhz.html#a0890845567dd196476342bcefd7937f5">setDebug</a>(</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <span class="keywordtype">bool</span> debug </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    );</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">bool</span> m_begin;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">bool</span> m_debug;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> m_speed;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  m_pin;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  m_msgSize;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  m_patternSize;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_enumeration" href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719db">t_modeRadio</a>    m_modeRadio;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    RH_ASK *       mp_radio;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">char</span> * mp_buf;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">char</span> * mp_pattern;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>};</div>
 </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="a_lib433_mhz_8h_html_a6d50f903e1f34b75859fc8cf65c719db"><div class="ttname"><a href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719db">t_modeRadio</a></div><div class="ttdeci">t_modeRadio</div><div class="ttdef"><b>Definition</b> Lib433Mhz.h:16</div></div>
 <div class="ttc" id="a_lib433_mhz_8h_html_a6d50f903e1f34b75859fc8cf65c719dba52dc15e3f262718ee878806e93dc02dd"><div class="ttname"><a href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719dba52dc15e3f262718ee878806e93dc02dd">RADIO433MHZ_SEND</a></div><div class="ttdeci">@ RADIO433MHZ_SEND</div><div class="ttdoc">Radio 433Mh en mode émetteur.</div><div class="ttdef"><b>Definition</b> Lib433Mhz.h:18</div></div>
 <div class="ttc" id="a_lib433_mhz_8h_html_a6d50f903e1f34b75859fc8cf65c719dba792558dcfe048ea8b01d45d45e10bc92"><div class="ttname"><a href="_lib433_mhz_8h.html#a6d50f903e1f34b75859fc8cf65c719dba792558dcfe048ea8b01d45d45e10bc92">RADIO433MHZ_RECV</a></div><div class="ttdeci">@ RADIO433MHZ_RECV</div><div class="ttdoc">Radio 433Mh en mode réception.</div><div class="ttdef"><b>Definition</b> Lib433Mhz.h:17</div></div>
-<div class="ttc" id="aclass_lib433_mhz_html"><div class="ttname"><a href="class_lib433_mhz.html">Lib433Mhz</a></div><div class="ttdoc">Gestion des d'un récepteur 433Mhz.</div><div class="ttdef"><b>Definition</b> Lib433Mhz.h:33</div></div>
+<div class="ttc" id="aclass_lib433_mhz_html"><div class="ttname"><a href="class_lib433_mhz.html">Lib433Mhz</a></div><div class="ttdoc">Gestion d'un émetteur/récepteur 433Mhz.</div><div class="ttdef"><b>Definition</b> Lib433Mhz.h:41</div></div>
 <div class="ttc" id="aclass_lib433_mhz_html_a0890845567dd196476342bcefd7937f5"><div class="ttname"><a href="class_lib433_mhz.html#a0890845567dd196476342bcefd7937f5">Lib433Mhz::setDebug</a></div><div class="ttdeci">void setDebug(bool debug)</div><div class="ttdef"><b>Definition</b> Lib433Mhz.cpp:70</div></div>
 <div class="ttc" id="aclass_lib433_mhz_html_a2b99d16634eac5725b7f736bc85588aa"><div class="ttname"><a href="class_lib433_mhz.html#a2b99d16634eac5725b7f736bc85588aa">Lib433Mhz::getMessage</a></div><div class="ttdeci">unsigned char getMessage(char *p_msg, unsigned char length)</div><div class="ttdef"><b>Definition</b> Lib433Mhz.cpp:40</div></div>
+<div class="ttc" id="aclass_lib433_mhz_html_a57ee985437319d367852901036b596d0"><div class="ttname"><a href="class_lib433_mhz.html#a57ee985437319d367852901036b596d0">Lib433Mhz::stop</a></div><div class="ttdeci">void stop(void)</div><div class="ttdef"><b>Definition</b> Lib433Mhz.cpp:65</div></div>
 <div class="ttc" id="aclass_lib433_mhz_html_a5954f74a686a0dd14f7558f0005c8ac4"><div class="ttname"><a href="class_lib433_mhz.html#a5954f74a686a0dd14f7558f0005c8ac4">Lib433Mhz::Lib433Mhz</a></div><div class="ttdeci">Lib433Mhz(t_modeRadio modeRadio, unsigned short speed, unsigned char pin, char *p_pattern)</div><div class="ttdef"><b>Definition</b> Lib433Mhz.cpp:12</div></div>
-<div class="ttc" id="aclass_lib433_mhz_html_a6128a0bb8fad5b9c2fff128e5e89bfe7"><div class="ttname"><a href="class_lib433_mhz.html#a6128a0bb8fad5b9c2fff128e5e89bfe7">Lib433Mhz::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition</b> Lib433Mhz.cpp:65</div></div>
 <div class="ttc" id="aclass_lib433_mhz_html_ae579de73b0c0788276cadae9801c2cf0"><div class="ttname"><a href="class_lib433_mhz.html#ae579de73b0c0788276cadae9801c2cf0">Lib433Mhz::sendMessage</a></div><div class="ttdeci">void sendMessage(char *p_msg)</div><div class="ttdef"><b>Definition</b> Lib433Mhz.cpp:55</div></div>
 <div class="ttc" id="aclass_lib433_mhz_html_af68978e32712fd6bc3004bcdf59e271a"><div class="ttname"><a href="class_lib433_mhz.html#af68978e32712fd6bc3004bcdf59e271a">Lib433Mhz::begin</a></div><div class="ttdeci">void begin(unsigned char msgSize)</div><div class="ttdef"><b>Definition</b> Lib433Mhz.cpp:23</div></div>
 </div><!-- fragment --></div><!-- contents -->
-<!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
-</small></address>
 </div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="_lib433_mhz_8h.html">Lib433Mhz.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
 </body>
 </html>

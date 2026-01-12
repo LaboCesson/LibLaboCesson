@@ -7,8 +7,9 @@ Les classes ont été compilées pour les famillles suivantes de microcontroleur
  - Arduino
  - ESP32
 
-Les librairies ont été testées avec l'IDE Arduino .
-La page \ref IDE_FOR_ESP32 décrit comment configurer l'IDE Arduino pour compiler pour un ESP32
+Les librairies ont été testées avec l'IDE Arduino.<BR>
+La page \ref IDE_FOR_ESP32 décrit comment configurer l'IDE Arduino pour compiler pour un ESP32<BR>
+La page \ref ESP32_SPECIFIC donne des informations sur des spécificités de l'ESP32 dont il faut tenir compte lors des développements
 
 La page \ref USE_LIBRARY donne plus d'informations sur la librairie et sa mise en oeuvre
 

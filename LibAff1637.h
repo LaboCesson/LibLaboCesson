@@ -89,10 +89,10 @@ class LibAff1637
       unsigned char pos = 0     ///< Premier digit concerné (de 0 à 3)
     );
 
-    void displayValue(         char value); ///< \param value Valeur à afficher \details Permet d'afficher un char
-	void displayValue(unsigned char value); ///< \param value Valeur à afficher \details Permet d'afficher un unsigned char
-    void displayValue(         int  value); ///< \param value Valeur à afficher \details Permet d'afficher un int
-    void displayValue(unsigned int  value); ///< \param value Valeur à afficher \details Permet d'afficher un unsigned int
+    void displayValue(         char value); ///< \details Permet d'afficher un **char**          \param value Valeur à afficher
+	  void displayValue(unsigned char value); ///< \details Permet d'afficher un **unsigned char** \param value Valeur à afficher
+    void displayValue(         int  value); ///< \details Permet d'afficher un **int**           \param value Valeur à afficher
+    void displayValue(unsigned int  value); ///< \details Permet d'afficher un **unsigned int**  \param value Valeur à afficher
 
   private:
 	bool m_begin;

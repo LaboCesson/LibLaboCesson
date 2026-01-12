@@ -11,6 +11,8 @@
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -49,17 +51,29 @@ $(function() { codefold.init(0); });
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Search',false);
+  initMenu('',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){ initResizable(false); });
+$(function(){initNavTree('class_lib433_mhz.html',''); initResizable(true); });
 /* @license-end */
 </script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,8 +95,6 @@ $(function(){ initResizable(false); });
 </div>
 </div>
 
-</div><!-- top -->
-<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -91,7 +103,7 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
-<p>Gestion des d'un récepteur 433Mhz.  
+<p>Gestion d'un émetteur/récepteur 433Mhz.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_lib433_mhz_8h_source.html">Lib433Mhz.h</a>&gt;</code></p>
@@ -106,27 +118,21 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2b99d16634eac5725b7f736bc85588aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae579de73b0c0788276cadae9801c2cf0" id="r_ae579de73b0c0788276cadae9801c2cf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae579de73b0c0788276cadae9801c2cf0">sendMessage</a> (char *p_msg)</td></tr>
 <tr class="separator:ae579de73b0c0788276cadae9801c2cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6128a0bb8fad5b9c2fff128e5e89bfe7" id="r_a6128a0bb8fad5b9c2fff128e5e89bfe7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6128a0bb8fad5b9c2fff128e5e89bfe7">stop</a> ()</td></tr>
-<tr class="separator:a6128a0bb8fad5b9c2fff128e5e89bfe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57ee985437319d367852901036b596d0" id="r_a57ee985437319d367852901036b596d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57ee985437319d367852901036b596d0">stop</a> (void)</td></tr>
+<tr class="separator:a57ee985437319d367852901036b596d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0890845567dd196476342bcefd7937f5" id="r_a0890845567dd196476342bcefd7937f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0890845567dd196476342bcefd7937f5">setDebug</a> (bool debug)</td></tr>
 <tr class="separator:a0890845567dd196476342bcefd7937f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Gestion des d'un récepteur 433Mhz. </p>
+<div class="textblock"><p>Gestion d'un émetteur/récepteur 433Mhz. </p>
 <ul>
 <li><a href="http://www.eeant.com/datasheet/et-rxb-12.pdf">Documentation du Récepteur RXB-12 0 </a></li>
-</ul>
-<ul>
 <li><a href="https://dl.keyhanelc.com/B6/A307.pdf">HowTo 1 </a></li>
-</ul>
-<ul>
 <li><a href="https://content.instructables.com/FUT/M44H/KYR9VTKC/FUTM44HKYR9VTKC.pdf">HowTo 2 </a></li>
 </ul>
-<p>La librairie a utilisée est <a href="https://www.airspayce.com/mikem/arduino/RadioHead/RadioHead-1.142.zip">La librairie RadioHead </a> </p><dl class="section attention"><dt>Attention</dt><dd>Il est nécessaire de modifier le fichier RH_ASK.cpp et décommenter la ligne </dd>
-<dd>
-#define RH_ASK_ARDUINO_USE_TIMER2 </dd>
-<dd>
-pour éviter les incompatibilité avec la librairie 'servo' </dd></dl>
+<p>La librairie à utiliser est la librairie <a href="https://www.airspayce.com/mikem/arduino/RadioHead/RadioHead-1.142.zip"><b>RadioHead</b></a><br  />
+ La documentation sur la librairie est disponible <a href="https://www.airspayce.com/mikem/arduino/RadioHead/index.html" target="_blank" rel="noopener"><b>ICI</b></a> </p><dl class="section attention"><dt>Attention</dt><dd>Il est nécessaire de modifier le fichier ** C:\Users\&lt;username&gt;\Documents\Arduino\Libraries\RadioHead\RH_ASK.cpp** et décommenter la ligne <div class="fragment"><div class="line"><span class="preprocessor">#define RH_ASK_ARDUINO_USE_TIMER2</span></div>
+</div><!-- fragment --> pour éviter les incompatibilité avec la librairie 'servo' </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5954f74a686a0dd14f7558f0005c8ac4" name="a5954f74a686a0dd14f7558f0005c8ac4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5954f74a686a0dd14f7558f0005c8ac4">&#9670;&#160;</a></span>Lib433Mhz()</h2>
@@ -158,8 +164,8 @@ pour éviter les incompatibilité avec la librairie 'servo' </dd></dl>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">modeRadio</td><td>Indique si l'on est en mode émission ou reception  </td></tr>
-    <tr><td class="paramname">speed</td><td>Vitesse de transmission  </td></tr>
+    <tr><td class="paramname">modeRadio</td><td>Indique si l'on est en mode émission ou réception  </td></tr>
+    <tr><td class="paramname">speed</td><td>Vitesse de transmission en bits par seconde (Typiquement 2000)  </td></tr>
     <tr><td class="paramname">pin</td><td>Numéro du pin associé au récepteur ou au transmetteur  </td></tr>
     <tr><td class="paramname">p_pattern</td><td>Pointeur vers le pattern permettant de filtrer les messages (doit être terminé par un 0) </td></tr>
   </table>
@@ -186,7 +192,7 @@ pour éviter les incompatibilité avec la librairie 'servo' </dd></dl>
 <p>Permet d'initialiser et de valider le module radio </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">msgSize</td><td>Taille maximum des messages échangées </td></tr>
+    <tr><td class="paramname">msgSize</td><td>Taille maximum des messages échangés </td></tr>
   </table>
   </dd>
 </dl>
@@ -214,8 +220,8 @@ pour éviter les incompatibilité avec la librairie 'servo' </dd></dl>
 <p>Permet de lire un message reçu par radio </p><dl class="section return"><dt>Returns</dt><dd>Retourne la longueur du message lu </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p_msg</td><td>Pointeur vers ou écrire le message lu  </td></tr>
-    <tr><td class="paramname">length</td><td>longueur maximum du message à retourner </td></tr>
+    <tr><td class="paramname">p_msg</td><td>Pointeur vers où écrire le message lu  </td></tr>
+    <tr><td class="paramname">length</td><td>Longueur maximum du message à retourner </td></tr>
   </table>
   </dd>
 </dl>
@@ -239,7 +245,7 @@ pour éviter les incompatibilité avec la librairie 'servo' </dd></dl>
 <p>Permet d'envoyer un message par radio </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p_msg</td><td>Pointeur vers ou écrire le message lu (doit se terminer par un 0) </td></tr>
+    <tr><td class="paramname">p_msg</td><td>Pointeur vers où écrire le message lu (doit se terminer par un 0) </td></tr>
   </table>
   </dd>
 </dl>
@@ -260,7 +266,7 @@ pour éviter les incompatibilité avec la librairie 'servo' </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Permet de valider l'affichage de message de debug </p>
+<p>Permet de valider l'affichage de messages de debug </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">debug</td><td>si true les messages de debug sont affichés </td></tr>
@@ -270,8 +276,8 @@ pour éviter les incompatibilité avec la librairie 'servo' </dd></dl>
 
 </div>
 </div>
-<a id="a6128a0bb8fad5b9c2fff128e5e89bfe7" name="a6128a0bb8fad5b9c2fff128e5e89bfe7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6128a0bb8fad5b9c2fff128e5e89bfe7">&#9670;&#160;</a></span>stop()</h2>
+<a id="a57ee985437319d367852901036b596d0" name="a57ee985437319d367852901036b596d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57ee985437319d367852901036b596d0">&#9670;&#160;</a></span>stop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,7 +285,7 @@ pour éviter les incompatibilité avec la librairie 'servo' </dd></dl>
         <tr>
           <td class="memname">void Lib433Mhz::stop </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -293,10 +299,13 @@ pour éviter les incompatibilité avec la librairie 'servo' </dd></dl>
 <li><a class="el" href="_lib433_mhz_8cpp.html">Lib433Mhz.cpp</a></li>
 </ul>
 </div><!-- contents -->
-<!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
-</small></address>
 </div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_lib433_mhz.html">Lib433Mhz</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
 </body>
 </html>

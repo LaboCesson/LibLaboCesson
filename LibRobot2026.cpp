@@ -52,7 +52,7 @@ LibRobot2026Robot1Recv::LibRobot2026Robot1Recv() :
   //canProt.setColorDriver(&color);
 
   canProt.begin();
-  //color.begin();
+  // color.begin();
 
   // chrono.setDisplay(&afficheur);
 }

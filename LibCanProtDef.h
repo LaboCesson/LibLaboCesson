@@ -40,6 +40,10 @@
     commande BUS_CAN_GET_COLOR :
       1 bytes : Nombre de couleurs à afficher
 
+    commande BUS_CAN_SET_PWM :
+      1 byte : Numéro de GPIO (0-5)
+      1 byte : Angle (Valeur signée)
+
   Format général d'une réponse
     1 byte : CAN_MAGIC_TAG = 0xC7
     1 bit  : 1
@@ -75,6 +79,7 @@
 #define BUS_CAN_SET_MOTEUR_2       6
 #define BUS_CAN_DISPLAY_STRING     7
 #define BUS_CAN_GET_COLOR          8
+#define BUS_CAN_SET_GPIO_PWM       9
 #define BUS_CAN_CUSTOM_COMMAND     10
 
 #endif

@@ -3,11 +3,14 @@ var searchData=
   ['begin_0',['begin',['../class_lib433_mhz.html#af68978e32712fd6bc3004bcdf59e271a',1,'Lib433Mhz::begin()'],['../class_lib_aff1637.html#ac74e02500556498edc536148c5cb1418',1,'LibAff1637::begin()'],['../class_lib_can2515.html#a63d288cd3da744b17e7dc6fe677902bc',1,'LibCan2515::begin()'],['../class_lib_can_prot.html#a7570219241be2dc353542874ddb556a1',1,'LibCanProt::begin()'],['../class_lib_chrono.html#af429a8e532863ddb04a01060a1633f00',1,'LibChrono::begin()'],['../class_lib_clavier.html#a88f58cc8cbff716780302b45c739e776',1,'LibClavier::begin()'],['../class_lib_tcs3472.html#adebf354821aa911930d9e0918ec65b48',1,'LibTcs3472::begin()'],['../class_lib_multi_tcs3472.html#a31a748caea045a1884f8eb097c697a06',1,'LibMultiTcs3472::begin()'],['../class_lib_gyroscope.html#a9e2a15f13998a505dcb611fdf7c2ef92',1,'LibGyroscope::begin()'],['../class_lib_matrice.html#a3527c52695b415fce0809cd4c8fbde40',1,'LibMatrice::begin()'],['../class_lib_mcp23008.html#a914513f7008bfd7aab0ee5b80c2c5e37',1,'LibMcp23008::begin()'],['../class_lib_moteur_s.html#a7f6b89445d1c1dabed7a0c17aa9f5078',1,'LibMoteurS::begin()'],['../class_lib_ultrason.html#a1d1e28257791229594d1432b9af7a240',1,'LibUltrason::begin()'],['../class_lib_vl53lox.html#a46359a8985f73094da80d3bfd744ae4c',1,'LibVl53lox::begin()']]],
   ['bus_5fcan_5fcustom_5fcommand_1',['BUS_CAN_CUSTOM_COMMAND',['../_lib_can_prot_def_8h.html#a50fc8b8e89b150a9d04eb2070b8745b8',1,'LibCanProtDef.h']]],
   ['bus_5fcan_5fdisplay_5fstring_2',['BUS_CAN_DISPLAY_STRING',['../_lib_can_prot_def_8h.html#a0c83099be5c87176f4bfb177ffd198a2',1,'LibCanProtDef.h']]],
-  ['bus_5fcan_5fget_5fpin_5fanalogique_3',['BUS_CAN_GET_PIN_ANALOGIQUE',['../_lib_can_prot_def_8h.html#a2300f7bfaa0ec2d99f71a3c5936cbf37',1,'LibCanProtDef.h']]],
-  ['bus_5fcan_5fget_5fpin_5fdigital_4',['BUS_CAN_GET_PIN_DIGITAL',['../_lib_can_prot_def_8h.html#aaeb4dfa7aa05bad5903bdc3180169a12',1,'LibCanProtDef.h']]],
-  ['bus_5fcan_5fmessage_5fmax_5fsize_5',['BUS_CAN_MESSAGE_MAX_SIZE',['../_lib_can_8h.html#aba38143fa913a3fac654a6b1ed590432',1,'LibCan.h']]],
-  ['bus_5fcan_5fset_5fmoteur_5f1_6',['BUS_CAN_SET_MOTEUR_1',['../_lib_can_prot_def_8h.html#ace5e2bb6d0674c2a5b93119a0b57b9dd',1,'LibCanProtDef.h']]],
-  ['bus_5fcan_5fset_5fmoteur_5f2_7',['BUS_CAN_SET_MOTEUR_2',['../_lib_can_prot_def_8h.html#a9aab88fb2e4337a164d8417c639b6849',1,'LibCanProtDef.h']]],
-  ['bus_5fcan_5fset_5fpin_5fanalogique_8',['BUS_CAN_SET_PIN_ANALOGIQUE',['../_lib_can_prot_def_8h.html#a03b620f8d83b147deb212df1c3426031',1,'LibCanProtDef.h']]],
-  ['bus_5fcan_5fset_5fpin_5fdigital_9',['BUS_CAN_SET_PIN_DIGITAL',['../_lib_can_prot_def_8h.html#a727fbc5b436ec3a0d22e0de4c1b2518a',1,'LibCanProtDef.h']]]
+  ['bus_5fcan_5fget_5fcolor_3',['BUS_CAN_GET_COLOR',['../_lib_can_prot_def_8h.html#af0a762b981e699261673a322aeb33caa',1,'LibCanProtDef.h']]],
+  ['bus_5fcan_5fget_5fpin_5fanalogique_4',['BUS_CAN_GET_PIN_ANALOGIQUE',['../_lib_can_prot_def_8h.html#a2300f7bfaa0ec2d99f71a3c5936cbf37',1,'LibCanProtDef.h']]],
+  ['bus_5fcan_5fget_5fpin_5fdigital_5',['BUS_CAN_GET_PIN_DIGITAL',['../_lib_can_prot_def_8h.html#aaeb4dfa7aa05bad5903bdc3180169a12',1,'LibCanProtDef.h']]],
+  ['bus_5fcan_5fmessage_5fmax_5fsize_6',['BUS_CAN_MESSAGE_MAX_SIZE',['../_lib_can_8h.html#aba38143fa913a3fac654a6b1ed590432',1,'LibCan.h']]],
+  ['bus_5fcan_5fset_5fgpio_5fpwm_7',['BUS_CAN_SET_GPIO_PWM',['../_lib_can_prot_def_8h.html#a8a57597256f3a1989d514ba3c37cea6c',1,'LibCanProtDef.h']]],
+  ['bus_5fcan_5fset_5fmoteur_5f1_8',['BUS_CAN_SET_MOTEUR_1',['../_lib_can_prot_def_8h.html#ace5e2bb6d0674c2a5b93119a0b57b9dd',1,'LibCanProtDef.h']]],
+  ['bus_5fcan_5fset_5fmoteur_5f2_9',['BUS_CAN_SET_MOTEUR_2',['../_lib_can_prot_def_8h.html#a9aab88fb2e4337a164d8417c639b6849',1,'LibCanProtDef.h']]],
+  ['bus_5fcan_5fset_5fpin_5fanalogique_10',['BUS_CAN_SET_PIN_ANALOGIQUE',['../_lib_can_prot_def_8h.html#a03b620f8d83b147deb212df1c3426031',1,'LibCanProtDef.h']]],
+  ['bus_5fcan_5fset_5fpin_5fdigital_11',['BUS_CAN_SET_PIN_DIGITAL',['../_lib_can_prot_def_8h.html#a727fbc5b436ec3a0d22e0de4c1b2518a',1,'LibCanProtDef.h']]],
+  ['bus_5fcan_5ftime_5fout_12',['BUS_CAN_TIME_OUT',['../_lib_can_8h.html#a03575ca323f23b83d5d7c880cf01006f',1,'LibCan.h']]]
 ];

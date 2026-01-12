@@ -11,6 +11,8 @@
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -49,17 +51,29 @@ $(function() { codefold.init(0); });
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Search',false);
+  initMenu('',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){ initResizable(false); });
+$(function(){initNavTree('class_lib_can_prot.html',''); initResizable(true); });
 /* @license-end */
 </script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,8 +95,6 @@ $(function(){ initResizable(false); });
 </div>
 </div>
 
-</div><!-- top -->
-<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -98,12 +110,16 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a97f5115c112090a8a0ab8f5b40362700" id="r_a97f5115c112090a8a0ab8f5b40362700"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97f5115c112090a8a0ab8f5b40362700">LibCanProt</a> ()</td></tr>
-<tr class="separator:a97f5115c112090a8a0ab8f5b40362700"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2e83b6934c8136fd358806c388c105b" id="r_ac2e83b6934c8136fd358806c388c105b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2e83b6934c8136fd358806c388c105b">LibCanProt</a> (void)</td></tr>
+<tr class="separator:ac2e83b6934c8136fd358806c388c105b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac590a983836b1ad38f2849bbeafb024b" id="r_ac590a983836b1ad38f2849bbeafb024b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac590a983836b1ad38f2849bbeafb024b">setCanBusDriver</a> (<a class="el" href="class_lib_can2515.html">LibCan2515</a> *p_canBus)</td></tr>
 <tr class="separator:ac590a983836b1ad38f2849bbeafb024b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0adc9417c47933177686c66c45580316" id="r_a0adc9417c47933177686c66c45580316"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0adc9417c47933177686c66c45580316">setMoteurDriver</a> (unsigned char moteur, <a class="el" href="class_lib_moteur.html">LibMoteur</a> *p_moteur)</td></tr>
 <tr class="separator:a0adc9417c47933177686c66c45580316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf77788aac3f9daa2b086f5c204c44e8" id="r_aaf77788aac3f9daa2b086f5c204c44e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf77788aac3f9daa2b086f5c204c44e8">setColorDriver</a> (<a class="el" href="class_lib_tcs3472.html">LibTcs3472</a> *p_color)</td></tr>
+<tr class="separator:aaf77788aac3f9daa2b086f5c204c44e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea23bf3d01b8333b257502576f6e5331" id="r_aea23bf3d01b8333b257502576f6e5331"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea23bf3d01b8333b257502576f6e5331">setGpioDriver</a> (<a class="el" href="class_lib_gpio.html">LibGpio</a> *p_gpio)</td></tr>
+<tr class="separator:aea23bf3d01b8333b257502576f6e5331"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7570219241be2dc353542874ddb556a1" id="r_a7570219241be2dc353542874ddb556a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7570219241be2dc353542874ddb556a1">begin</a> (void)</td></tr>
 <tr class="separator:a7570219241be2dc353542874ddb556a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7de5a38a928385d056d96826ea3d07c1" id="r_a7de5a38a928385d056d96826ea3d07c1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7de5a38a928385d056d96826ea3d07c1">gestionMessage</a> ()</td></tr>
@@ -112,10 +128,23 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abd531e9d73a53f4c2958a55436154de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8995c2ae8a6605ef6582584cdf0a341" id="r_ae8995c2ae8a6605ef6582584cdf0a341"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8995c2ae8a6605ef6582584cdf0a341">sendSetPinAnalog</a> (unsigned char pin, unsigned short val)</td></tr>
 <tr class="separator:ae8995c2ae8a6605ef6582584cdf0a341"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72f9e52c4b1628c698c9e72ee8e5276c" id="r_a72f9e52c4b1628c698c9e72ee8e5276c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72f9e52c4b1628c698c9e72ee8e5276c">sendSetMoteur</a> (unsigned char moteur, char vitesseGauche, char vitesseDroite)</td></tr>
-<tr class="separator:a72f9e52c4b1628c698c9e72ee8e5276c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4879bb5d70320a1ea5d72d2ba14dc25f" id="r_a4879bb5d70320a1ea5d72d2ba14dc25f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4879bb5d70320a1ea5d72d2ba14dc25f">sendSetMoteur1</a> (char vitesseGauche, char vitesseDroite)</td></tr>
+<tr class="separator:a4879bb5d70320a1ea5d72d2ba14dc25f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a569c3deccf575ed9f8a1eb6300a03f35" id="r_a569c3deccf575ed9f8a1eb6300a03f35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a569c3deccf575ed9f8a1eb6300a03f35">sendSetMoteur2</a> (char vitesseGauche, char vitesseDroite)</td></tr>
+<tr class="separator:a569c3deccf575ed9f8a1eb6300a03f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7e25f6d1b3143a3805a5d45f86078aa" id="r_ac7e25f6d1b3143a3805a5d45f86078aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7e25f6d1b3143a3805a5d45f86078aa">sendDisplayString</a> (char *message, unsigned char len)</td></tr>
 <tr class="separator:ac7e25f6d1b3143a3805a5d45f86078aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5570fc9f48ec79db5417f51f9ce70702" id="r_a5570fc9f48ec79db5417f51f9ce70702"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5570fc9f48ec79db5417f51f9ce70702">sendGetPinDigital</a> (unsigned char pin)</td></tr>
+<tr class="separator:a5570fc9f48ec79db5417f51f9ce70702"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a808348d6ee4bf2c0255cc8ab14d3225a" id="r_a808348d6ee4bf2c0255cc8ab14d3225a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a808348d6ee4bf2c0255cc8ab14d3225a">sendGetPinAnalog</a> (unsigned char pin)</td></tr>
+<tr class="separator:a808348d6ee4bf2c0255cc8ab14d3225a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfeec55163c4d5b0df83ec4b09ecbe51" id="r_acfeec55163c4d5b0df83ec4b09ecbe51"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfeec55163c4d5b0df83ec4b09ecbe51">sendGetColor</a> (unsigned char nbColor)</td></tr>
+<tr class="memdesc:acfeec55163c4d5b0df83ec4b09ecbe51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de couleurs à lire.  <br /></td></tr>
+<tr class="separator:acfeec55163c4d5b0df83ec4b09ecbe51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a038c2b450049d07bec9cb95caf77223e" id="r_a038c2b450049d07bec9cb95caf77223e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a038c2b450049d07bec9cb95caf77223e">sendSetGpioPwm</a> (unsigned char gpio, char angle)</td></tr>
+<tr class="separator:a038c2b450049d07bec9cb95caf77223e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8190f6b37343ec1909648e83618c2a5" id="r_af8190f6b37343ec1909648e83618c2a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8190f6b37343ec1909648e83618c2a5">purgeMessageRecu</a> (void)</td></tr>
+<tr class="separator:af8190f6b37343ec1909648e83618c2a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae025432e7e535533892010f9e14c809d" id="r_ae025432e7e535533892010f9e14c809d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae025432e7e535533892010f9e14c809d">setDebug</a> (bool debug)</td></tr>
 <tr class="separator:ae025432e7e535533892010f9e14c809d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -123,8 +152,8 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>La librairie <a class="el" href="class_lib_can_prot.html" title="La librairie LibCanProt permet de gérer le protocole utilisé entre le poste de commande du robot et l...">LibCanProt</a> permet de gérer le protocole utilisé entre le poste de commande du robot et le robot. </p>
 <p>Elle s'appuie sur la librairie <a class="el" href="class_lib_can2515.html">LibCan2515</a> </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a97f5115c112090a8a0ab8f5b40362700" name="a97f5115c112090a8a0ab8f5b40362700"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97f5115c112090a8a0ab8f5b40362700">&#9670;&#160;</a></span>LibCanProt()</h2>
+<a id="ac2e83b6934c8136fd358806c388c105b" name="ac2e83b6934c8136fd358806c388c105b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2e83b6934c8136fd358806c388c105b">&#9670;&#160;</a></span>LibCanProt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -132,7 +161,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">LibCanProt::LibCanProt </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -174,7 +203,27 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Permet de traiter l'arrivée d'un éventuel message </p><dl class="section return"><dt>Returns</dt><dd>Retourne true si un message a été traité et flase sinon </dd></dl>
+<p>Permet de traiter l'arrivée d'un éventuel message </p><dl class="section return"><dt>Returns</dt><dd>Retourne true si un message a été traité et false sinon </dd></dl>
+
+</div>
+</div>
+<a id="af8190f6b37343ec1909648e83618c2a5" name="af8190f6b37343ec1909648e83618c2a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8190f6b37343ec1909648e83618c2a5">&#9670;&#160;</a></span>purgeMessageRecu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LibCanProt::purgeMessageRecu </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permet de vider les messages reçus</p>
+<p>A utiliser avant l'envoi d'une commande avec une réponse pour s'assurer qu'une ancienne réponse après time_out serait prise en compte</p>
+<p>A utiliser également à la fin du setup </p>
 
 </div>
 </div>
@@ -196,23 +245,99 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Permet de d'afficher un message sur l'afficheur de l'équipement distant </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo</a></b></dt><dd>sendDisplayString </dd></dl>
 
 </div>
 </div>
-<a id="a72f9e52c4b1628c698c9e72ee8e5276c" name="a72f9e52c4b1628c698c9e72ee8e5276c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72f9e52c4b1628c698c9e72ee8e5276c">&#9670;&#160;</a></span>sendSetMoteur()</h2>
+<a id="acfeec55163c4d5b0df83ec4b09ecbe51" name="acfeec55163c4d5b0df83ec4b09ecbe51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfeec55163c4d5b0df83ec4b09ecbe51">&#9670;&#160;</a></span>sendGetColor()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void LibCanProt::sendSetMoteur </td>
+          <td class="memname">int LibCanProt::sendGetColor </td>
           <td>(</td>
-          <td class="paramtype">unsigned char</td>          <td class="paramname"><span class="paramname"><em>moteur</em></span>, </td>
+          <td class="paramtype">unsigned char</td>          <td class="paramname"><span class="paramname"><em>nbColor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Nombre de couleurs à lire. </p>
+<p>Permet de lire les couleurs lues par l'équipement distant </p><dl class="section return"><dt>Returns</dt><dd>Retourne les couleurs ou -1 si aucune réponse n'a été reçu <br  />
+ Les couleurs sont codées par groupe de 2 bits avec les valeurs définies par <a class="el" href="_lib_color_8h.html#a938581012bdb1e2a0ac0220d95ccb458">t_robot_color</a> </dd></dl>
+
+</div>
+</div>
+<a id="a808348d6ee4bf2c0255cc8ab14d3225a" name="a808348d6ee4bf2c0255cc8ab14d3225a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a808348d6ee4bf2c0255cc8ab14d3225a">&#9670;&#160;</a></span>sendGetPinAnalog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LibCanProt::sendGetPinAnalog </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char</td>          <td class="paramname"><span class="paramname"><em>pin</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permet de lire la valeur analogique d'un pin de l'équipement distant </p><dl class="section return"><dt>Returns</dt><dd>Retourne la valeur lue ou -1 si aucune réponse n'a été reçu </dd></dl>
+
+</div>
+</div>
+<a id="a5570fc9f48ec79db5417f51f9ce70702" name="a5570fc9f48ec79db5417f51f9ce70702"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5570fc9f48ec79db5417f51f9ce70702">&#9670;&#160;</a></span>sendGetPinDigital()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LibCanProt::sendGetPinDigital </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char</td>          <td class="paramname"><span class="paramname"><em>pin</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permet de lire l'état d'un pin de l'équipement distant </p><dl class="section return"><dt>Returns</dt><dd>Retourne l'état 0/1 ou -1 si aucune réponse n'a été reçu </dd></dl>
+
+</div>
+</div>
+<a id="a038c2b450049d07bec9cb95caf77223e" name="a038c2b450049d07bec9cb95caf77223e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a038c2b450049d07bec9cb95caf77223e">&#9670;&#160;</a></span>sendSetGpioPwm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LibCanProt::sendSetGpioPwm </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char</td>          <td class="paramname"><span class="paramname"><em>gpio</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>angle</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permet de configurer l'angle de rotation d'un servoMoteur désigné par son numéro de pin </p>
+
+</div>
+</div>
+<a id="a4879bb5d70320a1ea5d72d2ba14dc25f" name="a4879bb5d70320a1ea5d72d2ba14dc25f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4879bb5d70320a1ea5d72d2ba14dc25f">&#9670;&#160;</a></span>sendSetMoteur1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LibCanProt::sendSetMoteur1 </td>
+          <td>(</td>
           <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>vitesseGauche</em></span>, </td>
         </tr>
         <tr>
@@ -222,6 +347,29 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Permet de configurer la vitesse des moteurs associés au moteur 1 </p>
+
+</div>
+</div>
+<a id="a569c3deccf575ed9f8a1eb6300a03f35" name="a569c3deccf575ed9f8a1eb6300a03f35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a569c3deccf575ed9f8a1eb6300a03f35">&#9670;&#160;</a></span>sendSetMoteur2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LibCanProt::sendSetMoteur2 </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>vitesseGauche</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>vitesseDroite</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Permet de configurer la vitesse des moteurs associés au moteur 2 </p>
 
 </div>
 </div>
@@ -243,6 +391,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Permet de configurer la valeur d'un pin analogique (0-1023) de l'équipement distant </p>
 
 </div>
 </div>
@@ -264,6 +413,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Permet de configurer l'état d'un pin de l'équipement distant </p>
 
 </div>
 </div>
@@ -299,6 +449,38 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aaf77788aac3f9daa2b086f5c204c44e8" name="aaf77788aac3f9daa2b086f5c204c44e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf77788aac3f9daa2b086f5c204c44e8">&#9670;&#160;</a></span>setColorDriver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LibCanProt::setColorDriver </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_lib_tcs3472.html">LibTcs3472</a> *</td>          <td class="paramname"><span class="paramname"><em>p_color</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Permet de donner les références du driver du détecteur de couleur </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p_color</td><td>Pointeur vers le gestionnaire du détecteur de couleur </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ae025432e7e535533892010f9e14c809d" name="ae025432e7e535533892010f9e14c809d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae025432e7e535533892010f9e14c809d">&#9670;&#160;</a></span>setDebug()</h2>
 
@@ -317,6 +499,38 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">debug</td><td>si true les messages de debug sont affichés </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aea23bf3d01b8333b257502576f6e5331" name="aea23bf3d01b8333b257502576f6e5331"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea23bf3d01b8333b257502576f6e5331">&#9670;&#160;</a></span>setGpioDriver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LibCanProt::setGpioDriver </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_lib_gpio.html">LibGpio</a> *</td>          <td class="paramname"><span class="paramname"><em>p_gpio</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Permet de donner les références du driver du gestionnaire de GPIO </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p_gpio</td><td>Pointeur vers le gestionnaire de GPIO </td></tr>
   </table>
   </dd>
 </dl>
@@ -358,10 +572,13 @@ Public Member Functions</h2></td></tr>
 <li><a class="el" href="_lib_can_8cpp.html">LibCan.cpp</a></li>
 </ul>
 </div><!-- contents -->
-<!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
-</small></address>
 </div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_lib_can_prot.html">LibCanProt</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
 </body>
 </html>

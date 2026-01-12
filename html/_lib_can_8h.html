@@ -11,6 +11,8 @@
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -49,17 +51,29 @@ $(function() { codefold.init(0); });
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Search',false);
+  initMenu('',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){ initResizable(false); });
+$(function(){initNavTree('_lib_can_8h.html',''); initResizable(true); });
 /* @license-end */
 </script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,8 +95,6 @@ $(function(){ initResizable(false); });
 </div>
 </div>
 
-</div><!-- top -->
-<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -92,6 +104,8 @@ $(function(){ initResizable(false); });
 <div class="contents">
 <div class="textblock"><code>#include &quot;mcp2515_can.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="_lib_moteur_8h_source.html">LibMoteur.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_lib_color_8h_source.html">LibColor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_lib_gpio_8h_source.html">LibGpio.h</a>&quot;</code><br />
 </div>
 <p><a href="_lib_can_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -110,8 +124,12 @@ Macros</h2></td></tr>
 <tr class="separator:abd657646c371f4f9d6aa7325b7a84ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c189bd8d041239b94832fdec1b2ce7f" id="r_a0c189bd8d041239b94832fdec1b2ce7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c189bd8d041239b94832fdec1b2ce7f">DEFAULT_CAN_ID</a>&#160;&#160;&#160;0x70</td></tr>
 <tr class="separator:a0c189bd8d041239b94832fdec1b2ce7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f1e0aa103f278060b2cb09b2c723239" id="r_a2f1e0aa103f278060b2cb09b2c723239"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f1e0aa103f278060b2cb09b2c723239">CAN_MAGIC_TAG</a>&#160;&#160;&#160;0xC7</td></tr>
+<tr class="separator:a2f1e0aa103f278060b2cb09b2c723239"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba38143fa913a3fac654a6b1ed590432" id="r_aba38143fa913a3fac654a6b1ed590432"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba38143fa913a3fac654a6b1ed590432">BUS_CAN_MESSAGE_MAX_SIZE</a>&#160;&#160;&#160;64</td></tr>
 <tr class="separator:aba38143fa913a3fac654a6b1ed590432"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03575ca323f23b83d5d7c880cf01006f" id="r_a03575ca323f23b83d5d7c880cf01006f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03575ca323f23b83d5d7c880cf01006f">BUS_CAN_TIME_OUT</a>&#160;&#160;&#160;100</td></tr>
+<tr class="separator:a03575ca323f23b83d5d7c880cf01006f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="aba38143fa913a3fac654a6b1ed590432" name="aba38143fa913a3fac654a6b1ed590432"></a>
@@ -128,6 +146,20 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a id="a03575ca323f23b83d5d7c880cf01006f" name="a03575ca323f23b83d5d7c880cf01006f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03575ca323f23b83d5d7c880cf01006f">&#9670;&#160;</a></span>BUS_CAN_TIME_OUT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUS_CAN_TIME_OUT&#160;&#160;&#160;100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="abd657646c371f4f9d6aa7325b7a84ee6" name="abd657646c371f4f9d6aa7325b7a84ee6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abd657646c371f4f9d6aa7325b7a84ee6">&#9670;&#160;</a></span>CAN_2515</h2>
 
@@ -136,6 +168,20 @@ Macros</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define CAN_2515</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2f1e0aa103f278060b2cb09b2c723239" name="a2f1e0aa103f278060b2cb09b2c723239"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f1e0aa103f278060b2cb09b2c723239">&#9670;&#160;</a></span>CAN_MAGIC_TAG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CAN_MAGIC_TAG&#160;&#160;&#160;0xC7</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -157,10 +203,13 @@ Macros</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
-<!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
-</small></address>
 </div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="_lib_can_8h.html">LibCan.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
 </body>
 </html>

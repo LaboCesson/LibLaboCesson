@@ -8,8 +8,12 @@ L'aide pour l'installation du support ESP32 par l'IDE Arduino est disponible sur
 <a href="https://www.upesy.fr/blogs/tutorials/install-esp32-on-arduino-ide-complete-guide" 
    target="_blank" rel="noopener">Installer l'IDE Arduino pour l'ESP32</a> 
 
+## Problème de time-Out
 
-Modifier le time-out de chargement des paquets de logiciel dans l'IDE Arduino
+Il peut arriver qu'une mise à jour ne puisse se termimer.<BR>
+Cela est du à un paquet dont le temps de chargement dépasse le time-out par défaut.
+
+Pour modifier le time-out de chargement des paquets de logiciel dans l'IDE Arduino :
 
 - Fermer l'IDE Arduino
 - Ouvrir le fichier : **C:\\Users\\<username>\\.arduinoIDE\\arduino-cli.yaml**
@@ -20,7 +24,29 @@ network:
   connection_timeout: 300s
 ```
 
-TODO
+## Problème avec Serial
+
+Lors d'affichage de trace dans le moniteur de l'IDE Arduino, au  bout d'un certain temps l'affichage se bloque.
+
+Pour corriger ce problème :
+
+- Ouvrir le fichier **C:\\Users\\<username>\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.5\\boards.txt**
+- Remplacer les lignes
+
+```
+esp32s2.serial.disableDTR=false
+esp32s2.serial.disableRTS=false
+```
+
+- par
+
+```
+esp32s2.serial.disableDTR=true
+esp32s2.serial.disableRTS=true
+```
+
+
+\todo
 
 <!--==========================================================================================-->
 

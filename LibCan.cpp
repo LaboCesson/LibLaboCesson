@@ -148,6 +148,7 @@ bool LibCanProt::gestionMessage(void) {
     case BUS_CAN_SET_MOTEUR_2       : setMoteur(1);    break;
     case BUS_CAN_DISPLAY_STRING     : displayString(); break;
     case BUS_CAN_GET_COLOR          : getColor();      break;
+    case BUS_CAN_SET_GPIO_PWM       : setGpioPwm();    break;
     case BUS_CAN_CUSTOM_COMMAND     : break;
     default : Serial.print(cmd); Serial.println(""); return false;
   }
@@ -241,8 +242,24 @@ void LibCanProt::getColor(void) {
       ///\todo
     }
   }
+  else {
+    Serial.println("CANbus !! Gestionnaire Color non initialise !!");
+  }
 
   returnGetColor(color);
+}
+
+
+void LibCanProt::setGpioPwm(void) {
+  unsigned char gpio  = m_bufferCan[3];
+  char          angle = m_bufferCan[4];
+  if (mp_gpio == NULL) {
+    Serial.println("CANbus !! Gestionnaire GPIO non initialise !!");
+  }
+
+  mp_gpio->set(gpio, angle);
+  //digitalWrite(pin, status);
+  displayGpioAngleInfo(gpio, angle);
 }
 
 
@@ -254,8 +271,6 @@ void LibCanProt::returnGetPinDigital(unsigned char pin, unsigned char status) {
   *p_buf++ = pin;
   *p_buf++ = status;
   envoiMessage();
-  //mp_canBus->sendMessage(m_bufferCan, p_buf - m_bufferCan);
-  //displayMessageReponse(BUS_CAN_GET_PIN_DIGITAL);
   displayPinInfo(pin, status);
 }
 
@@ -269,8 +284,6 @@ void LibCanProt::returnGetPinAnalog(unsigned char pin, unsigned char value) {
   *p_buf++ = value >> 8;
   *p_buf++ = value & 0xFF;
   envoiMessage();
-  //mp_canBus->sendMessage(m_bufferCan, p_buf - m_bufferCan);
-  //displayMessageReponse(BUS_CAN_GET_PIN_ANALOGIQUE);
   displayPinInfo(pin, value);
 }
 
@@ -339,6 +352,18 @@ void LibCanProt::sendSetMoteur2(char vitesseGauche, char vitesseDroite) {
 
 void LibCanProt::sendDisplayString( char * message, unsigned char len) {
   /// \todo sendDisplayString
+}
+
+
+void LibCanProt::sendSetGpioPwm(unsigned char gpio, char angle) {
+  unsigned char* p_buf = m_bufferCan;
+  *p_buf++ = CAN_MAGIC_TAG;
+  *p_buf++ = BUS_CAN_SET_GPIO_PWM;
+  *p_buf++ = 2;
+  *p_buf++ = gpio;
+  *p_buf++ = angle;
+  envoiMessage();
+  displayGpioAngleInfo(gpio, angle);
 }
 
 
@@ -487,6 +512,15 @@ void LibCanProt::displayColorInfo(unsigned int color) {
 }
 
 
+void LibCanProt::displayGpioAngleInfo(unsigned char gpio, char angle) {
+  if (m_debug == false) return;
+  Serial.print(gpio);
+  Serial.print(":");
+  Serial.print(angle,DEC);
+  Serial.println("°");
+}
+
+
 void LibCanProt::displayMessageString( unsigned char cmd ) {
   switch(cmd) {
     case BUS_CAN_SET_PIN_DIGITAL    : Serial.print("SET_PIN_DIGITAL ");    break;
@@ -497,6 +531,7 @@ void LibCanProt::displayMessageString( unsigned char cmd ) {
     case BUS_CAN_SET_MOTEUR_2       : Serial.print("SET_MOTEUR_2 ");       break;
     case BUS_CAN_DISPLAY_STRING     : Serial.print("DISPLAY_STRING ");     break;
     case BUS_CAN_GET_COLOR          : Serial.print("BUS_CAN_GET_COLOR ");  break;
+    case BUS_CAN_SET_GPIO_PWM       : Serial.print("BUS_SET_GPIO_PWM ");   break;
     case BUS_CAN_CUSTOM_COMMAND     : Serial.print("CUSTOM_COMMAND ");     break;
     default :                         Serial.print("!! INCONNUE !! ");     break;
   }

@@ -35,7 +35,7 @@ class LibCan2515
 		);
 
 		/// \details Permet de valider l'interface CAN
-		/// \return Retourne true si le bus CAN est prêt et false sinon 
+		/// \return Retourne **true** si le bus CAN est prêt et **false** sinon 
 		bool begin(
 			unsigned char scanId   = DEFAULT_CAN_ID, ///< Adresse de l'interface CAN
 			unsigned int  speedSet = CAN_125KBPS,    ///< Vitesse d'échange sur le bus can
@@ -43,19 +43,18 @@ class LibCan2515
 		);
 
 		/// \details Permet de lire un message
-		/// \return Retourne la taille du message reçu et 0 si aucun message reçu 
+		/// \return Retourne la taille du message reçu et 0 si aucun message n'est reçu 
 		unsigned char getMessage(
-			unsigned char * p_buf ///< Pointeur vers le message ou retourner le message
+			unsigned char * p_buf ///< Pointeur vers le message où retourner le message
 		);
 
-		/// \details Permet d'envoyer' un message
-		/// \return Retourne la taille du message reçu et 0 si aucun message reçu 
+		/// \details Permet d'envoyer un message
 		void sendMessage(
 			unsigned char * p_buf, ///< Pointeur vers le message à envoyer
 			unsigned char len      ///< Longueur du message
 		);
 
-		/// \details Permet de valider l'affichage de message de debug
+		/// \details Permet de valider l'affichage de messages de debug
 		void setDebug(
 			bool debug ///< si true les messages de debug sont affichés
 		);
@@ -90,6 +89,7 @@ class LibCan2515
 
 #include "LibMoteur.h"
 #include "LibColor.h"
+#include "LibGpio.h"
 
 #define BUS_CAN_MESSAGE_MAX_SIZE 64
 #define BUS_CAN_TIME_OUT         100 // Durée d'attente max dune réponse (par unité de 10ms)
@@ -114,8 +114,13 @@ class LibCanProt
 
 		/// \details Permet de donner les références du driver du détecteur de couleur
 		void setColorDriver(
-			LibTcs3472* p_color   ///< Pointeur vers le gestionnaire du détecteur de couleur
+			LibTcs3472* p_color ///< Pointeur vers le gestionnaire du détecteur de couleur
 		) { mp_color = p_color; }
+
+		/// \details Permet de donner les références du driver du gestionnaire de GPIO
+		void setGpioDriver(
+			LibGpio* p_gpio ///< Pointeur vers le gestionnaire de GPIO
+		) { mp_gpio = p_gpio; }
 
 		/// \details Permet de valider l'interface CAN et le gestion du protocole
 		/// \return Retourne true si le bus CAN est prêt et false sinon 
@@ -156,6 +161,9 @@ class LibCanProt
 		/// Les couleurs sont codées par groupe de 2 bits avec les valeurs définies par \ref t_robot_color
 		int sendGetColor(unsigned char nbColor); ///< Nombre de couleurs à lire
 
+		/// \details Permet de configurer l'angle de rotation d'un servoMoteur désigné par son numéro de pin
+		void sendSetGpioPwm(unsigned char gpio, char angle);
+
 		/// \details Permet de vider les messages reçus
 		/// \details A utiliser avant l'envoi d'une commande avec une réponse
 		/// pour s'assurer qu'une ancienne réponse après time_out serait prise en compte
@@ -177,6 +185,7 @@ class LibCanProt
 		LibMoteur  * mp_moteur1 = NULL;
 		LibMoteur  * mp_moteur2 = NULL;
 		LibTcs3472 * mp_color   = NULL;
+		LibGpio    * mp_gpio    = NULL;
 
 		void setPinDigital(void);
 		void getPinDigital(void);
@@ -185,6 +194,7 @@ class LibCanProt
 		void setMoteur    (unsigned char moteur);
 		void displayString(void);
 		void getColor     (void);
+		void setGpioPwm   (void);
 
 		void returnGetPinDigital(unsigned char pin, unsigned char status);
 		void returnGetPinAnalog(unsigned char pin, unsigned char value);
@@ -219,6 +229,11 @@ class LibCanProt
 
 		void displayColorInfo(
 			unsigned int color   ///< Description des couleurs
+		);
+
+		void displayGpioAngleInfo(
+			unsigned char gpio,  ///< Index du gpio
+			char          angle  ///< Angle associé au pin
 		);
 
 		/// \details Affichage du libellé de la commande

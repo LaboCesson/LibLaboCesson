@@ -31,6 +31,11 @@ typedef enum {
   PAMI_GPIO_6 = 5  ///< GPIO6
 } t_pami_gpio;
 
+typedef enum {
+  PAMI_COTE_BLEU  = 0, ///< Le PAMI est sur le coté Bleu du plateau
+  PAMI_COTE_JAUNE = 1  ///< Le PAMI est sur le coté Jaune du plateau
+} t_pami_cote_plateau;
+
 
 /// \class LibPami2025
 /// \brief Librairies de gestion des PAMI basiques de l'année 2026
@@ -48,6 +53,9 @@ class LibPami2026Basic
     /// \details Cette fonction doit être appelée régulièrement pour la gestion des différents éléments d'un PAMI
     void gestion(void);
 
+    /// \details Cette fonction retourne le coté du plateau ou se trouve le PAMI
+    t_pami_cote_plateau get_side(void) { return m_cote_plateau; };
+
     LibAff1637   afficheur; ///< Librairie de gestion d'un afficheur
     LibJumper    jumper;    ///< Librairie de gestion des jumpers d'un PAMI
     LibGpio      gpio;      ///< Librairie de gestion des GPIO
@@ -57,6 +65,8 @@ class LibPami2026Basic
     LibChrono    chrono;    ///< Librairie de gestion d'un chronometre
 
   private:
+
+    t_pami_cote_plateau m_cote_plateau;
 
   protected:
 };

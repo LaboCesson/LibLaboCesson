@@ -41,6 +41,14 @@ unsigned char jumpersPinList[] = { PAMI_JUMPER_NB_H,PAMI_JUMPER_NB_M,PAMI_JUMPER
 #define PAMI_PIN_GPIO_5 13
 #define PAMI_PIN_GPIO_6 14
 
+// Définition des pins associées aux LEDs
+#define PAMI_PIN_LED_BLEU  17
+#define PAMI_PIN_LED_JAUNE 18
+#define PAMI_PIN_LED_VERTE 21
+
+// Définition du pin associée au switch Coté Jaune/Bleu
+#define PAMI_PIN_COTE_JAUNE_BLEU  34
+
 
 // Définition des GPIO des PAMIs Basique (les GPIO 1 et 2 sont associés aux servomoteur 360°)
 unsigned char gpioPinListBasic[] = {PAMI_PIN_GPIO_3,PAMI_PIN_GPIO_4,PAMI_PIN_GPIO_5,PAMI_PIN_GPIO_6};
@@ -76,6 +84,17 @@ LibPami2026Basic::LibPami2026Basic() :
   // LibChrono::setDisplay(dynamic_cast<LibAff1637*>(this));
   gyro.setDisplay(&afficheur);
   chrono.setDisplay(&afficheur);
+
+  // Configuration des Pins associées aux LEDs et au switch Coté Jaune/Bleu
+  pinMode(PAMI_PIN_LED_BLEU,  OUTPUT);
+  pinMode(PAMI_PIN_LED_JAUNE, OUTPUT);
+  pinMode(PAMI_PIN_LED_VERTE, OUTPUT);
+  pinMode(PAMI_PIN_COTE_JAUNE_BLEU, INPUT_PULLUP);
+
+  // Par défaut le PAMI est sur le coté Bleu
+  m_cote_plateau = PAMI_COTE_BLEU;
+  digitalWrite(PAMI_PIN_LED_BLEU,  LOW);
+  digitalWrite(PAMI_PIN_LED_JAUNE, HIGH);
 }
 
 
@@ -84,6 +103,15 @@ void LibPami2026Basic::gestion(void) {
   gyro.gestion();
   chrono.gestion();
   moteur.gestion();
+
+  // Gestion des LEDs et du switch Coté Jaune/Bleu
+  t_pami_cote_plateau newSide = (digitalRead(PAMI_PIN_COTE_JAUNE_BLEU) == LOW ? PAMI_COTE_BLEU : PAMI_COTE_JAUNE);
+
+  if (newSide != m_cote_plateau) {
+    m_cote_plateau = newSide;
+    digitalWrite(PAMI_PIN_LED_BLEU,  (m_cote_plateau == PAMI_COTE_BLEU  ? LOW : HIGH));
+    digitalWrite(PAMI_PIN_LED_JAUNE, (m_cote_plateau == PAMI_COTE_JAUNE ? LOW : HIGH));
+  }
 }
 
 

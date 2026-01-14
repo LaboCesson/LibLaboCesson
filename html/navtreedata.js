@@ -30,8 +30,8 @@ var NAVTREE =
     [ "Utilisation de doxygen", "_d_o_x_y_g_e_n.html", null ],
     [ "Librairie RadioHead pour la gestion du 433MHz", "_r_a_d_i_o_h_e_a_d.html", null ],
     [ "Spécificités de l'ESP32", "_e_s_p32__s_p_e_c_i_f_i_c.html", [
-      [ "Code spécifique à l'ESP32", "_e_s_p32__s_p_e_c_i_f_i_c.html#autotoc_md2", null ],
-      [ "Mise en oeuvre d'une sortie PWM", "_e_s_p32__s_p_e_c_i_f_i_c.html#autotoc_md3", null ]
+      [ "Code spécifique à l'ESP32", "_e_s_p32__s_p_e_c_i_f_i_c.html#autotoc_md3", null ],
+      [ "Mise en oeuvre d'une sortie PWM", "_e_s_p32__s_p_e_c_i_f_i_c.html#autotoc_md4", null ]
     ] ],
     [ "Utilisation de la librairie LibLaboCesson", "_u_s_e__l_i_b_r_a_r_y.html", null ],
     [ "Utilisation de GIT", "_g_i_t.html", null ],
@@ -48,7 +48,7 @@ var NAVTREE =
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
+        [ "All", "globals.html", "globals_dup" ],
         [ "Variables", "globals_vars.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
         [ "Enumerator", "globals_eval.html", null ],
@@ -61,7 +61,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_ascii_char_8h.html",
-"_lib_robot2026_8cpp.html#a8b5a6551ae540917c4c1135b6d9e0f8a"
+"_lib_robot2026_8cpp.html#a2218923eb7b156336d135da0d0c676e2",
+"globals_d.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

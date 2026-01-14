@@ -127,7 +127,16 @@ Problème avec Serial</h2>
 </ul>
 <div class="fragment"><div class="line">esp32s2.serial.disableDTR=<span class="keyword">true</span></div>
 <div class="line">esp32s2.serial.disableRTS=<span class="keyword">true</span></div>
-</div><!-- fragment --><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo</a></b></dt><dd></dd></dl>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2"></a>
+Problème alors de la compilation</h2>
+<p>Il peut arriver que la génération du logiciel ne finissent pas lors de l'édition de lien car elle utilise des fichiers de type <b>.o</b> qui ne sont plus les bons</p>
+<p>Pour régler le problème, il faut supprimer un répertoire dans le répertoire <b>sketches</b> : C:\Users\&lt;username&gt;\AppData\Local\arduino\sketches**</p>
+<p>Le nom du répertoire est par exemple <b>1D28B4FA3FD80E921A8889962A5655DB</b></p>
+<p>Pour identifier le répertoire à supprimer, regarder le plus récent</p>
+<p>Ce répertoire permet de conserver en mémoire une partie de la dernière compilation pour gagner du temps sur la prochaine.<br  />
+ Il n'y a donc aucun risque à supprimer un mauvais répertoire. <br  />
+ Au pire, la prochaine compilation sera plus longue.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo</a></b></dt><dd></dd></dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

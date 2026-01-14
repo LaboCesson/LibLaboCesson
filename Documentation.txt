@@ -46,6 +46,21 @@ esp32s2.serial.disableRTS=true
 ```
 
 
+## Problème alors de la compilation
+
+Il peut arriver que la génération du logiciel ne finissent pas lors de l'édition de lien car elle utilise des fichiers de type **.o** qui ne sont plus les bons
+
+Pour régler le problème, il faut supprimer un répertoire dans le répertoire **sketches** :
+**C:\\Users\\<username>\\AppData\\Local\\arduino\\sketches**
+
+Le nom du répertoire est par exemple **1D28B4FA3FD80E921A8889962A5655DB**
+
+Pour identifier le répertoire à supprimer, regarder le plus récent
+
+Ce répertoire permet de conserver en mémoire une partie de la dernière compilation pour gagner du temps sur la prochaine.<BR>
+Il n'y a donc aucun risque à supprimer un mauvais répertoire. <BR>
+Au pire, la prochaine compilation sera plus longue.
+
 \todo
 
 <!--==========================================================================================-->

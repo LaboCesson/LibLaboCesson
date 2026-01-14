@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LibLaboCesson: Spécificités de l&#39;ESP32</title>
+<title>LibLaboCesson: File Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('_e_s_p32__s_p_e_c_i_f_i_c.html',''); initResizable(true); });
+$(function(){initNavTree('globals_s.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -95,40 +95,24 @@ $(function(){initNavTree('_e_s_p32__s_p_e_c_i_f_i_c.html',''); initResizable(tru
 </div>
 </div>
 
-<div><div class="header">
-  <div class="headertitle"><div class="title">Spécificités de l'ESP32</div></div>
-</div><!--header-->
 <div class="contents">
-<div class="textblock"><p>L'utilisation de l'ESP32 dans un contexte IDE Arduino peut nécessiter quelques adaptations</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Code spécifique à l'ESP32</h1>
-<p>Des portions de codes peuvent être différents entre un Arduino et un ESP32.</p>
-<p>Il est alors nécessaire de spécifier les différentes portion de code de la manière suivante:</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#ifdef AVR</span></div>
-<div class="line">  </div>
-<div class="line">  CODE SPECIFIQUE ARDUINO</div>
-<div class="line">  </div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="preprocessor">#ifdef ARDUINO_ARCH_ESP32</span></div>
-<div class="line"> </div>
-<div class="line">  CODE SPECIFIQUE ESP32</div>
-<div class="line">  </div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
-Mise en oeuvre d'une sortie PWM</h1>
-<p>Pour un Arduino, la génération d'un signal PWM se fait</p><ul>
-<li>en déclarant la sortie en mode OUTPUT : pinMode(pin, OUTPUT)</li>
-<li>en écrivant une valeur entre 0 et 1023 : analogWrite(pin,valeur)</li>
+<div class="textblock">Here is a list of all file members with links to the files they belong to:</div>
+
+<h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>SEG_BB&#160;:&#160;<a class="el" href="_lib_aff1637_8h.html#acf273b25e65ff484dd93681b46869e2f">LibAff1637.h</a></li>
+<li>SEG_DB&#160;:&#160;<a class="el" href="_lib_aff1637_8h.html#aeaf11e7a94286d22123ecfb8ca1a7050">LibAff1637.h</a></li>
+<li>SEG_DH&#160;:&#160;<a class="el" href="_lib_aff1637_8h.html#adda8e5c8460c91eeadd531109c1ad482">LibAff1637.h</a></li>
+<li>SEG_GB&#160;:&#160;<a class="el" href="_lib_aff1637_8h.html#a03dfe40a2f925c5ed5f825c698cdde7e">LibAff1637.h</a></li>
+<li>SEG_GH&#160;:&#160;<a class="el" href="_lib_aff1637_8h.html#a7c4c64a64e21d087e39bf187edc10c9d">LibAff1637.h</a></li>
+<li>SEG_HH&#160;:&#160;<a class="el" href="_lib_aff1637_8h.html#a470f044057e17cf19c85370fbc5a90be">LibAff1637.h</a></li>
+<li>SEG_MM&#160;:&#160;<a class="el" href="_lib_aff1637_8h.html#a81802c3ce8f7ee91dd24929c4547ad98">LibAff1637.h</a></li>
+<li>SEG_PP&#160;:&#160;<a class="el" href="_lib_aff1637_8h.html#a7d2f1b89d63ff51327de5dd566e60c6e">LibAff1637.h</a></li>
+<li>SERVO_USED&#160;:&#160;<a class="el" href="_lib_gpio_8h.html#af0ff7f85409e29c906d7f62dd96e6fff">LibGpio.h</a></li>
+<li>SEUIL_BLEU&#160;:&#160;<a class="el" href="_lib_color_8cpp.html#a43ea868c4edd0572322a89e42ddf5fb3">LibColor.cpp</a></li>
+<li>SEUIL_JAUNE&#160;:&#160;<a class="el" href="_lib_color_8cpp.html#ac1597c312124b46167d35d0c8aa350db">LibColor.cpp</a></li>
+<li>STOP&#160;:&#160;<a class="el" href="_lib_moteur_omni_8h.html#a86b7f64114fce4a3ec75c42b4c695b81a679ee5320d66c8322e310daeb2ee99b8">LibMoteurOmni.h</a></li>
 </ul>
-<p>Pour un ESP32, il faut utiliser la librairie ledc pour déclarer la sortie en mode PM</p><ul>
-<li>en déclarant la sortie en mode analogique : ledcAttach(pin,1000,10)</li>
-<li>en écrivant une valeur entre 0 et 1023 : analogWrite(pin,valeur)</li>
-</ul>
-<p>Plus d'information sur le site suivant : <a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/api/ledc.html" target="_blank" rel="noopener">Librairie LEDC</a></p>
-<dl class="section warning"><dt>Warning</dt><dd>Le nombre de canaux PWM est limité à 8 pour un ESP32-S2, Il est donc nécessaire de connaitre le nombre de canaux PWM utilisé au total <br  />
- Par exemple la librairie <a class="el" href="class_lib_moteur.html">LibMoteur</a> utilise jusqu'à 2 canaux PWM </dd></dl>
-</div></div><!-- contents -->
-</div><!-- PageDoc -->
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

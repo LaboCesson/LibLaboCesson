@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LibLaboCesson: Spécificités de l&#39;ESP32</title>
+<title>LibLaboCesson: File Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('_e_s_p32__s_p_e_c_i_f_i_c.html',''); initResizable(true); });
+$(function(){initNavTree('globals_m.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -95,40 +95,36 @@ $(function(){initNavTree('_e_s_p32__s_p_e_c_i_f_i_c.html',''); initResizable(tru
 </div>
 </div>
 
-<div><div class="header">
-  <div class="headertitle"><div class="title">Spécificités de l'ESP32</div></div>
-</div><!--header-->
 <div class="contents">
-<div class="textblock"><p>L'utilisation de l'ESP32 dans un contexte IDE Arduino peut nécessiter quelques adaptations</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Code spécifique à l'ESP32</h1>
-<p>Des portions de codes peuvent être différents entre un Arduino et un ESP32.</p>
-<p>Il est alors nécessaire de spécifier les différentes portion de code de la manière suivante:</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#ifdef AVR</span></div>
-<div class="line">  </div>
-<div class="line">  CODE SPECIFIQUE ARDUINO</div>
-<div class="line">  </div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="preprocessor">#ifdef ARDUINO_ARCH_ESP32</span></div>
-<div class="line"> </div>
-<div class="line">  CODE SPECIFIQUE ESP32</div>
-<div class="line">  </div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
-Mise en oeuvre d'une sortie PWM</h1>
-<p>Pour un Arduino, la génération d'un signal PWM se fait</p><ul>
-<li>en déclarant la sortie en mode OUTPUT : pinMode(pin, OUTPUT)</li>
-<li>en écrivant une valeur entre 0 et 1023 : analogWrite(pin,valeur)</li>
+<div class="textblock">Here is a list of all file members with links to the files they belong to:</div>
+
+<h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
+<li>MAX_NB_JUMPERS&#160;:&#160;<a class="el" href="_lib_jumper_8h.html#a91bd4fc0c8f6b309abde12d052fc0fc2">LibJumper.h</a></li>
+<li>MCP23008_DEFVAL&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#a14496430a8fa68c1fa39b57c41aaf705">LibMcp23008.cpp</a></li>
+<li>MCP23008_GPINTEN&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#aa3c273d9a64d909b07b526e5a813265f">LibMcp23008.cpp</a></li>
+<li>MCP23008_GPIO&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#a3336a704605df6a7646363f196ce5b3f">LibMcp23008.cpp</a></li>
+<li>MCP23008_GPPU&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#a2d694b6bd00d6dfdd4841a04991dcce9">LibMcp23008.cpp</a></li>
+<li>MCP23008_INTCAP&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#add0f6b6f00cf2fa2ee1b6829abbb29a2">LibMcp23008.cpp</a></li>
+<li>MCP23008_INTCON&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#a347dcb0c564ecd64c2731660478d089a">LibMcp23008.cpp</a></li>
+<li>MCP23008_INTF&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#ad83ebe20e3471c6258054a77027d206f">LibMcp23008.cpp</a></li>
+<li>MCP23008_IOCON&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#a2f82a628f0e68388f04d1c9d1360034a">LibMcp23008.cpp</a></li>
+<li>MCP23008_IOCON_DISSLW&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#a223d37ba7e2f08ae0e7f91de7a19f7a6">LibMcp23008.cpp</a></li>
+<li>MCP23008_IOCON_INTPOL&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#ac4f572b5b2a1161ef645b624f11f6bdc">LibMcp23008.cpp</a></li>
+<li>MCP23008_IOCON_ODR&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#a3e4b63b928f9685314c3f54a8acecfd4">LibMcp23008.cpp</a></li>
+<li>MCP23008_IOCON_SREAD&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#a3ee85d9554b69a948597fb7b1b64e691">LibMcp23008.cpp</a></li>
+<li>MCP23008_IODIR&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#a208c0bfbfcad48dd5942ab0d565afd96">LibMcp23008.cpp</a></li>
+<li>MCP23008_IOPOL&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#a9c603945c4a17849993cff29316c2a52">LibMcp23008.cpp</a></li>
+<li>MCP23008_NB_REG&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#ad17ca61c1aff779e850c68fbe96ab83a">LibMcp23008.cpp</a></li>
+<li>MCP23008_OLAT&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#a3010d1af643e32e6416740094eeb8837">LibMcp23008.cpp</a></li>
+<li>MCP23017_IOCON&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#a092a02801c11dadb8719f0ca2698d8ca">LibMcp23008.cpp</a></li>
+<li>MCP23017_IOCON_VALUE&#160;:&#160;<a class="el" href="_lib_mcp23008_8cpp.html#ab0a3d00419320d6e4a60146c6d17ca3f">LibMcp23008.cpp</a></li>
+<li>MILIEU_TEMPERATURE&#160;:&#160;<a class="el" href="_lib_color_8cpp.html#a23539a328c5f4529d1283771f032d12d">LibColor.cpp</a></li>
+<li>MOTEUR_DROIT&#160;:&#160;<a class="el" href="_lib_moteur_8h.html#acb89f9edc8fc57347c3dd82a2f7ec6dca73eb2fbb79c0a50cc1d6b36ced70cdee">LibMoteur.h</a></li>
+<li>MOTEUR_GAUCHE&#160;:&#160;<a class="el" href="_lib_moteur_8h.html#acb89f9edc8fc57347c3dd82a2f7ec6dca757ef022996601e79d5fb5686d607ff1">LibMoteur.h</a></li>
+<li>MOTEUR_L298N&#160;:&#160;<a class="el" href="_lib_moteur_8h.html#a6e9b88313b3b9c67990b815811d8693bad498ed687da9986c75d4b24ecf714c49">LibMoteur.h</a></li>
+<li>MOTEUR_SERVO&#160;:&#160;<a class="el" href="_lib_moteur_8h.html#a6e9b88313b3b9c67990b815811d8693baf2eabb700de7cdb17d7546e5ee445ac7">LibMoteur.h</a></li>
 </ul>
-<p>Pour un ESP32, il faut utiliser la librairie ledc pour déclarer la sortie en mode PM</p><ul>
-<li>en déclarant la sortie en mode analogique : ledcAttach(pin,1000,10)</li>
-<li>en écrivant une valeur entre 0 et 1023 : analogWrite(pin,valeur)</li>
-</ul>
-<p>Plus d'information sur le site suivant : <a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/api/ledc.html" target="_blank" rel="noopener">Librairie LEDC</a></p>
-<dl class="section warning"><dt>Warning</dt><dd>Le nombre de canaux PWM est limité à 8 pour un ESP32-S2, Il est donc nécessaire de connaitre le nombre de canaux PWM utilisé au total <br  />
- Par exemple la librairie <a class="el" href="class_lib_moteur.html">LibMoteur</a> utilise jusqu'à 2 canaux PWM </dd></dl>
-</div></div><!-- contents -->
-</div><!-- PageDoc -->
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -57,6 +57,8 @@ class LibUltrason
 /// \class LibVl53lox
 /// \brief Gestion d'un capteur de distance Laser VL53LOX
 /// <a href="https://www.st.com/resource/en/datasheet/vl53l0x.pd">VL53LOX documentation</a>
+/// \details Librairies requises :
+/// \details  - **Adafruit_VL53L0X** par Adafruit
 class LibVl53lox
 {
   public: 

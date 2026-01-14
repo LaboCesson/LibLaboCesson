@@ -94,7 +94,7 @@ LibPami2026Basic::LibPami2026Basic() :
   // Par défaut le PAMI est sur le coté Bleu
   m_cote_plateau = PAMI_COTE_BLEU;
   digitalWrite(PAMI_PIN_LED_BLEU,  LOW);
-  digitalWrite(PAMI_PIN_LED_JAUNE, HIGH);
+  digitalWrite(PAMI_PIN_LED_JAUNE, LOW);
 }
 
 
@@ -107,8 +107,9 @@ void LibPami2026Basic::gestion(void) {
   // Gestion des LEDs et du switch Coté Jaune/Bleu
   t_pami_cote_plateau newSide = (digitalRead(PAMI_PIN_COTE_JAUNE_BLEU) == LOW ? PAMI_COTE_BLEU : PAMI_COTE_JAUNE);
 
-  if (newSide != m_cote_plateau) {
+  if ((newSide != m_cote_plateau)||(m_init_led == false)) {
     m_cote_plateau = newSide;
+    m_init_led = true;
     digitalWrite(PAMI_PIN_LED_BLEU,  (m_cote_plateau == PAMI_COTE_BLEU  ? LOW : HIGH));
     digitalWrite(PAMI_PIN_LED_JAUNE, (m_cote_plateau == PAMI_COTE_JAUNE ? LOW : HIGH));
   }

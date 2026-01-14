@@ -17,6 +17,9 @@
 
 /// \class LibCan2515
 /// \brief La librairie LibCan2515 permet de gérer un bus CAN en émission et en réception
+/// \details Librairies requises :
+/// \details  - **Seeed_Arduino_CAN** par seeed studio
+
 class LibCan2515
 {
   public:

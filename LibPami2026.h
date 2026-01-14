@@ -67,6 +67,7 @@ class LibPami2026Basic
   private:
 
     t_pami_cote_plateau m_cote_plateau;
+    bool m_init_led = false;
 
   protected:
 };

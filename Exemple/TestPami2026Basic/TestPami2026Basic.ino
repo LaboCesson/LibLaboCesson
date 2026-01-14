@@ -53,8 +53,9 @@ unsigned long endStatusTime;  // Fin d'un état en cours avant passage vers le s
 
 void setup(void){
   Serial.begin(115200);
+  delay(2000);
 
-  Serial.print("PAMI controlé par Radio");
+  Serial.println("PAMI controlé par Radio");
 
   // pami.gpio.setDebug(true);
   // pami.radio.setDebug(true);
@@ -62,6 +63,9 @@ void setup(void){
   // On initialise les différents temps
   dureeWaitToRun = DUREE_WAIT_TO_RUN_PAMI;
   dureeRunPami   = DUREE_RUN_PAMI;
+
+  Serial.print("PAMI Team = "); Serial.println( pami.jumper.getTeam() == PAMI_TEAM_A? "A":"B");
+  Serial.print("PAMI N° = ");   Serial.println( pami.jumper.getPami() );
 
   // On configure les moteur
   pami.moteur.begin();

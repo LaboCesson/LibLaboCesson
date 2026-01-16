@@ -30,10 +30,12 @@
 #endif
 
 typedef enum {
-    PAMI_GPIO_UNUSED = 0, ///< GPIO not used
-    PAMI_GPIO_INPUT  = 1, ///< GPIO used as Input
-    PAMI_GPIO_OUTPUT = 2, ///< GPIO used as Output
-    PAMI_GPIO_PWM    = 3  ///< GPIO used as PWM
+    PAMI_GPIO_UNUSED   = 0, ///< GPIO not used
+    PAMI_GPIO_INPUT    = 1, ///< GPIO used as Input
+    PAMI_GPIO_INPUT_A  = 2, ///< GPIO used as Analog Input
+    PAMI_GPIO_OUTPUT   = 3, ///< GPIO used as Output
+    PAMI_GPIO_OUTPUT_A = 4, ///< GPIO used as Analog Output
+    PAMI_GPIO_PWM      = 5  ///< GPIO used as PWM
 } t_gpioMode;
 
 #define LIB_GPIO_ERROR 10000 ///< Valeur retournée lorsqu'une erreur est rencontrée
@@ -50,13 +52,14 @@ class LibGpio
 	);
 
 	/// \details Permet de configurer le mode associé à un GPIO. Les modes disponibles sont les suivants :
-	/// - \ref PAMI_GPIO_UNUSED  pour un GPIO non utilisé
-	/// - \ref PAMI_GPIO_INPUT   pour un GPIO utilisé en entrée
-	/// - \ref PAMI_GPIO_OUTPUT  pour un GPIO utilisé en sortie
-	/// - \ref PAMI_GPIO_PWM     pour un GPIO utilisé en mode PWM
+	/// - \ref PAMI_GPIO_UNUSED   pour un GPIO non utilisé
+  /// - \ref PAMI_GPIO_INPUT    pour un GPIO utilisé en entrée
+  /// - \ref PAMI_GPIO_INPUT_A  pour un GPIO utilisé en entrée analogique
+  /// - \ref PAMI_GPIO_OUTPUT   pour un GPIO utilisé en sortie
+  /// - \ref PAMI_GPIO_OUTPUT_A pour un GPIO utilisé en sortie analogique
+  /// - \ref PAMI_GPIO_PWM      pour un GPIO utilisé en mode PWM
  	/// \return true ou false si le mode est inconnu ou si le GPIO n'existe pas
-	/// \attention Le GPIO utilisant la pin 3 ne peut pas être utilisé en mode PWM
-   bool configure(
+  bool configure(
 		unsigned char  gpioIdx,         ///< Numéro d'index du GPIO à configurer (à partir de 0)
 		t_gpioMode     gpioMode,        ///< Type de configuration du pin
 		unsigned short defaultValue = 0 ///< Valeur par défaut à appliquer
@@ -64,7 +67,7 @@ class LibGpio
 
 	/// \details Permet de piloter la sortie d'un GPIO
  	/// \return true ou \ref LIB_GPIO_ERROR si le GPIO n'existe pas
-    bool set(
+  bool set(
 		unsigned char gpioIdx, ///< Numéro d'index du GPIO à piloter(à partir de 0)
 		unsigned short value   ///< Valeur à appliquer
 	);

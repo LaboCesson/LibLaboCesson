@@ -57,25 +57,49 @@ LibMoteur::LibMoteur(unsigned char pinIn1, unsigned char pinIn2, unsigned char p
 }
 
 
-LibMoteur::LibMoteur(unsigned char pinGauche, unsigned char pinDroit) {
+LibMoteur::LibMoteur(unsigned char pinGauche, unsigned char pinDroite) {
   commonInit();
 
-  m_typeDriver  = MOTEUR_SERVO;
+  m_pinGauche = pinGauche;
+  m_pinDroite = pinDroite;
+  m_typeDriver = MOTEUR_SERVO;
+  return;
 
   mp_servoGauche = new Servo();
-  mp_servoGauche->attach(pinGauche, DEFAULT_SERVO_MIN, DEFAULT_SERVO_MAX);
+  mp_servoGauche->attach(m_pinGauche, DEFAULT_SERVO_MIN, DEFAULT_SERVO_MAX);
   mp_servoGauche->writeMicroseconds(DEFAULT_SERVO_OFF);
 
   mp_servoDroit = new Servo();
-  mp_servoDroit->attach(pinDroit, DEFAULT_SERVO_MIN, DEFAULT_SERVO_MAX);
+  mp_servoDroit->attach(m_pinDroite, DEFAULT_SERVO_MIN, DEFAULT_SERVO_MAX);
   mp_servoDroit->writeMicroseconds(DEFAULT_SERVO_OFF);
+
+  m_begin = true;
 }
 
 
 void LibMoteur::commonInit(void) {
   m_lastVitesseGauche = m_lastVitesseDroite = 0;
   m_directionGauche = m_directionDroite = false;
-  m_debug = false;
+}
+
+
+void LibMoteur::begin(void) {
+  if (m_begin == true) return;
+  switch (m_typeDriver) {
+    case MOTEUR_L298N: break;
+    case MOTEUR_SERVO: 
+      mp_servoGauche = new Servo();
+      mp_servoGauche->attach(m_pinGauche, DEFAULT_SERVO_MIN, DEFAULT_SERVO_MAX);
+      mp_servoGauche->writeMicroseconds(DEFAULT_SERVO_OFF);
+
+      mp_servoDroit = new Servo();
+      mp_servoDroit->attach(m_pinDroite, DEFAULT_SERVO_MIN, DEFAULT_SERVO_MAX);
+      mp_servoDroit->writeMicroseconds(DEFAULT_SERVO_OFF);
+
+      break;
+    default: break;
+  }
+  m_begin = true;
 }
 
 
@@ -86,6 +110,7 @@ void LibMoteur::moteurs(int vitesse) {
 
 
 void LibMoteur::moteurGauche(int vitesse) {
+  if (m_begin == false) return;
   if (m_directionGauche == true) vitesse = -vitesse;
   if (vitesse == m_lastVitesseGauche) return;
   m_lastVitesseGauche = vitesse;
@@ -100,6 +125,7 @@ void LibMoteur::moteurGauche(int vitesse) {
 
 
 void LibMoteur::moteurDroit(int vitesse) {
+  if (m_begin == false) return;
   if (m_directionDroite == true) vitesse = -vitesse;
   if (vitesse == m_lastVitesseDroite) return;
   m_lastVitesseDroite = vitesse;
@@ -209,6 +235,7 @@ LibMoteurS::LibMoteurS(unsigned char pinGauche, unsigned char pinDroit,
 
 
 void LibMoteurS::begin(void) {
+  moteur.begin();
   m_begin = true;
   m_nextTimeGestion = millis() + m_stepTime;
 }

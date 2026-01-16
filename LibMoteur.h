@@ -60,9 +60,12 @@ class LibMoteur
     /// \details Permet de piloter un moteur controllé par un servomoteur 360
     LibMoteur(
       unsigned char pinGauche, ///< Le numéro de la pin connectée au servomteur gauche
-      unsigned char pinDroit   ///< Le numéro de la pin connectée au servomteur droit
+      unsigned char pinDroite  ///< Le numéro de la pin connectée au servomteur droit
     );
 
+    /// \details Permet de valider la gestion des moteurs
+    void begin(void);
+    
     /// \details Permet de piloter les deux moteurs
     void moteurs(
       int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
@@ -90,7 +93,10 @@ class LibMoteur
     );
 
 private:
-    void setVitesseMoteurL298n(
+  bool m_begin = false;
+  bool m_debug = false;
+
+  void setVitesseMoteurL298n(
                int  vitesse,    ///< vitesse à appliquer au moteur
       unsigned char pinAvant,   ///< Le numéro de la pin permettant de mettre le moteur dans le sens avant
       unsigned char pinArriere, ///< Le numéro de la pin permettant de mettre le moteur dans le sens arriere
@@ -107,8 +113,8 @@ private:
 
     t_driverMoteur m_typeDriver;
 
-    bool          m_debug;
 
+    unsigned char m_pinDroite,   m_pinGauche;
     unsigned char m_avantDroite, m_arriereDroite;
     unsigned char m_avantGauche, m_arriereGauche;
              int  m_lastVitesseGauche, m_lastVitesseDroite;

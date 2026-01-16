@@ -20,6 +20,13 @@ LibGpio::LibGpio(unsigned char * pinList, unsigned char nbGpioInTab) {
     m_gpio[i].type  = PAMI_GPIO_UNUSED;
     m_gpio[i].value = 0;
   }
+  #ifdef ARDUINO_ARCH_ESP32
+    // L'appel suivant est fait regler un problème avec certaines versions de l'ESP32-S2
+    // Par défaut, la conversion est faite sur 13 bits avec un maximum de 8191
+    // On force une conversion sur 12bits pour être compatible avec l'analogRead Arduino
+    analogReadResolution(12);
+  #endif
+
   m_debug = false;
 }
 
@@ -31,29 +38,52 @@ bool LibGpio::configure(unsigned char gpioIdx, t_gpioMode gpioType, unsigned sho
 
   switch(gpioType) {
     case PAMI_GPIO_UNUSED :
-        // Rien à faire
-        trace( gpioIdx, "set as unused" );
-        break;
-    case PAMI_GPIO_INPUT : 
-        pinMode(m_gpio[gpioIdx].pin, INPUT_PULLUP);
-        m_gpio[gpioIdx].type = PAMI_GPIO_INPUT;
-        m_gpio[gpioIdx].value = digitalRead(m_gpio[gpioIdx].pin);
-        trace( gpioIdx, "set as an input" );
-        break;
-    case PAMI_GPIO_OUTPUT :
-        m_gpio[gpioIdx].type = PAMI_GPIO_INPUT;
-        pinMode(m_gpio[gpioIdx].pin, OUTPUT);
-        m_gpio[gpioIdx].type  = PAMI_GPIO_OUTPUT;
-        digitalWrite(m_gpio[gpioIdx].pin, m_gpio[gpioIdx].value = defaultValue);
-        trace( gpioIdx, " set as an output" );
-        break;
+      switch (m_gpio[gpioIdx].type) {
+        case PAMI_GPIO_INPUT   : break;
+        case PAMI_GPIO_INPUT_A : break;
+        case PAMI_GPIO_OUTPUT  : break;
+        case PAMI_GPIO_OUTPUT_A: break;
+        case PAMI_GPIO_PWM     : 
+          m_gpio[gpioIdx].servo->detach();
+          delete m_gpio[gpioIdx].servo;
+          break;
+      }
+      pinMode(m_gpio[gpioIdx].pin, INPUT); 
+      m_gpio[gpioIdx].type  = PAMI_GPIO_UNUSED;
+      m_gpio[gpioIdx].value = 0;
+      trace( gpioIdx, "set as unused" );
+      break;
+    case PAMI_GPIO_INPUT:
+      pinMode(m_gpio[gpioIdx].pin, INPUT_PULLUP);
+      m_gpio[gpioIdx].type = PAMI_GPIO_INPUT;
+      m_gpio[gpioIdx].value = digitalRead(m_gpio[gpioIdx].pin);
+      trace(gpioIdx, "set as an input");
+      break;
+    case PAMI_GPIO_INPUT_A:
+      pinMode(m_gpio[gpioIdx].pin, INPUT);
+      m_gpio[gpioIdx].type = PAMI_GPIO_INPUT_A;
+      m_gpio[gpioIdx].value = analogRead(m_gpio[gpioIdx].pin);
+      trace(gpioIdx, "set as an analog input");
+      break;
+    case PAMI_GPIO_OUTPUT:
+      pinMode(m_gpio[gpioIdx].pin, OUTPUT);
+      m_gpio[gpioIdx].type = PAMI_GPIO_OUTPUT;
+      digitalWrite(m_gpio[gpioIdx].pin, m_gpio[gpioIdx].value = defaultValue);
+      trace(gpioIdx, " set as an output");
+      break;
+    case PAMI_GPIO_OUTPUT_A:
+      pinMode(m_gpio[gpioIdx].pin, OUTPUT);
+      m_gpio[gpioIdx].type = PAMI_GPIO_OUTPUT_A;
+      analogWrite(m_gpio[gpioIdx].pin, m_gpio[gpioIdx].value = defaultValue);
+      trace(gpioIdx, " set as an analog output");
+      break;
     case PAMI_GPIO_PWM :
-		    m_gpio[gpioIdx].servo = new Servo();
-        m_gpio[gpioIdx].servo->attach(m_gpio[gpioIdx].pin);
-        m_gpio[gpioIdx].servo->write( m_gpio[gpioIdx].value = defaultValue);
-        m_gpio[gpioIdx].type  = PAMI_GPIO_PWM;
-        trace( gpioIdx, " set as a PWM" );
-        break;
+		  m_gpio[gpioIdx].servo = new Servo();
+      m_gpio[gpioIdx].servo->attach(m_gpio[gpioIdx].pin);
+      m_gpio[gpioIdx].servo->write( m_gpio[gpioIdx].value = defaultValue);
+      m_gpio[gpioIdx].type  = PAMI_GPIO_PWM;
+      trace( gpioIdx, " set as a PWM" );
+      break;
     default : return LIB_GPIO_ERROR;
   }
 
@@ -72,10 +102,12 @@ bool LibGpio::set(unsigned char gpioIdx, unsigned short value) {
   }
 
   switch(m_gpio[gpioIdx].type) {
-    case PAMI_GPIO_UNUSED : trace( gpioIdx, "try to set an unused pin" ); return false;
-    case PAMI_GPIO_INPUT  : trace( gpioIdx, "try to set an input pin" );  return false;
-    case PAMI_GPIO_OUTPUT : digitalWrite(m_gpio[gpioIdx].pin, value); break;
-    case PAMI_GPIO_PWM    : m_gpio[gpioIdx].servo->write(value); break;
+    case PAMI_GPIO_UNUSED   : trace( gpioIdx, "try to set an unused pin" ); return false;
+    case PAMI_GPIO_INPUT    : trace( gpioIdx, "try to set an input pin" );  return false;
+    case PAMI_GPIO_INPUT_A  : trace( gpioIdx, "try to set an input pin" );  return false;
+    case PAMI_GPIO_OUTPUT   : digitalWrite(m_gpio[gpioIdx].pin, value); break;
+    case PAMI_GPIO_OUTPUT_A : analogWrite(m_gpio[gpioIdx].pin, value); break;
+    case PAMI_GPIO_PWM      : m_gpio[gpioIdx].servo->write(value); break;
   }
 
   m_gpio[gpioIdx].value = value;
@@ -87,10 +119,12 @@ unsigned short LibGpio::get(unsigned char gpioIdx) {
   if( gpioIdx >= m_nbGpio) return LIB_GPIO_ERROR;
 
   switch(m_gpio[gpioIdx].type) {
-    case PAMI_GPIO_UNUSED : trace( gpioIdx, "try to read an unused pin" ); return 0;
-    case PAMI_GPIO_INPUT  : m_gpio[gpioIdx].value = digitalRead(m_gpio[gpioIdx].pin); break;
-    case PAMI_GPIO_OUTPUT : break; // Retourne la valeur en mémoire
-    case PAMI_GPIO_PWM    : break; // Retourne la valeur en mémoire
+    case PAMI_GPIO_UNUSED   : trace( gpioIdx, "try to read an unused pin" ); return 0;
+    case PAMI_GPIO_INPUT    : m_gpio[gpioIdx].value = digitalRead(m_gpio[gpioIdx].pin); break;
+    case PAMI_GPIO_INPUT_A  : m_gpio[gpioIdx].value = analogRead(m_gpio[gpioIdx].pin); break;
+    case PAMI_GPIO_OUTPUT   : break; // Retourne la valeur en mémoire
+    case PAMI_GPIO_OUTPUT_A : break; // Retourne la valeur en mémoire
+    case PAMI_GPIO_PWM      : break; // Retourne la valeur en mémoire
   }
 
   return m_gpio[gpioIdx].value;

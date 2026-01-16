@@ -46,13 +46,19 @@ LibRobot2026Robot1Recv::LibRobot2026Robot1Recv() :
   // gpio(gpioPinListBasic,nbGpioPinBasic),
   // radio(RADIO433MHZ_RECV, PAMI_433MHZ_SPEED, PAMI_433MHZ_PIN, PAMI_433MHZ_PATTERN),
 {
+  ESP32PWM::allocateTimer(2);
+  ESP32PWM::allocateTimer(3);
+
   canProt.setCanBusDriver(&canBus);
   canProt.setMoteurDriver(0,&moteur1);
   canProt.setMoteurDriver(1,&moteur2);
   //canProt.setColorDriver(&color);
 
   canProt.begin();
+  moteur1.begin();
+  moteur2.begin();
   // color.begin();
+
 
   // chrono.setDisplay(&afficheur);
 }

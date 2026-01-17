@@ -162,7 +162,9 @@ void pamiWaitToRun() {
   // }
 
   if( endStatusTime > millis()) return;
-  pami.moteur.moteurs(VITESSE_MOTEUR);
+  // pami.moteur.moteurs(VITESSE_MOTEUR);
+  // pami.moteur.moteurGauche(VITESSE_MOTEUR);
+  // pami.moteur.moteurDroit(VITESSE_MOTEUR+20);
   runPami = true;
   switchToOnRoad();
 }
@@ -230,7 +232,8 @@ void gestionBoule( void ) {
 void gestionRun() {
   static unsigned long  nextTime = millis()+PERIOD_GESTION_DIRECTION;
   int anglePami;
-  unsigned short anglePwm;
+  char vitesseGauche = VITESSE_MOTEUR;
+  char vitesseDroite = VITESSE_MOTEUR;
 
   // On ne gére la direction que toutes les PERIOD_GESTION_DIRECTION ms
   if( millis() < nextTime) return;
@@ -238,6 +241,16 @@ void gestionRun() {
 
   if( !runPami ) return; 
   anglePami = pami.gyro.getAngle();
+
+  if( anglePami < 0 ) {
+    vitesseGauche += 10;
+  }
+  if( anglePami > 0 ) {
+    vitesseDroite += 10;
+  }
+
+  pami.moteur.moteurGauche(vitesseGauche);
+  pami.moteur.moteurDroit(vitesseDroite);
 }
 
 

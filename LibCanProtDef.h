@@ -42,7 +42,7 @@
 
     commande BUS_CAN_SET_PWM :
       1 byte : Numéro de GPIO (0-5)
-      1 byte : Angle (Valeur signée)
+      1 byte : Angle (0-90/180)
 
   Format général d'une réponse
     1 byte : CAN_MAGIC_TAG = 0xC7

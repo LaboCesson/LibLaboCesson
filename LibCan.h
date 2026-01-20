@@ -84,57 +84,73 @@ class LibCan2515
 };
 
 
-
-
-/// \class LibCanProt
-/// \brief La librairie LibCanProt permet de gérer le protocole utilisé entre le poste de commande du robot et le robot
-/// \brief Elle s'appuie sur la librairie \ref LibCan2515
-
-#include "LibMoteur.h"
-#include "LibColor.h"
-#include "LibGpio.h"
+/// \class LibCanProtCommon
+/// \brief La librairie LibCanProtCommon contient des fonctions communes à l'émission et à la réception
 
 #define BUS_CAN_MESSAGE_MAX_SIZE 64
 #define BUS_CAN_TIME_OUT         100 // Durée d'attente max dune réponse (par unité de 10ms)
 
-class LibCanProt
+class LibCanProtCommon
+{
+public:
+
+	void setDebug(bool debug) { m_debug = debug; }; ///< si true les messages de debug sont affichése les messages de debug sont affichés
+
+	///// \details Envoi le message présent dans le buffer
+	//void envoiMessage(void);
+
+	void displayPinInfo(
+		unsigned char pin,  ///< Numéro du pin
+		unsigned int  val   ///< Valeur associé au pin
+	);
+
+	void displayVitessesInfo(
+		char vitesseGauche,  ///< Vitesse moteur Gauche
+		char vitesseDroite   ///< Vitesse moteur Droit
+	);
+
+	void displayColorInfo(
+		unsigned int color   ///< Description des couleurs
+	);
+
+	void displayGpioAngleInfo(
+		unsigned char gpio,  ///< Index du gpio
+		unsigned char angle  ///< Angle associé au pin (0-90/180)
+	);
+
+	/// \details Affichage du libellé de la commande
+	void displayMessageString(
+		unsigned char cmd  ///< Code de la commande
+	);
+
+private:
+
+	bool m_debug = false;
+
+protected:
+};
+
+
+
+/// \class LibCanProtSend
+/// \brief La librairie LibCanProtSend permet de gérer le protocole utilisé entre le poste de commande du robot et le robot
+/// \brief Elle s'appuie sur la librairie \ref LibCan2515
+
+class LibCanProtSend
 {
   public:
 		/// \details 
-		LibCanProt(void);
+		LibCanProtSend(void);
 
     /// \details Permet de donner les références du driver du bus CAN
     void setCanBusDriver(
 			LibCan2515 * p_canBus ///< Pointeur vers le gestionnaire du bus CAN
 		) { mp_canBus = p_canBus; }
 
-		/// \details Permet de donner les références des moteurs
-		/// \details Il est possible de gérer 2 moteurs
-		void setMoteurDriver(
-			unsigned char moteur, ///< Moteur à configurer (0-1)
-			LibMoteur* p_moteur   ///< Pointeur vers le gestionnaire de moteur
-		);
-
-		/// \details Permet de donner les références du driver du détecteur de couleur
-		void setColorDriver(
-			LibTcs3472* p_color ///< Pointeur vers le gestionnaire du détecteur de couleur
-		) { mp_color = p_color; }
-
-		/// \details Permet de donner les références du driver du gestionnaire de GPIO
-		void setGpioDriver(
-			LibGpio* p_gpio ///< Pointeur vers le gestionnaire de GPIO
-		) { mp_gpio = p_gpio; }
 
 		/// \details Permet de valider l'interface CAN et le gestion du protocole
 		/// \return Retourne true si le bus CAN est prêt et false sinon 
 		bool begin(	void );
-
-		/// \details Permet de traiter l'arrivée d'un éventuel message
-		/// \return Retourne true si un message a été traité et false sinon
-		bool gestionMessage(
-			// unsigned char csPin ///< Pin associée au signal CS
-		);
-
 
 		/// \details Permet de configurer l'état d'un pin de l'équipement distant
 		void sendSetPinDigital(unsigned char pin, unsigned char status);
@@ -185,31 +201,13 @@ class LibCanProt
 		unsigned char m_bufferCan[BUS_CAN_MESSAGE_MAX_SIZE];
 
 		LibCan2515 * mp_canBus  = NULL;
-		LibMoteur  * mp_moteur1 = NULL;
-		LibMoteur  * mp_moteur2 = NULL;
-		LibTcs3472 * mp_color   = NULL;
-		LibGpio    * mp_gpio    = NULL;
+		LibCanProtCommon canProtCom;
 
-		void setPinDigital(void);
-		void getPinDigital(void);
-		void setPinAnalog (void);
-		void getPinAnalog (void);
-		void setMoteur    (unsigned char moteur);
-		void displayString(void);
-		void getColor     (void);
-		void setGpioPwm   (void);
-
-		void returnGetPinDigital(unsigned char pin, unsigned char status);
-		void returnGetPinAnalog(unsigned char pin, unsigned char value);
-		void returnGetColor(unsigned char color);
 
 		//========== Routines de gestion des messages ========
 
 		/// \details Envoi le message présent dans le buffer
 		void envoiMessage(void);
-
-		///// \details Envoi la réponse présente dans le buffer
-		//void envoiReponse(void);
 
 		/// \details Attends une réponse avec un time-out
 		/// \return  Retourne true si un message est présent dans le buffer m_bufferCan et false sinon
@@ -217,34 +215,108 @@ class LibCanProt
 			int timeOut  ///< Time-out exprimé en nombre 10ms à attendre
 		);
 
-
-		//========== Routines d'affichage de messages de debug ========
-
-		void displayPinInfo(
-			unsigned char pin,  ///< Numéro du pin
-			unsigned int  val   ///< Valeur associé au pin
-		);
-
-		void displayVitessesInfo(
-			char vitesseGauche,  ///< Vitesse moteur Gauche
-			char vitesseDroite   ///< Vitesse moteur Droit
-		);
-
-		void displayColorInfo(
-			unsigned int color   ///< Description des couleurs
-		);
-
-		void displayGpioAngleInfo(
-			unsigned char gpio,  ///< Index du gpio
-			char          angle  ///< Angle associé au pin
-		);
-
-		/// \details Affichage du libellé de la commande
-		void displayMessageString(
-			unsigned char cmd  ///< Code de la commande
-		);
-
   protected:
 };
+
+
+
+/// \class LibCanProtRecv
+/// \brief La librairie LibCanProtRecv permet de gérer le protocole utilisé entre le poste de commande du robot et le robot
+/// \brief Elle s'appuie sur la librairie \ref LibCan2515
+
+#include "LibMoteur.h"
+#include "LibColor.h"
+#include "LibGpio.h"
+
+class LibCanProtRecv
+{
+public:
+	/// \details 
+	LibCanProtRecv(void);
+
+	/// \details Permet de donner les références du driver du bus CAN
+	void setCanBusDriver(
+		LibCan2515* p_canBus ///< Pointeur vers le gestionnaire du bus CAN
+	) {
+		mp_canBus = p_canBus;
+	}
+
+	/// \details Permet de donner les références des moteurs
+	/// \details Il est possible de gérer 2 moteurs
+	void setMoteurDriver(
+		unsigned char moteur, ///< Moteur à configurer (0-1)
+		LibMoteur* p_moteur   ///< Pointeur vers le gestionnaire de moteur
+	);
+
+	/// \details Permet de donner les références du driver du détecteur de couleur
+	void setColorDriver(
+		LibTcs3472* p_color ///< Pointeur vers le gestionnaire du détecteur de couleur
+	) {
+		mp_color = p_color;
+	}
+
+	/// \details Permet de donner les références du driver du gestionnaire de GPIO
+	void setGpioDriver(
+		LibGpio* p_gpio ///< Pointeur vers le gestionnaire de GPIO
+	) {
+		mp_gpio = p_gpio;
+	}
+
+	/// \details Permet de valider l'interface CAN et le gestion du protocole
+	/// \return Retourne true si le bus CAN est prêt et false sinon 
+	bool begin(void);
+
+	/// \details Permet de traiter l'arrivée d'un éventuel message
+	/// \return Retourne true si un message a été traité et false sinon
+	bool gestionMessage(
+		// unsigned char csPin ///< Pin associée au signal CS
+	);
+
+	/// \details Permet de vider les messages reçus
+	/// \details A utiliser avant l'envoi d'une commande avec une réponse
+	/// pour s'assurer qu'une ancienne réponse après time_out serait prise en compte
+	/// \details A utiliser également à la fin du setup
+	void purgeMessageRecu(void);
+
+	/// \details Permet de valider l'affichage de message de debug
+	void setDebug(
+		bool debug ///< si true les messages de debug sont affichés
+	);
+
+private:
+
+	bool m_debug;
+	bool m_begin;
+	unsigned char m_bufferCan[BUS_CAN_MESSAGE_MAX_SIZE];
+
+	LibCan2515* mp_canBus = NULL;
+	LibMoteur* mp_moteur1 = NULL;
+	LibMoteur* mp_moteur2 = NULL;
+	LibTcs3472* mp_color = NULL;
+	LibGpio* mp_gpio = NULL;
+
+	LibCanProtCommon canProtCom;
+
+	void setPinDigital(void);
+	void getPinDigital(void);
+	void setPinAnalog(void);
+	void getPinAnalog(void);
+	void setMoteur(unsigned char moteur);
+	void displayString(void);
+	void getColor(void);
+	void setGpioPwm(void);
+
+	void returnGetPinDigital(unsigned char pin, unsigned char status);
+	void returnGetPinAnalog(unsigned char pin, unsigned char value);
+	void returnGetColor(unsigned char color);
+
+	//========== Routines de gestion des messages ========
+
+	/// \details Envoi le message présent dans le buffer
+	void envoiMessage(void);
+
+protected:
+};
+
 
 #endif

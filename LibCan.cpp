@@ -98,59 +98,345 @@ void LibCan2515::setDebug(bool debug) { m_debug = debug; }
 
 
 //=====================================
-// Class LibCanProt
+// Class LibCanProtSend
 //=====================================
 
 #include "LibCanProtDef.h"
 
 
-LibCanProt::LibCanProt() {
+LibCanProtSend::LibCanProtSend()
+{
   m_debug = false;
   m_begin = false;
 }
 
 
-bool LibCanProt::begin(void) {
+bool LibCanProtSend::begin(void) {
   if( mp_canBus->begin() == false ) return false;
   m_begin = true;
   return true;
 }
 
 
-void LibCanProt::setMoteurDriver(unsigned char moteur, LibMoteur* p_moteur) {
-  switch (moteur) {
-    case 0: mp_moteur1 = p_moteur; break;
-    case 1: mp_moteur2 = p_moteur; break;
+void LibCanProtSend::sendSetPinDigital( unsigned char pin, unsigned char status ) {
+  unsigned char * p_buf = m_bufferCan;
+  *p_buf++ = CAN_MAGIC_TAG;
+  *p_buf++ = BUS_CAN_SET_PIN_DIGITAL;
+  *p_buf++ = 2;
+  *p_buf++ = pin;
+  *p_buf++ = status;
+  envoiMessage();
+  canProtCom.displayPinInfo(pin, status);
+}
+
+
+void LibCanProtSend::sendSetPinAnalog( unsigned char pin, unsigned short val ) {
+  unsigned char* p_buf = m_bufferCan;
+  *p_buf++ = CAN_MAGIC_TAG;
+  *p_buf++ = BUS_CAN_SET_PIN_ANALOGIQUE;
+  *p_buf++ = 3;
+  *p_buf++ = pin;
+  *p_buf++ = val >> 8;
+  *p_buf++ = val & 0xFF;
+  envoiMessage();
+  canProtCom.displayPinInfo(pin, val);
+}
+
+
+void LibCanProtSend::sendSetMoteur1(char vitesseGauche, char vitesseDroite) {
+  unsigned char* p_buf = m_bufferCan;
+  *p_buf++ = CAN_MAGIC_TAG;
+  *p_buf++ = BUS_CAN_SET_MOTEUR_1;
+  *p_buf++ = 2;
+  *p_buf++ = vitesseGauche;
+  *p_buf++ = vitesseDroite;
+  envoiMessage();
+  canProtCom.displayVitessesInfo(vitesseGauche, vitesseDroite);
+}
+
+
+void LibCanProtSend::sendSetMoteur2(char vitesseGauche, char vitesseDroite) {
+  unsigned char* p_buf = m_bufferCan;
+  *p_buf++ = CAN_MAGIC_TAG;
+  *p_buf++ = BUS_CAN_SET_MOTEUR_2;
+  *p_buf++ = 2;
+  *p_buf++ = vitesseGauche;
+  *p_buf++ = vitesseDroite;
+  envoiMessage();
+  canProtCom.displayVitessesInfo(vitesseGauche, vitesseDroite);
+}
+
+
+void LibCanProtSend::sendDisplayString( char * message, unsigned char len) {
+  /// \todo sendDisplayString
+}
+
+
+void LibCanProtSend::sendSetGpioPwm(unsigned char gpio, char angle) {
+  unsigned char* p_buf = m_bufferCan;
+  *p_buf++ = CAN_MAGIC_TAG;
+  *p_buf++ = BUS_CAN_SET_GPIO_PWM;
+  *p_buf++ = 2;
+  *p_buf++ = gpio;
+  *p_buf++ = angle;
+  envoiMessage();
+  canProtCom.displayGpioAngleInfo(gpio, angle);
+}
+
+
+int LibCanProtSend::sendGetPinDigital(unsigned char pin) {
+  purgeMessageRecu(); // Pour ne pas traiter un message précédent reçu avec retard
+
+  unsigned char* p_buf = m_bufferCan;
+  *p_buf++ = CAN_MAGIC_TAG;
+  *p_buf++ = BUS_CAN_GET_PIN_DIGITAL;
+  *p_buf++ = 1;
+  *p_buf++ = pin;
+  envoiMessage();
+  if (m_debug == true) { Serial.print(pin); Serial.print(" => "); }
+
+  if (attendReponse(BUS_CAN_TIME_OUT) == false) {
+    if (m_debug == true) { Serial.println(" Reponse non recu"); }
+    return -1;
+  }
+
+  unsigned char pinRecv = m_bufferCan[3];
+  unsigned char status  = m_bufferCan[4];
+
+  canProtCom.displayPinInfo(pinRecv, status);
+  return status;
+}
+
+
+int LibCanProtSend::sendGetPinAnalog(unsigned char pin) {
+  purgeMessageRecu(); // Pour ne pas traiter un message précédent reçu avec retard
+
+  unsigned char* p_buf = m_bufferCan;
+  *p_buf++ = CAN_MAGIC_TAG;
+  *p_buf++ = BUS_CAN_GET_PIN_ANALOGIQUE;
+  *p_buf++ = 1;
+  *p_buf++ = pin;
+  envoiMessage();
+  if (m_debug == true) { Serial.print(pin); Serial.print(" => "); }
+
+  if (attendReponse(BUS_CAN_TIME_OUT) == false) {
+    if (m_debug == true) { Serial.println(" Reponse non recu"); }
+    return -1;
+  }
+
+  unsigned char pinRecv;
+  int value;
+
+  pinRecv = m_bufferCan[3];
+  value   = m_bufferCan[4]<<8;
+  value  += m_bufferCan[5];
+
+  canProtCom.displayPinInfo( pinRecv, value);
+  return value;
+}
+
+
+int LibCanProtSend::sendGetColor(unsigned char nbColor ) {
+  purgeMessageRecu(); // Pour ne pas traiter un message précédent reçu avec retard
+  
+  unsigned char* p_buf = m_bufferCan;
+  *p_buf++ = CAN_MAGIC_TAG;
+  *p_buf++ = BUS_CAN_GET_COLOR;
+  *p_buf++ = 1;
+  *p_buf++ = nbColor;
+  envoiMessage();
+  if (m_debug == true) { Serial.print(nbColor); Serial.print(" couleur => "); }
+
+  if (attendReponse(BUS_CAN_TIME_OUT) == false) {
+    if (m_debug == true) { Serial.println(" Reponse non recu"); }
+    return -1;
+  }
+
+  unsigned char color = m_bufferCan[3];
+  canProtCom.displayColorInfo(color);
+  return color;
+}
+
+
+//========== Routines de gestion des messages ========
+
+void LibCanProtSend::envoiMessage(void) {
+  unsigned char cmd = m_bufferCan[1] & 0x7F;
+  unsigned char rep = m_bufferCan[1] >> 7;
+  unsigned char len = m_bufferCan[2] + 3;
+  
+  mp_canBus->sendMessage(m_bufferCan, len);
+
+  if (m_debug == true) {
+    Serial.print(rep == 0 ? "CAN send=> " : "CAN repo=> ");
+    canProtCom.displayMessageString(cmd);
   }
 }
 
 
-bool LibCanProt::gestionMessage(void) {
+bool LibCanProtSend::attendReponse(int timeOut) {
+  unsigned char len;
+  while (timeOut > 0) {
+    if (mp_canBus->getMessage(m_bufferCan) != 0) {
+      return true;
+    }
+    delay(10);
+    timeOut--;
+  }
+  return false;
+}
+
+
+void LibCanProtSend::purgeMessageRecu(void) {
+  while (mp_canBus->getMessage(m_bufferCan) != 0)
+    if(m_debug== true) Serial.println("CAN purge");
+}
+
+
+void LibCanProtSend::setDebug(bool debug) {
+  m_debug = debug; 
+  canProtCom.setDebug(debug);
+}
+
+
+//=====================================
+// Class LibCanProtCommon
+//=====================================
+
+
+void LibCanProtCommon::displayPinInfo(unsigned char pin, unsigned int  val) {
+  if (m_debug == false) return;
+  Serial.print("pin");
+  Serial.print(pin);
+  Serial.print("=");
+  Serial.println(val);
+}
+
+
+void LibCanProtCommon::displayVitessesInfo(char vitesseGauche, char vitesseDroite) {
+  if (m_debug == false) return;
+  Serial.print("Vitesses=");
+  Serial.print((int)vitesseGauche);
+  Serial.print(":");
+  Serial.println((int)vitesseDroite);
+}
+
+
+void LibCanProtCommon::displayColorInfo(unsigned int color) {
+  if (m_debug == false) return;
+  for (int i = 0; i < 4; i++)
+  {
+    switch (color & 0x03) {
+    case  ROBOT_COULEUR_INCONNUE: Serial.print("?"); break;
+    case  ROBOT_COULEUR_JAUNE: Serial.print("J"); break;
+    case  ROBOT_COULEUR_BLEU: Serial.print("B"); break;
+    default: Serial.print("-"); break;
+    }
+    color >>= 2;
+  }
+  Serial.println("");
+}
+
+
+void LibCanProtCommon::displayGpioAngleInfo(unsigned char gpio, unsigned char angle) {
+  if (m_debug == false) return;
+  Serial.print(gpio);
+  Serial.print(":");
+  Serial.print(angle);
+  Serial.println("°");
+}
+
+
+void LibCanProtCommon::displayMessageString(unsigned char cmd) {
+  switch (cmd) {
+  case BUS_CAN_SET_PIN_DIGITAL: Serial.print("SET_PIN_DIGITAL ");    break;
+  case BUS_CAN_GET_PIN_DIGITAL: Serial.print("GET_PIN_DIGITAL ");    break;
+  case BUS_CAN_SET_PIN_ANALOGIQUE: Serial.print("SET_PIN_ANALOGIQUE "); break;
+  case BUS_CAN_GET_PIN_ANALOGIQUE: Serial.print("GET_PIN_ANALOGIQUE "); break;
+  case BUS_CAN_SET_MOTEUR_1: Serial.print("SET_MOTEUR_1 ");       break;
+  case BUS_CAN_SET_MOTEUR_2: Serial.print("SET_MOTEUR_2 ");       break;
+  case BUS_CAN_DISPLAY_STRING: Serial.print("DISPLAY_STRING ");     break;
+  case BUS_CAN_GET_COLOR: Serial.print("BUS_CAN_GET_COLOR ");  break;
+  case BUS_CAN_SET_GPIO_PWM: Serial.print("BUS_SET_GPIO_PWM ");   break;
+  case BUS_CAN_CUSTOM_COMMAND: Serial.print("CUSTOM_COMMAND ");     break;
+  default:                         Serial.print("!! INCONNUE !! ");     break;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//=====================================
+// Class LibCanProt
+//=====================================
+
+#include "LibCanProtDef.h"
+
+
+LibCanProtRecv::LibCanProtRecv()
+{
+  m_debug = false;
+  m_begin = false;
+}
+
+
+bool LibCanProtRecv::begin(void) {
+  if (mp_canBus->begin() == false) return false;
+  m_begin = true;
+  return true;
+}
+
+
+void LibCanProtRecv::setMoteurDriver(unsigned char moteur, LibMoteur* p_moteur) {
+  switch (moteur) {
+  case 0: mp_moteur1 = p_moteur; break;
+  case 1: mp_moteur2 = p_moteur; break;
+  }
+}
+
+
+bool LibCanProtRecv::gestionMessage(void) {
   if (m_begin == false) return false;
 
   unsigned char len = mp_canBus->getMessage(m_bufferCan);
 
-  if( len == 0 ) return false;
+  if (len == 0) return false;
 
   unsigned char cmd = m_bufferCan[1];
 
   if (m_debug == true) {
     Serial.print("CAN recv=> ");
-    displayMessageString(cmd);
+    canProtCom.displayMessageString(cmd);
   }
 
-  switch(cmd) {
-    case BUS_CAN_SET_PIN_DIGITAL    : setPinDigital(); break;
-    case BUS_CAN_GET_PIN_DIGITAL    : getPinDigital(); break;
-    case BUS_CAN_SET_PIN_ANALOGIQUE : setPinAnalog();  break;
-    case BUS_CAN_GET_PIN_ANALOGIQUE : getPinAnalog();  break;
-    case BUS_CAN_SET_MOTEUR_1       : setMoteur(0);    break;
-    case BUS_CAN_SET_MOTEUR_2       : setMoteur(1);    break;
-    case BUS_CAN_DISPLAY_STRING     : displayString(); break;
-    case BUS_CAN_GET_COLOR          : getColor();      break;
-    case BUS_CAN_SET_GPIO_PWM       : setGpioPwm();    break;
-    case BUS_CAN_CUSTOM_COMMAND     : break;
-    default : Serial.print(cmd); Serial.println(""); return false;
+  switch (cmd) {
+    case BUS_CAN_SET_PIN_DIGITAL: setPinDigital(); break;
+    case BUS_CAN_GET_PIN_DIGITAL: getPinDigital(); break;
+    case BUS_CAN_SET_PIN_ANALOGIQUE: setPinAnalog();  break;
+    case BUS_CAN_GET_PIN_ANALOGIQUE: getPinAnalog();  break;
+    case BUS_CAN_SET_MOTEUR_1: setMoteur(0);    break;
+    case BUS_CAN_SET_MOTEUR_2: setMoteur(1);    break;
+    case BUS_CAN_DISPLAY_STRING: displayString(); break;
+    case BUS_CAN_GET_COLOR: getColor();      break;
+    case BUS_CAN_SET_GPIO_PWM: setGpioPwm();    break;
+    case BUS_CAN_CUSTOM_COMMAND: break;
+    default: Serial.print(cmd); Serial.println(""); return false;
   }
   return true;
 }
@@ -159,25 +445,25 @@ bool LibCanProt::gestionMessage(void) {
 //========== Routines de traitement des messages reçus  ========
 
 
-void LibCanProt::setPinDigital(void) {
-  unsigned char pin    = m_bufferCan[3];
+void LibCanProtRecv::setPinDigital(void) {
+  unsigned char pin = m_bufferCan[3];
   unsigned char status = m_bufferCan[4];
-  digitalWrite(pin,status);
-  displayPinInfo(pin, status);
+  digitalWrite(pin, status);
+  canProtCom.displayPinInfo(pin, status);
 }
 
 
-void LibCanProt::setPinAnalog (void) {
+void LibCanProtRecv::setPinAnalog(void) {
   unsigned char  pin = m_bufferCan[3];
-  unsigned short val = m_bufferCan[4]&0x03;
+  unsigned short val = m_bufferCan[4] & 0x03;
   val <<= 8;
   val += m_bufferCan[5];
-  analogWrite(pin,val);
-  displayPinInfo(pin, val);
+  analogWrite(pin, val);
+  canProtCom.displayPinInfo(pin, val);
 }
 
 
-void LibCanProt::setMoteur(unsigned char moteur) {
+void LibCanProtRecv::setMoteur(unsigned char moteur) {
   LibMoteur* p_moteur;
 
   switch (moteur) {
@@ -197,34 +483,34 @@ void LibCanProt::setMoteur(unsigned char moteur) {
   p_moteur->moteurGauche(vitesseGauche);
   p_moteur->moteurDroit(vitesseDroite);
 
-  displayVitessesInfo(vitesseGauche, vitesseDroite);
+  canProtCom.displayVitessesInfo(vitesseGauche, vitesseDroite);
 }
 
 
-void LibCanProt::displayString(void) {
+void LibCanProtRecv::displayString(void) {
   // afficheur.displayBuffer(&(p_buf[4]), p_buf[3]);
 }
 
 
-void LibCanProt::getPinDigital(void) {
+void LibCanProtRecv::getPinDigital(void) {
   unsigned char pin = m_bufferCan[3];
   if (m_debug == true) { Serial.println(pin); }
 
   unsigned char status = digitalRead(pin);
-  returnGetPinDigital(pin,status);
+  returnGetPinDigital(pin, status);
 }
 
 
-void LibCanProt::getPinAnalog(void) {
+void LibCanProtRecv::getPinAnalog(void) {
   unsigned char pin = m_bufferCan[3];
   if (m_debug == true) { Serial.println(pin); }
 
   unsigned short value = analogRead(pin);
-  returnGetPinAnalog(pin,value);
+  returnGetPinAnalog(pin, value);
 }
 
 
-void LibCanProt::getColor(void) {
+void LibCanProtRecv::getColor(void) {
   unsigned char nbColor = m_bufferCan[3];
   unsigned char color = 0xFF;
 
@@ -250,20 +536,19 @@ void LibCanProt::getColor(void) {
 }
 
 
-void LibCanProt::setGpioPwm(void) {
-  unsigned char gpio  = m_bufferCan[3];
+void LibCanProtRecv::setGpioPwm(void) {
+  unsigned char gpio = m_bufferCan[3];
   char          angle = m_bufferCan[4];
   if (mp_gpio == NULL) {
     Serial.println("CANbus !! Gestionnaire GPIO non initialise !!");
   }
 
   mp_gpio->set(gpio, angle);
-  //digitalWrite(pin, status);
-  displayGpioAngleInfo(gpio, angle);
+  canProtCom.displayGpioAngleInfo(gpio, angle);
 }
 
 
-void LibCanProt::returnGetPinDigital(unsigned char pin, unsigned char status) {
+void LibCanProtRecv::returnGetPinDigital(unsigned char pin, unsigned char status) {
   unsigned char* p_buf = m_bufferCan;
   *p_buf++ = CAN_MAGIC_TAG;
   *p_buf++ = BUS_CAN_GET_PIN_DIGITAL + 0x80;
@@ -271,11 +556,11 @@ void LibCanProt::returnGetPinDigital(unsigned char pin, unsigned char status) {
   *p_buf++ = pin;
   *p_buf++ = status;
   envoiMessage();
-  displayPinInfo(pin, status);
+  canProtCom.displayPinInfo(pin, status);
 }
 
 
-void LibCanProt::returnGetPinAnalog(unsigned char pin, unsigned char value) {
+void LibCanProtRecv::returnGetPinAnalog(unsigned char pin, unsigned char value) {
   unsigned char* p_buf = m_bufferCan;
   *p_buf++ = CAN_MAGIC_TAG;
   *p_buf++ = BUS_CAN_GET_PIN_ANALOGIQUE + 0x80;
@@ -284,259 +569,45 @@ void LibCanProt::returnGetPinAnalog(unsigned char pin, unsigned char value) {
   *p_buf++ = value >> 8;
   *p_buf++ = value & 0xFF;
   envoiMessage();
-  displayPinInfo(pin, value);
+  canProtCom.displayPinInfo(pin, value);
 }
 
 
-void LibCanProt::returnGetColor(unsigned char color) {
+void LibCanProtRecv::returnGetColor(unsigned char color) {
   unsigned char* p_buf = m_bufferCan;
   *p_buf++ = CAN_MAGIC_TAG;
   *p_buf++ = BUS_CAN_GET_COLOR + 0x80;
   *p_buf++ = 1;
   *p_buf++ = color;
   envoiMessage();
-  displayColorInfo(color);
-}
-
-
-//========== Routines d'envoi de messages initiaux  ========
-
-void LibCanProt::sendSetPinDigital( unsigned char pin, unsigned char status ) {
-  unsigned char * p_buf = m_bufferCan;
-  *p_buf++ = CAN_MAGIC_TAG;
-  *p_buf++ = BUS_CAN_SET_PIN_DIGITAL;
-  *p_buf++ = 2;
-  *p_buf++ = pin;
-  *p_buf++ = status;
-  envoiMessage();
-  displayPinInfo(pin, status);
-}
-
-
-void LibCanProt::sendSetPinAnalog( unsigned char pin, unsigned short val ) {
-  unsigned char* p_buf = m_bufferCan;
-  *p_buf++ = CAN_MAGIC_TAG;
-  *p_buf++ = BUS_CAN_SET_PIN_ANALOGIQUE;
-  *p_buf++ = 3;
-  *p_buf++ = pin;
-  *p_buf++ = val >> 8;
-  *p_buf++ = val & 0xFF;
-  envoiMessage();
-  displayPinInfo(pin, val);
-}
-
-
-void LibCanProt::sendSetMoteur1(char vitesseGauche, char vitesseDroite) {
-  unsigned char* p_buf = m_bufferCan;
-  *p_buf++ = CAN_MAGIC_TAG;
-  *p_buf++ = BUS_CAN_SET_MOTEUR_1;
-  *p_buf++ = 2;
-  *p_buf++ = vitesseGauche;
-  *p_buf++ = vitesseDroite;
-  envoiMessage();
-  displayVitessesInfo(vitesseGauche, vitesseDroite);
-}
-
-
-void LibCanProt::sendSetMoteur2(char vitesseGauche, char vitesseDroite) {
-  unsigned char* p_buf = m_bufferCan;
-  *p_buf++ = CAN_MAGIC_TAG;
-  *p_buf++ = BUS_CAN_SET_MOTEUR_2;
-  *p_buf++ = 2;
-  *p_buf++ = vitesseGauche;
-  *p_buf++ = vitesseDroite;
-  envoiMessage();
-  displayVitessesInfo(vitesseGauche, vitesseDroite);
-}
-
-
-void LibCanProt::sendDisplayString( char * message, unsigned char len) {
-  /// \todo sendDisplayString
-}
-
-
-void LibCanProt::sendSetGpioPwm(unsigned char gpio, char angle) {
-  unsigned char* p_buf = m_bufferCan;
-  *p_buf++ = CAN_MAGIC_TAG;
-  *p_buf++ = BUS_CAN_SET_GPIO_PWM;
-  *p_buf++ = 2;
-  *p_buf++ = gpio;
-  *p_buf++ = angle;
-  envoiMessage();
-  displayGpioAngleInfo(gpio, angle);
-}
-
-
-int LibCanProt::sendGetPinDigital(unsigned char pin) {
-  purgeMessageRecu(); // Pour ne pas traiter un message précédent reçu avec retard
-
-  unsigned char* p_buf = m_bufferCan;
-  *p_buf++ = CAN_MAGIC_TAG;
-  *p_buf++ = BUS_CAN_GET_PIN_DIGITAL;
-  *p_buf++ = 1;
-  *p_buf++ = pin;
-  envoiMessage();
-  if (m_debug == true) { Serial.print(pin); Serial.print(" => "); }
-
-  if (attendReponse(BUS_CAN_TIME_OUT) == false) {
-    if (m_debug == true) { Serial.println(" Reponse non recu"); }
-    return -1;
-  }
-
-  unsigned char pinRecv = m_bufferCan[3];
-  unsigned char status  = m_bufferCan[4];
-
-  displayPinInfo(pinRecv, status);
-  return status;
-}
-
-
-int LibCanProt::sendGetPinAnalog(unsigned char pin) {
-  purgeMessageRecu(); // Pour ne pas traiter un message précédent reçu avec retard
-
-  unsigned char* p_buf = m_bufferCan;
-  *p_buf++ = CAN_MAGIC_TAG;
-  *p_buf++ = BUS_CAN_GET_PIN_ANALOGIQUE;
-  *p_buf++ = 1;
-  *p_buf++ = pin;
-  envoiMessage();
-  if (m_debug == true) { Serial.print(pin); Serial.print(" => "); }
-
-  if (attendReponse(BUS_CAN_TIME_OUT) == false) {
-    if (m_debug == true) { Serial.println(" Reponse non recu"); }
-    return -1;
-  }
-
-  unsigned char pinRecv;
-  int value;
-
-  pinRecv = m_bufferCan[3];
-  value   = m_bufferCan[4]<<8;
-  value  += m_bufferCan[5];
-
-  displayPinInfo( pinRecv, value);
-  return value;
-}
-
-
-int LibCanProt::sendGetColor(unsigned char nbColor ) {
-  purgeMessageRecu(); // Pour ne pas traiter un message précédent reçu avec retard
-  
-  unsigned char* p_buf = m_bufferCan;
-  *p_buf++ = CAN_MAGIC_TAG;
-  *p_buf++ = BUS_CAN_GET_COLOR;
-  *p_buf++ = 1;
-  *p_buf++ = nbColor;
-  envoiMessage();
-  if (m_debug == true) { Serial.print(nbColor); Serial.print(" couleur => "); }
-
-  if (attendReponse(BUS_CAN_TIME_OUT) == false) {
-    if (m_debug == true) { Serial.println(" Reponse non recu"); }
-    return -1;
-  }
-
-  unsigned char color = m_bufferCan[3];
-  displayColorInfo(color);
-  return color;
+  canProtCom.displayColorInfo(color);
 }
 
 
 //========== Routines de gestion des messages ========
 
-void LibCanProt::envoiMessage(void) {
+void LibCanProtRecv::envoiMessage(void) {
   unsigned char cmd = m_bufferCan[1] & 0x7F;
   unsigned char rep = m_bufferCan[1] >> 7;
   unsigned char len = m_bufferCan[2] + 3;
-  
+
   mp_canBus->sendMessage(m_bufferCan, len);
 
   if (m_debug == true) {
     Serial.print(rep == 0 ? "CAN send=> " : "CAN repo=> ");
-    displayMessageString(cmd);
+    canProtCom.displayMessageString(cmd);
   }
 }
 
 
-bool LibCanProt::attendReponse(int timeOut) {
-  unsigned char len;
-  while (timeOut > 0) {
-    if (mp_canBus->getMessage(m_bufferCan) != 0) {
-      return true;
-    }
-    delay(10);
-    timeOut--;
-  }
-  return false;
-}
-
-
-void LibCanProt::purgeMessageRecu(void) {
+void LibCanProtRecv::purgeMessageRecu(void) {
   while (mp_canBus->getMessage(m_bufferCan) != 0)
-    if(m_debug== true) Serial.println("CAN purge");
+    if (m_debug == true) Serial.println("CAN purge");
 }
 
 
-//========== Routines d'affichage de messages de debug ========
-
-void LibCanProt::displayPinInfo(unsigned char pin, unsigned int  val) {
-  if (m_debug == false) return;
-  Serial.print("pin");
-  Serial.print(pin);
-  Serial.print("=");
-  Serial.println(val);
+void LibCanProtRecv::setDebug(bool debug) {
+  m_debug = debug;
+  canProtCom.setDebug(debug);
 }
-
-
-void LibCanProt::displayVitessesInfo(char vitesseGauche, char vitesseDroite) {
-  if (m_debug == false) return;
-  Serial.print("Vitesses=");
-  Serial.print((int)vitesseGauche);
-  Serial.print(":");
-  Serial.println((int)vitesseDroite);
-}
-
-
-void LibCanProt::displayColorInfo(unsigned int color) {
-  if (m_debug == false) return;
-  for (int i = 0; i < 4; i++)
-  {
-    switch (color & 0x03) {
-      case  ROBOT_COULEUR_INCONNUE: Serial.print("?"); break;
-      case  ROBOT_COULEUR_JAUNE : Serial.print("J"); break;
-      case  ROBOT_COULEUR_BLEU : Serial.print("B"); break;
-      default : Serial.print("-"); break;
-    }
-    color >>= 2;
-  }
-  Serial.println("");
-}
-
-
-void LibCanProt::displayGpioAngleInfo(unsigned char gpio, char angle) {
-  if (m_debug == false) return;
-  Serial.print(gpio);
-  Serial.print(":");
-  Serial.print(angle,DEC);
-  Serial.println("°");
-}
-
-
-void LibCanProt::displayMessageString( unsigned char cmd ) {
-  switch(cmd) {
-    case BUS_CAN_SET_PIN_DIGITAL    : Serial.print("SET_PIN_DIGITAL ");    break;
-    case BUS_CAN_GET_PIN_DIGITAL    : Serial.print("GET_PIN_DIGITAL ");    break;
-    case BUS_CAN_SET_PIN_ANALOGIQUE : Serial.print("SET_PIN_ANALOGIQUE "); break;
-    case BUS_CAN_GET_PIN_ANALOGIQUE : Serial.print("GET_PIN_ANALOGIQUE "); break;
-    case BUS_CAN_SET_MOTEUR_1       : Serial.print("SET_MOTEUR_1 ");       break;
-    case BUS_CAN_SET_MOTEUR_2       : Serial.print("SET_MOTEUR_2 ");       break;
-    case BUS_CAN_DISPLAY_STRING     : Serial.print("DISPLAY_STRING ");     break;
-    case BUS_CAN_GET_COLOR          : Serial.print("BUS_CAN_GET_COLOR ");  break;
-    case BUS_CAN_SET_GPIO_PWM       : Serial.print("BUS_SET_GPIO_PWM ");   break;
-    case BUS_CAN_CUSTOM_COMMAND     : Serial.print("CUSTOM_COMMAND ");     break;
-    default :                         Serial.print("!! INCONNUE !! ");     break;
-  }
-}
-
-
-void LibCanProt::setDebug(bool debug) { m_debug = debug; }
 

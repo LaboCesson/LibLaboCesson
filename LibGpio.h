@@ -69,8 +69,8 @@ class LibGpio
  	/// \return true ou \ref LIB_GPIO_ERROR si le GPIO n'existe pas
   bool set(
 		unsigned char gpioIdx, ///< Numéro d'index du GPIO à piloter(à partir de 0)
-		unsigned short value   ///< Valeur à appliquer
-	);
+    unsigned short value   ///< Valeur à appliquer
+  );
 
  	/// \details Permet de lire l'entrée d'un GPIO
  	/// \return la valeur lue ou \ref LIB_GPIO_ERROR si le GPIO n'existe pas	

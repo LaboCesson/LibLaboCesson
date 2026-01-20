@@ -28,6 +28,16 @@
 #define ROBOT_MOTEUR2_IN3 37
 #define ROBOT_MOTEUR2_IN4 36
 
+// Definition des pins associées aux PWM
+#define PIN_GPIO_1  9
+#define PIN_GPIO_2 10
+#define PIN_GPIO_3 11
+#define PIN_GPIO_4 12
+#define PIN_GPIO_5 13
+#define PIN_GPIO_6 14
+
+unsigned char gpioPinListRobot1[] = { PIN_GPIO_1,PIN_GPIO_2,PIN_GPIO_3,PIN_GPIO_4,PIN_GPIO_5,PIN_GPIO_6 };
+unsigned char nbGpioPinRobot1 = 6;
 
 
 //=====================================
@@ -38,20 +48,23 @@ LibRobot2026Robot1Recv::LibRobot2026Robot1Recv() :
   canBus(ROBOT_RECV_CAN_BUS_SCK_PIN, ROBOT_RECV_CAN_BUS_MISO_PIN, ROBOT_RECV_CAN_BUS_MOSI_PIN, ROBOT_RECV_CAN_BUS_CS_PIN),
   canProt(),
   moteur1(ROBOT_MOTEUR1_IN1, ROBOT_MOTEUR1_IN2, ROBOT_MOTEUR1_IN3, ROBOT_MOTEUR1_IN4),
-  moteur2(ROBOT_MOTEUR2_IN1, ROBOT_MOTEUR2_IN2, ROBOT_MOTEUR2_IN3, ROBOT_MOTEUR2_IN4)
+  moteur2(ROBOT_MOTEUR2_IN1, ROBOT_MOTEUR2_IN2, ROBOT_MOTEUR2_IN3, ROBOT_MOTEUR2_IN4),
   //color()
   //chrono()
   // afficheur(PAMI_AFF1637_CLK,PAMI_AFF1637_DATA),
   // jumper(PAMI_JUMPER_TEAM, jumpersPinList, 3),
-  // gpio(gpioPinListBasic,nbGpioPinBasic),
+   gpio(gpioPinListRobot1,nbGpioPinRobot1)
   // radio(RADIO433MHZ_RECV, PAMI_433MHZ_SPEED, PAMI_433MHZ_PIN, PAMI_433MHZ_PATTERN),
 {
-  ESP32PWM::allocateTimer(2);
-  ESP32PWM::allocateTimer(3);
+  #ifdef ARDUINO_ARCH_ESP32
+    ESP32PWM::allocateTimer(2);
+    ESP32PWM::allocateTimer(3);
+  #endif
 
   canProt.setCanBusDriver(&canBus);
   canProt.setMoteurDriver(0,&moteur1);
   canProt.setMoteurDriver(1,&moteur2);
+  canProt.setGpioDriver(&gpio);
   //canProt.setColorDriver(&color);
 
   canProt.begin();
@@ -61,6 +74,11 @@ LibRobot2026Robot1Recv::LibRobot2026Robot1Recv() :
 
 
   // chrono.setDisplay(&afficheur);
+
+  // Configuration des pins et sorties PWM
+  gpio.configure(3, PAMI_GPIO_OUTPUT_A);
+  gpio.configure(0, PAMI_GPIO_PWM);
+
 }
 
 

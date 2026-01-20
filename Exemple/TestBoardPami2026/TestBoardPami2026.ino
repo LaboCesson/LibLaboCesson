@@ -11,10 +11,10 @@
 // #define TEST_AFFICHEUR
 // #define TEST_RADIO
 // #define TEST_CHRONO
-// #define TEST_GYRO
+#define TEST_GYRO
 // #define TEST_MOTEUR
 // #define TEST_GPIO
-#define TEST_SERVO
+// #define TEST_SERVO
 // #define TEST_JUMPERS
 
 #define GPIO_SERVO PAMI_GPIO_1

@@ -18,7 +18,20 @@
 class LibJoystick
 {
   public:
+    LibJoystick(void);
+    
     LibJoystick(
+      unsigned short x0,        ///< Valeur correspondant au point 0 de X
+      unsigned short y0,        ///< Valeur correspondant au point 0 de Y
+      unsigned short deltaX,    ///< Zone centrale en X ou l'action du Joystick est inopérante
+      unsigned short deltaY,    ///< Zone centrale en Y ou l'action du Joystick est inopérante
+      unsigned short vNormale,  ///< Valeur de la vitesse normale
+      unsigned short vBoost,    ///< Valeur de la vitesse maximum
+      unsigned short minMotorG, ///< Vitesse minimum du moteur Gauche
+      unsigned short minMotorD  ///< Vitesse minimum du moteur Droite
+    );
+
+    void begin(
       unsigned short x0,        ///< Valeur correspondant au point 0 de X
       unsigned short y0,        ///< Valeur correspondant au point 0 de Y
       unsigned short deltaX,    ///< Zone centrale en X ou l'action du Joystick est inopérante

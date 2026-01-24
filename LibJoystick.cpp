@@ -8,6 +8,8 @@
 
 #include "LibJoystick.h"
 
+LibJoystick::LibJoystick();
+
 
 LibJoystick::LibJoystick(
   unsigned short x0,        unsigned short y0,
@@ -22,6 +24,25 @@ LibJoystick::LibJoystick(
 
   m_vNormale = vNormale;
   m_vBoost   = vBoost;
+
+  m_minMotorG = minMotorG;
+  m_minMotorD = minMotorD;
+}
+
+
+void LibJoystick::begin(
+  unsigned short x0,        unsigned short y0,
+  unsigned short deltaX,    unsigned short deltaY,
+  unsigned short vNormale,  unsigned short vBoost,
+  unsigned short minMotorG, unsigned short minMotorD) {
+
+  m_minX = x0 - (deltaX / 2);
+  m_maxX = x0 + (deltaX / 2);
+  m_minY = y0 - (deltaY / 2);
+  m_maxY = y0 + (deltaY / 2);
+
+  m_vNormale = vNormale;
+  m_vBoost = vBoost;
 
   m_minMotorG = minMotorG;
   m_minMotorD = minMotorD;

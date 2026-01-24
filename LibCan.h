@@ -99,6 +99,10 @@ public:
 	///// \details Envoi le message présent dans le buffer
 	//void envoiMessage(void);
 
+	void displayPingValue(
+		unsigned char val   ///< Valeur reçue
+	);
+
 	void displayPinInfo(
 		unsigned char pin,  ///< Numéro du pin
 		unsigned int  val   ///< Valeur associé au pin
@@ -116,6 +120,11 @@ public:
 	void displayGpioAngleInfo(
 		unsigned char gpio,  ///< Index du gpio
 		unsigned char angle  ///< Angle associé au pin (0-90/180)
+	);
+
+	void displayRelayStatus(
+		unsigned char relay,  ///< Index du relay (1-8)
+		bool          status  ///< nouveau status (LOW=ouvert HIGH=Fermé)
 	);
 
 	/// \details Affichage du libellé de la commande
@@ -153,6 +162,9 @@ class LibCanProtSend
 		bool begin(	void );
 
 		/// \details Permet de configurer l'état d'un pin de l'équipement distant
+		unsigned char sendPing(unsigned char valeur);
+
+		/// \details Permet de configurer l'état d'un pin de l'équipement distant
 		void sendSetPinDigital(unsigned char pin, unsigned char status);
 
 		/// \details Permet de configurer la valeur d'un pin analogique (0-1023) de l'équipement distant
@@ -181,7 +193,16 @@ class LibCanProtSend
 		int sendGetColor(unsigned char nbColor); ///< Nombre de couleurs à lire
 
 		/// \details Permet de configurer l'angle de rotation d'un servoMoteur désigné par son numéro de pin
-		void sendSetGpioPwm(unsigned char gpio, char angle);
+		void sendSetGpioPwm(
+			unsigned char gpio, ///< Index du gpio à gérer
+			unsigned char angle ///< Nouvel angle à appliquer
+		);
+
+		/// \details Permet de configurer l'état d'un relai
+		void sendSetRelay(
+			unsigned char relay, ///< Index du relai à positionner (1-8)
+			bool          status ///< Nouvel état LOW=ouvert HIGH=Fermé
+		);
 
 		/// \details Permet de vider les messages reçus
 		/// \details A utiliser avant l'envoi d'une commande avec une réponse
@@ -228,6 +249,8 @@ class LibCanProtSend
 #include "LibColor.h"
 #include "LibGpio.h"
 
+#define CAN_BUS_MAX_RELAY 8
+
 class LibCanProtRecv
 {
 public:
@@ -262,6 +285,8 @@ public:
 		mp_gpio = p_gpio;
 	}
 
+	void setPinRelay(unsigned char nbRelay, unsigned char* pinRelay);
+
 	/// \details Permet de valider l'interface CAN et le gestion du protocole
 	/// \return Retourne true si le bus CAN est prêt et false sinon 
 	bool begin(void);
@@ -288,6 +313,8 @@ private:
 	bool m_debug;
 	bool m_begin;
 	unsigned char m_bufferCan[BUS_CAN_MESSAGE_MAX_SIZE];
+	unsigned char m_nbRelay=0;
+	unsigned char m_pinRelay[CAN_BUS_MAX_RELAY];
 
 	LibCan2515* mp_canBus = NULL;
 	LibMoteur* mp_moteur1 = NULL;
@@ -297,6 +324,7 @@ private:
 
 	LibCanProtCommon canProtCom;
 
+	void ping(void);
 	void setPinDigital(void);
 	void getPinDigital(void);
 	void setPinAnalog(void);
@@ -305,7 +333,9 @@ private:
 	void displayString(void);
 	void getColor(void);
 	void setGpioPwm(void);
+	void setRelay(void);
 
+	void returnPing(unsigned char value);
 	void returnGetPinDigital(unsigned char pin, unsigned char status);
 	void returnGetPinAnalog(unsigned char pin, unsigned char value);
 	void returnGetColor(unsigned char color);

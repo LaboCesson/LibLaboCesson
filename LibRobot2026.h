@@ -13,7 +13,7 @@
 
 #include "LibCan.h"
 #include "LibMoteur.h"
-#include "LibChrono.h"
+//#include "LibChrono.h"
 #include "LibColor.h"
 
 
@@ -45,6 +45,7 @@ class LibRobot2026Robot1Recv
 };
 
 
+/*
 class LibRobot2026Robot1Send
 {
   public:
@@ -55,7 +56,7 @@ class LibRobot2026Robot1Send
 
     LibCan2515     canBus;
     LibCanProtSend canProt;
-    LibChrono      chrono;
+    //LibChrono      chrono;
 
     // LibAff1637   afficheur; ///< Librairie de gestion d'un afficheur
     // LibJumper    jumper;    ///< Librairie de gestion des jumpers d'un PAMI
@@ -66,5 +67,6 @@ class LibRobot2026Robot1Send
 
   protected:
 };
+*/
 
 #endif

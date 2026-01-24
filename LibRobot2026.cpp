@@ -89,15 +89,15 @@ void LibRobot2026Robot1Recv::gestion(void) {
   // afficheur.gestion();
 }
 
-
+/*
 //=====================================
 // Class LibRobot2026Robot1Send
 //=====================================
 
 LibRobot2026Robot1Send::LibRobot2026Robot1Send() :
   canBus(ROBOT_SEND_CAN_BUS_CS_PIN),
-  canProt(),
-  chrono()
+  canProt()
+  //chrono()
 
   // afficheur(PAMI_AFF1637_CLK,PAMI_AFF1637_DATA),
   // jumper(PAMI_JUMPER_TEAM, jumpersPinList, 3),
@@ -112,5 +112,7 @@ LibRobot2026Robot1Send::LibRobot2026Robot1Send() :
 
 void LibRobot2026Robot1Send::gestion(void) {
   // afficheur.gestion();
-  chrono.gestion();
+  //chrono.gestion();
 }
+*/
+

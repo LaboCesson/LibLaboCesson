@@ -13,6 +13,9 @@
     1 byte : Longueur de la commande excluant le byte commande/longueur (n) et le Magic tag
     n bytes: Paramètres de la commande
 
+    commande BUS_CAN_PING :
+      1 byte : valeur
+
     commande BUS_CAN_SET_PIN_DIGITAL :
       1 byte : Numéro de pin
       1 byte : Nouvel état (LOW,HIGH)
@@ -44,6 +47,10 @@
       1 byte : Numéro de GPIO (0-5)
       1 byte : Angle (0-90/180)
 
+    commande BUS_CAN_SET_RELAY :
+      1 byte : Index du relai (1-8)
+      1 byte : Nouvel état (LOW=ouvert HIGH=Fermé)
+
   Format général d'une réponse
     1 byte : CAN_MAGIC_TAG = 0xC7
     1 bit  : 1
@@ -51,7 +58,10 @@
     1 byte : Longueur de la réponse excluant le byte commande/longueur (n) et le Magic tag
     n bytes: Paramètres de la réponse
 
-    commande BUS_CAN_GET_PIN_DIGITAL :
+    commande BUS_CAN_PING :
+      1 byte : Valeur reçue
+
+      commande BUS_CAN_GET_PIN_DIGITAL :
       1 byte : Numéro de pin
       1 byte : Nouvel état (LOW,HIGH)
 
@@ -71,6 +81,7 @@
         ROBOT_COULEUR_BLEU     = 2 : Couleur Bleu
 */
 
+#define BUS_CAN_PING               0
 #define BUS_CAN_SET_PIN_DIGITAL    1
 #define BUS_CAN_GET_PIN_DIGITAL    2
 #define BUS_CAN_SET_PIN_ANALOGIQUE 3
@@ -80,6 +91,7 @@
 #define BUS_CAN_DISPLAY_STRING     7
 #define BUS_CAN_GET_COLOR          8
 #define BUS_CAN_SET_GPIO_PWM       9
-#define BUS_CAN_CUSTOM_COMMAND     10
+#define BUS_CAN_SET_RELAY          10
+#define BUS_CAN_CUSTOM_COMMAND     11
 
 #endif

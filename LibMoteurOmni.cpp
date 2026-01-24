@@ -25,6 +25,8 @@ LibMoteurOmni::LibMoteurOmni(
   m_debug = false;
   moteurAvant.setDirection(true, false);
   moteurArriere.setDirection(true, false);
+  moteurAvant.begin();
+  moteurArriere.begin();
 }
 
 
@@ -55,11 +57,19 @@ void LibMoteurOmni::avance( t_omni_direction direction, int vitesse ) {
   avantDroit   (vitesse*omniAvance[direction][1]);
   arriereGauche(vitesse*omniAvance[direction][2]);
   arriereDroit (vitesse*omniAvance[direction][3]);
+  if (m_debug == true) {
+    Serial.print("Moteur Omni :"); 
+    Serial.print(" Direction="); Serial.print(direction);
+    Serial.print(" Vitesse=");   Serial.println(vitesse);
+  }
 }
 
 
 void LibMoteurOmni::stop( void ) {
   this->avance(STOP,0);
+  if (m_debug == true) {
+    Serial.println("Moteur Omni : Stop");
+  }
 }
 
 

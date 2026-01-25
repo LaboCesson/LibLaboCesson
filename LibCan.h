@@ -13,7 +13,6 @@
 #include "mcp2515_can.h"
 
 #define DEFAULT_CAN_ID  0x70
-#define CAN_MAGIC_TAG 0xC7
 
 /// \class LibCan2515
 /// \brief La librairie LibCan2515 permet de gérer un bus CAN en émission et en réception
@@ -99,8 +98,8 @@ public:
 	///// \details Envoi le message présent dans le buffer
 	//void envoiMessage(void);
 
-	void displayPingValue(
-		unsigned char val   ///< Valeur reçue
+	void displayAck(
+		unsigned char cmd ///< Commande à acquitter
 	);
 
 	void displayPinInfo(
@@ -161,23 +160,29 @@ class LibCanProtSend
 		/// \return Retourne true si le bus CAN est prêt et false sinon 
 		bool begin(	void );
 
-		/// \details Permet de configurer l'état d'un pin de l'équipement distant
-		unsigned char sendPing(unsigned char valeur);
+		/// \details Permet d'envoyer un message de test vers l'équipement distant
+		/// \return  Retourne true si le test est OK et false sinon
+		bool sendPing(void);
 
 		/// \details Permet de configurer l'état d'un pin de l'équipement distant
-		void sendSetPinDigital(unsigned char pin, unsigned char status);
+		/// \return  Retourne true si le message a bien été traité et false sinon
+		bool sendSetPinDigital(unsigned char pin, unsigned char status);
 
 		/// \details Permet de configurer la valeur d'un pin analogique (0-1023) de l'équipement distant
-		void sendSetPinAnalog(unsigned char pin, unsigned short val);
+		/// \return  Retourne true si le message a bien été traité et false sinon
+		bool sendSetPinAnalog(unsigned char pin, unsigned short val);
 
 		/// \details Permet de configurer la vitesse des moteurs associés au moteur 1
-		void sendSetMoteur1(char vitesseGauche, char vitesseDroite);
+		/// \return  Retourne true si le message a bien été traité et false sinon
+		bool sendSetMoteur1(char vitesseGauche, char vitesseDroite);
 
 		/// \details Permet de configurer la vitesse des moteurs associés au moteur 2
-		void sendSetMoteur2(char vitesseGauche, char vitesseDroite);
+		/// \return  Retourne true si le message a bien été traité et false sinon
+		bool sendSetMoteur2(char vitesseGauche, char vitesseDroite);
 
 		/// \details Permet de d'afficher un message sur l'afficheur de l'équipement distant
-		void sendDisplayString(char* message, unsigned char len);
+		/// \return  Retourne true si le message a bien été traité et false sinon
+		bool sendDisplayString(char* message, unsigned char len);
 
 		/// \details Permet de lire l'état d'un pin de l'équipement distant
 		/// \return  Retourne l'état 0/1 ou -1 si aucune réponse n'a été reçu
@@ -193,13 +198,15 @@ class LibCanProtSend
 		int sendGetColor(unsigned char nbColor); ///< Nombre de couleurs à lire
 
 		/// \details Permet de configurer l'angle de rotation d'un servoMoteur désigné par son numéro de pin
-		void sendSetGpioPwm(
+		/// \return  Retourne true si le message a bien été traité et false sinon
+		bool sendSetGpioPwm(
 			unsigned char gpio, ///< Index du gpio à gérer
 			unsigned char angle ///< Nouvel angle à appliquer
 		);
 
 		/// \details Permet de configurer l'état d'un relai
-		void sendSetRelay(
+		/// \return  Retourne true si le message a bien été traité et false sinon
+		bool sendSetRelay(
 			unsigned char relay, ///< Index du relai à positionner (1-8)
 			bool          status ///< Nouvel état LOW=ouvert HIGH=Fermé
 		);
@@ -232,8 +239,8 @@ class LibCanProtSend
 
 		/// \details Attends une réponse avec un time-out
 		/// \return  Retourne true si un message est présent dans le buffer m_bufferCan et false sinon
-		bool attendReponse(
-			int timeOut  ///< Time-out exprimé en nombre 10ms à attendre
+		bool waitReponse(
+			unsigned char cmd  ///< Commande attendue
 		);
 
   protected:
@@ -285,7 +292,7 @@ public:
 		mp_gpio = p_gpio;
 	}
 
-	void setPinRelay(unsigned char nbRelay, unsigned char* pinRelay);
+	void setPinRelayList(unsigned char nbRelay, unsigned char* pinRelay);
 
 	/// \details Permet de valider l'interface CAN et le gestion du protocole
 	/// \return Retourne true si le bus CAN est prêt et false sinon 
@@ -329,13 +336,13 @@ private:
 	void getPinDigital(void);
 	void setPinAnalog(void);
 	void getPinAnalog(void);
-	void setMoteur(unsigned char moteur);
+	void setMoteur(unsigned char cmd);
 	void displayString(void);
 	void getColor(void);
 	void setGpioPwm(void);
 	void setRelay(void);
 
-	void returnPing(unsigned char value);
+	void returnAck(unsigned char cmd);
 	void returnGetPinDigital(unsigned char pin, unsigned char status);
 	void returnGetPinAnalog(unsigned char pin, unsigned char value);
 	void returnGetColor(unsigned char color);

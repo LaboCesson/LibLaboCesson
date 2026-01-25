@@ -117,36 +117,17 @@ bool LibCanProtSend::begin(void) {
 }
 
 
-unsigned char LibCanProtSend::sendPing(unsigned char value ) {
+bool LibCanProtSend::sendPing(void) {
   unsigned char* p_buf = m_bufferCan;
   *p_buf++ = CAN_MAGIC_TAG;
-  *p_buf++ = BUS_CAN_PING;
-  *p_buf++ = 1;
-  *p_buf++ = value;
+  *p_buf++ = BUS_CAN_PING_ACK;
   envoiMessage();
-
-  if (m_debug == true) { Serial.print(" => "); }
-
-  if (attendReponse(BUS_CAN_TIME_OUT) == false) {
-    if (m_debug == true) { Serial.println(" Reponse non recu"); }
-    return -1;
-  }
-  unsigned char receivedValue = m_bufferCan[3];
-
-  if ((value != receivedValue) && (m_debug == true)) { 
-    Serial.print(" !!ERROR!! "); 
-    Serial.print(value);
-    Serial.print("!=");
-    Serial.println(receivedValue);
-    return -1;
-  }
-
-  canProtCom.displayPingValue(receivedValue);
-  return receivedValue;
+  canProtCom.displayAck(BUS_CAN_PING_ACK);
+  return waitReponse(BUS_CAN_PING_ACK);
 }
 
 
-void LibCanProtSend::sendSetPinDigital(unsigned char pin, unsigned char status) {
+bool LibCanProtSend::sendSetPinDigital(unsigned char pin, unsigned char status) {
   unsigned char* p_buf = m_bufferCan;
   *p_buf++ = CAN_MAGIC_TAG;
   *p_buf++ = BUS_CAN_SET_PIN_DIGITAL;
@@ -155,10 +136,11 @@ void LibCanProtSend::sendSetPinDigital(unsigned char pin, unsigned char status) 
   *p_buf++ = status;
   envoiMessage();
   canProtCom.displayPinInfo(pin, status);
+  return waitReponse(BUS_CAN_SET_PIN_DIGITAL);
 }
 
 
-void LibCanProtSend::sendSetPinAnalog( unsigned char pin, unsigned short val ) {
+bool LibCanProtSend::sendSetPinAnalog( unsigned char pin, unsigned short val ) {
   unsigned char* p_buf = m_bufferCan;
   *p_buf++ = CAN_MAGIC_TAG;
   *p_buf++ = BUS_CAN_SET_PIN_ANALOGIQUE;
@@ -168,10 +150,11 @@ void LibCanProtSend::sendSetPinAnalog( unsigned char pin, unsigned short val ) {
   *p_buf++ = val & 0xFF;
   envoiMessage();
   canProtCom.displayPinInfo(pin, val);
+  return waitReponse(BUS_CAN_SET_PIN_ANALOGIQUE);
 }
 
 
-void LibCanProtSend::sendSetMoteur1(char vitesseGauche, char vitesseDroite) {
+bool LibCanProtSend::sendSetMoteur1(char vitesseGauche, char vitesseDroite) {
   unsigned char* p_buf = m_bufferCan;
   *p_buf++ = CAN_MAGIC_TAG;
   *p_buf++ = BUS_CAN_SET_MOTEUR_1;
@@ -180,10 +163,11 @@ void LibCanProtSend::sendSetMoteur1(char vitesseGauche, char vitesseDroite) {
   *p_buf++ = vitesseDroite;
   envoiMessage();
   canProtCom.displayVitessesInfo(vitesseGauche, vitesseDroite);
+  return waitReponse(BUS_CAN_SET_MOTEUR_1);
 }
 
 
-void LibCanProtSend::sendSetMoteur2(char vitesseGauche, char vitesseDroite) {
+bool LibCanProtSend::sendSetMoteur2(char vitesseGauche, char vitesseDroite) {
   unsigned char* p_buf = m_bufferCan;
   *p_buf++ = CAN_MAGIC_TAG;
   *p_buf++ = BUS_CAN_SET_MOTEUR_2;
@@ -192,15 +176,16 @@ void LibCanProtSend::sendSetMoteur2(char vitesseGauche, char vitesseDroite) {
   *p_buf++ = vitesseDroite;
   envoiMessage();
   canProtCom.displayVitessesInfo(vitesseGauche, vitesseDroite);
+  return waitReponse(BUS_CAN_SET_MOTEUR_2);
 }
 
 
-void LibCanProtSend::sendDisplayString( char * message, unsigned char len) {
+bool LibCanProtSend::sendDisplayString( char * message, unsigned char len) {
   /// \todo sendDisplayString
 }
 
 
-void LibCanProtSend::sendSetGpioPwm(unsigned char gpio, unsigned char angle) {
+bool LibCanProtSend::sendSetGpioPwm(unsigned char gpio, unsigned char angle) {
   unsigned char* p_buf = m_bufferCan;
   *p_buf++ = CAN_MAGIC_TAG;
   *p_buf++ = BUS_CAN_SET_GPIO_PWM;
@@ -209,10 +194,11 @@ void LibCanProtSend::sendSetGpioPwm(unsigned char gpio, unsigned char angle) {
   *p_buf++ = angle;
   envoiMessage();
   canProtCom.displayGpioAngleInfo(gpio, angle);
+  return waitReponse(BUS_CAN_SET_GPIO_PWM);
 }
 
 
-void LibCanProtSend::sendSetRelay(unsigned char index, bool status) {
+bool LibCanProtSend::sendSetRelay(unsigned char index, bool status) {
   unsigned char* p_buf = m_bufferCan;
   *p_buf++ = CAN_MAGIC_TAG;
   *p_buf++ = BUS_CAN_SET_RELAY;
@@ -221,6 +207,7 @@ void LibCanProtSend::sendSetRelay(unsigned char index, bool status) {
   *p_buf++ = status;
   envoiMessage();
   canProtCom.displayRelayStatus(index, status);
+  return waitReponse(BUS_CAN_SET_RELAY);
 }
 
 
@@ -235,8 +222,7 @@ int LibCanProtSend::sendGetPinDigital(unsigned char pin) {
   envoiMessage();
   if (m_debug == true) { Serial.print(pin); Serial.print(" => "); }
 
-  if (attendReponse(BUS_CAN_TIME_OUT) == false) {
-    if (m_debug == true) { Serial.println(" Reponse non recu"); }
+  if (waitReponse(BUS_CAN_GET_PIN_DIGITAL) == false) {
     return -1;
   }
 
@@ -259,8 +245,7 @@ int LibCanProtSend::sendGetPinAnalog(unsigned char pin) {
   envoiMessage();
   if (m_debug == true) { Serial.print(pin); Serial.print(" => "); }
 
-  if (attendReponse(BUS_CAN_TIME_OUT) == false) {
-    if (m_debug == true) { Serial.println(" Reponse non recu"); }
+  if (waitReponse(BUS_CAN_GET_PIN_ANALOGIQUE) == false) {
     return -1;
   }
 
@@ -287,8 +272,7 @@ int LibCanProtSend::sendGetColor(unsigned char nbColor ) {
   envoiMessage();
   if (m_debug == true) { Serial.print(nbColor); Serial.print(" couleur => "); }
 
-  if (attendReponse(BUS_CAN_TIME_OUT) == false) {
-    if (m_debug == true) { Serial.println(" Reponse non recu"); }
+  if (waitReponse(BUS_CAN_GET_COLOR) == false) {
     return -1;
   }
 
@@ -314,15 +298,27 @@ void LibCanProtSend::envoiMessage(void) {
 }
 
 
-bool LibCanProtSend::attendReponse(int timeOut) {
+bool LibCanProtSend::waitReponse(unsigned char cmd) {
+  int timeOut = BUS_CAN_TIME_OUT;
   unsigned char len;
+
+
   while (timeOut > 0) {
     if (mp_canBus->getMessage(m_bufferCan) != 0) {
+      if (m_bufferCan[0] != CAN_MAGIC_TAG) {
+        if (m_debug == true) { Serial.print(" !!BAD MAGICTAG!! "); Serial.println(m_bufferCan[0], HEX); }
+        return false;
+      }
+      if (m_bufferCan[1] != (cmd | 0x80)) {
+        if (m_debug == true) { Serial.print(" !!BAD COMMAND!! "); Serial.println(m_bufferCan[1]&0x7F); }
+        return false;
+      }
       return true;
     }
     delay(10);
     timeOut--;
   }
+  if (m_debug == true) { Serial.println(" Acquitement non recu"); }
   return false;
 }
 
@@ -341,7 +337,7 @@ void LibCanProtSend::setDebug(bool debug) {
 
 
 //=====================================
-// Class LibCanProtcv
+// Class LibCanProtRecv
 //=====================================
 
 LibCanProtRecv::LibCanProtRecv()
@@ -366,7 +362,7 @@ void LibCanProtRecv::setMoteurDriver(unsigned char moteur, LibMoteur* p_moteur) 
 }
 
 
-void LibCanProtRecv::setPinRelay(unsigned char nbRelay, unsigned char* pinRelay) {
+void LibCanProtRecv::setPinRelayList(unsigned char nbRelay, unsigned char* pinRelay) {
   m_nbRelay = (nbRelay > CAN_BUS_MAX_RELAY ? CAN_BUS_MAX_RELAY : nbRelay);
   for (int i = 0; i < m_nbRelay; i++) {
     m_pinRelay[i] = pinRelay[i];
@@ -391,13 +387,13 @@ bool LibCanProtRecv::gestionMessage(void) {
   }
 
   switch (cmd) {
-    case BUS_CAN_PING:               ping();          break;
+    case BUS_CAN_PING_ACK:           ping();          break;
     case BUS_CAN_SET_PIN_DIGITAL:    setPinDigital(); break;
     case BUS_CAN_GET_PIN_DIGITAL:    getPinDigital(); break;
     case BUS_CAN_SET_PIN_ANALOGIQUE: setPinAnalog();  break;
     case BUS_CAN_GET_PIN_ANALOGIQUE: getPinAnalog();  break;
-    case BUS_CAN_SET_MOTEUR_1:       setMoteur(0);    break;
-    case BUS_CAN_SET_MOTEUR_2:       setMoteur(1);    break;
+    case BUS_CAN_SET_MOTEUR_1:       setMoteur(BUS_CAN_SET_MOTEUR_1); break;
+    case BUS_CAN_SET_MOTEUR_2:       setMoteur(BUS_CAN_SET_MOTEUR_2); break;
     case BUS_CAN_DISPLAY_STRING:     displayString(); break;
     case BUS_CAN_GET_COLOR:          getColor();      break;
     case BUS_CAN_SET_GPIO_PWM:       setGpioPwm();    break;
@@ -413,9 +409,8 @@ bool LibCanProtRecv::gestionMessage(void) {
 
 
 void LibCanProtRecv::ping(void) {
-  unsigned char value = m_bufferCan[3];
-  if (m_debug == true) { Serial.println(value); }
-  returnPing(value);
+  canProtCom.displayAck(BUS_CAN_PING_ACK);
+  returnAck(BUS_CAN_PING_ACK);
 }
 
 
@@ -424,6 +419,7 @@ void LibCanProtRecv::setPinDigital(void) {
   unsigned char status = m_bufferCan[4];
   digitalWrite(pin, status);
   canProtCom.displayPinInfo(pin, status);
+  returnAck(BUS_CAN_SET_PIN_DIGITAL);
 }
 
 
@@ -434,15 +430,16 @@ void LibCanProtRecv::setPinAnalog(void) {
   val += m_bufferCan[5];
   analogWrite(pin, val);
   canProtCom.displayPinInfo(pin, val);
+  returnAck(BUS_CAN_SET_PIN_ANALOGIQUE);
 }
 
 
-void LibCanProtRecv::setMoteur(unsigned char moteur) {
+void LibCanProtRecv::setMoteur(unsigned char cmd) {
   LibMoteur* p_moteur;
 
-  switch (moteur) {
-    case 0: p_moteur = mp_moteur1; break;
-    case 1: p_moteur = mp_moteur2; break;
+  switch (cmd) {
+    case BUS_CAN_SET_MOTEUR_1: p_moteur = mp_moteur1; break;
+    case BUS_CAN_SET_MOTEUR_2: p_moteur = mp_moteur2; break;
     default: return;
   }
 
@@ -458,6 +455,7 @@ void LibCanProtRecv::setMoteur(unsigned char moteur) {
   p_moteur->moteurDroit(vitesseDroite);
 
   canProtCom.displayVitessesInfo(vitesseGauche, vitesseDroite);
+  returnAck(cmd);
 }
 
 
@@ -519,6 +517,7 @@ void LibCanProtRecv::setGpioPwm(void) {
 
   mp_gpio->set(gpio, angle);
   canProtCom.displayGpioAngleInfo(gpio, angle);
+  returnAck(BUS_CAN_SET_GPIO_PWM);
 }
 
 
@@ -528,17 +527,16 @@ void LibCanProtRecv::setRelay(void) {
 
   digitalWrite(m_pinRelay[relay - 1], (status == LOW ? HIGH : LOW));
   canProtCom.displayRelayStatus(relay, status);
+  returnAck(BUS_CAN_SET_RELAY);
 }
 
 
-void LibCanProtRecv::returnPing(unsigned char value) {
+void LibCanProtRecv::returnAck(unsigned char cmd) {
   unsigned char* p_buf = m_bufferCan;
   *p_buf++ = CAN_MAGIC_TAG;
-  *p_buf++ = BUS_CAN_PING + 0x80;
-  *p_buf++ = 1;
-  *p_buf++ = value;
+  *p_buf++ = cmd + 0x80;
   envoiMessage();
-  canProtCom.displayPingValue(value);
+  canProtCom.displayAck(cmd);
 }
 
 
@@ -611,12 +609,9 @@ void LibCanProtRecv::setDebug(bool debug) {
 // Class LibCanProtCommon
 //=====================================
 
-void LibCanProtCommon::displayPingValue(unsigned char val) {
+void LibCanProtCommon::displayAck(unsigned char cmd) {
   if (m_debug == false) return;
-  Serial.print("value ");
-  Serial.print(val);
-  Serial.print("=");
-  Serial.println(val);
+  Serial.println("Ack ");
 }
 
 
@@ -673,7 +668,7 @@ void LibCanProtCommon::displayRelayStatus(unsigned char relay, bool status) {
 
 void LibCanProtCommon::displayMessageString(unsigned char cmd) {
   switch (cmd) {
-  case BUS_CAN_PING:               Serial.print("PING ");               break;
+  case BUS_CAN_PING_ACK:           Serial.print("PING/ACK ");           break;
   case BUS_CAN_SET_PIN_DIGITAL:    Serial.print("SET_PIN_DIGITAL ");    break;
   case BUS_CAN_GET_PIN_DIGITAL:    Serial.print("GET_PIN_DIGITAL ");    break;
   case BUS_CAN_SET_PIN_ANALOGIQUE: Serial.print("SET_PIN_ANALOGIQUE "); break;

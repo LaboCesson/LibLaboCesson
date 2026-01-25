@@ -13,8 +13,7 @@
     1 byte : Longueur de la commande excluant le byte commande/longueur (n) et le Magic tag
     n bytes: Paramètres de la commande
 
-    commande BUS_CAN_PING :
-      1 byte : valeur
+    commande BUS_CAN_PING_ACK :
 
     commande BUS_CAN_SET_PIN_DIGITAL :
       1 byte : Numéro de pin
@@ -58,10 +57,11 @@
     1 byte : Longueur de la réponse excluant le byte commande/longueur (n) et le Magic tag
     n bytes: Paramètres de la réponse
 
-    commande BUS_CAN_PING :
-      1 byte : Valeur reçue
+    commande BUS_CAN_PING_ACK :
+        Cette commande est retournée lorsque la commande reçu n'a pas de réponse
+        Elle permet d'acquitter la réception de la commande
 
-      commande BUS_CAN_GET_PIN_DIGITAL :
+    commande BUS_CAN_GET_PIN_DIGITAL :
       1 byte : Numéro de pin
       1 byte : Nouvel état (LOW,HIGH)
 
@@ -81,7 +81,9 @@
         ROBOT_COULEUR_BLEU     = 2 : Couleur Bleu
 */
 
-#define BUS_CAN_PING               0
+#define CAN_MAGIC_TAG 0xC7
+
+#define BUS_CAN_PING_ACK           0
 #define BUS_CAN_SET_PIN_DIGITAL    1
 #define BUS_CAN_GET_PIN_DIGITAL    2
 #define BUS_CAN_SET_PIN_ANALOGIQUE 3

@@ -43,7 +43,7 @@
       1 bytes : Nombre de couleurs à afficher
 
     commande BUS_CAN_SET_PWM :
-      1 byte : Numéro de GPIO (0-5)
+      1 byte : Numéro de GPIO (1-8)
       1 byte : Angle (0-90/180)
 
     commande BUS_CAN_SET_RELAY :

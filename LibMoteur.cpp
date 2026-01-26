@@ -25,12 +25,10 @@
 LibMoteur::LibMoteur(unsigned char pinIn1, unsigned char pinIn2, unsigned char pinIn3, unsigned char pinIn4 ) {
   commonInit();
 
-  m_typeDriver   = MOTEUR_L298N;
+  m_typeDriver   = MOTEUR_L298N_4;
 
   m_frequency    = DEFAULT_FREQUENCY;
   m_resolution   = DEFAULT_RESOLUTION;
-
-  bool status;
 
   #ifdef AVR
     pinMode(m_avantGauche   = pinIn1, OUTPUT); analogWrite(m_avantGauche,  0);
@@ -47,13 +45,33 @@ LibMoteur::LibMoteur(unsigned char pinIn1, unsigned char pinIn2, unsigned char p
 
     m_attachStatus[MOTEUR_GAUCHE] = NO_ATTACH;
     m_attachStatus[MOTEUR_DROIT]  = NO_ATTACH;
+  #endif
+}
 
 
-    //pinMode(pinIn1, OUTPUT); digitalWrite(pinIn1, 0);
-    //pinMode(pinIn2, OUTPUT); digitalWrite(pinIn2, 0);
-    //pinMode(pinIn3, OUTPUT); digitalWrite(pinIn3, 0);
-    //pinMode(pinIn4, OUTPUT); digitalWrite(pinIn4, 0);
-#endif
+LibMoteur::LibMoteur(unsigned char pinEna, unsigned char pinIn1, unsigned char pinIn2,
+                     unsigned char pinIn3, unsigned char pinIn4, unsigned char pinEnb) {
+  commonInit();
+
+  m_typeDriver = MOTEUR_L298N_6;
+
+  m_frequency  = DEFAULT_FREQUENCY;
+  m_resolution = DEFAULT_RESOLUTION;
+
+  pinMode(m_avantGauche   = pinIn1, OUTPUT); digitalWrite(m_avantGauche, LOW);
+  pinMode(m_arriereGauche = pinIn2, OUTPUT); digitalWrite(m_arriereGauche, LOW);
+  pinMode(m_arriereDroite = pinIn3, OUTPUT); digitalWrite(m_arriereDroite, LOW);
+  pinMode(m_avantDroite   = pinIn4, OUTPUT); digitalWrite(m_avantDroite, LOW);
+
+  #ifdef AVR
+    pinMode(m_enableGauche = pinEna, OUTPUT); analogWrite(m_enableGauche, 0);
+    pinMode(m_enableDroite = pinEnb, OUTPUT); analogWrite(m_enableDroite, 0);
+  #endif
+
+  #ifdef ARDUINO_ARCH_ESP32
+    ledcAttach(m_enableGauche, m_frequency, m_resolution); ledcWrite(m_enableGauche, 0);
+    ledcAttach(m_enableDroite, m_frequency, m_resolution); ledcWrite(m_enableDroite, 0);
+  #endif
 }
 
 
@@ -86,8 +104,9 @@ void LibMoteur::commonInit(void) {
 void LibMoteur::begin(void) {
   if (m_begin == true) return;
   switch (m_typeDriver) {
-    case MOTEUR_L298N: break;
-    case MOTEUR_SERVO: 
+  case MOTEUR_L298N_4: break;
+  case MOTEUR_L298N_6: break;
+  case MOTEUR_SERVO:
       mp_servoGauche = new Servo();
       mp_servoGauche->attach(m_pinGauche, DEFAULT_SERVO_MIN, DEFAULT_SERVO_MAX);
       mp_servoGauche->writeMicroseconds(DEFAULT_SERVO_OFF);
@@ -117,8 +136,9 @@ void LibMoteur::moteurGauche(int vitesse) {
   trace("gauche", vitesse);
 
   switch (m_typeDriver) {
-    case MOTEUR_L298N : setVitesseMoteurL298n(vitesse, m_avantGauche, m_arriereGauche, MOTEUR_GAUCHE); break;
-    case MOTEUR_SERVO : setVitesseMoteurServo(vitesse, mp_servoGauche ); break;
+    case MOTEUR_L298N_4 : setVitesseMoteurL298n_4(vitesse, m_avantGauche, m_arriereGauche, MOTEUR_GAUCHE); break;
+    case MOTEUR_L298N_6 : setVitesseMoteurL298n_6(vitesse, m_enableGauche,m_avantGauche, m_arriereGauche, MOTEUR_GAUCHE); break;
+    case MOTEUR_SERVO   : setVitesseMoteurServo(vitesse, mp_servoGauche ); break;
     default: break;
   }
 }
@@ -132,14 +152,15 @@ void LibMoteur::moteurDroit(int vitesse) {
   trace("droit", vitesse);
 
   switch (m_typeDriver) {
-    case MOTEUR_L298N: setVitesseMoteurL298n(vitesse, m_avantDroite, m_arriereDroite, MOTEUR_DROIT); break;
-    case MOTEUR_SERVO: setVitesseMoteurServo(vitesse, mp_servoDroit); break;
+    case MOTEUR_L298N_4 : setVitesseMoteurL298n_4(vitesse, m_avantDroite, m_arriereDroite, MOTEUR_DROIT); break;
+    case MOTEUR_L298N_6 : setVitesseMoteurL298n_6(vitesse, m_enableDroite,m_avantDroite, m_arriereDroite, MOTEUR_DROIT); break;
+    case MOTEUR_SERVO   : setVitesseMoteurServo(vitesse, mp_servoDroit); break;
     default: break;
   }
 }
 
 
-void LibMoteur::setVitesseMoteurL298n( int vitesse, unsigned char pinAvant, unsigned char pinArriere, t_indexMoteur indexMoteur) {
+void LibMoteur::setVitesseMoteurL298n_4( int vitesse, unsigned char pinAvant, unsigned char pinArriere, t_indexMoteur indexMoteur) {
   unsigned char vAv = 0; 
   unsigned char vAr = 0;
 
@@ -184,6 +205,38 @@ void LibMoteur::setVitesseMoteurL298n( int vitesse, unsigned char pinAvant, unsi
     }
   #endif
 }
+
+
+void LibMoteur::setVitesseMoteurL298n_6(int vitesse, unsigned char pinVitesse, unsigned char pinAvant, unsigned char pinArriere, t_indexMoteur indexMoteur) {
+  unsigned char v; // vitesse
+  v = (vitesse > 0 ? vitesse : -vitesse);
+  v = map(v, 0, 100, 0, 255);
+  if (vitesse == 0) {
+    // On est à l'arret
+    digitalWrite(pinAvant,  LOW);
+    digitalWrite(pinArriere, LOW);
+  }
+  else if (vitesse > 0) {
+    // On va vers l'avant
+    digitalWrite(pinArriere, LOW);
+    digitalWrite(pinAvant,   HIGH);
+  }
+  else {
+    // On va vers l'arriere
+    digitalWrite(pinAvant,   LOW);
+    digitalWrite(pinArriere, HIGH);
+  }
+
+  #ifdef AVR
+    analogWrite(pinVitesse, v);
+  #endif
+
+  #ifdef ARDUINO_ARCH_ESP32
+    ledcWrite(pinVitesse, v);
+  #endif
+
+}
+
 
 
 void LibMoteur::setVitesseMoteurServo(int vitesse, Servo* p_servo) {

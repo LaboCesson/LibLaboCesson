@@ -193,6 +193,18 @@ TODO
 
 \page GIT Utilisation de GIT
 
+Créer un repository sur GitHub (Par exemple "MyProject")
+
+
+```
+echo "# MyProject" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/LaboCesson/MyProject.git
+git push -u origin main
+```
 
 TODO
 

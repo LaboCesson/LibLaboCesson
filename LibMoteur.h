@@ -23,8 +23,9 @@
 
 
 typedef enum {
-  MOTEUR_L298N = 0, ///< The motor is controlled with a L298N
-  MOTEUR_SERVO = 1, ///< The motor is controlled with a Servo360
+  MOTEUR_L298N_4 = 0, ///< The motor is controlled with a L298N avec 4 pins d'interface
+  MOTEUR_L298N_6 = 1, ///< The motor is controlled with a L298N avec 6 pins d'interface
+  MOTEUR_SERVO   = 2, ///< The motor is controlled with a Servo360
 } t_driverMoteur;
 
 
@@ -49,13 +50,23 @@ typedef enum {
 class LibMoteur
 {
   public:
-    /// \details Permet de piloter un moteur controllé par un L298N
+    /// \details Permet de piloter un moteur controllé par un L298N avec 4 pins
     LibMoteur(
-		  unsigned char pinIn1, ///< Le numéro de la pin connectée à IN1
-		  unsigned char pinIn2, ///< Le numéro de la pin connectée à IN2
-		  unsigned char pinIn3, ///< Le numéro de la pin connectée à IN3
-		  unsigned char pinIn4  ///< Le numéro de la pin connectée à IN4
-	  );
+      unsigned char pinIn1, ///< Le numéro de la pin connectée à IN1
+      unsigned char pinIn2, ///< Le numéro de la pin connectée à IN2
+      unsigned char pinIn3, ///< Le numéro de la pin connectée à IN3
+      unsigned char pinIn4  ///< Le numéro de la pin connectée à IN4
+    );
+
+    /// \details Permet de piloter un moteur controllé par un L298N avec 6 pins
+    LibMoteur(
+      unsigned char pinEna, ///< Le numéro de la pin connectée à ENA
+      unsigned char pinIn1, ///< Le numéro de la pin connectée à IN1
+      unsigned char pinIn2, ///< Le numéro de la pin connectée à IN2
+      unsigned char pinIn3, ///< Le numéro de la pin connectée à IN3
+      unsigned char pinIn4, ///< Le numéro de la pin connectée à IN4
+      unsigned char pinEnb  ///< Le numéro de la pin connectée à ENB
+     );
 
     /// \details Permet de piloter un moteur controllé par un servomoteur 360
     LibMoteur(
@@ -96,37 +107,45 @@ private:
   bool m_begin = false;
   bool m_debug = false;
 
-  void setVitesseMoteurL298n(
-               int  vitesse,    ///< vitesse à appliquer au moteur
-      unsigned char pinAvant,   ///< Le numéro de la pin permettant de mettre le moteur dans le sens avant
-      unsigned char pinArriere, ///< Le numéro de la pin permettant de mettre le moteur dans le sens arriere
-      t_indexMoteur indexMoteur ///< l'index du moteur à gérer
-    );
+  void setVitesseMoteurL298n_4(
+    int           vitesse,    ///< vitesse à appliquer au moteur
+    unsigned char pinAvant,   ///< Le numéro de la pin permettant de mettre le moteur dans le sens avant
+    unsigned char pinArriere, ///< Le numéro de la pin permettant de mettre le moteur dans le sens arriere
+    t_indexMoteur indexMoteur ///< l'index du moteur à gérer
+  );
 
-    void setVitesseMoteurServo(
-      int    vitesse, ///< vitesse à appliquer au moteur
-      Servo* p_servo  ///< Pointeur vers l'objet Servo
-    );
+  void setVitesseMoteurL298n_6(
+    int           vitesse,    ///< vitesse à appliquer au moteur
+    unsigned char pinVitesse, ///< Le numéro de la pin permettant de gérer la vitesse
+    unsigned char pinAvant,   ///< Le numéro de la pin permettant de mettre le moteur dans le sens avant
+    unsigned char pinArriere, ///< Le numéro de la pin permettant de mettre le moteur dans le sens arriere
+    t_indexMoteur indexMoteur ///< l'index du moteur à gérer
+  );
 
-    void commonInit(void);
-    void trace(char* side, int vitesse);
+  void setVitesseMoteurServo(
+    int    vitesse, ///< vitesse à appliquer au moteur
+    Servo* p_servo  ///< Pointeur vers l'objet Servo
+  );
 
-    t_driverMoteur m_typeDriver;
+  void commonInit(void);
+  void trace(char* side, int vitesse);
 
+  t_driverMoteur m_typeDriver;
 
-    unsigned char m_pinDroite,   m_pinGauche;
-    unsigned char m_avantDroite, m_arriereDroite;
-    unsigned char m_avantGauche, m_arriereGauche;
-             int  m_lastVitesseGauche, m_lastVitesseDroite;
-             bool m_directionDroite = true;
-             bool m_directionGauche = true;
-    unsigned int  m_frequency;    
-    unsigned char m_resolution;
+  unsigned char m_pinDroite,    m_pinGauche;
+  unsigned char m_enableDroite, m_enableGauche;
+  unsigned char m_avantDroite,  m_arriereDroite;
+  unsigned char m_avantGauche,  m_arriereGauche;
+            int  m_lastVitesseGauche, m_lastVitesseDroite;
+            bool m_directionDroite = true;
+            bool m_directionGauche = true;
+  unsigned int  m_frequency;    
+  unsigned char m_resolution;
 
-    t_attachStatus m_attachStatus[2];
+  t_attachStatus m_attachStatus[2];
 
-    Servo* mp_servoGauche;
-    Servo* mp_servoDroit;
+  Servo* mp_servoGauche;
+  Servo* mp_servoDroit;
 
 protected:
 };

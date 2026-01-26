@@ -197,7 +197,7 @@ class LibCanProtSend
 		/// Les couleurs sont codées par groupe de 2 bits avec les valeurs définies par \ref t_robot_color
 		int sendGetColor(unsigned char nbColor); ///< Nombre de couleurs à lire
 
-		/// \details Permet de configurer l'angle de rotation d'un servoMoteur désigné par son numéro de pin
+		/// \details Permet de configurer l'angle de rotation d'un servoMoteur désigné par son index GPIO (1-8)
 		/// \return  Retourne true si le message a bien été traité et false sinon
 		bool sendSetGpioPwm(
 			unsigned char gpio, ///< Index du gpio à gérer
@@ -285,6 +285,13 @@ public:
 		mp_color = p_color;
 	}
 
+	/// \details Permet de donner les références du driver du détecteur de couleur
+	void setColorDriver(
+		LibMultiTcs3472* p_color ///< Pointeur vers le gestionnaire du détecteur de couleur
+	) {
+		mp_color_multi = p_color;
+	}
+
 	/// \details Permet de donner les références du driver du gestionnaire de GPIO
 	void setGpioDriver(
 		LibGpio* p_gpio ///< Pointeur vers le gestionnaire de GPIO
@@ -326,7 +333,8 @@ private:
 	LibCan2515* mp_canBus = NULL;
 	LibMoteur* mp_moteur1 = NULL;
 	LibMoteur* mp_moteur2 = NULL;
-	LibTcs3472* mp_color = NULL;
+	LibTcs3472*      mp_color = NULL;
+	LibMultiTcs3472* mp_color_multi = NULL;
 	LibGpio* mp_gpio = NULL;
 
 	LibCanProtCommon canProtCom;

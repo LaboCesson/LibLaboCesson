@@ -485,19 +485,21 @@ void LibCanProtRecv::getPinAnalog(void) {
 void LibCanProtRecv::getColor(void) {
   unsigned char nbColor = m_bufferCan[3];
   unsigned char color = 0xFF;
+  t_robot_color tabColor[4];
+
+  if (nbColor > 4) nbColor = 4;
 
   if (m_debug == true) { Serial.print(nbColor); Serial.println(" couleur"); }
 
   if (mp_color != NULL) {
-    if (nbColor == 1) {
-      // On utilise la librairie LibTcs3472
+    color <<= 2;
+    color += (mp_color->getColor() & 0x03);
+  }
+  else if (mp_color_multi != NULL) {
+    mp_color_multi->getColors(nbColor, tabColor);
+    for (int i = (nbColor - 1); i>=0; i--) {
       color <<= 2;
-      color += (mp_color->getColor() & 0x03);
-      //color = 0;
-    }
-    else {
-      // On utilise la librairie LibMultiTcs3472
-      ///\todo
+      color += (tabColor[i] & 0x03);
     }
   }
   else {
@@ -515,7 +517,7 @@ void LibCanProtRecv::setGpioPwm(void) {
     Serial.println("CANbus !! Gestionnaire GPIO non initialise !!");
   }
 
-  mp_gpio->set(gpio, angle);
+  mp_gpio->set(gpio-1, angle);
   canProtCom.displayGpioAngleInfo(gpio, angle);
   returnAck(BUS_CAN_SET_GPIO_PWM);
 }

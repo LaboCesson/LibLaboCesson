@@ -127,7 +127,8 @@ LibMultiTcs3472::LibMultiTcs3472(void)
 
 
 bool LibMultiTcs3472::begin(int nbColor, unsigned char * muxIndex) {
-  if( m_begin == true) return false;
+  // si l'initialisation a déja été faite on ressort en erreur pour ne pas multiplier les new
+  if (m_begin == true) return false; 
   
   bool flagError = false;
 
@@ -147,7 +148,7 @@ bool LibMultiTcs3472::begin(int nbColor, unsigned char * muxIndex) {
 
   m_begin = true;
 
-  return flagError;
+  return !flagError;
 }
 
 

@@ -10,7 +10,6 @@
 
 #define TEST_LIB_MULTI_TCS3472
 
-
 #ifdef TEST_LIB_MULTI_TCS3472
 
   LibMultiTcs3472 colors;
@@ -28,16 +27,16 @@
   }
 
   void loop(void){
-    t_pami_color cols[NB_COLORS];
+    t_robot_color cols[NB_COLORS];
 
     colors.gestion();
     colors.getColors(NB_COLORS,cols);
     Serial.print("Couleurs : ");
     for(int i=0;i<NB_COLORS;i++) {
       switch(cols[i]) {
-        case PAMI_COULEUR_INCONNUE : Serial.print("???? ");  break;
-        case PAMI_COULEUR_JAUNE    : Serial.print("JAUNE "); break;
-        case PAMI_COULEUR_BLEU     : Serial.print("BLEU ");  break;
+        case ROBOT_COULEUR_INCONNUE : Serial.print("???? ");  break;
+        case ROBOT_COULEUR_JAUNE    : Serial.print("JAUNE "); break;
+        case ROBOT_COULEUR_BLEU     : Serial.print("BLEU ");  break;
       }
     }
     Serial.println("");
@@ -57,14 +56,14 @@
   }
 
   void loop(void){
-    t_pami_color col;
+    t_robot_color col;
 
     color.gestion();
     col = color.getColor();
       switch(col) {
-        case PAMI_COULEUR_INCONNUE : Serial.println("???? ");  break;
-        case PAMI_COULEUR_JAUNE    : Serial.println("JAUNE "); break;
-        case PAMI_COULEUR_BLEU     : Serial.println("BLEU ");  break;
+        case ROBOT_COULEUR_INCONNUE : Serial.println("???? ");  break;
+        case ROBOT_COULEUR_JAUNE    : Serial.println("JAUNE "); break;
+        case ROBOT_COULEUR_BLEU     : Serial.println("BLEU ");  break;
       }
     delay(1000);
   }

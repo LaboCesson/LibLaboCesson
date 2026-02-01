@@ -21,6 +21,7 @@
 #include "LibGyroscope.h"
 #include "Lib433Mhz.h"
 #include "LibChrono.h"
+#include "LibTelemetre.h"
 
 typedef enum {
   PAMI_GPIO_1 = 0, ///< GPIO1
@@ -35,6 +36,12 @@ typedef enum {
   PAMI_COTE_BLEU  = 0, ///< Le PAMI est sur le coté Bleu du plateau
   PAMI_COTE_JAUNE = 1  ///< Le PAMI est sur le coté Jaune du plateau
 } t_pami_cote_plateau;
+
+// Définition des jumpers de la carte
+#define PAMI_2026_JUMPER_PIN1  1
+#define PAMI_2026_JUMPER_PIN2  2
+#define PAMI_2026_JUMPER_PIN3  3
+#define PAMI_2026_JUMPER_PIN4  4
 
 
 /// \class LibPami2025
@@ -111,25 +118,48 @@ class LibPami2026Ninja
 /// \details    RadioHead : https://www.airspayce.com/mikem/arduino/RadioHead
 /// \details    Wire
 
+#define PAMI_GPIO_BRAS_AVANT   0 ///< GPIO associé au servo/bras avant
+#define PAMI_GPIO_BRAS_ARRIERE 1 ///< GPIO associé au servo/bras arriere
+
+#define PAMI_OMNI_BRAS_AVANT_OUVERT    0
+#define PAMI_OMNI_BRAS_AVANT_FERME    90
+#define PAMI_OMNI_BRAS_ARRIERE_OUVERT 90
+#define PAMI_OMNI_BRAS_ARRIERE_FERME   0
+
+// Définition des jumpers de la carte
+#define PAMI_OMNI_SWITCH_AVANT   PAMI_2026_JUMPER_PIN1
+#define PAMI_OMNI_SWITCH_LATERAL PAMI_2026_JUMPER_PIN2
+#define PAMI_OMNI_SWITCH_ARRIERE PAMI_2026_JUMPER_PIN3
+
+
 class LibPami2026NinjaOmni
 {
-public:
-  LibPami2026NinjaOmni();
+  public:
+    LibPami2026NinjaOmni();
 
-  /// \details Cette fonction doit être appelée régulièrement pour la gestion des différents éléments d'un PAMI
-  void gestion(void);
+    /// \details Cette fonction permet d'initialiser les différents organes du PAMI
+    /// Les initialisations effectuées sont les suivantes
+    /// - Les pins associées aux switchs latéraux
+    /// - Les GPIO associés aux bras latéraux
+    /// - Le gyroscope
+    /// - Le télémètre
+    void begin(void);
 
-  LibAff1637    afficheur; ///< Librairie de gestion d'un afficheur
-  LibJumper     jumper;    ///< Librairie de gestion des jumpers d'un PAMI
-  LibGpio       gpio;      ///< Librairie de gestion des GPIO
-  LibGyroscope  gyro;      ///< Librairie de gestion d'un gyroscope
-  LibMoteurOmni moteur;    ///< Librairie de gestion de roues omnidirectionnelles
-  Lib433Mhz     radio;     ///< Librairie de gestion d'un récepteur 433Mhz
-  LibChrono     chrono;    ///< Librairie de gestion d'un chronometre
+    /// \details Cette fonction doit être appelée régulièrement pour la gestion des différents éléments d'un PAMI
+    void gestion(void);
 
-private:
+    LibAff1637    afficheur; ///< Librairie de gestion d'un afficheur
+    //LibJumper     jumper;    ///< Librairie de gestion des jumpers d'un PAMI
+    LibMoteurOmni moteur;    ///< Librairie de gestion de roues omnidirectionnelles
+    LibGpio       gpio;      ///< Librairie de gestion des GPIO
+    LibGyroscope  gyro;      ///< Librairie de gestion d'un gyroscope
+    Lib433Mhz     radio;     ///< Librairie de gestion d'un récepteur 433Mhz
+    LibVl53lox    telemetre; ///< Librairie de gestion d'un télémètre laser
+    LibChrono     chrono;    ///< Librairie de gestion d'un chronometre
 
-protected:
+  private:
+
+  protected:
 };
 
 #endif

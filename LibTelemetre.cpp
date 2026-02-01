@@ -100,7 +100,7 @@ void LibVl53lox::begin(void) {
     Serial.println("Failed to boot VL53L0X");
     return;
   }
-
+  Serial.println("VL53L0X détecté");
   m_begin = true;
 }
 

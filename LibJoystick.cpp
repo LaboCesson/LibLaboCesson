@@ -8,7 +8,7 @@
 
 #include "LibJoystick.h"
 
-LibJoystick::LibJoystick();
+LibJoystick::LibJoystick() {}
 
 
 LibJoystick::LibJoystick(

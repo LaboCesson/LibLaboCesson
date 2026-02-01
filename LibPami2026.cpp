@@ -9,10 +9,10 @@
 #include "LibPami2026.h"
 
 // Définition des jumpers associant une carte à un PAMI
-#define PAMI_JUMPER_TEAM  1
-#define PAMI_JUMPER_NB_L  2
-#define PAMI_JUMPER_NB_M  3
-#define PAMI_JUMPER_NB_H  4
+#define PAMI_JUMPER_TEAM  PAMI_2026_JUMPER_PIN1
+#define PAMI_JUMPER_NB_L  PAMI_2026_JUMPER_PIN2
+#define PAMI_JUMPER_NB_M  PAMI_2026_JUMPER_PIN3
+#define PAMI_JUMPER_NB_H  PAMI_2026_JUMPER_PIN4
 
 unsigned char jumpersPinList[] = { PAMI_JUMPER_NB_H,PAMI_JUMPER_NB_M,PAMI_JUMPER_NB_L };
 
@@ -95,6 +95,7 @@ LibPami2026Basic::LibPami2026Basic() :
   m_cote_plateau = PAMI_COTE_BLEU;
   digitalWrite(PAMI_PIN_LED_BLEU,  LOW);
   digitalWrite(PAMI_PIN_LED_JAUNE, LOW);
+
 }
 
 
@@ -148,16 +149,32 @@ void LibPami2026Ninja::gestion(void) {
 
 LibPami2026NinjaOmni::LibPami2026NinjaOmni() :
   afficheur(PAMI_AFF1637_CLK, PAMI_AFF1637_DATA),
-  jumper(PAMI_JUMPER_TEAM, jumpersPinList, 3),
+  //jumper(PAMI_JUMPER_TEAM, jumpersPinList, 3),
   moteur(PAMI_MOTEUR_AVANT_IN1,  PAMI_MOTEUR_AVANT_IN2,  PAMI_MOTEUR_AVANT_IN3,  PAMI_MOTEUR_AVANT_IN4,
          PAMI_MOTEUR_ARRIERE_IN1,PAMI_MOTEUR_ARRIERE_IN2,PAMI_MOTEUR_ARRIERE_IN3,PAMI_MOTEUR_ARRIERE_IN4),
   gpio(gpioPinListNinja, nbGpioPinNinja),
   gyro(),
   radio(RADIO433MHZ_RECV, PAMI_433MHZ_SPEED, PAMI_433MHZ_PIN, PAMI_433MHZ_PATTERN),
+  telemetre(),
   chrono()
 {
   gyro.setDisplay(&afficheur);
   chrono.setDisplay(&afficheur);
+}
+
+
+void LibPami2026NinjaOmni::begin(void) {
+  pinMode(PAMI_OMNI_SWITCH_AVANT,   INPUT_PULLUP);
+  pinMode(PAMI_OMNI_SWITCH_LATERAL, INPUT_PULLUP);
+  pinMode(PAMI_OMNI_SWITCH_ARRIERE, INPUT_PULLUP);
+
+  gpio.configure(PAMI_GPIO_BRAS_AVANT, PAMI_GPIO_PWM, PAMI_OMNI_BRAS_AVANT_FERME);
+  gpio.configure(PAMI_GPIO_BRAS_ARRIERE, PAMI_GPIO_PWM, PAMI_OMNI_BRAS_ARRIERE_FERME);
+
+  gyro.begin();
+  gyro.selectAxis(GYROSCOPE_AXIS_X);
+
+  telemetre.begin();
 }
 
 

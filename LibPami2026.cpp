@@ -99,6 +99,21 @@ LibPami2026Basic::LibPami2026Basic() :
 }
 
 
+void LibPami2026Basic::begin(void) {
+  moteur.begin();
+  moteur.moteurs(0);
+  moteur.setDirection(false, true);
+
+  gpio.configure(PAMI_GPIO_CHAPEAU, PAMI_GPIO_PWM, PAMI_DEFAULT_ANGLE_CHAPEAU);
+
+  gyro.begin();
+  gyro.selectAxis(GYROSCOPE_AXIS_X);
+
+  radio.begin(16);
+
+}
+
+
 void LibPami2026Basic::gestion(void) {
   afficheur.gestion();
   gyro.gestion();

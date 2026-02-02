@@ -52,16 +52,29 @@ typedef enum {
 /// \details    RadioHead : https://www.airspayce.com/mikem/arduino/RadioHead
 /// \details    Wire
 
+#define PAMI_GPIO_CHAPEAU            PAMI_GPIO_1
+#define PAMI_DEFAULT_ANGLE_CHAPEAU   90  ///< L'angle au repos en degré du chapeau
+#define PAMI_MAX_ROTATION_CHAPEAU    45  ///< Angle maximum de rotation du chapeau
+
+
 class LibPami2026Basic
 {
   public:
     LibPami2026Basic();
 
+    /// \details Cette fonction permet d'initialiser les différents organes du PAMI
+    /// Les initialisations effectuées sont les suivantes
+    /// - Les moteurs
+    /// - Le servomoteur chapeau
+    /// - Le gyroscope
+    /// - La radio
+    void begin(void);
+
     /// \details Cette fonction doit être appelée régulièrement pour la gestion des différents éléments d'un PAMI
     void gestion(void);
 
     /// \details Cette fonction retourne le coté du plateau ou se trouve le PAMI
-    t_pami_cote_plateau get_side(void) { return m_cote_plateau; };
+    t_pami_cote_plateau getSide(void) { return m_cote_plateau; };
 
     LibAff1637   afficheur; ///< Librairie de gestion d'un afficheur
     LibJumper    jumper;    ///< Librairie de gestion des jumpers d'un PAMI

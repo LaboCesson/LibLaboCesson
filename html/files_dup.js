@@ -36,8 +36,6 @@ var files_dup =
     [ "LibPami2025.h", "_lib_pami2025_8h.html", "_lib_pami2025_8h" ],
     [ "LibPami2026.cpp", "_lib_pami2026_8cpp.html", "_lib_pami2026_8cpp" ],
     [ "LibPami2026.h", "_lib_pami2026_8h.html", "_lib_pami2026_8h" ],
-    [ "LibRobot2026.cpp", "_lib_robot2026_8cpp.html", "_lib_robot2026_8cpp" ],
-    [ "LibRobot2026.h", "_lib_robot2026_8h.html", "_lib_robot2026_8h" ],
     [ "LibTelemetre.cpp", "_lib_telemetre_8cpp.html", "_lib_telemetre_8cpp" ],
     [ "LibTelemetre.h", "_lib_telemetre_8h.html", "_lib_telemetre_8h" ]
 ];

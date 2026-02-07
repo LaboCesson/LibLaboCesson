@@ -32,7 +32,7 @@ class LibChrono
     /// \details Permet de définir le mode du chrono
 	  /// - \ref CHRONO_MODE_COMPTEUR  Le chronomètre est incrémenté
 	  /// - \ref CHRONO_MODE_DECOMPTE  Le chronomètre est décrémenté
-    void setMode(t_ChronoMode mode); ///<  \param mode Mode de comptage du chronomètre
+    void setMode(t_ChronoMode mode); ///< \param mode Mode de comptage du chronomètre
 
     /// \details Permet de définir une alarme.
     ///          Lorsque l'alarme est échue la valeur du chronomètre est figée
@@ -59,7 +59,7 @@ class LibChrono
     void display(bool status); ///< \param  status true or false
 
     /// \details Permet de donner un pointeur vers la classe en charge de la gestion de l'afficheur
-    void setDisplay(LibAff1637 * p_display); ///< \param Pointeur vers l'objet en charge de l'afficheur
+    void setDisplay(LibAff1637 * p_display); ///< \param p_display Pointeur vers l'objet en charge de l'afficheur
 
     /// \details Cette fonction doit être appelée régulièrement pour la gestion du chronomètre
     void gestion(void);

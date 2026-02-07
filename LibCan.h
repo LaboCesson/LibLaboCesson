@@ -1,5 +1,5 @@
 /*!
- * \file 	LibCan2.h
+ * \file 	LibCan.h
  * \brief 	Le fichier de définition des classes LibCan2515 et LibCanProt
  * \author  LaboCesson
  * \version 1.0
@@ -13,6 +13,7 @@
 #include "mcp2515_can.h"
 
 #define DEFAULT_CAN_ID  0x70
+#define BUS_CAN_MESSAGE_MAX_SIZE 64
 
 /// \class LibCan2515
 /// \brief La librairie LibCan2515 permet de gérer un bus CAN en émission et en réception
@@ -86,7 +87,6 @@ class LibCan2515
 /// \class LibCanProtCommon
 /// \brief La librairie LibCanProtCommon contient des fonctions communes à l'émission et à la réception
 
-#define BUS_CAN_MESSAGE_MAX_SIZE 64
 #define BUS_CAN_TIME_OUT         100 // Durée d'attente max dune réponse (par unité de 10ms)
 
 class LibCanProtCommon

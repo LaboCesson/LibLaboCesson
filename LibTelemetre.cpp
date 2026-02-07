@@ -1,5 +1,5 @@
 /*!
- * \file 	LibUltrason.cpp
+ * \file 	LibTelemetre.cpp
  * \brief 	Le fichier source des classes de mesure de distance
  * \author  LaboCesson
  * \version 1.0

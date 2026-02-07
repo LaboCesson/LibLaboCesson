@@ -102,6 +102,9 @@ $(function(){initNavTree('_lib_can_8h.html',''); initResizable(true); });
   <div class="headertitle"><div class="title">LibCan.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Le fichier de définition des classes <a class="el" href="class_lib_can2515.html" title="La librairie LibCan2515 permet de gérer un bus CAN en émission et en réception.">LibCan2515</a> et LibCanProt.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;mcp2515_can.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="_lib_moteur_8h_source.html">LibMoteur.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_lib_color_8h_source.html">LibColor.h</a>&quot;</code><br />
@@ -114,8 +117,14 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lib_can2515.html">LibCan2515</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">La librairie <a class="el" href="class_lib_can2515.html" title="La librairie LibCan2515 permet de gérer un bus CAN en émission et en réception.">LibCan2515</a> permet de gérer un bus CAN en émission et en réception.  <a href="class_lib_can2515.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lib_can_prot.html">LibCanProt</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">La librairie <a class="el" href="class_lib_can_prot.html" title="La librairie LibCanProt permet de gérer le protocole utilisé entre le poste de commande du robot et l...">LibCanProt</a> permet de gérer le protocole utilisé entre le poste de commande du robot et le robot.  <a href="class_lib_can_prot.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lib_can_prot_common.html">LibCanProtCommon</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">La librairie <a class="el" href="class_lib_can_prot_common.html" title="La librairie LibCanProtCommon contient des fonctions communes à l&#39;émission et à la réception.">LibCanProtCommon</a> contient des fonctions communes à l'émission et à la réception.  <a href="class_lib_can_prot_common.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lib_can_prot_send.html">LibCanProtSend</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">La librairie <a class="el" href="class_lib_can_prot_send.html" title="La librairie LibCanProtSend permet de gérer le protocole utilisé entre le poste de commande du robot ...">LibCanProtSend</a> permet de gérer le protocole utilisé entre le poste de commande du robot et le robot.  <a href="class_lib_can_prot_send.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lib_can_prot_recv.html">LibCanProtRecv</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">La librairie <a class="el" href="class_lib_can_prot_recv.html" title="La librairie LibCanProtRecv permet de gérer le protocole utilisé entre le poste de commande du robot ...">LibCanProtRecv</a> permet de gérer le protocole utilisé entre le poste de commande du robot et le robot.  <a href="class_lib_can_prot_recv.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
@@ -124,14 +133,19 @@ Macros</h2></td></tr>
 <tr class="separator:abd657646c371f4f9d6aa7325b7a84ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c189bd8d041239b94832fdec1b2ce7f" id="r_a0c189bd8d041239b94832fdec1b2ce7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c189bd8d041239b94832fdec1b2ce7f">DEFAULT_CAN_ID</a>&#160;&#160;&#160;0x70</td></tr>
 <tr class="separator:a0c189bd8d041239b94832fdec1b2ce7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f1e0aa103f278060b2cb09b2c723239" id="r_a2f1e0aa103f278060b2cb09b2c723239"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f1e0aa103f278060b2cb09b2c723239">CAN_MAGIC_TAG</a>&#160;&#160;&#160;0xC7</td></tr>
-<tr class="separator:a2f1e0aa103f278060b2cb09b2c723239"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba38143fa913a3fac654a6b1ed590432" id="r_aba38143fa913a3fac654a6b1ed590432"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba38143fa913a3fac654a6b1ed590432">BUS_CAN_MESSAGE_MAX_SIZE</a>&#160;&#160;&#160;64</td></tr>
 <tr class="separator:aba38143fa913a3fac654a6b1ed590432"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03575ca323f23b83d5d7c880cf01006f" id="r_a03575ca323f23b83d5d7c880cf01006f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03575ca323f23b83d5d7c880cf01006f">BUS_CAN_TIME_OUT</a>&#160;&#160;&#160;100</td></tr>
 <tr class="separator:a03575ca323f23b83d5d7c880cf01006f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac537369b453ece54e368ca2aaa232b32" id="r_ac537369b453ece54e368ca2aaa232b32"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac537369b453ece54e368ca2aaa232b32">CAN_BUS_MAX_RELAY</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:ac537369b453ece54e368ca2aaa232b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Le fichier de définition des classes <a class="el" href="class_lib_can2515.html" title="La librairie LibCan2515 permet de gérer un bus CAN en émission et en réception.">LibCan2515</a> et LibCanProt. </p>
+<dl class="section author"><dt>Author</dt><dd>LaboCesson </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Décembre 2025 </dd></dl>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="aba38143fa913a3fac654a6b1ed590432" name="aba38143fa913a3fac654a6b1ed590432"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aba38143fa913a3fac654a6b1ed590432">&#9670;&#160;</a></span>BUS_CAN_MESSAGE_MAX_SIZE</h2>
 
@@ -174,14 +188,14 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="a2f1e0aa103f278060b2cb09b2c723239" name="a2f1e0aa103f278060b2cb09b2c723239"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f1e0aa103f278060b2cb09b2c723239">&#9670;&#160;</a></span>CAN_MAGIC_TAG</h2>
+<a id="ac537369b453ece54e368ca2aaa232b32" name="ac537369b453ece54e368ca2aaa232b32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac537369b453ece54e368ca2aaa232b32">&#9670;&#160;</a></span>CAN_BUS_MAX_RELAY</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define CAN_MAGIC_TAG&#160;&#160;&#160;0xC7</td>
+          <td class="memname">#define CAN_BUS_MAX_RELAY&#160;&#160;&#160;8</td>
         </tr>
       </table>
 </div><div class="memdoc">

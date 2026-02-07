@@ -40,7 +40,7 @@
       n bytes : Code ASCII des caractères à afficher
 
     commande BUS_CAN_GET_COLOR :
-      1 bytes : Nombre de couleurs à afficher
+      1 bytes : Nombre de couleurs à lire
 
     commande BUS_CAN_SET_PWM :
       1 byte : Numéro de GPIO (1-8)
@@ -79,9 +79,10 @@
         ROBOT_COULEUR_INCONNUE = 0 : Aucune couleur
         ROBOT_COULEUR_JAUNE    = 1 : Couleur Jaune
         ROBOT_COULEUR_BLEU     = 2 : Couleur Bleu
+        L'ordre de lecture est le suivant : 44332211
 */
 
-#define CAN_MAGIC_TAG 0xC7
+#define CAN_MAGIC_TAG            0xC7
 
 #define BUS_CAN_PING_ACK           0
 #define BUS_CAN_SET_PIN_DIGITAL    1

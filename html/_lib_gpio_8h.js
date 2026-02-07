@@ -6,7 +6,9 @@ var _lib_gpio_8h =
     [ "t_gpioMode", "_lib_gpio_8h.html#a688ff00fac7f466b7f98c275e152c0b2", [
       [ "PAMI_GPIO_UNUSED", "_lib_gpio_8h.html#a688ff00fac7f466b7f98c275e152c0b2acdf65a8466f95920a920d83a3f7ad3e2", null ],
       [ "PAMI_GPIO_INPUT", "_lib_gpio_8h.html#a688ff00fac7f466b7f98c275e152c0b2a55e2e01ae7db0819a3aab220f17d2992", null ],
+      [ "PAMI_GPIO_INPUT_A", "_lib_gpio_8h.html#a688ff00fac7f466b7f98c275e152c0b2a223f859301c63e76736dbab5f1ea141c", null ],
       [ "PAMI_GPIO_OUTPUT", "_lib_gpio_8h.html#a688ff00fac7f466b7f98c275e152c0b2af768afe83a7aa92e813ac10b59af5a50", null ],
+      [ "PAMI_GPIO_OUTPUT_A", "_lib_gpio_8h.html#a688ff00fac7f466b7f98c275e152c0b2a17d55b352ee9705c98204631a2422023", null ],
       [ "PAMI_GPIO_PWM", "_lib_gpio_8h.html#a688ff00fac7f466b7f98c275e152c0b2a2edd7e9466506208dc6fe9e581cacf6e", null ]
     ] ]
 ];

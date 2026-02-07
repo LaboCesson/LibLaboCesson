@@ -56,9 +56,9 @@ class LibTcs3472
 		);
 
 		/// \details Retourne la couleur détectée
-		/// - \ref PAMI_COULEUR_INCONNUE : la couleur n'est ni bleu ni jaune
-		/// - \ref PAMI_COULEUR_JAUNE : la couleur est jaune
-		/// - \ref PAMI_COULEUR_BLEU : la couleur est bleu
+		/// - \ref ROBOT_COULEUR_INCONNUE : la couleur n'est ni bleu ni jaune
+		/// - \ref ROBOT_COULEUR_JAUNE : la couleur est jaune
+		/// - \ref ROBOT_COULEUR_BLEU : la couleur est bleu
 		t_robot_color getColor(void);
 
 		/// \details Permet de valider l'affichage de message de debug
@@ -111,9 +111,9 @@ class LibMultiTcs3472
     void gestion(void);
 
 		/// \details Retourne les couleurs détectées
-		/// - \ref PAMI_COULEUR_INCONNUE : la couleur n'est ni bleu ni jaune
-		/// - \ref PAMI_COULEUR_JAUNE : la couleur est jaune
-		/// - \ref PAMI_COULEUR_BLEU : la couleur est bleu
+		/// - \ref ROBOT_COULEUR_INCONNUE : la couleur n'est ni bleu ni jaune
+		/// - \ref ROBOT_COULEUR_JAUNE : la couleur est jaune
+		/// - \ref ROBOT_COULEUR_BLEU : la couleur est bleu
 		void getColors(
 			int            nbColor,   ///< Nombre de couleur à retourner (Maximum NB_MAX_MULTI_TCS3472)
 			t_robot_color* p_tabColor ///< pointeur vers le tableau de couleur à retourner

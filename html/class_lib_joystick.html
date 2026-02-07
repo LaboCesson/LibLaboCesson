@@ -110,8 +110,12 @@ $(function(){initNavTree('class_lib_joystick.html',''); initResizable(true); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a17157ec58af92d8e9e2761325082b79b" id="r_a17157ec58af92d8e9e2761325082b79b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17157ec58af92d8e9e2761325082b79b">LibJoystick</a> (void)</td></tr>
+<tr class="separator:a17157ec58af92d8e9e2761325082b79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad10bb0e2361434b423ed4c52faf64b41" id="r_ad10bb0e2361434b423ed4c52faf64b41"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad10bb0e2361434b423ed4c52faf64b41">LibJoystick</a> (unsigned short x0, unsigned short y0, unsigned short deltaX, unsigned short deltaY, unsigned short vNormale, unsigned short vBoost, unsigned short minMotorG, unsigned short minMotorD)</td></tr>
 <tr class="separator:ad10bb0e2361434b423ed4c52faf64b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a365c175bd9748e1699df1763fd2cbaa0" id="r_a365c175bd9748e1699df1763fd2cbaa0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a365c175bd9748e1699df1763fd2cbaa0">begin</a> (unsigned short x0, unsigned short y0, unsigned short deltaX, unsigned short deltaY, unsigned short vNormale, unsigned short vBoost, unsigned short minMotorG, unsigned short minMotorD)</td></tr>
+<tr class="separator:a365c175bd9748e1699df1763fd2cbaa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85b135ad3f8cdfb59213a3e815647af2" id="r_a85b135ad3f8cdfb59213a3e815647af2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85b135ad3f8cdfb59213a3e815647af2">calculVitesses</a> (unsigned short valX, unsigned short valY, bool boost, bool rotationGauche, bool rotationDroite)</td></tr>
 <tr class="separator:a85b135ad3f8cdfb59213a3e815647af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad479847271d3fd8aeb214579795dda69" id="r_ad479847271d3fd8aeb214579795dda69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad479847271d3fd8aeb214579795dda69">getVitesses</a> (char *vitesseGauche, char *vitesseDroite)</td></tr>
@@ -123,8 +127,25 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Gestion d'un Joystick. </p>
 <p>Permet d'utiliser un Joystick pour piloter un robot équipé d'un moteur gauche et d'un moteur droit </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a17157ec58af92d8e9e2761325082b79b" name="a17157ec58af92d8e9e2761325082b79b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17157ec58af92d8e9e2761325082b79b">&#9670;&#160;</a></span>LibJoystick() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LibJoystick::LibJoystick </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ad10bb0e2361434b423ed4c52faf64b41" name="ad10bb0e2361434b423ed4c52faf64b41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad10bb0e2361434b423ed4c52faf64b41">&#9670;&#160;</a></span>LibJoystick()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad10bb0e2361434b423ed4c52faf64b41">&#9670;&#160;</a></span>LibJoystick() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -188,6 +209,70 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a365c175bd9748e1699df1763fd2cbaa0" name="a365c175bd9748e1699df1763fd2cbaa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a365c175bd9748e1699df1763fd2cbaa0">&#9670;&#160;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LibJoystick::begin </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>x0</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>y0</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>deltaX</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>deltaY</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>vNormale</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>vBoost</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>minMotorG</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>minMotorD</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x0</td><td>Valeur correspondant au point 0 de X  </td></tr>
+    <tr><td class="paramname">y0</td><td>Valeur correspondant au point 0 de Y  </td></tr>
+    <tr><td class="paramname">deltaX</td><td>Zone centrale en X ou l'action du Joystick est inopérante  </td></tr>
+    <tr><td class="paramname">deltaY</td><td>Zone centrale en Y ou l'action du Joystick est inopérante  </td></tr>
+    <tr><td class="paramname">vNormale</td><td>Valeur de la vitesse normale  </td></tr>
+    <tr><td class="paramname">vBoost</td><td>Valeur de la vitesse maximum  </td></tr>
+    <tr><td class="paramname">minMotorG</td><td>Vitesse minimum du moteur Gauche  </td></tr>
+    <tr><td class="paramname">minMotorD</td><td>Vitesse minimum du moteur Droite </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a85b135ad3f8cdfb59213a3e815647af2" name="a85b135ad3f8cdfb59213a3e815647af2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a85b135ad3f8cdfb59213a3e815647af2">&#9670;&#160;</a></span>calculVitesses()</h2>
 
@@ -221,6 +306,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Cette fonction est en charge de mettre à jour les variables m_vitesseGauche et m_vitesseDroite en fonction des données lues sur le joystick</p>
+<p>Cette fonction est à appeler avant d'appeler la fonction getVitesses </p>
 
 </div>
 </div>
@@ -242,7 +329,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Retourne la vitesse à appliquer au moteur gauche </dd></dl>
+<p>Cette fonction retourne les vitesses à appliquer aux moteurs </p>
 
 </div>
 </div>

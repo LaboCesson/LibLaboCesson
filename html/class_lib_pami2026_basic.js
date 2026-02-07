@@ -1,8 +1,9 @@
 var class_lib_pami2026_basic =
 [
     [ "LibPami2026Basic", "class_lib_pami2026_basic.html#a80fd8b16679837f40c6eaeea59fb7373", null ],
+    [ "begin", "class_lib_pami2026_basic.html#ac89880031d07964c03d19ac4e0e4db91", null ],
     [ "gestion", "class_lib_pami2026_basic.html#acd8590f8658b3de710683ac760ccce74", null ],
-    [ "get_side", "class_lib_pami2026_basic.html#a70289e74a4b0220fcc914948125ddeab", null ],
+    [ "getSide", "class_lib_pami2026_basic.html#a1f40ab926b178a44b32130e7d641af08", null ],
     [ "afficheur", "class_lib_pami2026_basic.html#ae4df15352ac3a4a70f80c607723c8a26", null ],
     [ "chrono", "class_lib_pami2026_basic.html#a61a5f9e748b56647ff339213d3c59aba", null ],
     [ "gpio", "class_lib_pami2026_basic.html#a9bbdf57775e6c7afd0a1983f01c19187", null ],

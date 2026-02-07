@@ -1,5 +1,5 @@
 /*!
- * \file 	LibCan2515.cpp
+ * \file 	LibCan.cpp
  * \brief 	Le fichier source de la classe LibCan2515
  * \author  LaboCesson
  * \version 1.0

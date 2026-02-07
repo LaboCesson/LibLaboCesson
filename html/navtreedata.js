@@ -35,12 +35,27 @@ var NAVTREE =
     ] ],
     [ "Utilisation de la librairie LibLaboCesson", "_u_s_e__l_i_b_r_a_r_y.html", null ],
     [ "Utilisation de GIT", "_g_i_t.html", null ],
+    [ "Le BUS CAN", "_b_u_s_c_a_n.html", [
+      [ "Introduction", "_b_u_s_c_a_n.html#autotoc_md5", [
+        [ "Description du bus CAN", "_b_u_s_c_a_n.html#autotoc_md6", null ],
+        [ "Implémentation matérielle", "_b_u_s_c_a_n.html#autotoc_md7", null ]
+      ] ],
+      [ "Description du protocole", "_b_u_s_c_a_n.html#autotoc_md8", [
+        [ "Format général", "_b_u_s_c_a_n.html#autotoc_md9", null ],
+        [ "Description des commandes", "_b_u_s_c_a_n.html#autotoc_md10", null ]
+      ] ],
+      [ "Implémentation logicielle", "_b_u_s_c_a_n.html#autotoc_md11", [
+        [ "Organisation des classes", "_b_u_s_c_a_n.html#autotoc_md12", null ],
+        [ "Mise en oeuvre de la classe LibCanProtSend", "_b_u_s_c_a_n.html#autotoc_md13", null ],
+        [ "Mise en oeuvre de la classe LibCanProtRecv", "_b_u_s_c_a_n.html#autotoc_md14", null ]
+      ] ]
+    ] ],
     [ "Todo List", "todo.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
@@ -61,8 +76,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_ascii_char_8h.html",
-"_lib_robot2026_8cpp.html#a2218923eb7b156336d135da0d0c676e2",
-"globals_d.html"
+"_lib_pami2026_8cpp.html#af14cb01d0eae5194c0a9b4827528a5d7",
+"class_lib_pami2026_ninja_omni.html#ac59bdef1fc11bc496d5f2609be48d364"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

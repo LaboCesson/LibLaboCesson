@@ -31,7 +31,7 @@ typedef enum {
 ///  <a href="https://www.airspayce.com/mikem/arduino/RadioHead/index.html" target="_blank" rel="noopener">**ICI**</a>
 /// \attention
 /// Il est nécessaire de modifier le fichier 
-///** C:\\Users\\<username>\\Documents\\Arduino\\Libraries\\RadioHead\\RH_ASK.cpp**
+///** C:\\Users\\\<username\>\\Documents\\Arduino\\Libraries\\RadioHead\\RH_ASK.cpp**
 /// et décommenter la ligne
 /// ```
 /// #define RH_ASK_ARDUINO_USE_TIMER2

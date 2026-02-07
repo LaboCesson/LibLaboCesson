@@ -8,7 +8,8 @@ var _lib_moteur_8h =
       [ "AR_ATTACH", "_lib_moteur_8h.html#a6ba619c577c1c44cc1f0b4347d11f0b7a7cb8ee7a5cfe221ba3ea661c385ce1b4", null ]
     ] ],
     [ "t_driverMoteur", "_lib_moteur_8h.html#a6e9b88313b3b9c67990b815811d8693b", [
-      [ "MOTEUR_L298N", "_lib_moteur_8h.html#a6e9b88313b3b9c67990b815811d8693bad498ed687da9986c75d4b24ecf714c49", null ],
+      [ "MOTEUR_L298N_4", "_lib_moteur_8h.html#a6e9b88313b3b9c67990b815811d8693baab6755f1638e433db9642b774f829898", null ],
+      [ "MOTEUR_L298N_6", "_lib_moteur_8h.html#a6e9b88313b3b9c67990b815811d8693baec98fed0af28cb8452fb4ee797d934dd", null ],
       [ "MOTEUR_SERVO", "_lib_moteur_8h.html#a6e9b88313b3b9c67990b815811d8693baf2eabb700de7cdb17d7546e5ee445ac7", null ]
     ] ],
     [ "t_indexMoteur", "_lib_moteur_8h.html#acb89f9edc8fc57347c3dd82a2f7ec6dc", [

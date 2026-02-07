@@ -1,5 +1,5 @@
 /*!
- * \file 	LibUltrason.h
+ * \file 	LibTelemetre.h
  * \brief 	Le fichier de définition des classes de mesure de distance
  * \author  LaboCesson
  * \version 1.0

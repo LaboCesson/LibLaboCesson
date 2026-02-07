@@ -16,7 +16,7 @@ Cela est du à un paquet dont le temps de chargement dépasse le time-out par d�
 Pour modifier le time-out de chargement des paquets de logiciel dans l'IDE Arduino :
 
 - Fermer l'IDE Arduino
-- Ouvrir le fichier : **C:\\Users\\<username>\\.arduinoIDE\\arduino-cli.yaml**
+- Ouvrir le fichier : **C:\\Users\\\<username\>\\.arduinoIDE\\arduino-cli.yaml**
 - Ajouter les lignes suivantes
 
 ```yaml
@@ -30,7 +30,7 @@ Lors d'affichage de trace dans le moniteur de l'IDE Arduino, au  bout d'un certa
 
 Pour corriger ce problème :
 
-- Ouvrir le fichier **C:\\Users\\<username>\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.5\\boards.txt**
+- Ouvrir le fichier **C:\\Users\\\<username\>\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.5\\boards.txt**
 - Remplacer les lignes
 
 ```
@@ -51,7 +51,7 @@ esp32s2.serial.disableRTS=true
 Il peut arriver que la génération du logiciel ne finissent pas lors de l'édition de lien car elle utilise des fichiers de type **.o** qui ne sont plus les bons
 
 Pour régler le problème, il faut supprimer un répertoire dans le répertoire **sketches** :
-**C:\\Users\\<username>\\AppData\\Local\\arduino\\sketches**
+**C:\\Users\\\<username\>\\AppData\\Local\\arduino\\sketches**
 
 Le nom du répertoire est par exemple **1D28B4FA3FD80E921A8889962A5655DB**
 
@@ -88,7 +88,7 @@ Elle est disponible <a href="https://www.airspayce.com/mikem/arduino/RadioHead/R
 
 Il faut dézipper le contenu et le copier dans le répertoire **Libraries** ou est installlé Arduino
 
-Typiquement dans le répertoire : **C:\\Users\\<username>\\Documents\\arduino\\Libraries**
+Typiquement dans le répertoire : **C:\\Users\\\<username\>\\Documents\\arduino\\Libraries**
 
 \attention
 Il est possible que l'erreur suivante apparaise : **multiple definition of `__vector_17'** <BR>
@@ -207,6 +207,168 @@ git push -u origin main
 ```
 
 TODO
+
+
+<!--==========================================================================================-->
+
+\page BUSCAN Le BUS CAN
+
+# Introduction
+
+## Description du bus CAN
+Le Bus CAN est une technologie utilisée dans ledomaine automobile pour echanger des informations entre les différents organes de la voiture.<BR>
+Il est utilisé par le Labo Cesson pour échanger des informations entre le poste de pilotage et le robot
+
+## Implémentation matérielle
+
+Le bus CAN est mis en oeuvre en utilisant le 
+<a href="https://handsontec.com/dataspecs/module/Networking/MCP2515%20CAN%20Module.pdf" target="_blank" rel="noopener">Module MCP2515</a>
+
+Ce module a une horloge à 8Mhz qui limite le débit mais est largement suffisant car autorise un débit de 125Kbits/sec.
+
+Ce qui permet typiquement d'échanger d'échanger théoriquement plus de 1000 messages par seconde.
+
+Dans l'implémentation actuelle, la librairie utilisée est la librairie 
+<a href="https://github.com/Seeed-Studio/Seeed_Arduino_CAN" target="_blank" rel="noopener">CAN_BUS_Shield par Seed Studio</a>
+
+Le module 
+<a href="https://fr.pinterest.com/pin/usb-liltech-canable-plildebugger-outil-de-dbogage-lilbus-pour-linux-win10-11-typec-usb-degraine-in-2025--4593742097083648000/" target="_blank" rel="noopener">
+USB LilTech, CANable PLilDebugger Outil de débogage Lilbus</a>
+ avec le logiciel 
+<a href="https://www.peak-system.com/Software.68.0.html" target="_blank" rel="noopener">PCAN-View</a>
+
+
+# Description du protocole
+
+## Format général
+
+Le protocole est du type commande/réponse.
+Une nouvelle commande ne peut être envoyée que lorsque la réponse à la précédente a été reçue.
+
+Le protocole est décrit dans le fichier \ref LibCanProtDef.h
+
+Une commande est composée des octets suivants:
+
+- un MagicTag (0xC7) permettant de s'assurer que l'on a bien le début d'une commande ou d'une réponse<BR>
+  Le cas échéant, en cas de désynchronisation, il pourrait être possible d'effecteur une resynchronisation<BR><BR>
+- une Commande/Réponse avec le bit de poids fort à 0 pour une commande et à 1 pour une réponse<BR>
+  Cela autorise jusqu'à 128 commandes différentes<BR>
+  Le code de la réponse est égale au code de la commande<BR><BR>
+- Le nombre d'octets suivant cet octet<BR>
+  La longueur maximum d'une commande est de \ref BUS_CAN_MESSAGE_MAX_SIZE octets, ce nombre ne doit donc pas excéder cette valeur diminuée de 3<BR><BR>
+- Les données associées à la commande dont le nombre et le rôle dépendent de la commande
+
+\warning Une réponse utilise le même code que la commande associée ce qui permet de s'assurer que l'on est bien synchronisé.
+Mais si l'on envoi de manière continue la même commande, il peut y avoir une désynchronisation jusqu'à l'envoi d'une commande différente
+
+## Description des commandes
+
+Il existe deux types de commandes:
+
+- Des commandes permettant d'adresser directement le matériel de la carte Robot<BR>
+  Par exemple, la commande BUS_CAN_SET_PIN_DIGITAL permet de gérer directement un port en utilisant son numéro de pin
+- Des commandes utlisant un niveau d'abstraction et permettant de gérer un organe de la carte Robot<BR>
+  Par exemple, la commande BUS_CAN_SET_RELAY peremt de gérer l'état d'un relai sans connaitre le port qui lui est associé<BR>
+
+Les commandes avec un niveau d'abstraction permettent d'avoir des logiciels de contrôle indépendants de la carte présente sur la carte Robot<BR>
+Par exemple, le logiciel de gestion du joystick s'appuie sur la commande BUS_CAN_SET_MOTEUR_1 et est identique pour les deux robots,
+bien que l'un soit équipé d'une carte Arduino Mega Mini et l'autre d'un ESP32-S2
+
+Les commandes sont décrites dans le fichier \ref LibCanProtDef.h
+
+
+# Implémentation logicielle
+
+## Organisation des classes
+
+L'ensemble des classes gérant le bus CAN sont présentes dans les fichiers 
+
+- \ref LibCan.h qui contient la définition des classes
+- \ref LibCanProtDef.h qui contient la définition des commandes
+- \ref LibCan.cpp qui contient l'implémentation des classes
+
+Il existe 4 classes :
+
+- la classe \ref LibCan2515 qui permet de gérer les couches basses du bus CAN
+  Initialisation du matériel, envoi d'un message, lecture d'un message
+- la classe \ref LibCanProtSend qui est utilisée par le logiciel pilote pour envoyer des commandes et lire des réponses
+- la classe \ref LibCanProtRecv qui est utilisé par le robot pour lire des commandes, les exécuter et retoourner une réponse
+- la classe \ref LibCanProtCommon qui contient des fonctions communes aux deux classes \ref LibCanProtSend et \ref LibCanProtRecv
+
+
+## Mise en oeuvre de la classe LibCanProtSend
+
+La classe \ref LibCanProtSend est générique et à besoin de connaitre l'objet en charge de la gestion des couches basses<BR>
+Une initialisation typique est donc la suivante :
+
+```
+#include "LibCan.h"
+#define CAN_BUS_CS_PIN 49
+
+LibCan2515     canBus(CAN_BUS_CS_PIN);
+LibCanProtSend canProt;
+```
+
+Puis dans le setup(), il faut donner à l'objet canProt la référence de l'objet canBus
+
+```
+canProt.setCanBusDriver(&canBus);
+bool status = canProt.begin();
+```
+
+Ensuite, l'envoi des commandes se fait en utilisant les commandes du type ```canProt.sendSetxxx(xxx)```<BR>
+Par exemple la commande ```canProt.sendSetRelay(2,HIGH)``` permet d'activer le relai n°2 du robot
+
+
+## Mise en oeuvre de la classe LibCanProtRecv
+
+La classe \ref LibCanProtRecv est aussi générique et à besoin de connaitre l'objet en charge de la gestion des couches basses,
+mais aussi des objets en charge de la gestion des éléments du robot (moteur, GPIO, détecteur de couleur, ...)<BR>
+
+
+Une initialisation typique est donc la suivante :
+
+```
+#include "LibCan.h"
+#define CAN_BUS_CS_PIN 49
+
+LibCan2515     canBus(CAN_BUS_CS_PIN);
+LibCanProtSend canProt;
+
+#include "LibMoteur.h"
+LibMoteur  moteur1(1,2, 3, 4, 5,6);
+
+#include "LibColor.h"
+LibTcs3472 color;
+
+#include "LibGpio.h"
+LibGpio gpio(gpioPinRobotTeamB, nbGpioRobotTeamB);
+```
+
+
+Puis dans le setup(), il faut donner à l'objet canProt la référence des différents objets
+
+```
+	canProt.setCanBusDriver(&canBus);
+	bool status = canProt.begin();
+	canProt.setMoteurDriver(0,&moteur1);
+	canProt.setColorDriver(&color);
+	canProt.setGpioDriver(&gpio);
+```
+
+La fonction ```canProt.gestionMessage()``` gère l'ensemble des commandes
+et s'appuie sur les objets passés en référence pour les exécutées.<BR>
+La fonction ```loop()``` devient simplement la suivante :
+
+```
+void loop(void){
+  color.gestion();
+  canProt.gestionMessage();
+}
+```
+
+A noter la présence de l'appel à la fonction gestion de l'objet color.
+En effet l'objet color nécessite un appel régulier pour être opérationnel
 
 
 */

@@ -42,16 +42,17 @@ class LibJoystick
       unsigned short minMotorD  ///< Vitesse minimum du moteur Droite
     );
 
-    // /// \return Permet de calculer les vitesses à appliquer
-    // /// \details Cette fonction est à appeler avant d'appeller la fonction getVitesses
+    /// \details Cette fonction est en charge de mettre à jour les variables m_vitesseGauche et m_vitesseDroite
+    ///          en fonction des données lues sur le joystick
+    /// \details Cette fonction est à appeler avant d'appeler la fonction getVitesses
     void calculVitesses(unsigned short valX, unsigned short valY, bool boost, bool rotationGauche, bool rotationDroite);
 
-    /// \return Retourne la vitesse à appliquer au moteur gauche
+    /// \details Cette fonction retourne les vitesses à appliquer aux moteurs
     void getVitesses( char * vitesseGauche, char * vitesseDroite );
 
     /// \details Permet de valider l'affichage de message de debug
     void setDebug(
-      bool debug,                 ///< Si true les messages de debug sont affichés
+      bool           debug,       ///< Si true les messages de debug sont affichés
       unsigned short periodeTrace ///< Période d'affichage des traces en ms
     );
 

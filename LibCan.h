@@ -42,7 +42,7 @@ class LibCan2515
 		bool begin(
 			unsigned char scanId   = DEFAULT_CAN_ID, ///< Adresse de l'interface CAN
 			unsigned int  speedSet = CAN_125KBPS,    ///< Vitesse d'échange sur le bus can
-			unsigned char clockSet = MCP_8MHz        ///< Desciption du role du parametre 1
+			unsigned char clockSet = MCP_8MHz        ///< Frequence du quartz
 		);
 
 		/// \details Permet de lire un message

@@ -67,6 +67,7 @@ bool LibCan2515::begin(	unsigned char canId, unsigned int speedSet, unsigned cha
 unsigned char LibCan2515::getMessage( unsigned char * p_buf) {
   unsigned char len;
 
+  delay(100);
   if (CAN_MSGAVAIL != can.checkReceive()) return 0;
 
   can.readMsgBuf(&len, p_buf);
@@ -448,8 +449,11 @@ void LibCanProtRecv::setMoteur(unsigned char cmd) {
     return;
   }
 
-  char vitesseGauche = m_bufferCan[3];
-  char vitesseDroite = m_bufferCan[4];
+  int vitesseGauche = m_bufferCan[3];
+  int vitesseDroite = m_bufferCan[4];
+
+  if (vitesseGauche > 100) vitesseGauche -= 255;
+  if (vitesseDroite > 100) vitesseDroite -= 255;
 
   p_moteur->moteurGauche(vitesseGauche);
   p_moteur->moteurDroit(vitesseDroite);

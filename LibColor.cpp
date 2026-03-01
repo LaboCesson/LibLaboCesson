@@ -65,6 +65,12 @@ void LibTcs3472::gestion(void) {
   m_blue  = tcs.read16(TCS34725_BDATAL);
   m_temperature = tcs.calculateColorTemperature_dn40(m_red, m_green, m_blue, m_chrominance);
 
+  if (m_debug == true) {
+    Serial.print("TCS3472 => ");
+    Serial.print("Color Temperature:"); Serial.print(m_temperature, DEC);
+    Serial.println("");
+  }
+
   // On évite l'accumulation de traitements le cas écheant
   while (newTime >= m_nextTimeGestion) m_nextTimeGestion += m_period;
 }

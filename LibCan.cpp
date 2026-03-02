@@ -67,7 +67,6 @@ bool LibCan2515::begin(	unsigned char canId, unsigned int speedSet, unsigned cha
 unsigned char LibCan2515::getMessage( unsigned char * p_buf) {
   unsigned char len;
 
-  delay(100);
   if (CAN_MSGAVAIL != can.checkReceive()) return 0;
 
   can.readMsgBuf(&len, p_buf);
@@ -302,7 +301,6 @@ void LibCanProtSend::envoiMessage(void) {
 bool LibCanProtSend::waitReponse(unsigned char cmd) {
   int timeOut = BUS_CAN_TIME_OUT;
   unsigned char len;
-
 
   while (timeOut > 0) {
     if (mp_canBus->getMessage(m_bufferCan) != 0) {

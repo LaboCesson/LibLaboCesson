@@ -27,8 +27,8 @@
 #define MCP23008_IOCON_ODR    0x04
 #define MCP23008_IOCON_INTPOL 0x02
 
-LibMcp23008::LibMcp23008(unsigned char addrDevice, bool dowWireBegin) {
-  if(dowWireBegin == true) Wire.begin();
+LibMcp23008::LibMcp23008(unsigned char addrDevice, bool doWireBegin) {
+  if(doWireBegin == true) Wire.begin();
   m_addrDevice = addrDevice;
 }
 
@@ -47,6 +47,7 @@ bool LibMcp23008::begin() {
   for(unsigned char i=0; i<MCP23008_NB_REG; i++) {
     writeRegister(i,dataReset[i]);
   }
+  delay(100);
 }
 
 

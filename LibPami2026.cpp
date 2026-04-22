@@ -55,8 +55,8 @@ unsigned char gpioPinListBasic[] = {PAMI_PIN_GPIO_3,PAMI_PIN_GPIO_4,PAMI_PIN_GPI
 unsigned char nbGpioPinBasic = 4;
 
 // Définition des GPIO des PAMIs Ninja
-unsigned char gpioPinListNinja[] = {PAMI_PIN_GPIO_1,PAMI_PIN_GPIO_2,PAMI_PIN_GPIO_3,PAMI_PIN_GPIO_4,PAMI_PIN_GPIO_5,PAMI_PIN_GPIO_6};
-unsigned char nbGpioPinNinja = 6;
+unsigned char gpioPinListNinja[] = {PAMI_PIN_GPIO_3,PAMI_PIN_GPIO_4,PAMI_PIN_GPIO_5,PAMI_PIN_GPIO_6};
+unsigned char nbGpioPinNinja = 4;
 
 
 // Définition des pins associées aà l'afficheur 7 segments
@@ -67,6 +67,10 @@ unsigned char nbGpioPinNinja = 6;
 #define PAMI_433MHZ_PIN     40
 #define PAMI_433MHZ_SPEED   2000
 #define PAMI_433MHZ_PATTERN "LaboCesson"
+
+// Définition associé aux caractéristiques du PAMI
+#define PAMI_DIAMETRE_ROUE  60 // Diametre des roues en mm
+#define PAMI_NB_DETECTEURS   5 // Nombre de points de détection pour le calcul des distances
 
 //
 // Gestion d'un PAMI BASIC
@@ -134,27 +138,65 @@ void LibPami2026Basic::gestion(void) {
 
 
 //
-// Gestion d'un PAMI NINJA avec roues normales
+// Gestion d'un PAMI NINJA sur base PAMI Basic
 //
 
 LibPami2026Ninja::LibPami2026Ninja() :
   afficheur(PAMI_AFF1637_CLK,PAMI_AFF1637_DATA),
   jumper(PAMI_JUMPER_TEAM, jumpersPinList, 3),
-  moteur(PAMI_MOTEURS1_IN1, PAMI_MOTEURS1_IN2, PAMI_MOTEURS1_IN3, PAMI_MOTEURS1_IN4),
+  moteur(PAMI_PIN_GPIO_1, PAMI_PIN_GPIO_2),
   gpio(gpioPinListNinja,nbGpioPinNinja),
   gyro(),
   radio(RADIO433MHZ_RECV, PAMI_433MHZ_SPEED, PAMI_433MHZ_PIN, PAMI_433MHZ_PATTERN),
+  distance(PAMI_DIAMETRE_ROUE, PAMI_NB_DETECTEURS, PAMI_PIN_GPIO_5, 0),
   chrono()
 {
   gyro.setDisplay(&afficheur);
   chrono.setDisplay(&afficheur);
+
+  // Configuration des Pins associées aux LEDs et au switch Coté Jaune/Bleu
+  pinMode(PAMI_PIN_LED_BLEU, OUTPUT);
+  pinMode(PAMI_PIN_LED_JAUNE, OUTPUT);
+  pinMode(PAMI_PIN_LED_VERTE, OUTPUT);
+  pinMode(PAMI_PIN_COTE_JAUNE_BLEU, INPUT_PULLUP);
+
+  // Par défaut le PAMI est sur le coté Bleu
+  m_cote_plateau = PAMI_COTE_BLEU;
+  digitalWrite(PAMI_PIN_LED_BLEU, LOW);
+  digitalWrite(PAMI_PIN_LED_JAUNE, LOW);
+
 }
+
+void LibPami2026Ninja::begin(void) {
+  moteur.begin();
+  moteur.moteurs(0);
+  moteur.setDirection(false, true);
+
+  gpio.configure(PAMI_GPIO_CHAPEAU, PAMI_GPIO_PWM, PAMI_DEFAULT_ANGLE_CHAPEAU);
+
+  gyro.begin();
+  gyro.selectAxis(GYROSCOPE_AXIS_X);
+
+  radio.begin(16);
+
+}
+
 
 
 void LibPami2026Ninja::gestion(void) {
   afficheur.gestion();
   gyro.gestion();
   chrono.gestion();
+
+  // Gestion des LEDs et du switch Coté Jaune/Bleu
+  t_pami_cote_plateau newSide = (digitalRead(PAMI_PIN_COTE_JAUNE_BLEU) == LOW ? PAMI_COTE_BLEU : PAMI_COTE_JAUNE);
+
+  if ((newSide != m_cote_plateau) || (m_init_led == false)) {
+    m_cote_plateau = newSide;
+    m_init_led = true;
+    digitalWrite(PAMI_PIN_LED_BLEU, (m_cote_plateau == PAMI_COTE_BLEU ? LOW : HIGH));
+    digitalWrite(PAMI_PIN_LED_JAUNE, (m_cote_plateau == PAMI_COTE_JAUNE ? LOW : HIGH));
+  }
 }
 
 

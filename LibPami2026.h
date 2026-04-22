@@ -106,8 +106,19 @@ class LibPami2026Ninja
   public:
     LibPami2026Ninja();
 
+    /// \details Cette fonction permet d'initialiser les différents organes du PAMI
+    /// Les initialisations effectuées sont les suivantes
+    /// - Les moteurs
+    /// - Le servomoteur chapeau
+    /// - Le gyroscope
+    /// - La radio
+    void begin(void);
+
     /// \details Cette fonction doit être appelée régulièrement pour la gestion des différents éléments d'un PAMI
     void gestion(void);
+
+    /// \details Cette fonction retourne le coté du plateau ou se trouve le PAMI
+    t_pami_cote_plateau getSide(void) { return m_cote_plateau; };
 
     LibAff1637   afficheur; ///< Librairie de gestion d'un afficheur
     LibJumper    jumper;    ///< Librairie de gestion des jumpers d'un PAMI
@@ -115,9 +126,13 @@ class LibPami2026Ninja
     LibGyroscope gyro;      ///< Librairie de gestion d'un gyroscope
     LibMoteur    moteur;    ///< Librairie de gestion d'un couple de moteur
     Lib433Mhz    radio;     ///< Librairie de gestion d'un récepteur 433Mhz
+    LibDistance  distance;  ///< Librairie de calcul de distance
     LibChrono    chrono;    ///< Librairie de gestion d'un chronometre
 
   private:
+
+    t_pami_cote_plateau m_cote_plateau;
+    bool m_init_led = false;
 
   protected:
 };

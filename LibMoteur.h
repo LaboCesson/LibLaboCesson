@@ -21,6 +21,8 @@
 #include "ESP32Servo.h"
 #endif
 
+#include "LibDistance.h"
+
 
 typedef enum {
   MOTEUR_L298N_4 = 0, ///< The motor is controlled with a L298N avec 4 pins d'interface
@@ -84,13 +86,13 @@ class LibMoteur
 
     /// \details Permet de piloter le moteur gauche
     void moteurGauche(
-		int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
-	  );
+		  int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+    );
 
 	  /// \details Permet de piloter le moteur droit
     void moteurDroit(
-		int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
-	  );
+		  int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+    );
 
     /// \details Permet de modifier le sens par défaut des moteurs
     void setDirection(
@@ -101,7 +103,7 @@ class LibMoteur
     /// \details Permet de valider l'affichage de message de debug
     void setDebug(
       bool debug ///< si true les messages de debug sont affichés
-    );
+    ) { m_debug = debug; }
 
 private:
   bool m_begin = false;
@@ -173,17 +175,20 @@ public:
 
   /// \details Permet de piloter les deux moteurs
   void moteurs(
-    int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+    int  vitesse,      ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+    bool startDistance = false ///< Si true, on initie un calcul de distance
   );
 
   /// \details Permet de piloter le moteur gauche
   void moteurGauche(
-    int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+    int  vitesse,      ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+    bool startDistance = false ///< Si true, on initie un calcul de distance
   );
 
   /// \details Permet de piloter le moteur droit
   void moteurDroit(
-    int vitesse  ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+    int  vitesse,      ///< vitesse à appliquer, valeurs possibles entre -100 et +100 (0=stop)
+    bool startDistance = false ///< Si true, on initie un calcul de distance
   );
 
   /// \details Permet de modifier le sens par défaut des moteurs
@@ -192,10 +197,15 @@ public:
     bool dirDroite  ///< direction du moteur droit (true=normal, false= inverse)
   );
 
+  /// \details Permet d'indiquer que l'estimation des distances est active
+  void setDistance(
+    LibDistance* p_distance ///< Pointeur vers l'objet en charge de l'estimation des distances
+  ) { mp_distance = p_distance; }
+
   /// \details Permet de valider l'affichage de message de debug
   void setDebug(
     bool debug ///< si true les messages de debug sont affichés
-  );
+  ) { moteur.setDebug(debug); }
 
   /// \details Permet de modifier le sens par défaut des moteurs
   void gestion(void);
@@ -219,6 +229,9 @@ private:
   int getNewVitesseUp(int vitesseCourante, int vitesseCible);
   int getNewVitesseDown(int vitesseCourante, int vitesseCible);
 
+  LibDistance* mp_distance = NULL;
+  bool startDistanceGaucheDone = true;
+  bool startDistanceDroiteDone = true;
 
 protected:
 }; 

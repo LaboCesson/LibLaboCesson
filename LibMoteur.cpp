@@ -124,7 +124,7 @@ void LibMoteur::begin(void) {
 
 void LibMoteur::moteurs(int vitesse) {
   moteurGauche(vitesse);
-  moteurDroit(vitesse);
+  moteurDroit (vitesse);
 }
 
 
@@ -238,7 +238,6 @@ void LibMoteur::setVitesseMoteurL298n_6(int vitesse, unsigned char pinVitesse, u
 }
 
 
-
 void LibMoteur::setVitesseMoteurServo(int vitesse, Servo* p_servo) {
   unsigned short value = DEFAULT_SERVO_OFF;
 
@@ -269,9 +268,6 @@ void LibMoteur::trace(char* side, int vitesse) {
 }
 
 
-void LibMoteur::setDebug(bool debug) { m_debug = debug; }
-
-
 //=====================================
 // Class LibMoteurS
 //=====================================
@@ -294,30 +290,27 @@ void LibMoteurS::begin(void) {
 }
 
 
-void LibMoteurS::moteurs(int vitesse) {
-  this->moteurGauche(vitesse);
-  this->moteurDroit(vitesse);
+void LibMoteurS::moteurs(int vitesse, bool startDistance ) {
+  this->moteurGauche(vitesse, startDistance);
+  this->moteurDroit (vitesse, startDistance);
 }
 
 
-void LibMoteurS::moteurGauche(int vitesse) {
+void LibMoteurS::moteurGauche(int vitesse, bool startDistance) {
+  if(startDistance== true) startDistanceGaucheDone = false;
   m_vitesseGaucheCible = vitesse;
 }
 
 
 
-void LibMoteurS::moteurDroit(int vitesse) {
+void LibMoteurS::moteurDroit(int vitesse, bool startDistance) {
+  if (startDistance == true) startDistanceDroiteDone = false;
   m_vitesseDroiteCible = vitesse;
 }
 
 
 void LibMoteurS::setDirection(bool dirGauche, bool dirDroite) {
   moteur.setDirection(dirGauche, dirDroite);
-}
-
-
-void LibMoteurS::setDebug(bool debug) {
-  moteur.setDebug(debug);
 }
 
 
@@ -339,6 +332,20 @@ void LibMoteurS::gestion(void) {
 
   }
 
+  if (mp_distance != NULL) {
+    // On calcule les distances parcourues
+    if (startDistanceGaucheDone == false) {
+Serial.println("Start Distance Gauche");
+      mp_distance->startDistanceGauche();
+      startDistanceGaucheDone = true;
+    }
+    if (startDistanceDroiteDone == false) {
+Serial.println("Start Distance Droite");
+      mp_distance->startDistanceDroite();
+      startDistanceDroiteDone = true;
+    }
+  }
+ 
   // On évite l'accumulation de traitements le cas écheant
   while (newTime > m_nextTimeGestion) m_nextTimeGestion += m_stepTime;
 }

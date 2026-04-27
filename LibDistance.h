@@ -50,6 +50,11 @@ class LibDistance
 			unsigned int pinRoueDroite ///< Numéro du pin associé au détecteur de la roue droite
 		);
 
+		/// \details Permet de valider le début de mesure d'une distance du moteur droit
+		void setDefaultSpeed(
+			unsigned defaultSpeed ///< vitesse par défaut pour la première section en mm/sec
+		) { m_defaultSpeed = defaultSpeed; }
+
 		/// \details Permet de valider le début de mesure d'une distance du moteur gauche
 		void startDistance();
 

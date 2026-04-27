@@ -58,7 +58,7 @@ void LibDistance::initCtxRoue( t_LibDistance_work * p_ctx, unsigned int pinDetec
 
   p_ctx->nbDetection    = 0;
 	p_ctx->lastVitesse    = 0;
-	p_ctx->firstVitesse   = 0;
+	p_ctx->firstVitesse   = m_defaultSpeed;
 	p_ctx->vitesseMoyenne = 0;
   p_ctx->lastInterrupt     = 0;
   p_ctx->firstSectionTime  = 0;
@@ -115,11 +115,12 @@ unsigned int LibDistance::getWheelDistance(t_LibDistance_work* p_ctx) {
 
   if(nbDetection <= 1) {
     // On fait une estimation sur la base d'une vitesse estimée
-    distance += ((time - p_ctx->launchingTime) * 220) / 100;
+    //distance += ((time - p_ctx->launchingTime) * 220) / 100;
+    distance += ((time - p_ctx->launchingTime) * p_ctx->firstVitesse) / 100;
   }
 
   if (nbDetection > 1) {
-    // On ajoute la distance de la première section imcomplète
+    // On ajoute la distance de la première section incomplète
     distance += (p_ctx->firstSectionTime * p_ctx->firstVitesse) / 100;
     // On ajoute la distance de toute les sections complètes
     distance += ((nbDetection - 1) * p_ctx->sectionSize);
@@ -128,6 +129,10 @@ unsigned int LibDistance::getWheelDistance(t_LibDistance_work* p_ctx) {
   }
 
   //Serial.print(digitalRead(p_ctx->pinDetector));
+  //Serial.print(" - ");
+  //Serial.print(p_ctx->firstVitesse);
+  //Serial.print(" - ");
+  //Serial.print(p_ctx->firstVitesse);
   //Serial.print(" - ");
   //Serial.print(p_ctx->vitesseMoyenne);
   //Serial.print(" - ");

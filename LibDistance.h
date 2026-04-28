@@ -11,13 +11,15 @@
 
 #include "arduino.h"
 
-#define LIBDISTANCE_MAX_SECTION 10 // Nombre maximum de sections
+#define LIBDISTANCE_MAX_SECTION 20 // Nombre maximum de sections
 
 typedef struct {
-	unsigned int  nbPoint;		   ///< Nombre de point de détection
-	unsigned int  pinDetector;   ///< Numéro de pin associé au détecteur
-	unsigned int  circonference; ///< Circonference de la roue en dixième de mm
-	unsigned int  sectionSize;   ///< Distance entre deux détection en dixième de mm
+	unsigned int  nbPoint;		     ///< Nombre de point de détection
+	unsigned int  pinDetector;     ///< Numéro de pin associé au détecteur
+	unsigned int  circonference;   ///< Circonference de la roue en dixième de mm
+	unsigned int  sectionSize;     ///< Distance entre deux détection en dixième de mm
+	bool          levelDetector;   ///< Etat LOW/HIGH géré pour la détection
+	unsigned int  dureeAntirebond; ///< Durée maximum de l'antirebond en ms
 
  	unsigned long detectionTime[LIBDISTANCE_MAX_SECTION]; ///< Table mémorisant les derniers temps de détection
 	unsigned int  indexTable; ///< Pointeur dans la table vers le prochain emplacement ou ranger en temps de détection
@@ -44,13 +46,19 @@ class LibDistance
   public:
 
 		LibDistance(
-			unsigned int diametre,   ///< Diametre de la roue associée au moteur en mm
-			unsigned int nbPoint,    ///< Nombre de point de détection présents sur la roue
 			unsigned int pinRoueGauche, ///< Numéro du pin associé au détecteur de la roue gauche
 			unsigned int pinRoueDroite ///< Numéro du pin associé au détecteur de la roue droite
 		);
 
-		/// \details Permet de valider le début de mesure d'une distance du moteur droit
+		/// \details Permet de valider le calcul des distances
+		void begin(
+			unsigned int diametre,       ///< Diametre de la roue associée au moteur en mm
+			unsigned int nbPoint,        ///< Nombre de points de détection présents sur la roue
+			bool         levelDetector,  ///< Etat LOW/HIGH géré pour la détection
+			unsigned int dureeAntirebond ///< Durée maximum de l'antirebond en ms (typiquement 5ms)
+		);
+
+		/// \details Permet d'indiquer la vitesse par défaut pour la première section
 		void setDefaultSpeed(
 			unsigned defaultSpeed ///< vitesse par défaut pour la première section en mm/sec
 		) { m_defaultSpeed = defaultSpeed; }
@@ -68,20 +76,21 @@ class LibDistance
 		/// \return  Retourne la distance parcouru en mm
 		unsigned int getDistance();
 
-		void printInfo();
-
 		/// \details Permet de valider l'affichage de messages de debug
 		void setDebug(
 			bool debug ///< si true les messages de debug sont affichés
 		) { m_debug = debug; }
 
   private:
-    bool         m_debug;
+    bool m_debug = false;
+		bool m_begin = false;
 
 		unsigned int m_diametre;
 		unsigned int m_nbPoint;
 		unsigned int m_pinRoueGauche;
 		unsigned int m_pinRoueDroite;
+		bool         m_levelDetector;
+		unsigned int m_dureeAntirebond;
 		unsigned int m_defaultSpeed;  // Vitesse par défaut en mm/sec
 
 		static void IRAM_ATTR gestionIntRoueDroite(); ///< \details Fonction appelée lors de la détection d'un front coté droit
@@ -102,6 +111,11 @@ class LibDistance
 		void initCtxRoue(
 			t_LibDistance_work * p_ctx, ///< Pointeur vers le contexte de gestion de la roue
 			unsigned int pinDetector ///< Numéro du pin associé au détecteur
+		);
+
+		void printInfo(
+			t_LibDistance_work* p_ctx,   ///< Pointeur vers le contexte de gestion de la roue
+			unsigned int        distance ///< Distance estimée
 		);
 
   protected:

@@ -68,10 +68,6 @@ unsigned char nbGpioPinNinja = 4;
 #define PAMI_433MHZ_SPEED   2000
 #define PAMI_433MHZ_PATTERN "LaboCesson"
 
-// Définition associé aux caractéristiques du PAMI
-#define PAMI_DIAMETRE_ROUE  60 // Diametre des roues en mm
-#define PAMI_NB_DETECTEURS   5 // Nombre de points de détection pour le calcul des distances
-
 //
 // Gestion d'un PAMI BASIC
 //
@@ -148,7 +144,7 @@ LibPami2026Ninja::LibPami2026Ninja() :
   gpio(gpioPinListNinja,nbGpioPinNinja),
   gyro(),
   radio(RADIO433MHZ_RECV, PAMI_433MHZ_SPEED, PAMI_433MHZ_PIN, PAMI_433MHZ_PATTERN),
-  distance(PAMI_DIAMETRE_ROUE, PAMI_NB_DETECTEURS, PAMI_PIN_GPIO_5, 0),
+  distance(PAMI_PIN_GPIO_5, 0),
   chrono()
 {
   gyro.setDisplay(&afficheur);

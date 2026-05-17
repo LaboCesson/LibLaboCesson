@@ -12,8 +12,8 @@
 #define LIBDISTANCE_DEFAULT_SPEED 220 // Vitesse par défaut pour les distances courtes en mm/sec
 
 
-static t_LibDistance_work libDistanceWorkGauche;
-static t_LibDistance_work libDistanceWorkDroite;
+static t_LibDistance_ctx libDistanceWorkGauche;
+static t_LibDistance_ctx libDistanceWorkDroite;
 
 
 LibDistance::LibDistance(unsigned int pinRoueGauche, unsigned int pinRoueDroite) {
@@ -47,7 +47,7 @@ void LibDistance::begin(unsigned int diametre, unsigned int nbPoint, bool levelD
   m_defaultSpeed = LIBDISTANCE_DEFAULT_SPEED;
 }
 
-void LibDistance::initCtxRoue( t_LibDistance_work * p_ctx, unsigned int pinDetector ) {
+void LibDistance::initCtxRoue(t_LibDistance_ctx* p_ctx, unsigned int pinDetector ) {
   // Avant d'initiaiser le contexte si le parcours précédent a pu déteminer une vitesse
   // On va la considérer comme nouvelle valeur par défaut
   if (p_ctx->firstVitesse != 0) {
@@ -68,7 +68,7 @@ void LibDistance::initCtxRoue( t_LibDistance_work * p_ctx, unsigned int pinDetec
   p_ctx->nbDetection    = 0;
 	p_ctx->lastVitesse    = 0;
 	p_ctx->firstVitesse   = m_defaultSpeed;
-	p_ctx->vitesseMoyenne = 0;
+	p_ctx->vitesseMoyenne = m_defaultSpeed;
   p_ctx->lastInterrupt     = 0;
   p_ctx->firstSectionTime  = 0;
   p_ctx->lastDetectionTime = 0;
@@ -113,7 +113,7 @@ unsigned int LibDistance::getDistance() {
 }
 
 
-unsigned int LibDistance::getWheelDistance(t_LibDistance_work* p_ctx) {
+unsigned int LibDistance::getWheelDistance(t_LibDistance_ctx* p_ctx) {
   if (m_begin == false) return 10000; // On retourne 10m pour etre sur qu'il ne bougera pas
 
   unsigned long time = millis();
@@ -145,7 +145,7 @@ unsigned int LibDistance::getWheelDistance(t_LibDistance_work* p_ctx) {
 }
 
 
-void LibDistance::gestionIntRoue( t_LibDistance_work * p_ctx) {
+void LibDistance::gestionIntRoue(t_LibDistance_ctx* p_ctx) {
   unsigned long time = millis();
 
   // On gère un antirebond en ne gérant pas l'interruption avant un certain temps
@@ -212,7 +212,7 @@ void IRAM_ATTR LibDistance::gestionIntRoueGauche() {
 }
 
 
-void LibDistance::printInfo(t_LibDistance_work* p_ctx, unsigned int distance) {
+void LibDistance::printInfo(t_LibDistance_ctx* p_ctx, unsigned int distance) {
   Serial.print("nbD=");        Serial.print(p_ctx->nbDetection);
   Serial.print(" - StartTi="); Serial.print(p_ctx->launchingTime);
   Serial.print(" - lastDet="); Serial.print(p_ctx->lastDetectionTime);

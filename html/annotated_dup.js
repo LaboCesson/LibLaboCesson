@@ -8,6 +8,7 @@ var annotated_dup =
     [ "LibCanProtSend", "class_lib_can_prot_send.html", "class_lib_can_prot_send" ],
     [ "LibChrono", "class_lib_chrono.html", "class_lib_chrono" ],
     [ "LibClavier", "class_lib_clavier.html", "class_lib_clavier" ],
+    [ "LibDistance", "class_lib_distance.html", "class_lib_distance" ],
     [ "LibGpio", "class_lib_gpio.html", "class_lib_gpio" ],
     [ "LibGyroscope", "class_lib_gyroscope.html", "class_lib_gyroscope" ],
     [ "LibJoystick", "class_lib_joystick.html", "class_lib_joystick" ],
@@ -25,5 +26,6 @@ var annotated_dup =
     [ "LibPami2026NinjaOmni", "class_lib_pami2026_ninja_omni.html", "class_lib_pami2026_ninja_omni" ],
     [ "LibTcs3472", "class_lib_tcs3472.html", "class_lib_tcs3472" ],
     [ "LibUltrason", "class_lib_ultrason.html", "class_lib_ultrason" ],
-    [ "LibVl53lox", "class_lib_vl53lox.html", "class_lib_vl53lox" ]
+    [ "LibVl53lox", "class_lib_vl53lox.html", "class_lib_vl53lox" ],
+    [ "t_LibDistance_ctx", "structt___lib_distance__ctx.html", "structt___lib_distance__ctx" ]
 ];

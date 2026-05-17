@@ -1,9 +1,12 @@
 var class_lib_pami2026_ninja =
 [
     [ "LibPami2026Ninja", "class_lib_pami2026_ninja.html#a02e3a1216f04f03601fb9fd116466b2a", null ],
+    [ "begin", "class_lib_pami2026_ninja.html#ae0964e99cd7e7a4da1d707524db0c957", null ],
     [ "gestion", "class_lib_pami2026_ninja.html#a345a459b76dc471dea7e4e34a677f5e5", null ],
+    [ "getSide", "class_lib_pami2026_ninja.html#a7a4b3ddb57117fbea88a0d210646db05", null ],
     [ "afficheur", "class_lib_pami2026_ninja.html#a9078a20d3000327f01ee7545eb63d1c7", null ],
     [ "chrono", "class_lib_pami2026_ninja.html#ae7d4cb0a562fdf15aa95b486e3671db4", null ],
+    [ "distance", "class_lib_pami2026_ninja.html#a97a8b5e06fbd3644152dc8fb68ac5812", null ],
     [ "gpio", "class_lib_pami2026_ninja.html#a6cb5d251dee658538d876344e9a30cab", null ],
     [ "gyro", "class_lib_pami2026_ninja.html#a05c7ff01ee9e27329696056167b6386e", null ],
     [ "jumper", "class_lib_pami2026_ninja.html#a39a585b5e6d67f5c9bcea1958080e7af", null ],

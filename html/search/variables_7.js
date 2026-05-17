@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['radio_0',['radio',['../class_lib_pami2025.html#aa266ef66848aaf0c686da263a684709b',1,'LibPami2025::radio'],['../class_lib_pami2026_basic.html#afda5310eeccbf3cd5cd9358e5bd1fab5',1,'LibPami2026Basic::radio'],['../class_lib_pami2026_ninja.html#aa82822cf976b34e1a285ba9dd7b2c5ff',1,'LibPami2026Ninja::radio'],['../class_lib_pami2026_ninja_omni.html#a973fdbf1ad1e313f4b7269adfed056ff',1,'LibPami2026NinjaOmni::radio']]]
+  ['lastdetectiontime_0',['lastDetectionTime',['../structt___lib_distance__ctx.html#a5bffddbd3acfc3bde7be741024cd9be2',1,'t_LibDistance_ctx']]],
+  ['lastinterrupt_1',['lastInterrupt',['../structt___lib_distance__ctx.html#a1f6d99b438280e8142f2650f66e5f8dc',1,'t_LibDistance_ctx']]],
+  ['lastvitesse_2',['lastVitesse',['../structt___lib_distance__ctx.html#acc21dfa0e7058eae470c703e588380ee',1,'t_LibDistance_ctx']]],
+  ['launchingtime_3',['launchingTime',['../structt___lib_distance__ctx.html#ab361d9bf38e274395435a5c15d6e4373',1,'t_LibDistance_ctx']]],
+  ['leveldetector_4',['levelDetector',['../structt___lib_distance__ctx.html#a34818fefe9c3b9e01cdfd06cf1e5b266',1,'t_LibDistance_ctx']]]
 ];

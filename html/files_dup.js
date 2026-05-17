@@ -14,6 +14,8 @@ var files_dup =
     [ "LibClavier.h", "_lib_clavier_8h.html", "_lib_clavier_8h" ],
     [ "LibColor.cpp", "_lib_color_8cpp.html", "_lib_color_8cpp" ],
     [ "LibColor.h", "_lib_color_8h.html", "_lib_color_8h" ],
+    [ "LibDistance.cpp", "_lib_distance_8cpp.html", "_lib_distance_8cpp" ],
+    [ "LibDistance.h", "_lib_distance_8h.html", "_lib_distance_8h" ],
     [ "LibGpio.cpp", "_lib_gpio_8cpp.html", null ],
     [ "LibGpio.h", "_lib_gpio_8h.html", "_lib_gpio_8h" ],
     [ "LibGyroscope.cpp", "_lib_gyroscope_8cpp.html", "_lib_gyroscope_8cpp" ],

@@ -76,8 +76,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_ascii_char_8h.html",
-"_lib_pami2026_8cpp.html#af14cb01d0eae5194c0a9b4827528a5d7",
-"class_lib_pami2026_ninja_omni.html#ac59bdef1fc11bc496d5f2609be48d364"
+"_lib_pami2026_8cpp.html#abde53ee80b33515e9967f531412e08d8",
+"class_lib_pami2026_ninja.html#a39a585b5e6d67f5c9bcea1958080e7af"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

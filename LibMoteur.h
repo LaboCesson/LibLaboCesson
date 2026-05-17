@@ -197,7 +197,8 @@ public:
     bool dirDroite  ///< direction du moteur droit (true=normal, false= inverse)
   );
 
-  /// \details Permet d'indiquer que l'estimation des distances est active
+  /// \details Permet d'indiquer que la librairie en charge du calcul des distances parcourues est active<BR>
+  /// Le début de calcul de la distance parcourue est alors sous le contrôle de cette librairie
   void setDistance(
     LibDistance* p_distance ///< Pointeur vers l'objet en charge de l'estimation des distances
   ) { mp_distance = p_distance; }

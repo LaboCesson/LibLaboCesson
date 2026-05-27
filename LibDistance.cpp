@@ -200,16 +200,27 @@ void LibDistance::gestionIntRoue(t_LibDistance_ctx* p_ctx) {
 }
 
 
-void IRAM_ATTR LibDistance::gestionIntRoueDroite() {
-  gestionIntRoue( &libDistanceWorkDroite );
-  return;
-}
+#ifdef AVR
+  void LibDistance::gestionIntRoueDroite() {
+    gestionIntRoue(&libDistanceWorkDroite);
+    return;
+  }
+  void LibDistance::gestionIntRoueGauche() {
+    gestionIntRoue(&libDistanceWorkGauche);
+    return;
+  }
+#endif
+#ifdef ARDUINO_ARCH_ESP32
+  void IRAM_ATTR LibDistance::gestionIntRoueDroite() {
+    gestionIntRoue(&libDistanceWorkDroite);
+    return;
+  }
+  void IRAM_ATTR LibDistance::gestionIntRoueGauche() {
+    gestionIntRoue(&libDistanceWorkGauche);
+    return;
+  }
+#endif
 
-
-void IRAM_ATTR LibDistance::gestionIntRoueGauche() {
-  gestionIntRoue( &libDistanceWorkGauche );
-  return;
-}
 
 
 void LibDistance::printInfo(t_LibDistance_ctx* p_ctx, unsigned int distance) {

@@ -14,7 +14,7 @@
 
 #include "arduino.h"
 
-#ifdef AVR#ifdef SERVO_USED
+#ifdef AVR
 #include "Servo.h"
 #endif
 #ifdef ARDUINO_ARCH_ESP32

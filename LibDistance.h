@@ -126,14 +126,20 @@ class LibDistance
 		bool         m_levelDetector;
 		unsigned int m_dureeAntirebond;
 		unsigned int m_defaultSpeed;  // Vitesse par défaut en mm/sec
-
-		static void IRAM_ATTR gestionIntRoueDroite(); ///< \details Fonction appelée lors de la détection d'un front coté droit
-		static void IRAM_ATTR gestionIntRoueGauche(); ///< \details Fonction appelée lors de la détection d'un front coté gauche
+		#ifdef AVR
+			static void gestionIntRoueDroite(); ///< \details Fonction appelée lors de la détection d'un front coté droit
+			static void gestionIntRoueGauche(); ///< \details Fonction appelée lors de la détection d'un front coté gauche
+		#endif
+		#ifdef ARDUINO_ARCH_ESP32
+			static void IRAM_ATTR gestionIntRoueDroite(); ///< \details Fonction appelée lors de la détection d'un front coté droit
+			static void IRAM_ATTR gestionIntRoueGauche(); ///< \details Fonction appelée lors de la détection d'un front coté gauche
+		#endif
 
 		/// \details Gestion de la détection d'un front pour une roue
-		static void IRAM_ATTR gestionIntRoue( 
+		static void gestionIntRoue(
 			t_LibDistance_ctx* p_ctx ///< Pointeur vers le contexte de gestion de la roue
 		);
+
 
 		/// \details Permet de connaitre la distance depuis son initialisation
 		/// \return  Retourne la distance parcouru en mm
